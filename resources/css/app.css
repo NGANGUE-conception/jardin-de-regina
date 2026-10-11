@@ -1,3 +1,5 @@
+@import "@fontsource/chewy";
+@import "@fontsource-variable/nunito";
 @import "tailwindcss";
 
 @theme {
@@ -18,7 +20,7 @@
 
     /* Polices */
     --font-display: "Chewy", cursive;
-    --font-body: "Nunito", sans-serif;
+    --font-body: "Nunito Variable", "Nunito", sans-serif;
 }
 
 body {
