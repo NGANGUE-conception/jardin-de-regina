@@ -1,0 +1,64 @@
+
+  <footer class="w-full bg-primary-deep text-cream relative overflow-hidden mt-24">
+      <div class="w-full overflow-hidden leading-none">
+          <svg class="block w-full h-12 md:h-16 text-cream fill-current" preserveAspectRatio="none" viewBox="0 0 1200 120">
+              <path d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,0 L0,0 Z"></path>
+          </svg>
+      </div>
+
+      <div class="max-w-[1240px] mx-auto px-6 pt-10 pb-16">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+              <div class="flex flex-col gap-4">
+                  <span class="font-display text-2xl">Le Jardin de Régina</span>
+                  <p class="font-body text-sm text-cream/90">
+                      Micro-crèche écoresponsable à taille humaine. Un cocon de nature et de bienveillance au cœur d'Alfortville.
+                  </p>
+                  <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 w-fit">
+                      <span class="font-body text-xs uppercase tracking-widest text-primary">Micro-crèche écoresponsable · Réseau TEF Group
+  Invest</span>
+                  </div>
+              </div>
+
+              <div class="flex flex-col gap-4">
+                  <span class="font-display text-lg">Coordonnées & horaires</span>
+                  <div class="flex flex-col gap-2 text-sm text-cream/90 font-body">
+                      <span>4 B rue des Écoles, 94140 Alfortville</span>
+                      <a href="tel:0767646184" class="hover:text-primary transition-colors">07 67 64 61 84</a>
+                      <a href="mailto:jardinderegina94@gmail.com" class="hover:text-primary transition-colors
+  break-all">jardinderegina94@gmail.com</a>
+                      <span>Lundi – vendredi, 8h30 – 18h30</span>
+                  </div>
+              </div>
+
+              <div class="flex flex-col gap-4">
+                  <span class="font-display text-lg">Liens rapides</span>
+                  <div class="flex flex-col gap-2 text-sm font-body text-cream/90">
+                      <a href="/notre-projet" class="hover:text-cream transition-colors">Notre projet pédagogique</a>
+                      <a href="/fonctionnement" class="hover:text-cream transition-colors">Fonctionnement & rythme</a>
+                      <a href="/tarifs" class="hover:text-cream transition-colors">Grille tarifaire & aides CAF</a>
+                      <a href="/berceaux-entreprise" class="hover:text-cream transition-colors">Berceaux entreprise</a>
+                      <a href="/recrutement" class="hover:text-cream transition-colors">Espace recrutement</a>
+                      <a href="/pre-inscription" class="font-bold text-coral hover:text-cream transition-colors">Demande de pré-inscription</a>
+                  </div>
+              </div>
+
+              <div class="flex flex-col gap-4">
+                  <span class="font-display text-lg">Informations légales</span>
+                  <div class="flex flex-col gap-2 text-sm font-body text-cream/90">
+                      <a href="/mentions-legales" class="hover:text-cream transition-colors">Mentions légales</a>
+                      <a href="/politique-de-confidentialite" class="hover:text-cream transition-colors">Politique de confidentialité</a>
+                      <a href="/gestion-des-cookies" class="hover:text-cream transition-colors">Gestion des cookies</a>
+                      <a href="/plan-du-site" class="hover:text-cream transition-colors">Plan du site</a>
+                  </div>
+                  <div class="text-xs text-cream/60 mt-2">Agrément PMI & soutien CAF Val-de-Marne</div>
+              </div>
+          </div>
+
+          <div class="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-cream/70
+  font-body">
+              <p>© {{ date('Y') }} Le Jardin de Régina. Tous droits réservés.</p>
+              <span class="italic">Conçu pour le bien-être et l'éveil de vos tout-petits</span>
+          </div>
+      </div>
+  </footer>
