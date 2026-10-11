@@ -18,9 +18,12 @@ $placesPourvues ??= \App\Models\PreRegistration::where('status', 'acceptee')->co
             <svg class="w-4 h-4 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
             {{ $placesPourvues }}/14 places pourvues · ouverture août 2026
         </span>
-        <button type="button" class="relative p-2 rounded-full text-primary-deep/60 hover:bg-white transition-colors">
+        @php($totalATraiter = \App\Support\CompteursAdmin::total())
+        <a href="{{ route('admin') }}" title="{{ $totalATraiter ? $totalATraiter.' élément(s) à traiter' : 'Rien de nouveau à traiter' }}" class="relative p-2 rounded-full text-primary-deep/60 hover:bg-white transition-colors">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 00-4-5.66V5a2 2 0 10-4 0v.34A6 6 0 006 11v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-coral rounded-full ring-2 ring-cream"></span>
-        </button>
+            @if ($totalATraiter > 0)
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-coral rounded-full ring-2 ring-cream"></span>
+            @endif
+        </a>
     </div>
 </header>

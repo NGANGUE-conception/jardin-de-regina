@@ -1,5 +1,7 @@
 @props(['actif' => 'tableau-de-bord'])
 
+@php($aTraiter = \App\Support\CompteursAdmin::aTraiter())
+
 <aside class="fixed left-0 top-0 h-full w-[240px] bg-white z-50 flex flex-col justify-between p-4 shadow-sm">
     <div class="flex flex-col gap-6">
         <div class="flex items-center gap-2 px-1 pt-1">
@@ -17,11 +19,11 @@
         <nav class="flex flex-col gap-1">
             @foreach ([
                 ['id' => 'tableau-de-bord', 'label' => 'Tableau de bord', 'icon' => 'grid', 'href' => route('admin'), 'badge' => null],
-                ['id' => 'pre-inscriptions', 'label' => 'Pré-inscriptions', 'icon' => 'child', 'href' => route('admin.pre-inscriptions'), 'badge' => '2'],
+                ['id' => 'pre-inscriptions', 'label' => 'Pré-inscriptions', 'icon' => 'child', 'href' => route('admin.pre-inscriptions'), 'badge' => $aTraiter['pre-inscriptions'], 'quoi' => 'nouvelle(s) pré-inscription(s)'],
                 ['id' => 'journal', 'label' => 'Journal des visites', 'icon' => 'calendar', 'href' => route('admin.journal-visites'), 'badge' => null],
-                ['id' => 'entreprises', 'label' => 'Demandes entreprises', 'icon' => 'building', 'href' => route('admin.entreprises'), 'badge' => '2'],
-                ['id' => 'candidatures', 'label' => 'Candidatures', 'icon' => 'badge', 'href' => route('admin.candidatures'), 'badge' => null],
-                ['id' => 'messages', 'label' => 'Messages', 'icon' => 'chat', 'href' => route('admin.messages'), 'badge' => 'dot'],
+                ['id' => 'entreprises', 'label' => 'Demandes entreprises', 'icon' => 'building', 'href' => route('admin.entreprises'), 'badge' => $aTraiter['entreprises'], 'quoi' => 'nouvelle(s) demande(s) entreprise'],
+                ['id' => 'candidatures', 'label' => 'Candidatures', 'icon' => 'badge', 'href' => route('admin.candidatures'), 'badge' => $aTraiter['candidatures'], 'quoi' => 'nouvelle(s) candidature(s)'],
+                ['id' => 'messages', 'label' => 'Messages', 'icon' => 'chat', 'href' => route('admin.messages'), 'badge' => $aTraiter['messages'], 'quoi' => 'message(s) non lu(s)'],
                 ['id' => 'parametres', 'label' => 'Paramètres', 'icon' => 'gear', 'href' => route('admin.parametres'), 'badge' => null],
             ] as $item)
             <a href="{{ $item['href'] }}" class="flex items-center justify-between px-4 py-2.5 rounded-2xl transition-all {{ $item['id'] === $actif ? 'bg-primary text-white shadow-sm' : 'text-primary-deep/70 hover:bg-mint/40 hover:text-primary-deep' }}">
@@ -45,10 +47,9 @@
                     </svg>
                     <span class="font-body text-sm">{{ $item['label'] }}</span>
                 </span>
-                @if ($item['badge'] === 'dot')
-                    <span class="w-2 h-2 rounded-full bg-coral"></span>
-                @elseif ($item['badge'])
-                    <span class="px-2 py-0.5 rounded-full bg-coral text-white font-body text-xs font-bold">{{ $item['badge'] }}</span>
+                {{-- Nombre d'éléments à traiter ; rien n'est affiché quand il n'y en a aucun. --}}
+                @if ($item['badge'] > 0)
+                    <span title="{{ $item['badge'] }} {{ $item['quoi'] }}" class="min-w-[1.5rem] text-center px-2 py-0.5 rounded-full bg-coral text-white font-body text-xs font-bold">{{ $item['badge'] > 99 ? '99+' : $item['badge'] }}</span>
                 @endif
             </a>
             @endforeach
