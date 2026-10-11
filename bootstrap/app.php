@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\ProtectionAntiSpam;
 use App\Http\Middleware\SuivreVisitesSite;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -15,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo(fn (Request $request) => route('admin.login'));
         $middleware->web(append: [SuivreVisitesSite::class]);
+        $middleware->alias(['anti-spam' => ProtectionAntiSpam::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

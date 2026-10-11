@@ -35,22 +35,30 @@ Route::get('/tarifs', function () {
 Route::get('/berceaux-entreprise', function () {
     return view('pages.berceaux-entreprise');
 })->name('berceaux-entreprise');
-Route::post('/berceaux-entreprise/devis', [CorporateRequestController::class, 'store'])->name('berceaux-entreprise.store');
+Route::post('/berceaux-entreprise/devis', [CorporateRequestController::class, 'store'])
+    ->middleware(['throttle:formulaires-publics', 'anti-spam'])
+    ->name('berceaux-entreprise.store');
 
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
-Route::post('/contact', [ContactMessageController::class, 'store'])->name('contact.store');
+Route::post('/contact', [ContactMessageController::class, 'store'])
+    ->middleware(['throttle:formulaires-publics', 'anti-spam'])
+    ->name('contact.store');
 
 Route::get('/recrutement', function () {
     return view('pages.recrutement');
 })->name('recrutement');
-Route::post('/recrutement/candidature', [JobApplicationController::class, 'store'])->name('recrutement.store');
+Route::post('/recrutement/candidature', [JobApplicationController::class, 'store'])
+    ->middleware(['throttle:formulaires-publics', 'anti-spam'])
+    ->name('recrutement.store');
 
 Route::get('/pre-inscription', function () {
     return view('pages.pre-inscription');
 })->name('pre-inscription');
-Route::post('/pre-inscription', [PreRegistrationController::class, 'store'])->name('pre-inscription.store');
+Route::post('/pre-inscription', [PreRegistrationController::class, 'store'])
+    ->middleware(['throttle:formulaires-publics', 'anti-spam'])
+    ->name('pre-inscription.store');
 
 Route::get('/pre-inscription/confirmation', function () {
     return view('pages.confirmation-preinscription', [

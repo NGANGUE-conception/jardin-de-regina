@@ -294,6 +294,7 @@
                 @endif
                 <form method="POST" action="{{ route('berceaux-entreprise.store') }}" class="flex flex-col gap-4">
                     @csrf
+                    <x-anti-spam />
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="flex flex-col gap-1.5">
                             <label for="company_name" class="font-body text-sm font-bold text-primary-deep">Nom de l'entreprise *</label>

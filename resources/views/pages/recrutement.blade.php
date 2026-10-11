@@ -242,6 +242,7 @@
 
                     <form method="POST" action="{{ route('recrutement.store') }}" enctype="multipart/form-data" class="flex flex-col gap-5">
                         @csrf
+                        <x-anti-spam />
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div class="flex flex-col gap-1.5">
                                 <label for="nom" class="font-body text-xs font-bold uppercase tracking-wider text-primary-deep">Nom *</label>

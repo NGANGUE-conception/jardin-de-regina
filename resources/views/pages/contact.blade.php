@@ -77,6 +77,7 @@
 
                     <form method="POST" action="{{ route('contact.store') }}" class="flex flex-col gap-4">
                         @csrf
+                        <x-anti-spam />
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="flex flex-col gap-1.5">
                                 <label for="fullname" class="font-body text-sm font-bold text-primary-deep">Nom &amp; prénom *</label>

@@ -54,6 +54,7 @@
 
                 <form method="POST" action="{{ route('pre-inscription.store') }}">
                 @csrf
+                <x-anti-spam />
                 {{-- STEPPER --}}
                 <div class="flex items-center justify-between max-w-lg mx-auto mb-10">
                     <button type="button" @click="step = 1" class="group flex flex-col items-center flex-1">
