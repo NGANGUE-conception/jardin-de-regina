@@ -67,21 +67,12 @@
     </x-legal-article>
 
     <x-legal-article :n="4" titre="Combien de temps nous les conservons">
-        <div class="flex flex-col gap-3">
-            @foreach ([
-                ['titre' => 'Pré-inscriptions non abouties', 'duree' => '12 mois'],
-                ['titre' => 'Dossiers de familles accueillies', 'duree' => "Durée de l'accueil + délai légal de conservation comptable"],
-                ['titre' => 'Candidatures non retenues', 'duree' => '12 mois'],
-                ['titre' => 'Messages de contact', 'duree' => '24 mois'],
-                ['titre' => 'Statistiques de visite du site', 'duree' => '25 mois'],
-            ] as $item)
-            <div class="flex items-center justify-between p-3 rounded-xl bg-cream">
-                <span class="font-body text-sm text-primary-deep">{{ $item['titre'] }}</span>
-                <span class="font-body text-sm font-bold text-primary">{{ $item['duree'] }}</span>
-            </div>
-            @endforeach
+        <p>Les informations transmises via nos formulaires (pré-inscription, demande de devis, candidature, message de contact) sont conservées <strong>le temps nécessaire au traitement de votre demande et au suivi de notre relation</strong>, puis dans la limite des durées prévues par la loi (notamment pour les obligations comptables et celles liées à l'accueil des enfants).</p>
+        <p>Vous pouvez à tout moment demander la suppression de vos données en nous écrivant (voir la rubrique « Vos droits »).</p>
+        <div class="flex items-center justify-between p-3 rounded-xl bg-cream">
+            <span class="font-body text-sm text-primary-deep">Statistiques de visite du site (anonymes)</span>
+            <span class="font-body text-sm font-bold text-primary">25 mois, puis suppression automatique</span>
         </div>
-        <p class="font-body text-sm text-primary-deep/70">À l'issue de ces durées, vos données sont supprimées ou rendues anonymes.</p>
     </x-legal-article>
 
     <x-legal-article :n="5" titre="Qui peut accéder à vos données">

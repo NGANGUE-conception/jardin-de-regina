@@ -418,6 +418,17 @@
                             </button>
                         </form>
                     </div>
+                    {{-- Suppression définitive : uniquement dans l'espace admin (route protégée par la connexion). --}}
+                    <form method="POST" :action="'/admin/pre-inscriptions/' + dossierOuvert.dbId"
+                          @submit="if (! confirm('Supprimer définitivement le dossier ' + dossierOuvert.id + ' ? Cette action est irréversible.')) $event.preventDefault()"
+                          class="border-t border-primary-deep/10 pt-2.5 mt-1">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="w-full font-body text-xs font-bold text-coral/80 hover:text-coral hover:underline flex items-center justify-center gap-1.5">
+                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M10 11v6M14 11v6M5 7l1 12a2 2 0 002 2h8a2 2 0 002-2l1-12M9 7V4h6v3"/></svg>
+                            Supprimer ce dossier
+                        </button>
+                    </form>
                 </div>
             </div>
         </template>

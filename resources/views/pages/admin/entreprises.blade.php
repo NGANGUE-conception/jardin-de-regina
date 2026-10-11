@@ -170,6 +170,17 @@
                         <button type="submit" name="status" value="signee" class="flex-1 h-11 px-3 rounded-full bg-mint text-primary font-body text-xs font-bold hover:bg-mint/70 transition-all">Convention signée</button>
                         <button type="submit" name="status" value="refusee" class="h-11 px-3 rounded-full bg-white text-coral border border-coral/30 font-body text-xs font-bold hover:bg-peach/40 transition-all">Refuser</button>
                     </form>
+                    {{-- Suppression définitive : uniquement dans l'espace admin (route protégée par la connexion). --}}
+                    <form method="POST" :action="'/admin/demandes-entreprises/' + demandeOuverte.dbId"
+                          @submit="if (! confirm('Supprimer définitivement la demande ' + demandeOuverte.id + ' ? Cette action est irréversible.')) $event.preventDefault()"
+                          class="border-t border-primary-deep/10 pt-2.5 mt-1">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="w-full font-body text-xs font-bold text-coral/80 hover:text-coral hover:underline flex items-center justify-center gap-1.5">
+                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M10 11v6M14 11v6M5 7l1 12a2 2 0 002 2h8a2 2 0 002-2l1-12M9 7V4h6v3"/></svg>
+                            Supprimer cette demande
+                        </button>
+                    </form>
                 </div>
             </div>
         </template>

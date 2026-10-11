@@ -37,7 +37,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content,
                     'X-HTTP-Method-Override': 'PATCH',
                 },
                 body: JSON.stringify({ status: statut }),
@@ -149,6 +149,17 @@
                         <button type="submit" name="status" value="repondu" class="w-full h-11 px-4 rounded-full bg-white text-primary border border-primary/30 font-body text-sm font-bold hover:bg-mint/30 transition-all flex items-center justify-center gap-1.5">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                             Marquer comme répondu
+                        </button>
+                    </form>
+                    {{-- Suppression définitive : uniquement dans l'espace admin (route protégée par la connexion). --}}
+                    <form method="POST" :action="'/admin/messages/' + messageOuvert.dbId"
+                          @submit="if (! confirm('Supprimer définitivement le message ' + messageOuvert.id + ' ? Cette action est irréversible.')) $event.preventDefault()"
+                          class="border-t border-primary-deep/10 pt-2.5 mt-1">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="w-full font-body text-xs font-bold text-coral/80 hover:text-coral hover:underline flex items-center justify-center gap-1.5">
+                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M10 11v6M14 11v6M5 7l1 12a2 2 0 002 2h8a2 2 0 002-2l1-12M9 7V4h6v3"/></svg>
+                            Supprimer ce message
                         </button>
                     </form>
                 </div>

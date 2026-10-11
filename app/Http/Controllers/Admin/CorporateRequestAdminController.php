@@ -29,4 +29,15 @@ class CorporateRequestAdminController extends Controller
 
         return back()->with('success', 'Statut de la demande mis à jour.');
     }
+
+    /**
+     * Suppression définitive (route réservée à l'admin connecté).
+     */
+    public function destroy(CorporateRequest $demande)
+    {
+        $numero = $demande->request_number;
+        $demande->delete();
+
+        return back()->with('success', "Demande {$numero} supprimée définitivement.");
+    }
 }

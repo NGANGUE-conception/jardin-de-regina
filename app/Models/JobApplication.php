@@ -2,12 +2,22 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\NettoieLiensALaSuppression;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class JobApplication extends Model
 {
-    use HasFactory;
+    use HasFactory, NettoieLiensALaSuppression;
+
+    protected static function booted(): void
+    {
+        // Les CV et lettres de motivation sont supprimés du disque en même temps que la candidature.
+        static::deleted(function (JobApplication $candidature) {
+            Storage::disk('local')->delete($candidature->documents ?? []);
+        });
+    }
 
     protected $fillable = [
         'application_number',

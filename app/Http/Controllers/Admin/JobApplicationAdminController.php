@@ -36,4 +36,15 @@ class JobApplicationAdminController extends Controller
 
         return Storage::disk('local')->download($chemin);
     }
+
+    /**
+     * Suppression définitive (route réservée à l'admin connecté).
+     */
+    public function destroy(JobApplication $candidature)
+    {
+        $numero = $candidature->application_number;
+        $candidature->delete();
+
+        return back()->with('success', "Candidature {$numero} et ses documents supprimés définitivement.");
+    }
 }

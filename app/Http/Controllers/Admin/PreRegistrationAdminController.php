@@ -45,4 +45,15 @@ class PreRegistrationAdminController extends Controller
 
         return back()->with('success', 'Note interne enregistrée.');
     }
+
+    /**
+     * Suppression définitive (route réservée à l'admin connecté).
+     */
+    public function destroy(PreRegistration $dossier)
+    {
+        $numero = $dossier->dossier_number;
+        $dossier->delete();
+
+        return back()->with('success', "Dossier {$numero} supprimé définitivement.");
+    }
 }

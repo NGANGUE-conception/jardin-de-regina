@@ -25,4 +25,15 @@ class ContactMessageAdminController extends Controller
 
         return back()->with('success', 'Statut du message mis à jour.');
     }
+
+    /**
+     * Suppression définitive (route réservée à l'admin connecté).
+     */
+    public function destroy(ContactMessage $message)
+    {
+        $numero = $message->message_number;
+        $message->delete();
+
+        return back()->with('success', "Message {$numero} supprimé définitivement.");
+    }
 }

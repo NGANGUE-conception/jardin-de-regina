@@ -100,6 +100,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/pre-inscriptions', [PreRegistrationAdminController::class, 'index'])->name('admin.pre-inscriptions');
     Route::patch('/admin/pre-inscriptions/{dossier}/statut', [PreRegistrationAdminController::class, 'updateStatus'])->name('admin.pre-inscriptions.statut');
     Route::patch('/admin/pre-inscriptions/{dossier}/note', [PreRegistrationAdminController::class, 'updateNote'])->name('admin.pre-inscriptions.note');
+    Route::delete('/admin/pre-inscriptions/{dossier}', [PreRegistrationAdminController::class, 'destroy'])->name('admin.pre-inscriptions.destroy');
     Route::get('/admin/pre-inscriptions/export', [PreRegistrationAdminController::class, 'export'])->name('admin.pre-inscriptions.export');
 
     // Journal des visites : onglet "Rendez-vous" (visites de la crèche programmées par la direction)
@@ -117,13 +118,16 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/demandes-entreprises', [CorporateRequestAdminController::class, 'index'])->name('admin.entreprises');
     Route::patch('/admin/demandes-entreprises/{demande}/statut', [CorporateRequestAdminController::class, 'updateStatus'])->name('admin.entreprises.statut');
+    Route::delete('/admin/demandes-entreprises/{demande}', [CorporateRequestAdminController::class, 'destroy'])->name('admin.entreprises.destroy');
 
     Route::get('/admin/candidatures', [JobApplicationAdminController::class, 'index'])->name('admin.candidatures');
     Route::patch('/admin/candidatures/{candidature}/statut', [JobApplicationAdminController::class, 'updateStatus'])->name('admin.candidatures.statut');
+    Route::delete('/admin/candidatures/{candidature}', [JobApplicationAdminController::class, 'destroy'])->name('admin.candidatures.destroy');
     Route::get('/admin/candidatures/{candidature}/documents/{index}', [JobApplicationAdminController::class, 'downloadDocument'])->name('admin.candidatures.document');
 
     Route::get('/admin/messages', [ContactMessageAdminController::class, 'index'])->name('admin.messages');
     Route::patch('/admin/messages/{message}/statut', [ContactMessageAdminController::class, 'updateStatus'])->name('admin.messages.statut');
+    Route::delete('/admin/messages/{message}', [ContactMessageAdminController::class, 'destroy'])->name('admin.messages.destroy');
 
     Route::get('/admin/parametres', [ParametresController::class, 'index'])->name('admin.parametres');
     // Modifier l'email ou le mot de passe exige d'avoir vérifié son identité dans les 10 dernières minutes.

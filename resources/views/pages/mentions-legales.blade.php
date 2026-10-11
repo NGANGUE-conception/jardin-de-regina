@@ -115,7 +115,7 @@
             <p class="text-primary-deep">Les informations collectées lors d'une pré-inscription (nom, prénom, date de naissance de l'enfant, coordonnées des parents, situation professionnelle) sont recueillies <strong>exclusivement</strong> pour instruire les dossiers de réservation de places et satisfaire aux obligations réglementaires de la PMI.</p>
         </div>
         <p>Vos données <strong>ne sont jamais vendues ni transmises à des tiers à des fins commerciales</strong>. Seules les personnes habilitées de l'équipe et nos partenaires institutionnels (PMI, CAF du Val-de-Marne) peuvent y avoir accès.</p>
-        <p>Les dossiers de pré-inscription n'ayant pas abouti sont conservés au maximum <strong>12 mois</strong>, puis supprimés.</p>
+        <p>Les dossiers de pré-inscription sont conservés le temps nécessaire à leur traitement et au suivi de votre demande. Vous pouvez demander leur suppression à tout moment.</p>
         <div class="p-4 rounded-2xl bg-cream flex flex-col gap-2">
             <div class="font-body font-bold text-primary-deep">Exercer vos droits</div>
             <p class="text-sm text-primary-deep/70">Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de portabilité et d'effacement de vos données.</p>

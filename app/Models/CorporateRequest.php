@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\NettoieLiensALaSuppression;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class CorporateRequest extends Model
 {
-    use HasFactory;
+    use HasFactory, NettoieLiensALaSuppression;
 
     protected $fillable = [
         'request_number',
