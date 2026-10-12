@@ -46,6 +46,7 @@ return [
     'age_minimum_mois' => 2, // 10 semaines (accueil jusqu'à 3 ans et plus)
 
     'gestionnaire' => 'TEF Group Invest',
+    'representant' => 'M. Fabrice TCHOUMO',
 
     // Communes desservies (référencement local). Les communes voisines peuvent être ajoutées après validation de la direction.
     'zone' => ['Alfortville'],

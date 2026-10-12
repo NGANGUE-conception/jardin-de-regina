@@ -97,13 +97,13 @@ $docs = [
                     </div>
                     <p class="font-body text-sm text-primary-deep/70 leading-relaxed">Notre direction reste à votre écoute pour toute demande statutaire ou convention d'entreprise.</p>
                     <div class="flex flex-col gap-1 font-body text-sm font-bold mt-1">
-                        <a href="tel:0767646184" class="text-coral hover:underline inline-flex items-center gap-1.5">
+                        <a href="tel:{{ $etab->telephoneLien() }}" class="text-coral hover:underline inline-flex items-center gap-1.5">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
-                            07 67 64 61 84
+                            {{ $etab->telephone() }}
                         </a>
-                        <a href="mailto:jardinderegina94@gmail.com" class="text-primary hover:underline inline-flex items-center gap-1.5 break-all">
+                        <a href="mailto:{{ $etab->email() }}" class="text-primary hover:underline inline-flex items-center gap-1.5 break-all">
                             <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-                            jardinderegina94@gmail.com
+                            {{ $etab->email() }}
                         </a>
                     </div>
                 </div>

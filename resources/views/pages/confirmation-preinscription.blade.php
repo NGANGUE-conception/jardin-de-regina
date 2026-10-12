@@ -87,7 +87,7 @@
                 @foreach ([
                     ['n' => 1, 'tag' => 'Étape initiale', 'titre' => 'Étude de votre demande', 'texte' => "Notre équipe analyse vos critères (date d'entrée, amplitude horaire, âge de l'enfant) au regard des berceaux disponibles.", 'foot' => 'Critères équitables & transparents', 'tagcolor' => 'text-primary-deep/50'],
                     ['n' => 2, 'tag' => 'Sous 5 à 7 jours', 'titre' => 'Prise de contact personnalisée', 'texte' => 'Nous échangeons par téléphone ou e-mail pour faire connaissance et vous confirmer les disponibilités réelles.', 'foot' => 'Accompagnement bienveillant', 'tagcolor' => 'text-coral font-bold'],
-                    ['n' => 3, 'tag' => 'Visite privée', 'titre' => 'Rendez-vous & immersion', 'texte' => "Rencontre à la crèche (4 B rue des Écoles), visite des espaces d'éveil et finalisation du contrat d'accueil.", 'foot' => 'Découverte avec bébé', 'tagcolor' => 'text-primary-deep/50'],
+                    ['n' => 3, 'tag' => 'Visite privée', 'titre' => 'Rendez-vous & immersion', 'texte' => "Rencontre à la crèche ({$etab->rue()}), visite des espaces d'éveil et finalisation du contrat d'accueil.", 'foot' => 'Découverte avec bébé', 'tagcolor' => 'text-primary-deep/50'],
                 ] as $step)
                 <div class="relative bg-white rounded-3xl p-6 flex flex-col items-start shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
                     <div class="flex items-center justify-between w-full mb-4">
@@ -135,9 +135,9 @@
                 <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3"/><path stroke-linecap="round" d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
                 <span>Une question urgente sur votre pré-inscription ?</span>
                 <span class="hidden sm:inline text-primary-deep/30">•</span>
-                <a href="tel:0767646184" class="text-primary font-bold hover:underline">07 67 64 61 84</a>
+                <a href="tel:{{ $etab->telephoneLien() }}" class="text-primary font-bold hover:underline">{{ $etab->telephone() }}</a>
                 <span class="text-primary-deep/30">•</span>
-                <a href="mailto:jardinderegina94@gmail.com" class="text-primary font-bold hover:underline">jardinderegina94@gmail.com</a>
+                <a href="mailto:{{ $etab->email() }}" class="text-primary font-bold hover:underline">{{ $etab->email() }}</a>
             </div>
         </div>
     </div>

@@ -6,10 +6,12 @@ use App\Models\ContactMessage;
 use App\Models\CorporateRequest;
 use App\Models\JobApplication;
 use App\Models\PreRegistration;
+use App\Support\Etablissement;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,7 +21,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Coordonnées de l'établissement (lues une seule fois par page).
+        $this->app->singleton(Etablissement::class);
     }
 
     /**
@@ -27,6 +30,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Coordonnées de l'établissement disponibles dans toutes les vues : {{ $etab->telephone() }}, etc.
+        View::share('etab', $this->app->make(Etablissement::class));
+
         // Noms courts enregistrés dans les colonnes "..._type" des relations polymorphes
         // (visites programmées et formulaires envoyés pendant une visite du site).
         Relation::enforceMorphMap([

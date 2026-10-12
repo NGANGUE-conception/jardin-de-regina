@@ -30,7 +30,7 @@
             </div>
             <div class="flex flex-col gap-1">
                 <span class="font-body text-xs uppercase tracking-wider text-primary-deep/50 font-bold">Réseau</span>
-                <span class="font-body font-semibold text-primary-deep">TEF Group Invest</span>
+                <span class="font-body font-semibold text-primary-deep">{{ $etab->gestionnaire() }}</span>
             </div>
             <div class="flex flex-col gap-1">
                 <span class="font-body text-xs uppercase tracking-wider text-primary-deep/50 font-bold">Numéro SIRET</span>
@@ -38,7 +38,7 @@
             </div>
             <div class="flex flex-col gap-1">
                 <span class="font-body text-xs uppercase tracking-wider text-primary-deep/50 font-bold">Directeur de la publication</span>
-                <span class="font-body font-semibold text-primary-deep">M. Fabrice TCHOUMO (gérant &amp; représentant légal)</span>
+                <span class="font-body font-semibold text-primary-deep">{{ $etab->representant() }} (gérant &amp; représentant légal)</span>
             </div>
             <div class="flex flex-col gap-1">
                 <span class="font-body text-xs uppercase tracking-wider text-primary-deep/50 font-bold">Direction pédagogique</span>
@@ -48,21 +48,21 @@
                 <span class="font-body text-xs uppercase tracking-wider text-primary-deep/50 font-bold">Adresse du siège et de l'établissement</span>
                 <span class="font-body font-semibold text-primary-deep flex items-center gap-1.5">
                     <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-7.58 7-12A7 7 0 105 9c0 4.42 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>
-                    4 B rue des Écoles, 94140 Alfortville, France
+                    {{ $etab->adresse() }}, France
                 </span>
             </div>
             <div class="flex flex-col gap-1">
                 <span class="font-body text-xs uppercase tracking-wider text-primary-deep/50 font-bold">Téléphone</span>
-                <a href="tel:0767646184" class="font-body font-bold text-coral hover:underline flex items-center gap-1.5">
+                <a href="tel:{{ $etab->telephoneLien() }}" class="font-body font-bold text-coral hover:underline flex items-center gap-1.5">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
-                    07 67 64 61 84
+                    {{ $etab->telephone() }}
                 </a>
             </div>
             <div class="flex flex-col gap-1">
                 <span class="font-body text-xs uppercase tracking-wider text-primary-deep/50 font-bold">E-mail</span>
-                <a href="mailto:jardinderegina94@gmail.com" class="font-body font-bold text-primary hover:underline flex items-center gap-1.5 break-all">
+                <a href="mailto:{{ $etab->email() }}" class="font-body font-bold text-primary hover:underline flex items-center gap-1.5 break-all">
                     <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-                    jardinderegina94@gmail.com
+                    {{ $etab->email() }}
                 </a>
             </div>
         </div>
@@ -122,7 +122,7 @@
         <div class="p-4 rounded-2xl bg-cream flex flex-col gap-2">
             <div class="font-body font-bold text-primary-deep">Exercer vos droits</div>
             <p class="text-sm text-primary-deep/70">Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de portabilité et d'effacement de vos données.</p>
-            <a href="mailto:jardinderegina94@gmail.com?subject=Exercice%20de%20mes%20droits%20RGPD" class="self-start h-10 px-4 rounded-full bg-primary text-white font-body text-sm font-bold inline-flex items-center gap-2 mt-1">
+            <a href="mailto:{{ $etab->email() }}?subject=Exercice%20de%20mes%20droits%20RGPD" class="self-start h-10 px-4 rounded-full bg-primary text-white font-body text-sm font-bold inline-flex items-center gap-2 mt-1">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
                 Exercer mes droits par e-mail
             </a>
@@ -143,12 +143,12 @@
         <div class="p-5 rounded-2xl bg-cream flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex flex-col gap-1">
                 <span class="font-display text-lg text-primary-deep">Secrétariat de direction</span>
-                <span class="font-body text-sm text-primary-deep/70">Le Jardin de Régina · 4 B rue des Écoles, 94140 Alfortville</span>
+                <span class="font-body text-sm text-primary-deep/70">Le Jardin de Régina · {{ $etab->adresse() }}</span>
                 <span class="font-body text-sm font-semibold text-primary-deep mt-1">Réponse sous 48h ouvrées</span>
             </div>
             <div class="flex flex-col sm:flex-row md:flex-col gap-2 shrink-0">
-                <a href="tel:0767646184" class="h-11 px-4 rounded-full bg-white text-coral font-body text-sm font-bold flex items-center justify-center gap-2 shadow-sm">07 67 64 61 84</a>
-                <a href="mailto:jardinderegina94@gmail.com" class="h-11 px-4 rounded-full bg-primary text-white font-body text-sm font-bold flex items-center justify-center gap-2">Nous écrire</a>
+                <a href="tel:{{ $etab->telephoneLien() }}" class="h-11 px-4 rounded-full bg-white text-coral font-body text-sm font-bold flex items-center justify-center gap-2 shadow-sm">{{ $etab->telephone() }}</a>
+                <a href="mailto:{{ $etab->email() }}" class="h-11 px-4 rounded-full bg-primary text-white font-body text-sm font-bold flex items-center justify-center gap-2">Nous écrire</a>
             </div>
         </div>
         <p class="p-4 rounded-2xl bg-mint/40 text-sm">

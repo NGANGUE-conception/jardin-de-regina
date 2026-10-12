@@ -94,7 +94,7 @@
         <p class="font-body text-sm text-primary-deep/70">La désactivation des cookies techniques essentiels peut empêcher le bon fonctionnement des formulaires du site (pré-inscription, contact, candidature).</p>
         <div class="p-4 rounded-2xl bg-cream flex items-center gap-3">
             <svg class="w-6 h-6 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3"/><path stroke-linecap="round" d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
-            <p class="font-body text-sm text-primary-deep">Une question sur les cookies ? Écrivez-nous à <a href="mailto:jardinderegina94@gmail.com" class="text-primary font-bold hover:underline">jardinderegina94@gmail.com</a>.</p>
+            <p class="font-body text-sm text-primary-deep">Une question sur les cookies ? Écrivez-nous à <a href="mailto:{{ $etab->email() }}" class="text-primary font-bold hover:underline">{{ $etab->email() }}</a>.</p>
         </div>
     </x-legal-article>
 

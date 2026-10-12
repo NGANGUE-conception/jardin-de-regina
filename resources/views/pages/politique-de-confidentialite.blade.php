@@ -20,8 +20,8 @@
     ]"
 >
     <x-legal-article :n="1" titre="Qui est responsable de vos données ?">
-        <p>Le responsable du traitement des données collectées sur ce site est <strong>Le Jardin de Régina</strong>, micro-crèche gérée par M. Fabrice TCHOUMO, 4 B rue des Écoles, 94140 Alfortville.</p>
-        <p>Pour toute question sur vos données personnelles, vous pouvez écrire à <a href="mailto:jardinderegina94@gmail.com" class="text-primary font-bold hover:underline">jardinderegina94@gmail.com</a>.</p>
+        <p>Le responsable du traitement des données collectées sur ce site est <strong>Le Jardin de Régina</strong>, micro-crèche gérée par {{ $etab->representant() }}, {{ $etab->adresse() }}.</p>
+        <p>Pour toute question sur vos données personnelles, vous pouvez écrire à <a href="mailto:{{ $etab->email() }}" class="text-primary font-bold hover:underline">{{ $etab->email() }}</a>.</p>
     </x-legal-article>
 
     <x-legal-article :n="2" titre="Quelles données nous collectons">
@@ -103,7 +103,7 @@
             @endforeach
         </div>
         <div class="p-4 rounded-2xl bg-cream flex flex-col gap-2 mt-2">
-            <a href="mailto:jardinderegina94@gmail.com?subject=Exercice%20de%20mes%20droits%20RGPD" class="self-start h-10 px-4 rounded-full bg-primary text-white font-body text-sm font-bold inline-flex items-center gap-2">
+            <a href="mailto:{{ $etab->email() }}?subject=Exercice%20de%20mes%20droits%20RGPD" class="self-start h-10 px-4 rounded-full bg-primary text-white font-body text-sm font-bold inline-flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
                 Exercer mes droits par e-mail
             </a>

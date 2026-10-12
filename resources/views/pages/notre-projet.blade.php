@@ -321,7 +321,7 @@
         </div>
         <div class="flex items-center gap-2 pt-4 text-white/90 font-body text-sm">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
-            <span>Une question ? Notre équipe vous répond au <a href="tel:0767646184" class="font-bold underline hover:text-cream">07 67 64 61 84</a> (lundi-vendredi, 8h30-18h30).</span>
+            <span>Une question ? Notre équipe vous répond au <a href="tel:{{ $etab->telephoneLien() }}" class="font-bold underline hover:text-cream">{{ $etab->telephone() }}</a> (lundi-vendredi, {{ $etab->horaires() }}).</span>
         </div>
     </div>
 </section>

@@ -61,7 +61,7 @@
             <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3"/><path stroke-linecap="round" d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
         </div>
         <div class="flex flex-col min-w-0 flex-1">
-            <span class="font-body text-sm font-bold text-primary-deep truncate">{{ auth()->user()?->name ?? '[Direction]' }}</span>
+            <span class="font-body text-sm font-bold text-primary-deep truncate">{{ auth()->user()?->name ?: 'Direction' }}</span>
             <span class="font-body text-xs text-primary-deep/50 truncate">Compte administrateur</span>
         </div>
         <form method="POST" action="{{ route('admin.logout') }}">

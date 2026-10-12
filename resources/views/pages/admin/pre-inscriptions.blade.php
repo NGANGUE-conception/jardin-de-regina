@@ -290,7 +290,7 @@
                         <div class="bg-cream rounded-2xl p-4">
                             <p class="text-xs text-primary-deep/70 leading-relaxed italic" x-text="dossierOuvert.note"></p>
                             <div class="mt-2 pt-2 border-t border-primary-deep/10 flex items-center justify-between text-xs text-primary-deep/50">
-                                <span class="font-semibold">[Direction]</span>
+                                <span class="font-semibold">{{ auth()->user()?->name ?: 'Direction' }}</span>
                                 <span x-text="dossierOuvert.dateLabel"></span>
                             </div>
                         </div>

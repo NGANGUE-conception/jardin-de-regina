@@ -21,7 +21,7 @@
     </tr>
     <tr>
         <td style="background-color:#E3F2F1;padding:20px 32px;text-align:center;">
-            <p style="margin:0;font-size:12px;color:#12414D99;">Le Jardin de Régina · 4 B rue des Écoles, 94140 Alfortville · 07 67 64 61 84</p>
+            <p style="margin:0;font-size:12px;color:#12414D99;">Le Jardin de Régina · {{ $etab->adresse() }} · {{ $etab->telephone() }}</p>
         </td>
     </tr>
 </table>

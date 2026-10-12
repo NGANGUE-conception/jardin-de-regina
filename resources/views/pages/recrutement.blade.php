@@ -111,7 +111,7 @@
             @foreach ([
                 ['titre' => 'Une équipe à taille humaine', 'texte' => '4 professionnelles pour 12 enfants seulement. Finies les cadences épuisantes : ici, le temps se pose et chaque prénom compte.', 'tag' => "Taux d'encadrement privilégié", 'bg' => 'bg-white', 'icon' => 'groups'],
                 ['titre' => 'Un projet pédagogique porteur de sens', 'texte' => "Motricité libre (Emmi Pikler), espace sensoriel Snoezelen, alimentation équilibrée et éveil à la nature, sans compromis.", 'tag' => 'Matériel noble & éveil sensoriel', 'bg' => 'bg-peach/60', 'icon' => 'leaf'],
-                ['titre' => 'Accompagnement & expertise du réseau', 'texte' => "Soutien constant de notre coordinatrice petite enfance et de nos psychologues référentes, au sein du réseau TEF Group Invest.", 'tag' => 'Écoute & mentorat actif', 'bg' => 'bg-white', 'icon' => 'support'],
+                ['titre' => 'Accompagnement & expertise du réseau', 'texte' => "Soutien constant de notre coordinatrice petite enfance et de nos psychologues référentes, au sein du réseau {$etab->gestionnaire()}.", 'tag' => 'Écoute & mentorat actif', 'bg' => 'bg-white', 'icon' => 'support'],
                 ['titre' => 'Des temps pédagogiques réguliers', 'texte' => 'Réunions mensuelles rémunérées, journées pédagogiques, formations certifiantes (bébé signe, premiers secours) et analyse de la pratique.', 'tag' => 'Formation continue certifiée', 'bg' => 'bg-peach/60', 'icon' => 'book'],
             ] as $carte)
             <div class="{{ $carte['bg'] }} rounded-3xl p-7 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
@@ -162,7 +162,7 @@
                 ],
                 [
                     'titre' => 'Auxiliaire de Puériculture (AP)', 'sous' => 'Soins & éveil quotidien',
-                    'tags' => ['CDI / Temps plein', '8h30 – 18h30', 'Alfortville'],
+                    'tags' => ['CDI / Temps plein', $etab->horaires(), $etab->ville()],
                     'missions' => "Accueil individualisé des bébés, soins d'hygiène et de confort bienveillants, animations d'ateliers d'éveil sensoriel.",
                     'profil' => "Diplôme d'État d'Auxiliaire de Puériculture (DEAP), douceur, rigueur et goût du travail en petit groupe.",
                     'badge' => 'Coup de cœur',
@@ -361,7 +361,7 @@
                     <svg class="w-8 h-8 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
                     <div class="flex flex-col">
                         <span class="font-body text-xs font-bold text-primary-deep">Une question préalable ?</span>
-                        <a href="mailto:jardinderegina94@gmail.com" class="font-body text-xs text-primary hover:underline font-bold break-all">jardinderegina94@gmail.com</a>
+                        <a href="mailto:{{ $etab->email() }}" class="font-body text-xs text-primary hover:underline font-bold break-all">{{ $etab->email() }}</a>
                     </div>
                 </div>
             </div>

@@ -136,6 +136,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/messages/{message}', [ContactMessageAdminController::class, 'destroy'])->name('admin.messages.destroy');
 
     Route::get('/admin/parametres', [ParametresController::class, 'index'])->name('admin.parametres');
+    Route::put('/admin/parametres/etablissement', [ParametresController::class, 'updateEtablissement'])->name('admin.parametres.etablissement');
     // Modifier l'email ou le mot de passe exige d'avoir vérifié son identité dans les 10 dernières minutes.
     Route::post('/admin/parametres/verifier-identite', [ParametresController::class, 'verifierIdentite'])
         ->middleware('throttle:verification-identite') // 5 essais par minute (voir AppServiceProvider)

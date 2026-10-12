@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Support\Etablissement;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
+use Throwable;
 
 /**
  * Paramètres de l'espace admin.
@@ -33,6 +36,71 @@ class ParametresController extends Controller
             'identiteVerifiee' => $this->identiteVerifiee($request),
             'verificationExpireDans' => max(0, $expireA - now()->getTimestamp()),
         ]);
+    }
+
+    /**
+     * Coordonnées de l'établissement (téléphone, email, adresse, horaires, gestion), affichées sur tout le site.
+     */
+    public function updateEtablissement(Request $request, Etablissement $etablissement)
+    {
+        $request->merge([
+            'email' => strtolower(trim((string) $request->input('email'))),
+            'telephone' => trim((string) $request->input('telephone')),
+            'code_postal' => preg_replace('/\s/', '', (string) $request->input('code_postal')),
+        ]);
+
+        $donnees = $request->validateWithBag('etablissement', [
+            'telephone' => ['required', 'string', 'regex:/^(?:\+33\s?|0)[1-9](?:[\s.\-]?\d{2}){4}$/'],
+            'email' => ['required', 'email', 'max:190'],
+            'rue' => ['required', 'string', 'max:150'],
+            'code_postal' => ['required', 'regex:/^\d{5}$/'],
+            'ville' => ['required', 'string', 'max:100'],
+            'ouverture' => ['required', 'date_format:H:i'],
+            'fermeture' => ['required', 'date_format:H:i', 'after:ouverture'],
+            'gestionnaire' => ['required', 'string', 'max:150'],
+            'representant' => ['required', 'string', 'max:150'],
+        ], [
+            'telephone.regex' => 'Merci d\'indiquer un numéro de téléphone français valide (ex. 07 67 64 61 84).',
+            'code_postal.regex' => 'Le code postal doit contenir 5 chiffres.',
+            'fermeture.after' => 'L\'heure de fermeture doit être après l\'heure d\'ouverture.',
+        ], [
+            'telephone' => 'le téléphone',
+            'email' => 'l\'email de contact',
+            'rue' => 'le numéro et la rue',
+            'code_postal' => 'le code postal',
+            'ville' => 'la ville',
+            'ouverture' => 'l\'heure d\'ouverture',
+            'fermeture' => 'l\'heure de fermeture',
+            'gestionnaire' => 'la société gestionnaire',
+            'representant' => 'le représentant légal',
+        ]);
+
+        $donnees['telephone'] = self::formaterTelephone($donnees['telephone']);
+        $donnees['rue'] = trim($donnees['rue']);
+        $donnees['ville'] = trim($donnees['ville']);
+
+        // Nouvelle adresse : on recalcule la position GPS (pour Google Maps) via la Base Adresse Nationale.
+        $avertissement = null;
+        $adresseModifiee = $donnees['rue'] !== $etablissement->rue()
+            || $donnees['code_postal'] !== $etablissement->codePostal()
+            || $donnees['ville'] !== $etablissement->ville();
+
+        if ($adresseModifiee) {
+            $position = $this->geolocaliser($donnees['rue'], $donnees['code_postal'], $donnees['ville']);
+
+            if ($position) {
+                [$donnees['latitude'], $donnees['longitude']] = $position;
+            } else {
+                $avertissement = 'L\'adresse a été enregistrée, mais sa position n\'a pas pu être retrouvée automatiquement : vérifiez l\'orthographe de la rue et de la ville. La position précédente reste utilisée pour Google Maps.';
+            }
+        }
+
+        $etablissement->enregistrer($donnees);
+
+        return redirect()
+            ->route('admin.parametres')
+            ->with('success', 'Coordonnées de l\'établissement mises à jour sur tout le site.')
+            ->with('avertissement', $avertissement);
     }
 
     public function verifierIdentite(Request $request)
@@ -141,6 +209,46 @@ class ParametresController extends Controller
         return redirect()
             ->route('admin.parametres', ['onglet' => 'compte'])
             ->with('success', 'Mot de passe modifié. Les autres appareils connectés ont été déconnectés.');
+    }
+
+    /** "0767646184", "+33 7 67 64 61 84"... → "07 67 64 61 84" */
+    private static function formaterTelephone(string $telephone): string
+    {
+        $chiffres = preg_replace('/\D/', '', $telephone);
+        if (str_starts_with($chiffres, '33')) {
+            $chiffres = '0'.substr($chiffres, 2);
+        }
+
+        return trim(chunk_split($chiffres, 2, ' '));
+    }
+
+    /**
+     * Position GPS d'une adresse française (Base Adresse Nationale, service public gratuit).
+     *
+     * @return array{0: float, 1: float}|null [latitude, longitude], ou null si l'adresse n'est pas trouvée avec certitude
+     */
+    private function geolocaliser(string $rue, string $codePostal, string $ville): ?array
+    {
+        try {
+            $reponse = Http::timeout(5)->get('https://api-adresse.data.gouv.fr/search/', [
+                'q' => "$rue $codePostal $ville",
+                'postcode' => $codePostal,
+                'limit' => 1,
+            ]);
+            $resultat = $reponse->json('features.0');
+
+            if (! $reponse->successful() || ! $resultat || ($resultat['properties']['score'] ?? 0) < 0.5) {
+                return null;
+            }
+
+            [$longitude, $latitude] = $resultat['geometry']['coordinates'];
+
+            return [round((float) $latitude, 6), round((float) $longitude, 6)];
+        } catch (Throwable $e) {
+            report($e);
+
+            return null;
+        }
     }
 
     private function identiteVerifiee(Request $request): bool

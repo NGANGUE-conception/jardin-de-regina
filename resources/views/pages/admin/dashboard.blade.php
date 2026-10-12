@@ -120,8 +120,8 @@
                         </div>
                     </div>
                     <div class="mt-4 pt-3 border-t border-mint flex items-center justify-between">
-                        <span class="px-2 py-0.5 rounded-full bg-peach text-coral font-body text-xs font-bold">Commission mensuelle</span>
-                        <span class="font-body text-xs text-primary-deep/60">Prochaine réunion à planifier</span>
+                        <span class="px-2 py-0.5 rounded-full bg-peach text-coral font-body text-xs font-bold">Liste d'attente</span>
+                        <a href="{{ route('admin.pre-inscriptions') }}" class="font-body text-xs font-bold text-primary hover:underline">Voir les dossiers →</a>
                     </div>
                 </div>
 
@@ -384,7 +384,7 @@
                         <div class="bg-cream rounded-2xl p-4">
                             <p class="text-xs text-primary-deep/70 leading-relaxed italic" x-text="dossierOuvert.note"></p>
                             <div class="mt-2 pt-2 border-t border-primary-deep/10 flex items-center justify-between text-xs text-primary-deep/50">
-                                <span class="font-semibold">[Direction]</span>
+                                <span class="font-semibold">{{ auth()->user()?->name ?: 'Direction' }}</span>
                                 <span x-text="dossierOuvert.dateLabel"></span>
                             </div>
                         </div>

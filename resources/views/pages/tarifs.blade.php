@@ -388,9 +388,9 @@
             <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-white text-coral font-body font-bold text-sm flex items-center justify-center shadow-lg hover:-translate-y-0.5 transition-all">
                 Pré-inscrire mon enfant
             </a>
-            <a href="tel:0767646184" class="h-[52px] px-8 rounded-full bg-white/15 text-white font-body font-bold text-sm flex items-center gap-2 hover:bg-white/25 transition-all">
+            <a href="tel:{{ $etab->telephoneLien() }}" class="h-[52px] px-8 rounded-full bg-white/15 text-white font-body font-bold text-sm flex items-center gap-2 hover:bg-white/25 transition-all">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
-                07 67 64 61 84
+                {{ $etab->telephone() }}
             </a>
         </div>
         <span class="flex items-center gap-2 font-body text-sm text-white/80 pt-1">

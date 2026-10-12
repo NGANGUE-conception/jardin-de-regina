@@ -7,9 +7,6 @@
 
 <div class="pl-[240px] flex flex-col min-h-screen w-full bg-cream"
      x-data="{
-        notifNouvellesDemandes: true,
-        notifMessages: true,
-        notifRecrutement: false,
         onglet: @js($errors->motDePasse->any() || $errors->emailConnexion->any() || $errors->identite->any() || request('onglet') === 'compte' ? 'compte' : 'etablissement')
      }">
 
@@ -25,53 +22,133 @@
                     <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold">Espace direction</span>
                 </div>
                 <h1 class="font-display text-3xl text-primary-deep">Paramètres</h1>
-                <p class="font-body text-primary-deep/70 mt-1">Informations de l'établissement, compte administrateur et notifications.</p>
+                <p class="font-body text-primary-deep/70 mt-1">Coordonnées de l'établissement et compte administrateur.</p>
             </div>
 
             <div class="flex flex-wrap items-center gap-2 mb-6">
                 <button type="button" @click="onglet = 'etablissement'" class="px-4 py-1.5 rounded-full font-body text-sm transition-all" :class="onglet === 'etablissement' ? 'bg-primary text-white shadow-sm' : 'bg-white text-primary-deep hover:bg-mint/40'">Établissement</button>
                 <button type="button" @click="onglet = 'compte'" class="px-4 py-1.5 rounded-full font-body text-sm transition-all" :class="onglet === 'compte' ? 'bg-primary text-white shadow-sm' : 'bg-white text-primary-deep hover:bg-mint/40'">Compte administrateur</button>
-                <button type="button" @click="onglet = 'notifications'" class="px-4 py-1.5 rounded-full font-body text-sm transition-all" :class="onglet === 'notifications' ? 'bg-primary text-white shadow-sm' : 'bg-white text-primary-deep hover:bg-mint/40'">Notifications</button>
             </div>
 
-            {{-- ÉTABLISSEMENT --}}
+            {{-- ÉTABLISSEMENT : coordonnées affichées sur tout le site --}}
+            @php
+                $erreursEtab = $errors->etablissement;
+                $champEtab = 'w-full h-11 px-4 bg-cream rounded-2xl font-body text-sm text-primary-deep focus:outline-none focus:ring-2 focus:ring-primary';
+                $etiquetteEtab = 'font-body text-xs font-bold uppercase text-primary-deep/50';
+                $valeurEtab = fn (string $champ, string $actuel) => $erreursEtab->any() ? old($champ, $actuel) : $actuel;
+            @endphp
             <div x-show="onglet === 'etablissement'" class="bg-white rounded-3xl p-6 md:p-8 shadow-sm flex flex-col gap-6 max-w-2xl">
                 <div class="flex items-center gap-3">
-                    <img src="{{ asset('images/logo.png') }}" alt="Le Jardin de Régina" class="h-12 w-auto object-contain">
+                    <img src="{{ asset('images/logo.png') }}" alt="{{ $etab->nom() }}" class="h-12 w-auto object-contain">
                     <div>
-                        <h2 class="font-display text-xl text-primary-deep">Le Jardin de Régina</h2>
-                        <p class="font-body text-xs text-primary-deep/50">Micro-crèche · Alfortville (94140)</p>
+                        <h2 class="font-display text-xl text-primary-deep">{{ $etab->nom() }}</h2>
+                        <p class="font-body text-xs text-primary-deep/50">Micro-crèche · {{ $etab->ville() }} ({{ $etab->codePostal() }})</p>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <label class="flex flex-col gap-1.5">
-                        <span class="font-body text-xs font-bold uppercase text-primary-deep/50">Adresse</span>
-                        <input type="text" value="4 Bis rue des Écoles, 94140 Alfortville" disabled class="h-11 px-4 bg-cream text-primary-deep/70 rounded-2xl font-body text-sm cursor-not-allowed">
-                    </label>
-                    <label class="flex flex-col gap-1.5">
-                        <span class="font-body text-xs font-bold uppercase text-primary-deep/50">Téléphone</span>
-                        <input type="text" value="07 67 64 61 84" disabled class="h-11 px-4 bg-cream text-primary-deep/70 rounded-2xl font-body text-sm cursor-not-allowed">
-                    </label>
-                    <label class="flex flex-col gap-1.5">
-                        <span class="font-body text-xs font-bold uppercase text-primary-deep/50">Email</span>
-                        <input type="text" value="jardinderegina94@gmail.com" disabled class="h-11 px-4 bg-cream text-primary-deep/70 rounded-2xl font-body text-sm cursor-not-allowed">
-                    </label>
-                    <label class="flex flex-col gap-1.5">
-                        <span class="font-body text-xs font-bold uppercase text-primary-deep/50">Horaires</span>
-                        <input type="text" value="8h30 – 18h30, du lundi au vendredi" disabled class="h-11 px-4 bg-cream text-primary-deep/70 rounded-2xl font-body text-sm cursor-not-allowed">
-                    </label>
-                    <label class="flex flex-col gap-1.5">
-                        <span class="font-body text-xs font-bold uppercase text-primary-deep/50">Capacité d'accueil</span>
-                        <input type="text" value="12 places régulières + 2 places d'urgence" disabled class="h-11 px-4 bg-cream text-primary-deep/70 rounded-2xl font-body text-sm cursor-not-allowed">
-                    </label>
-                    <label class="flex flex-col gap-1.5">
-                        <span class="font-body text-xs font-bold uppercase text-primary-deep/50">Gestionnaire</span>
-                        <input type="text" value="Fabrice TCHOUMO — TEF Group Invest" disabled class="h-11 px-4 bg-cream text-primary-deep/70 rounded-2xl font-body text-sm cursor-not-allowed">
-                    </label>
-                </div>
+
+                @if (session('avertissement'))
+                    <p class="bg-peach/60 text-primary-deep rounded-2xl px-4 py-3 font-body text-sm" role="status">{{ session('avertissement') }}</p>
+                @endif
+
+                @if ($erreursEtab->any())
+                    <div class="bg-coral/10 text-coral rounded-2xl p-4 font-body text-sm" role="alert">
+                        <ul class="list-disc pl-5 flex flex-col gap-0.5">
+                            @foreach ($erreursEtab->all() as $erreur)
+                                <li>{{ $erreur }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('admin.parametres.etablissement') }}" class="flex flex-col gap-5">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="flex flex-col gap-4">
+                        <h3 class="font-display text-lg text-primary-deep">Contact</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="flex flex-col gap-1.5">
+                                <span class="{{ $etiquetteEtab }}">Téléphone</span>
+                                <input type="tel" name="telephone" value="{{ $valeurEtab('telephone', $etab->telephone()) }}" required autocomplete="off" placeholder="07 67 64 61 84" class="{{ $champEtab }} {{ $erreursEtab->has('telephone') ? 'ring-2 ring-coral' : '' }}">
+                            </label>
+                            <label class="flex flex-col gap-1.5">
+                                <span class="{{ $etiquetteEtab }}">Email de contact</span>
+                                <input type="email" name="email" value="{{ $valeurEtab('email', $etab->email()) }}" required autocomplete="off" class="{{ $champEtab }} {{ $erreursEtab->has('email') ? 'ring-2 ring-coral' : '' }}">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-4 border-t border-mint pt-5">
+                        <h3 class="font-display text-lg text-primary-deep">Adresse</h3>
+                        <label class="flex flex-col gap-1.5">
+                            <span class="{{ $etiquetteEtab }}">Numéro et rue</span>
+                            <input type="text" name="rue" value="{{ $valeurEtab('rue', $etab->rue()) }}" required maxlength="150" autocomplete="off" class="{{ $champEtab }} {{ $erreursEtab->has('rue') ? 'ring-2 ring-coral' : '' }}">
+                        </label>
+                        <div class="grid grid-cols-[8rem_1fr] gap-4">
+                            <label class="flex flex-col gap-1.5">
+                                <span class="{{ $etiquetteEtab }}">Code postal</span>
+                                <input type="text" name="code_postal" value="{{ $valeurEtab('code_postal', $etab->codePostal()) }}" required inputmode="numeric" maxlength="5" autocomplete="off" class="{{ $champEtab }} {{ $erreursEtab->has('code_postal') ? 'ring-2 ring-coral' : '' }}">
+                            </label>
+                            <label class="flex flex-col gap-1.5">
+                                <span class="{{ $etiquetteEtab }}">Ville</span>
+                                <input type="text" name="ville" value="{{ $valeurEtab('ville', $etab->ville()) }}" required maxlength="100" autocomplete="off" class="{{ $champEtab }} {{ $erreursEtab->has('ville') ? 'ring-2 ring-coral' : '' }}">
+                            </label>
+                        </div>
+                        <p class="font-body text-xs text-primary-deep/50">En cas de changement d'adresse, la position sur Google Maps est recalculée automatiquement.</p>
+                    </div>
+
+                    <div class="flex flex-col gap-4 border-t border-mint pt-5">
+                        <h3 class="font-display text-lg text-primary-deep">Horaires d'ouverture <span class="font-body text-sm text-primary-deep/50">(du lundi au vendredi)</span></h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="flex flex-col gap-1.5">
+                                <span class="{{ $etiquetteEtab }}">Ouverture</span>
+                                <input type="time" name="ouverture" value="{{ $valeurEtab('ouverture', $etab->ouvertureMachine()) }}" required class="{{ $champEtab }} {{ $erreursEtab->has('ouverture') ? 'ring-2 ring-coral' : '' }}">
+                            </label>
+                            <label class="flex flex-col gap-1.5">
+                                <span class="{{ $etiquetteEtab }}">Fermeture</span>
+                                <input type="time" name="fermeture" value="{{ $valeurEtab('fermeture', $etab->fermetureMachine()) }}" required class="{{ $champEtab }} {{ $erreursEtab->has('fermeture') ? 'ring-2 ring-coral' : '' }}">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-4 border-t border-mint pt-5">
+                        <h3 class="font-display text-lg text-primary-deep">Gestion</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="flex flex-col gap-1.5">
+                                <span class="{{ $etiquetteEtab }}">Société gestionnaire</span>
+                                <input type="text" name="gestionnaire" value="{{ $valeurEtab('gestionnaire', $etab->gestionnaire()) }}" required maxlength="150" autocomplete="off" class="{{ $champEtab }} {{ $erreursEtab->has('gestionnaire') ? 'ring-2 ring-coral' : '' }}">
+                            </label>
+                            <label class="flex flex-col gap-1.5">
+                                <span class="{{ $etiquetteEtab }}">Représentant légal</span>
+                                <input type="text" name="representant" value="{{ $valeurEtab('representant', $etab->representant()) }}" required maxlength="150" autocomplete="off" placeholder="ex. M. Prénom NOM" class="{{ $champEtab }} {{ $erreursEtab->has('representant') ? 'ring-2 ring-coral' : '' }}">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-mint pt-5">
+                        <div class="flex flex-col gap-1.5">
+                            <span class="{{ $etiquetteEtab }}">Nom de l'établissement</span>
+                            <span class="h-11 px-4 bg-cream/60 text-primary-deep/60 rounded-2xl font-body text-sm flex items-center">{{ $etab->nom() }}</span>
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <span class="{{ $etiquetteEtab }}">Capacité d'accueil</span>
+                            <span class="h-11 px-4 bg-cream/60 text-primary-deep/60 rounded-2xl font-body text-sm flex items-center">12 places régulières + 2 places d'urgence</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="h-11 px-6 rounded-full bg-primary text-white font-body text-sm font-bold shadow-md hover:opacity-90 transition-all w-fit flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        Enregistrer les modifications
+                    </button>
+                </form>
+
                 <div class="bg-mint/40 rounded-2xl p-4 flex items-start gap-2.5">
                     <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    <p class="font-body text-xs text-primary-deep/70">Ces informations reprennent celles affichées sur le site public. Leur modification directe depuis cet écran sera possible une fois la base de données connectée (Phase 8 du plan technique).</p>
+                    <div class="font-body text-xs text-primary-deep/70 flex flex-col gap-1.5">
+                        <p>Ces informations s'affichent <strong>sur tout le site</strong> (pied de page, Contact, Mentions légales, emails envoyés aux familles…) et sont transmises à Google. Toute modification est visible immédiatement.</p>
+                        <p>L'email de contact est celui affiché aux familles ; les alertes de nouveaux dossiers continuent d'arriver à l'adresse configurée lors de la mise en ligne.</p>
+                        <p>Le nom, la capacité d'accueil et les jours d'ouverture figurent dans les textes des pages : pour les modifier, contactez la personne qui gère le site.</p>
+                    </div>
                 </div>
             </div>
 
@@ -250,38 +327,6 @@
                         <p class="font-body text-xs text-primary-deep/50">Après le changement, vous restez connecté sur cet appareil ; les autres appareils (téléphone, autre ordinateur) seront déconnectés.</p>
                     </fieldset>
                 </form>
-            </div>
-
-            {{-- NOTIFICATIONS --}}
-            <div x-show="onglet === 'notifications'" x-cloak class="bg-white rounded-3xl p-6 md:p-8 shadow-sm flex flex-col gap-2 max-w-2xl divide-y divide-mint">
-                <div class="flex items-center justify-between py-4">
-                    <div class="flex flex-col pr-4">
-                        <span class="font-body text-sm font-bold text-primary-deep">Nouvelles pré-inscriptions</span>
-                        <span class="font-body text-xs text-primary-deep/50">Recevoir un email à chaque nouveau dossier déposé</span>
-                    </div>
-                    <button type="button" @click="notifNouvellesDemandes = !notifNouvellesDemandes" class="w-12 h-7 rounded-full transition-colors shrink-0 relative" :class="notifNouvellesDemandes ? 'bg-primary' : 'bg-cream border border-primary-deep/20'">
-                        <span class="absolute top-1 w-5 h-5 bg-white rounded-full shadow transition-all" :class="notifNouvellesDemandes ? 'left-6' : 'left-1'"></span>
-                    </button>
-                </div>
-                <div class="flex items-center justify-between py-4">
-                    <div class="flex flex-col pr-4">
-                        <span class="font-body text-sm font-bold text-primary-deep">Nouveaux messages</span>
-                        <span class="font-body text-xs text-primary-deep/50">Recevoir un email pour chaque message du formulaire de contact</span>
-                    </div>
-                    <button type="button" @click="notifMessages = !notifMessages" class="w-12 h-7 rounded-full transition-colors shrink-0 relative" :class="notifMessages ? 'bg-primary' : 'bg-cream border border-primary-deep/20'">
-                        <span class="absolute top-1 w-5 h-5 bg-white rounded-full shadow transition-all" :class="notifMessages ? 'left-6' : 'left-1'"></span>
-                    </button>
-                </div>
-                <div class="flex items-center justify-between py-4">
-                    <div class="flex flex-col pr-4">
-                        <span class="font-body text-sm font-bold text-primary-deep">Nouvelles candidatures</span>
-                        <span class="font-body text-xs text-primary-deep/50">Recevoir un email à chaque nouvelle candidature de recrutement</span>
-                    </div>
-                    <button type="button" @click="notifRecrutement = !notifRecrutement" class="w-12 h-7 rounded-full transition-colors shrink-0 relative" :class="notifRecrutement ? 'bg-primary' : 'bg-cream border border-primary-deep/20'">
-                        <span class="absolute top-1 w-5 h-5 bg-white rounded-full shadow transition-all" :class="notifRecrutement ? 'left-6' : 'left-1'"></span>
-                    </button>
-                </div>
-                <p class="pt-4 font-body text-xs text-primary-deep/40 italic">Ces réglages sont visuels pour l'instant ; l'envoi réel des emails sera activé à la Phase 7 du plan technique.</p>
             </div>
         </div>
     </main>

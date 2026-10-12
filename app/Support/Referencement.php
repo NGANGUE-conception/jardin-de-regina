@@ -36,6 +36,7 @@ class Referencement
     public static function donneesStructurees(): array
     {
         $c = config('creche');
+        $e = app(Etablissement::class);
         $idCreche = self::url('/').'#creche';
 
         $creche = [
@@ -50,27 +51,27 @@ class Referencement
                 self::url('images/salle-de-jeux.jpg'),
                 self::url('images/jardin.jpg'),
             ],
-            'telephone' => $c['telephone'],
-            'email' => $c['email'],
+            'telephone' => $e->telephoneLien(),
+            'email' => $e->email(),
             'address' => [
                 '@type' => 'PostalAddress',
-                'streetAddress' => $c['adresse']['rue'],
-                'postalCode' => $c['adresse']['code_postal'],
-                'addressLocality' => $c['adresse']['ville'],
+                'streetAddress' => $e->rue(),
+                'postalCode' => $e->codePostal(),
+                'addressLocality' => $e->ville(),
                 'addressRegion' => $c['adresse']['region'],
                 'addressCountry' => $c['adresse']['pays'],
             ],
             'geo' => [
                 '@type' => 'GeoCoordinates',
-                'latitude' => $c['geo']['latitude'],
-                'longitude' => $c['geo']['longitude'],
+                'latitude' => $e->latitude(),
+                'longitude' => $e->longitude(),
             ],
-            'hasMap' => 'https://www.google.com/maps/search/?api=1&query='.$c['geo']['latitude'].','.$c['geo']['longitude'],
+            'hasMap' => 'https://www.google.com/maps/search/?api=1&query='.$e->latitude().','.$e->longitude(),
             'openingHoursSpecification' => [[
                 '@type' => 'OpeningHoursSpecification',
                 'dayOfWeek' => $c['horaires']['jours'],
-                'opens' => $c['horaires']['ouverture'],
-                'closes' => $c['horaires']['fermeture'],
+                'opens' => $e->ouvertureMachine(),
+                'closes' => $e->fermetureMachine(),
             ]],
             'areaServed' => array_map(fn (string $ville) => ['@type' => 'City', 'name' => $ville], $c['zone']),
             'maximumAttendeeCapacity' => $c['places'],
@@ -80,7 +81,7 @@ class Referencement
             ],
             'parentOrganization' => [
                 '@type' => 'Organization',
-                'name' => $c['gestionnaire'],
+                'name' => $e->gestionnaire(),
             ],
             'potentialAction' => [
                 '@type' => 'ReserveAction',

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', "Horaires et fonctionnement — Le Jardin de Régina")
-@section('description', "Ouvert du lundi au vendredi de 8h30 à 18h30 : accueil régulier, occasionnel ou d'urgence, journée type, repas faits maison et adaptation en douceur.")
+@section('description', "Ouvert du lundi au vendredi {$etab->horairesTexte()} : accueil régulier, occasionnel ou d'urgence, journée type, repas faits maison et adaptation en douceur.")
 
   
 
@@ -91,7 +91,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
             @foreach ([
-                ['icon' => 'calendar', 'eyebrow' => 'Du lundi au vendredi', 'titre' => '8h30 – 18h30', 'texte' => "Amplitude continue de 10 heures par jour. Fermé les week-ends et jours fériés pour permettre le repos de l'équipe et des enfants.", 'span' => false],
+                ['icon' => 'calendar', 'eyebrow' => 'Du lundi au vendredi', 'titre' => $etab->horaires(), 'texte' => "Amplitude continue de 10 heures par jour. Fermé les week-ends et jours fériés pour permettre le repos de l'équipe et des enfants.", 'span' => false],
                 ['icon' => 'clock', 'eyebrow' => 'Formules de garde', 'titre' => 'Temps plein ou partiel', 'texte' => "Flexibilité d'accueil de 1 à 5 jours par semaine, adaptée selon vos semaines de travail et besoins spécifiques.", 'span' => false],
                 ['icon' => 'login', 'eyebrow' => "Fenêtres d'arrivée", 'titre' => "Jusqu'à 9h30", 'texte' => "Arrivées le matin jusqu'à 9h30, et entre 12h00 et 13h00 l'après-midi, pour garantir le calme des ateliers et des repas.", 'span' => false],
                 ['icon' => 'logout', 'eyebrow' => 'Créneaux de départ', 'titre' => 'Dès 13h00 & dès 16h00', 'texte' => "Départs possibles dès 13h00 après le déjeuner, ou dès 16h00 après le goûter et le réveil.", 'span' => false],
@@ -432,8 +432,8 @@
                     <div class="flex items-center gap-2 font-body text-sm">
                         <svg class="w-6 h-6 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
                         <div>
-                            <a href="tel:0767646184" class="font-bold hover:underline block">07 67 64 61 84</a>
-                            <span class="text-white/80 text-xs">4 B rue des Écoles, 94140 Alfortville</span>
+                            <a href="tel:{{ $etab->telephoneLien() }}" class="font-bold hover:underline block">{{ $etab->telephone() }}</a>
+                            <span class="text-white/80 text-xs">{{ $etab->adresse() }}</span>
                         </div>
                     </div>
                 </div>

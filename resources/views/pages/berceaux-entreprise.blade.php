@@ -167,7 +167,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
             @foreach ([
                 ['titre' => 'Garde de proximité', 'texte' => 'Au cœur d\'Alfortville, idéalement située pour fluidifier les trajets domicile-travail.', 'tag' => 'Accès RER & Métro', 'bg' => 'bg-mint', 'col' => 'text-primary'],
-                ['titre' => 'Horaires 8h30 – 18h30', 'texte' => 'Une belle amplitude du lundi au vendredi pour concilier réunions et vie de famille.', 'tag' => '10h d\'amplitude continue', 'bg' => 'bg-peach', 'col' => 'text-coral'],
+                ['titre' => 'Horaires '.$etab->horaires(), 'texte' => 'Une belle amplitude du lundi au vendredi pour concilier réunions et vie de famille.', 'tag' => '10h d\'amplitude continue', 'bg' => 'bg-peach', 'col' => 'text-coral'],
                 ['titre' => 'Accueil sur-mesure', 'texte' => 'Taux d\'encadrement élevé pour 12 enfants, plus 2 places d\'urgence, seulement.', 'tag' => 'Micro-crèche intimiste', 'bg' => 'bg-sky', 'col' => 'text-primary-deep'],
                 ['titre' => 'Repas faits maison inclus', 'texte' => 'Alimentation équilibrée et de saison, pensée pour chaque âge.', 'tag' => 'Zéro perturbateurs', 'bg' => 'bg-mint', 'col' => 'text-primary'],
             ] as $i => $tuile)
@@ -256,7 +256,7 @@
                 <div class="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center text-sun mb-4">
                     <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path stroke-linecap="round" d="M9.5 10.5L6.5 7M14.5 10.5l3-3.5M9.5 13.5L6.5 17M14.5 13.5l3 3.5"/></svg>
                 </div>
-                <h3 class="font-display text-xl mb-1">Réseau TEF Group Invest</h3>
+                <h3 class="font-display text-xl mb-1">Réseau {{ $etab->gestionnaire() }}</h3>
                 <p class="font-body text-sm text-white/75">La force d'un réseau assurant une gestion rigoureuse, des protocoles sanitaires stricts et une gouvernance pérenne.</p>
             </div>
         </div>
@@ -391,19 +391,19 @@
                     <div class="flex flex-col gap-3 pt-1 font-body text-sm">
                         <div class="flex items-start gap-2">
                             <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-7.58 7-12A7 7 0 105 9c0 4.42 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>
-                            <div class="flex flex-col"><span class="font-bold text-primary-deep">Adresse</span><span class="text-primary-deep/70">4 B rue des Écoles, 94140 Alfortville</span></div>
+                            <div class="flex flex-col"><span class="font-bold text-primary-deep">Adresse</span><span class="text-primary-deep/70">{{ $etab->adresse() }}</span></div>
                         </div>
                         <div class="flex items-start gap-2">
                             <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
-                            <div class="flex flex-col"><span class="font-bold text-primary-deep">Téléphone direct</span><a href="tel:0767646184" class="text-primary font-semibold hover:underline">07 67 64 61 84</a></div>
+                            <div class="flex flex-col"><span class="font-bold text-primary-deep">Téléphone direct</span><a href="tel:{{ $etab->telephoneLien() }}" class="text-primary font-semibold hover:underline">{{ $etab->telephone() }}</a></div>
                         </div>
                         <div class="flex items-start gap-2">
                             <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-                            <div class="flex flex-col"><span class="font-bold text-primary-deep">Courriel</span><a href="mailto:jardinderegina94@gmail.com" class="text-primary font-semibold hover:underline break-all">jardinderegina94@gmail.com</a></div>
+                            <div class="flex flex-col"><span class="font-bold text-primary-deep">Courriel</span><a href="mailto:{{ $etab->email() }}" class="text-primary font-semibold hover:underline break-all">{{ $etab->email() }}</a></div>
                         </div>
                         <div class="flex items-start gap-2">
                             <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 3"/></svg>
-                            <div class="flex flex-col"><span class="font-bold text-primary-deep">Horaires d'accueil</span><span class="text-primary-deep/70">Lundi – vendredi, 8h30 – 18h30</span></div>
+                            <div class="flex flex-col"><span class="font-bold text-primary-deep">Horaires d'accueil</span><span class="text-primary-deep/70">Lundi – vendredi, {{ $etab->horaires() }}</span></div>
                         </div>
                     </div>
                 </div>
@@ -478,9 +478,9 @@
                     <span>Demander un devis</span>
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </a>
-                <a href="tel:0767646184" class="h-[54px] px-6 rounded-full bg-white/15 text-white font-body font-bold text-sm flex items-center gap-2 hover:bg-white/25 transition-all">
+                <a href="tel:{{ $etab->telephoneLien() }}" class="h-[54px] px-6 rounded-full bg-white/15 text-white font-body font-bold text-sm flex items-center gap-2 hover:bg-white/25 transition-all">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
-                    <span>07 67 64 61 84</span>
+                    <span>{{ $etab->telephone() }}</span>
                 </a>
             </div>
         </div>

@@ -15,5 +15,5 @@
         @endforeach
     </table>
 
-    <p style="font-size:13px;line-height:1.6;color:#12414D99;margin:0;">Cet e-mail est envoyé automatiquement à titre de confirmation. Pour toute question, contactez-nous au 07 67 64 61 84 ou par retour de ce message.</p>
+    <p style="font-size:13px;line-height:1.6;color:#12414D99;margin:0;">Cet e-mail est envoyé automatiquement à titre de confirmation. Pour toute question, contactez-nous au {{ $etab->telephone() }} ou par retour de ce message.</p>
 </x-emails.layout>

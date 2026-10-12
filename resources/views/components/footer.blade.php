@@ -15,19 +15,18 @@
                       Micro-crèche écoresponsable à taille humaine. Un cocon de nature et de bienveillance au cœur d'Alfortville.
                   </p>
                   <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 w-fit">
-                      <span class="font-body text-xs uppercase tracking-widest text-primary">Micro-crèche écoresponsable · Réseau TEF Group
-  Invest</span>
+                      <span class="font-body text-xs uppercase tracking-widest text-primary">Micro-crèche écoresponsable · Réseau {{ $etab->gestionnaire() }}</span>
                   </div>
               </div>
 
               <div class="flex flex-col gap-4">
                   <span class="font-display text-lg">Coordonnées & horaires</span>
                   <div class="flex flex-col gap-2 text-sm text-cream/90 font-body">
-                      <span>4 B rue des Écoles, 94140 Alfortville</span>
-                      <a href="tel:0767646184" class="hover:text-primary transition-colors">07 67 64 61 84</a>
-                      <a href="mailto:jardinderegina94@gmail.com" class="hover:text-primary transition-colors
-  break-all">jardinderegina94@gmail.com</a>
-                      <span>Lundi – vendredi, 8h30 – 18h30</span>
+                      <span>{{ $etab->adresse() }}</span>
+                      <a href="tel:{{ $etab->telephoneLien() }}" class="hover:text-primary transition-colors">{{ $etab->telephone() }}</a>
+                      <a href="mailto:{{ $etab->email() }}" class="hover:text-primary transition-colors
+  break-all">{{ $etab->email() }}</a>
+                      <span>Lundi – vendredi, {{ $etab->horaires() }}</span>
                   </div>
               </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Support\Etablissement;
 use GdImage;
 use Illuminate\Console\Command;
 use RuntimeException;
@@ -119,7 +120,7 @@ class GenererImagesSite extends Command
             $this->texteCentre($image, config('creche.slogan'), $gras, 38, $yTexte, self::TEAL_FONCE);
         }
         if ($normal) {
-            $this->texteCentre($image, '10 semaines à 3 ans et plus  ·  8h30 – 18h30  ·  Pré-inscription en ligne', $normal, 25, $yTexte + 50, self::TEAL);
+            $this->texteCentre($image, '10 semaines à 3 ans et plus  ·  '.app(Etablissement::class)->horaires().'  ·  Pré-inscription en ligne', $normal, 25, $yTexte + 50, self::TEAL);
         }
         if (! $gras || ! $normal) {
             $this->warn('  Aucune police TrueType trouvée : image générée sans texte d\'accroche.');

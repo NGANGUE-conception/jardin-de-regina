@@ -122,8 +122,8 @@
         </div>
 
         <div class="contact">
-            Besoin d'aide ? Appelez-nous au <a href="tel:0767646184">07 67 64 61 84</a>
-            ou écrivez à <a href="mailto:jardinderegina94@gmail.com">jardinderegina94@gmail.com</a>.
+            Besoin d'aide ? Appelez-nous au <a href="tel:{{ $etab->telephoneLien() }}">{{ $etab->telephone() }}</a>
+            ou écrivez à <a href="mailto:{{ $etab->email() }}">{{ $etab->email() }}</a>.
         </div>
     </main>
 </body>

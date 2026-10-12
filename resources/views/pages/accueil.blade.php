@@ -2,7 +2,7 @@
 
  
   @section('title', "Micro-crèche à Alfortville (94) — Le Jardin de Régina")
-  @section('description', "Micro-crèche écoresponsable à Alfortville : 14 places pour les enfants de 10 semaines à 3 ans et plus, de 8h30 à 18h30, repas faits maison. Pré-inscription en ligne.")
+  @section('description', "Micro-crèche écoresponsable à Alfortville : 14 places pour les enfants de 10 semaines à 3 ans et plus, {$etab->horairesTexte()}, repas faits maison. Pré-inscription en ligne.")
   
 
 
@@ -75,7 +75,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
                     </div>
                     <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm">
                         <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 3"/></svg>
-                        <span class="font-semibold">Lun – Ven, 8h30 – 18h30</span>
+                        <span class="font-semibold">Lun – Ven, {{ $etab->horaires() }}</span>
                     </div>
                     <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm">
                         <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
@@ -166,7 +166,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
             @foreach ([
                 ['icon' => 'groups', 'titre' => 'Accueil en petit groupe', 'texte' => "Jusqu'à 12 enfants, plus 2 places d'urgence : une attention personnalisée pour chacun.", 'bg' => 'bg-mint'],
                 ['icon' => 'child', 'titre' => '10 semaines – 3 ans et plus', 'texte' => 'Accueil régulier, occasionnel ou d\'urgence, adapté aux besoins de chaque famille.', 'bg' => 'bg-peach'],
-                ['icon' => 'clock', 'titre' => 'Horaires étendus', 'texte' => '8h30 – 18h30, du lundi au vendredi, pour concilier sereinement vie pro et vie de famille.', 'bg' => 'bg-sky'],
+                ['icon' => 'clock', 'titre' => 'Horaires étendus', 'texte' => $etab->horaires().', du lundi au vendredi, pour concilier sereinement vie pro et vie de famille.', 'bg' => 'bg-sky'],
                 ['icon' => 'leaf', 'titre' => 'Repas faits maison', 'texte' => 'Équilibrés et de saison, préparés avec des produits soigneusement choisis.', 'bg' => 'bg-mint'],
             ] as $carte)
             <div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:rotate-1 transition-all flex flex-col gap-3">
@@ -333,7 +333,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
             @endphp
             @foreach ([
                 1 => ['q' => 'Quel âge doivent avoir les enfants pour être accueillis ?', 'r' => "Nous accueillons les tout-petits de 10 semaines à 3 ans et plus, dans un groupe d'âge mélangé qui favorise l'entraide et l'apprentissage mutuel."],
-                2 => ['q' => "Quels sont les horaires d'ouverture ?", 'r' => 'Le Jardin de Régina est ouvert du lundi au vendredi, de 8h30 à 18h30.'],
+                2 => ['q' => "Quels sont les horaires d'ouverture ?", 'r' => 'Le Jardin de Régina est ouvert du lundi au vendredi, '.$etab->horairesTexte().'.'],
                 3 => ['q' => 'Combien de places compte la structure ?', 'r' => "12 places régulières, plus 2 places dédiées à l'accueil d'urgence, soit 14 places au maximum."],
                 4 => ['q' => 'Comment se déroule la pré-inscription ?', 'r' => 'La pré-inscription se fait en ligne, en 2 étapes. Notre équipe vous recontacte ensuite pour organiser une visite.'],
                 5 => ['q' => 'Quelles aides financières sont disponibles ?', 'r' => "Vous pouvez bénéficier du Complément de libre choix du mode de garde (CMG - PAJE) versé par la CAF, ainsi que du crédit d'impôt garde d'enfant."],
@@ -392,9 +392,9 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
             <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
                 Pré-inscrire mon enfant
             </a>
-            <a href="tel:0767646184" class="h-[52px] px-8 rounded-full bg-white text-primary font-body font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:bg-mint/40 transition-all">
+            <a href="tel:{{ $etab->telephoneLien() }}" class="h-[52px] px-8 rounded-full bg-white text-primary font-body font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:bg-mint/40 transition-all">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
-                07 67 64 61 84
+                {{ $etab->telephone() }}
             </a>
         </div>
     </div>

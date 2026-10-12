@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', "Contact et visite — Le Jardin de Régina, Alfortville")
-  @section('description', "Une question ou envie de visiter la crèche ? Le Jardin de Régina, 4 B rue des Écoles, 94140 Alfortville. Appelez le 07 67 64 61 84 ou écrivez-nous.")
+  @section('description', "Une question ou envie de visiter la crèche ? Le Jardin de Régina, {$etab->adresse()}. Appelez le {$etab->telephone()} ou écrivez-nous.")
   
 
 
@@ -139,10 +139,10 @@
 
                     <div class="flex flex-col gap-3">
                         @foreach ([
-                            ['icon' => 'pin', 'titre' => 'Adresse de la crèche', 'val' => '4 B rue des Écoles, 94140 Alfortville', 'sous' => 'À deux pas du centre et des berges aménagées', 'href' => null],
-                            ['icon' => 'phone', 'titre' => 'Téléphone direct', 'val' => '07 67 64 61 84', 'sous' => 'Du lundi au vendredi de 8h30 à 18h30', 'href' => 'tel:0767646184'],
-                            ['icon' => 'mail', 'titre' => 'Courrier électronique', 'val' => 'jardinderegina94@gmail.com', 'sous' => "Accueil des parents & dossiers d'inscription", 'href' => 'mailto:jardinderegina94@gmail.com'],
-                            ['icon' => 'clock', 'titre' => "Horaires d'accueil", 'val' => 'Lundi – vendredi : 8h30 – 18h30', 'sous' => 'Fermeture les week-ends et jours fériés', 'href' => null],
+                            ['icon' => 'pin', 'titre' => 'Adresse de la crèche', 'val' => $etab->adresse(), 'sous' => 'À deux pas du centre et des berges aménagées', 'href' => null],
+                            ['icon' => 'phone', 'titre' => 'Téléphone direct', 'val' => $etab->telephone(), 'sous' => 'Du lundi au vendredi '.$etab->horairesTexte(), 'href' => 'tel:'.$etab->telephoneLien()],
+                            ['icon' => 'mail', 'titre' => 'Courrier électronique', 'val' => $etab->email(), 'sous' => "Accueil des parents & dossiers d'inscription", 'href' => 'mailto:'.$etab->email()],
+                            ['icon' => 'clock', 'titre' => "Horaires d'accueil", 'val' => 'Lundi – vendredi : '.$etab->horaires(), 'sous' => 'Fermeture les week-ends et jours fériés', 'href' => null],
                         ] as $item)
                         <div class="flex items-start gap-3 p-3 rounded-2xl bg-white hover:shadow-sm transition-all">
                             <div class="w-10 h-10 rounded-full bg-mint flex items-center justify-center text-primary shrink-0 mt-0.5">
@@ -229,7 +229,7 @@
                     </div>
                     <div class="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold text-primary-deep flex items-center gap-1.5 shadow-sm">
                         <span class="w-2 h-2 rounded-full bg-coral animate-bounce-soft"></span>
-                        <span>4 B rue des Écoles, Alfortville</span>
+                        <span>{{ $etab->adresseCourte() }}</span>
                     </div>
                 </div>
                 <div class="mt-3 flex items-center justify-between px-2 text-primary-deep/60 font-body text-sm">
@@ -308,9 +308,9 @@
                         <span>Demander une visite privée</span>
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
                     </a>
-                    <a href="tel:0767646184" class="h-[52px] px-7 rounded-full bg-transparent text-white font-body font-bold text-sm inline-flex items-center gap-2 border border-white/40 hover:bg-white/10 transition-all">
+                    <a href="tel:{{ $etab->telephoneLien() }}" class="h-[52px] px-7 rounded-full bg-transparent text-white font-body font-bold text-sm inline-flex items-center gap-2 border border-white/40 hover:bg-white/10 transition-all">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
-                        <span>Appeler le 07 67 64 61 84</span>
+                        <span>Appeler le {{ $etab->telephone() }}</span>
                     </a>
                 </div>
             </div>
