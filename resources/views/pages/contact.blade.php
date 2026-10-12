@@ -68,15 +68,7 @@
                     </div>
                     <p class="font-body text-primary-deep/70 mb-6">Remplissez ce formulaire et notre équipe reviendra vers vous avec bienveillance et précision.</p>
 
-                    @if ($errors->any())
-                    <div class="bg-coral/10 border border-coral/30 rounded-2xl p-4 mb-4">
-                        <ul class="font-body text-sm text-coral list-disc list-inside">
-                            @foreach ($errors->all() as $erreur)
-                            <li>{{ $erreur }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+                    <x-formulaire.resume-erreurs :champs="['fullname' => 'fullname', 'email' => 'email', 'phone' => 'phone', 'subject' => 'subject', 'message' => 'message', 'rgpd_consent' => 'contact-rgpd']" />
 
                     <form method="POST" action="{{ route('contact.store') }}" class="flex flex-col gap-4">
                         @csrf
@@ -84,22 +76,25 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="flex flex-col gap-1.5">
                                 <label for="fullname" class="font-body text-sm font-bold text-primary-deep">Nom &amp; prénom *</label>
-                                <input id="fullname" name="fullname" value="{{ old('fullname') }}" type="text" required placeholder="Claire &amp; Marc Laurent" class="h-[50px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                                <input id="fullname" name="fullname" value="{{ old('fullname') }}" type="text" required placeholder="Claire &amp; Marc Laurent" class="h-[50px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('fullname') ring-2 ring-coral @enderror" @error('fullname') aria-invalid="true" aria-describedby="fullname-erreur" @enderror>
+                                <x-formulaire.erreur champ="fullname" id="fullname" />
                             </div>
                             <div class="flex flex-col gap-1.5">
                                 <label for="email" class="font-body text-sm font-bold text-primary-deep">Adresse e-mail *</label>
-                                <input id="email" name="email" value="{{ old('email') }}" type="email" required placeholder="parent@exemple.fr" class="h-[50px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                                <input id="email" name="email" value="{{ old('email') }}" type="email" required placeholder="parent@exemple.fr" class="h-[50px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('email') ring-2 ring-coral @enderror" @error('email') aria-invalid="true" aria-describedby="email-erreur" @enderror>
+                                <x-formulaire.erreur champ="email" id="email" />
                             </div>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="flex flex-col gap-1.5">
                                 <label for="phone" class="font-body text-sm font-bold text-primary-deep">Téléphone *</label>
-                                <input id="phone" name="phone" value="{{ old('phone') }}" type="tel" required placeholder="06 12 34 56 78" class="h-[50px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                                <input id="phone" name="phone" value="{{ old('phone') }}" type="tel" required placeholder="06 12 34 56 78" class="h-[50px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('phone') ring-2 ring-coral @enderror" @error('phone') aria-invalid="true" aria-describedby="phone-erreur" @enderror>
+                                <x-formulaire.erreur champ="phone" id="phone" />
                             </div>
                             <div class="flex flex-col gap-1.5">
                                 <label for="subject" class="font-body text-sm font-bold text-primary-deep">Objet de votre demande *</label>
                                 <div class="relative">
-                                    <select id="subject" name="subject" required class="w-full h-[50px] pl-5 pr-14 rounded-2xl bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all appearance-none">
+                                    <select id="subject" name="subject" required class="w-full h-[50px] pl-5 pr-14 rounded-2xl bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all appearance-none @error('subject') ring-2 ring-coral @enderror" @error('subject') aria-invalid="true" aria-describedby="subject-erreur" @enderror>
                                         <option disabled {{ old('subject') ? '' : 'selected' }} value="">Sélectionnez un sujet</option>
                                         @foreach (['Demander une visite privée', "Demande d'informations pédagogiques", 'Renseignement sur les places disponibles', 'Autre question ou partenariat'] as $sujet)
                                         <option {{ old('subject') === $sujet ? 'selected' : '' }}>{{ $sujet }}</option>
@@ -109,16 +104,19 @@
                                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                                     </div>
                                 </div>
+                                <x-formulaire.erreur champ="subject" id="subject" />
                             </div>
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="message" class="font-body text-sm font-bold text-primary-deep">Votre message *</label>
-                            <textarea id="message" name="message" required rows="4" placeholder="Précisez l'âge de votre enfant, vos souhaits d'accueil (jours, horaires, date d'entrée souhaitée)..." class="p-4 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none">{{ old('message') }}</textarea>
+                            <textarea id="message" name="message" required rows="4" placeholder="Précisez l'âge de votre enfant, vos souhaits d'accueil (jours, horaires, date d'entrée souhaitée)..." class="p-4 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none @error('message') ring-2 ring-coral @enderror" @error('message') aria-invalid="true" aria-describedby="message-erreur" @enderror>{{ old('message') }}</textarea>
+                            <x-formulaire.erreur champ="message" id="message" />
                         </div>
                         <label class="flex items-start gap-3 cursor-pointer pt-1">
-                            <input type="checkbox" name="rgpd_consent" value="1" required class="mt-1 h-5 w-5 rounded text-primary accent-primary cursor-pointer">
+                            <input id="contact-rgpd" type="checkbox" name="rgpd_consent" value="1" {{ old('rgpd_consent') ? 'checked' : '' }} required class="mt-1 h-5 w-5 rounded text-primary accent-primary cursor-pointer @error('rgpd_consent') outline outline-2 outline-offset-2 outline-coral @enderror" @error('rgpd_consent') aria-invalid="true" aria-describedby="contact-rgpd-erreur" @enderror>
                             <span class="font-body text-sm text-primary-deep/80">J'accepte que mes données soient utilisées pour traiter ma demande, conformément à la politique de confidentialité.</span>
                         </label>
+                        <x-formulaire.erreur champ="rgpd_consent" id="contact-rgpd" />
                         <div class="pt-2">
                             <button type="submit" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm inline-flex items-center justify-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
                                 <span>Envoyer mon message</span>

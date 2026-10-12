@@ -7,7 +7,7 @@
 
 @section('content')
 <div x-data="{
-        poste: '{{ old('poste', '') }}',
+        poste: @js(old('poste', '')),
         fichiers: [],
         selectRole(nom) { this.poste = nom },
         handleFiles(files) { this.fichiers = Array.from(files).map(f => f.name) }
@@ -233,15 +233,7 @@
                         <p class="font-body text-primary-deep/70 mt-2">Votre profil ne correspond pas exactement aux offres ci-dessus ? Nous étudions avec intérêt toute candidature engagée.</p>
                     </div>
 
-                    @if ($errors->any())
-                    <div class="bg-coral/10 border border-coral/30 rounded-2xl p-4 mb-4">
-                        <ul class="font-body text-sm text-coral list-disc list-inside">
-                            @foreach ($errors->all() as $erreur)
-                            <li>{{ $erreur }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+                    <x-formulaire.resume-erreurs fichiers :champs="['nom' => 'nom', 'prenom' => 'prenom', 'email' => 'rec_email', 'tel' => 'rec_tel', 'poste' => 'poste', 'message' => 'rec_message', 'documents' => 'zone-documents', 'rgpd_consent' => 'rec-rgpd']" />
 
                     <form method="POST" action="{{ route('recrutement.store') }}" enctype="multipart/form-data" class="flex flex-col gap-5">
                         @csrf
@@ -249,27 +241,31 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div class="flex flex-col gap-1.5">
                                 <label for="nom" class="font-body text-xs font-bold uppercase tracking-wider text-primary-deep">Nom *</label>
-                                <input id="nom" name="nom" value="{{ old('nom') }}" type="text" required placeholder="Ex : Dupont" class="h-[52px] rounded-full bg-cream px-6 text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                                <input id="nom" name="nom" value="{{ old('nom') }}" type="text" required placeholder="Ex : Dupont" class="h-[52px] rounded-full bg-cream px-6 text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('nom') ring-2 ring-coral @enderror" @error('nom') aria-invalid="true" aria-describedby="nom-erreur" @enderror>
+                                <x-formulaire.erreur champ="nom" id="nom" />
                             </div>
                             <div class="flex flex-col gap-1.5">
                                 <label for="prenom" class="font-body text-xs font-bold uppercase tracking-wider text-primary-deep">Prénom *</label>
-                                <input id="prenom" name="prenom" value="{{ old('prenom') }}" type="text" required placeholder="Ex : Camille" class="h-[52px] rounded-full bg-cream px-6 text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                                <input id="prenom" name="prenom" value="{{ old('prenom') }}" type="text" required placeholder="Ex : Camille" class="h-[52px] rounded-full bg-cream px-6 text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('prenom') ring-2 ring-coral @enderror" @error('prenom') aria-invalid="true" aria-describedby="prenom-erreur" @enderror>
+                                <x-formulaire.erreur champ="prenom" id="prenom" />
                             </div>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div class="flex flex-col gap-1.5">
                                 <label for="rec_email" class="font-body text-xs font-bold uppercase tracking-wider text-primary-deep">Adresse e-mail *</label>
-                                <input id="rec_email" name="email" value="{{ old('email') }}" type="email" required placeholder="camille.dupont@email.fr" class="h-[52px] rounded-full bg-cream px-6 text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                                <input id="rec_email" name="email" value="{{ old('email') }}" type="email" required placeholder="camille.dupont@email.fr" class="h-[52px] rounded-full bg-cream px-6 text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('email') ring-2 ring-coral @enderror" @error('email') aria-invalid="true" aria-describedby="rec_email-erreur" @enderror>
+                                <x-formulaire.erreur champ="email" id="rec_email" />
                             </div>
                             <div class="flex flex-col gap-1.5">
                                 <label for="rec_tel" class="font-body text-xs font-bold uppercase tracking-wider text-primary-deep">Téléphone *</label>
-                                <input id="rec_tel" name="tel" value="{{ old('tel') }}" type="tel" required placeholder="06 12 34 56 78" class="h-[52px] rounded-full bg-cream px-6 text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                                <input id="rec_tel" name="tel" value="{{ old('tel') }}" type="tel" required placeholder="06 12 34 56 78" class="h-[52px] rounded-full bg-cream px-6 text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('tel') ring-2 ring-coral @enderror" @error('tel') aria-invalid="true" aria-describedby="rec_tel-erreur" @enderror>
+                                <x-formulaire.erreur champ="tel" id="rec_tel" />
                             </div>
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="poste" class="font-body text-xs font-bold uppercase tracking-wider text-primary-deep">Poste souhaité *</label>
                             <div class="relative">
-                                <select id="poste" name="poste" x-model="poste" required class="w-full h-[52px] rounded-full bg-cream pl-6 pr-14 text-primary-deep appearance-none focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                                <select id="poste" name="poste" x-model="poste" required class="w-full h-[52px] rounded-full bg-cream pl-6 pr-14 text-primary-deep appearance-none focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('poste') ring-2 ring-coral @enderror" @error('poste') aria-invalid="true" aria-describedby="poste-erreur" @enderror>
                                     <option disabled value="">Sélectionnez un poste...</option>
                                     <option>Éducateur·rice de Jeunes Enfants (EJE)</option>
                                     <option>Auxiliaire de Puériculture (AP)</option>
@@ -282,17 +278,19 @@
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                                 </div>
                             </div>
+                            <x-formulaire.erreur champ="poste" id="poste" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="rec_message" class="font-body text-xs font-bold uppercase tracking-wider text-primary-deep">Votre message / motivations *</label>
-                            <textarea id="rec_message" name="message" required rows="4" placeholder="Parlez-nous de vous, de votre vision de la petite enfance et de ce qui vous attire au Jardin de Régina..." class="rounded-3xl bg-cream p-5 text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-y">{{ old('message') }}</textarea>
+                            <textarea id="rec_message" name="message" required rows="4" placeholder="Parlez-nous de vous, de votre vision de la petite enfance et de ce qui vous attire au Jardin de Régina..." class="rounded-3xl bg-cream p-5 text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-y @error('message') ring-2 ring-coral @enderror" @error('message') aria-invalid="true" aria-describedby="rec_message-erreur" @enderror>{{ old('message') }}</textarea>
+                            <x-formulaire.erreur champ="message" id="rec_message" />
                         </div>
 
                         {{-- Zone de dépôt de fichiers --}}
                         <div class="flex flex-col gap-1.5">
                             <label class="font-body text-xs font-bold uppercase tracking-wider text-primary-deep">Documents (CV &amp; lettre de motivation) *</label>
-                            <label for="file-input" class="relative flex flex-col items-center justify-center p-8 rounded-3xl bg-mint/30 hover:bg-mint/50 cursor-pointer transition-colors text-center border-2 border-dashed border-primary/40">
-                                <input id="file-input" name="documents[]" type="file" multiple required accept=".pdf,.doc,.docx" class="hidden" @change="handleFiles($event.target.files)">
+                            <label id="zone-documents" for="file-input" class="relative flex flex-col items-center justify-center p-8 rounded-3xl hover:bg-mint/50 cursor-pointer transition-colors text-center border-2 border-dashed scroll-mt-28 focus-within:ring-2 focus-within:ring-primary {{ $errors->has('documents') || $errors->has('documents.*') ? 'border-coral bg-coral/5' : 'border-primary/40 bg-mint/30' }}">
+                                <input id="file-input" name="documents[]" type="file" multiple required accept=".pdf,.doc,.docx" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" @change="handleFiles($event.target.files)" @if ($errors->has('documents') || $errors->has('documents.*')) aria-invalid="true" aria-describedby="zone-documents-erreur" @endif>
                                 <div class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-primary mb-3">
                                     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0L8 8m4-4l4 4M5 20h14"/></svg>
                                 </div>
@@ -303,12 +301,14 @@
                                 <p class="font-body text-sm font-bold text-primary" x-show="fichiers.length > 1" x-text="fichiers.length + ' fichiers sélectionnés'"></p>
                                 <p class="font-body text-xs text-primary-deep/60 mt-1">Formats acceptés : PDF, DOC, DOCX (max 5 Mo au total)</p>
                             </label>
+                            <x-formulaire.erreur champ="documents" id="zone-documents" />
                         </div>
 
                         <label class="flex items-start gap-3 pt-1 cursor-pointer">
-                            <input type="checkbox" name="rgpd_consent" value="1" required class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer">
+                            <input id="rec-rgpd" type="checkbox" name="rgpd_consent" value="1" {{ old('rgpd_consent') ? 'checked' : '' }} required class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer @error('rgpd_consent') outline outline-2 outline-offset-2 outline-coral @enderror" @error('rgpd_consent') aria-invalid="true" aria-describedby="rec-rgpd-erreur" @enderror>
                             <span class="font-body text-xs text-primary-deep/70 leading-relaxed">J'accepte que mes données personnelles soient traitées par Le Jardin de Régina pour l'examen de ma candidature, conformément à la politique de confidentialité.</span>
                         </label>
+                        <x-formulaire.erreur champ="rgpd_consent" id="rec-rgpd" />
 
                         <div class="pt-2">
                             <button type="submit" class="w-full sm:w-auto h-[52px] px-10 rounded-full bg-coral text-white font-body font-bold text-sm inline-flex items-center justify-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">

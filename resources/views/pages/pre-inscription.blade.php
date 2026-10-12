@@ -6,14 +6,96 @@
 
 
 @section('content')
-<div x-data="{
-        step: 1,
-        careType: '{{ old('care_type', 'regulier') }}',
-        days: {{ old('care_days') ? json_encode(old('care_days')) : json_encode(['lundi','mardi','mercredi','jeudi']) }},
-        specialNeeds: {{ old('special_needs') ? 'true' : 'false' }},
-        p2Open: {{ old('p2_nom') ? 'true' : 'false' }},
-        toggleDay(d) { this.days.includes(d) ? this.days = this.days.filter(x => x !== d) : this.days.push(d) }
-    }">
+@php
+    // Après un envoi refusé : on rouvre l'étape qui contient la première erreur, et le bloc « second parent » s'il est concerné.
+    $champsEtape1 = ['child_last_name', 'child_first_name', 'child_gender', 'child_birthdate', 'entry_date', 'care_type', 'care_days', 'special_needs', 'special_needs_details'];
+    $champsEnErreur = collect($errors->keys())->map(fn ($cle) => \Illuminate\Support\Str::before($cle, '.'));
+    $renvoi = session()->hasOldInput();
+
+    $configPreInscription = [
+        'etape' => $errors->any() && $champsEnErreur->intersect($champsEtape1)->isEmpty() ? 2 : 1,
+        'careType' => old('care_type', 'regulier'),
+        'jours' => $renvoi ? array_values((array) old('care_days', [])) : ['lundi', 'mardi', 'mercredi', 'jeudi'],
+        'besoins' => (bool) old('special_needs'),
+        'p2Ouvert' => collect(['p2_nom', 'p2_prenom', 'p2_email', 'p2_tel', 'p2_profession', 'p2_employeur'])->contains(fn ($champ) => filled(old($champ)))
+            || $champsEnErreur->contains(fn ($champ) => str_starts_with($champ, 'p2_')),
+    ];
+@endphp
+
+<script>
+    function preInscription(config) {
+        return {
+            step: config.etape,
+            careType: config.careType,
+            days: config.jours,
+            specialNeeds: config.besoins,
+            p2Open: config.p2Ouvert,
+            joursManquants: false,
+
+            toggleDay(d) {
+                this.days.includes(d) ? this.days = this.days.filter(x => x !== d) : this.days.push(d);
+                if (this.days.length) this.joursManquants = false;
+            },
+
+            // Premier champ de l'étape qui ne respecte pas les règles du navigateur (obligatoire, format e-mail...).
+            premierChampInvalide(etape) {
+                const champs = this.$root.querySelectorAll('[data-etape="' + etape + '"] :is(input, select, textarea)');
+                return [...champs].find(champ => champ.type !== 'hidden' && !champ.disabled && !champ.checkValidity()) || null;
+            },
+
+            // Affiche l'étape du champ, le fait défiler au centre de l'écran et montre la bulle d'aide du navigateur.
+            signaler(champ) {
+                this.$nextTick(() => {
+                    champ.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    champ.reportValidity();
+                });
+            },
+
+            etape1Valide() {
+                const champ = this.premierChampInvalide(1);
+                if (champ) {
+                    this.step = 1;
+                    this.signaler(champ);
+                    return false;
+                }
+                if (this.careType !== 'urgence' && this.days.length === 0) {
+                    this.step = 1;
+                    this.joursManquants = true;
+                    this.$nextTick(() => document.getElementById('jours-presence').scrollIntoView({ behavior: 'smooth', block: 'center' }));
+                    return false;
+                }
+                return true;
+            },
+
+            allerEtape2() {
+                if (!this.etape1Valide()) return;
+                this.step = 2;
+                this.$nextTick(() => this.$refs.formulaire.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+            },
+
+            // Clic sur « Envoyer » : un champ vide de l'étape 1 (masquée) bloquerait l'envoi sans aucun message.
+            // On revient donc à l'étape 1 et on montre le champ concerné.
+            verifierAvantEnvoi(evenement) {
+                if (!this.etape1Valide()) evenement.preventDefault();
+            },
+
+            // Lien du résumé des erreurs : ouvre la bonne étape (et le bloc « second parent ») puis place le curseur dans le champ.
+            allerAuChamp(id) {
+                const champ = document.getElementById(id);
+                if (!champ) return;
+                const etape = champ.closest('[data-etape]');
+                if (etape) this.step = Number(etape.dataset.etape);
+                if (id.startsWith('p2_')) this.p2Open = true;
+                this.$nextTick(() => setTimeout(() => {
+                    champ.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    champ.focus({ preventScroll: true });
+                }, 50));
+            },
+        };
+    }
+</script>
+
+<div x-data="preInscription(@js($configPreInscription))">
 
 {{-- SECTION 1 : HERO COMPACT --}}
 <section class="relative bg-mint pt-10 pb-16 overflow-hidden">
@@ -41,21 +123,9 @@
 
             {{-- Formulaire --}}
             <div>
-                @if ($errors->any())
-                <div class="bg-coral/10 border border-coral/30 rounded-2xl p-4 mb-6 flex items-start gap-3">
-                    <svg class="w-5 h-5 text-coral shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86l-8.18 14A2 2 0 004 21h16a2 2 0 001.89-3.14l-8.18-14a2 2 0 00-3.42 0z"/></svg>
-                    <div>
-                        <p class="font-body text-sm font-bold text-primary-deep mb-1">Merci de corriger les points suivants :</p>
-                        <ul class="font-body text-sm text-coral list-disc list-inside">
-                            @foreach ($errors->all() as $erreur)
-                            <li>{{ $erreur }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-                @endif
+                <x-formulaire.resume-erreurs alpine :champs="['child_last_name' => 'child-lastname', 'child_first_name' => 'child-firstname', 'child_gender' => 'child-gender', 'child_birthdate' => 'child-birthdate', 'entry_date' => 'entry-date', 'care_type' => 'type-accueil', 'care_days' => 'jours-presence', 'special_needs_details' => 'special-details', 'p1_nom' => 'p1_nom', 'p1_prenom' => 'p1_prenom', 'p1_email' => 'p1_email', 'p1_tel' => 'p1_tel', 'p1_fixe' => 'p1_fixe', 'p1_profession' => 'p1_profession', 'p1_employeur' => 'p1_employeur', 'p1_cp' => 'p1_cp', 'p1_ville' => 'p1_ville', 'p1_adresse' => 'p1_adresse', 'p2_nom' => 'p2_nom', 'p2_prenom' => 'p2_prenom', 'p2_email' => 'p2_email', 'p2_tel' => 'p2_tel', 'p2_profession' => 'p2_profession', 'p2_employeur' => 'p2_employeur', 'message' => 'message_libre', 'rgpd_consent' => 'pi-rgpd']" />
 
-                <form method="POST" action="{{ route('pre-inscription.store') }}">
+                <form method="POST" action="{{ route('pre-inscription.store') }}" x-ref="formulaire">
                 @csrf
                 <x-anti-spam />
                 {{-- STEPPER --}}
@@ -85,7 +155,7 @@
                 </div>
 
                 {{-- ÉTAPE 1 : VOTRE ENFANT --}}
-                <div x-show="step === 1">
+                <div x-show="step === 1" data-etape="1">
                     <div class="flex items-center gap-2 text-primary mb-1">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="6" r="3"/><path stroke-linecap="round" stroke-linejoin="round" d="M6 21v-4a6 6 0 0112 0v4"/></svg>
                         <span class="font-body text-xs uppercase tracking-widest font-extrabold">Dossier d'accueil</span>
@@ -96,16 +166,18 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div class="flex flex-col gap-1.5">
                             <label for="child-lastname" class="font-body text-sm font-bold text-primary-deep">Nom de l'enfant *</label>
-                            <input id="child-lastname" name="child_last_name" value="{{ old('child_last_name') }}" required type="text" placeholder="ex. Martin" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="child-lastname" name="child_last_name" value="{{ old('child_last_name') }}" required type="text" placeholder="ex. Martin" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('child_last_name') ring-2 ring-coral @enderror" @error('child_last_name') aria-invalid="true" aria-describedby="child-lastname-erreur" @enderror>
+                            <x-formulaire.erreur champ="child_last_name" id="child-lastname" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="child-firstname" class="font-body text-sm font-bold text-primary-deep">Prénom de l'enfant *</label>
-                            <input id="child-firstname" name="child_first_name" value="{{ old('child_first_name') }}" required type="text" placeholder="ex. Louise" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="child-firstname" name="child_first_name" value="{{ old('child_first_name') }}" required type="text" placeholder="ex. Louise" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('child_first_name') ring-2 ring-coral @enderror" @error('child_first_name') aria-invalid="true" aria-describedby="child-firstname-erreur" @enderror>
+                            <x-formulaire.erreur champ="child_first_name" id="child-firstname" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="child-gender" class="font-body text-sm font-bold text-primary-deep">Sexe de l'enfant *</label>
                             <div class="relative">
-                                <select id="child-gender" name="child_gender" required class="w-full h-[52px] pl-5 pr-14 rounded-full bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all appearance-none">
+                                <select id="child-gender" name="child_gender" required class="w-full h-[52px] pl-5 pr-14 rounded-full bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all appearance-none @error('child_gender') ring-2 ring-coral @enderror" @error('child_gender') aria-invalid="true" aria-describedby="child-gender-erreur" @enderror>
                                     <option disabled {{ old('child_gender') ? '' : 'selected' }} value="">Sélectionner</option>
                                     @foreach (['Fille', 'Garçon', 'Autre / Non précisé'] as $genre)
                                     <option {{ old('child_gender') === $genre ? 'selected' : '' }}>{{ $genre }}</option>
@@ -115,25 +187,28 @@
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                                 </div>
                             </div>
+                            <x-formulaire.erreur champ="child_gender" id="child-gender" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <div class="flex justify-between items-center">
                                 <label for="child-birthdate" class="font-body text-sm font-bold text-primary-deep">Date de naissance *</label>
                                 <span class="font-body text-xs text-primary-deep/60">ou terme prévu</span>
                             </div>
-                            <input id="child-birthdate" name="child_birthdate" value="{{ old('child_birthdate') }}" required type="date" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="child-birthdate" name="child_birthdate" value="{{ old('child_birthdate') }}" required type="date" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('child_birthdate') ring-2 ring-coral @enderror" @error('child_birthdate') aria-invalid="true" aria-describedby="child-birthdate-erreur" @enderror>
+                            <x-formulaire.erreur champ="child_birthdate" id="child-birthdate" />
                         </div>
                         <div class="flex flex-col gap-1.5 md:col-span-2">
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center">
                                 <label for="entry-date" class="font-body text-sm font-bold text-primary-deep">Date d'entrée souhaitée *</label>
                                 <span class="font-body text-xs text-coral">Idéalement 2 mois avant la reprise d'activité</span>
                             </div>
-                            <input id="entry-date" name="entry_date" value="{{ old('entry_date') }}" required type="date" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="entry-date" name="entry_date" value="{{ old('entry_date') }}" required type="date" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('entry_date') ring-2 ring-coral @enderror" @error('entry_date') aria-invalid="true" aria-describedby="entry-date-erreur" @enderror>
+                            <x-formulaire.erreur champ="entry_date" id="entry-date" />
                         </div>
                     </div>
 
                     {{-- Type d'accueil --}}
-                    <div class="flex flex-col gap-3 mt-6">
+                    <div id="type-accueil" tabindex="-1" class="flex flex-col gap-3 mt-6 scroll-mt-28 focus:outline-none">
                         <input type="hidden" name="care_type" :value="careType">
                         <span class="font-body text-sm font-bold text-primary-deep">Type d'accueil souhaité *</span>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -155,13 +230,14 @@
                             </div>
                             @endforeach
                         </div>
+                        <x-formulaire.erreur champ="care_type" id="type-accueil" />
                     </div>
 
                     {{-- Jours de présence --}}
-                    <div class="flex flex-col gap-3 mt-6">
+                    <div id="jours-presence" tabindex="-1" class="flex flex-col gap-3 mt-6 scroll-mt-28 focus:outline-none">
                         <div class="flex items-center justify-between">
                             <label class="font-body text-sm font-bold text-primary-deep">Jours de présence souhaités *</label>
-                            <span class="font-body text-xs text-primary-deep/60">Sélectionnez au moins un jour</span>
+                            <span class="font-body text-xs text-primary-deep/60">Sélectionnez au moins un jour (sauf accueil d'urgence)</span>
                         </div>
                         <div class="flex flex-wrap items-center gap-2">
                             <template x-for="d in days" :key="d"><input type="hidden" name="care_days[]" :value="d"></template>
@@ -174,6 +250,8 @@
                             </button>
                             @endforeach
                         </div>
+                        <x-formulaire.erreur champ="care_days" id="jours-presence" />
+                        <p x-show="joursManquants" x-cloak class="flex items-start gap-1.5 font-body text-sm font-semibold text-coral">Merci de sélectionner au moins un jour de présence.</p>
                     </div>
 
                     {{-- Besoins spécifiques --}}
@@ -196,7 +274,8 @@
                     </div>
                     <div x-show="specialNeeds" x-collapse class="flex flex-col gap-1.5 mt-3">
                         <label for="special-details" class="font-body text-sm font-bold text-primary-deep">Précisions (facultatif)</label>
-                        <textarea id="special-details" name="special_needs_details" rows="3" placeholder="Allergie alimentaire, régime particulier ou protocole médical..." class="p-4 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none">{{ old('special_needs_details') }}</textarea>
+                        <textarea id="special-details" name="special_needs_details" rows="3" placeholder="Allergie alimentaire, régime particulier ou protocole médical..." class="p-4 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none @error('special_needs_details') ring-2 ring-coral @enderror" @error('special_needs_details') aria-invalid="true" aria-describedby="special-details-erreur" @enderror>{{ old('special_needs_details') }}</textarea>
+                        <x-formulaire.erreur champ="special_needs_details" id="special-details" />
                     </div>
 
                     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">
@@ -204,7 +283,7 @@
                             <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
                             <span>Données strictement confidentielles &amp; conformes RGPD</span>
                         </div>
-                        <button type="button" @click="step = 2" class="w-full sm:w-auto h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center justify-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
+                        <button type="button" @click="allerEtape2()" class="w-full sm:w-auto h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center justify-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
                             <span>Continuer vers l'étape 2</span>
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                         </button>
@@ -212,7 +291,7 @@
                 </div>
 
                 {{-- ÉTAPE 2 : VOS INFORMATIONS --}}
-                <div x-show="step === 2" x-cloak>
+                <div x-show="step === 2" x-cloak data-etape="2">
                     {{-- Parent 1 --}}
                     <div class="flex items-center gap-2 mb-5">
                         <div class="w-8 h-8 rounded-full bg-mint text-primary flex items-center justify-center">
@@ -236,47 +315,57 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex flex-col gap-1.5">
                             <label for="p1_nom" class="font-body text-sm font-bold text-primary-deep">Nom de famille *</label>
-                            <input id="p1_nom" name="p1_nom" value="{{ old('p1_nom') }}" required type="text" placeholder="ex. Dupont" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="p1_nom" name="p1_nom" value="{{ old('p1_nom') }}" required type="text" placeholder="ex. Dupont" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_nom') ring-2 ring-coral @enderror" @error('p1_nom') aria-invalid="true" aria-describedby="p1_nom-erreur" @enderror>
+                            <x-formulaire.erreur champ="p1_nom" id="p1_nom" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="p1_prenom" class="font-body text-sm font-bold text-primary-deep">Prénom *</label>
-                            <input id="p1_prenom" name="p1_prenom" value="{{ old('p1_prenom') }}" required type="text" placeholder="ex. Camille" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="p1_prenom" name="p1_prenom" value="{{ old('p1_prenom') }}" required type="text" placeholder="ex. Camille" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_prenom') ring-2 ring-coral @enderror" @error('p1_prenom') aria-invalid="true" aria-describedby="p1_prenom-erreur" @enderror>
+                            <x-formulaire.erreur champ="p1_prenom" id="p1_prenom" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="p1_email" class="font-body text-sm font-bold text-primary-deep">Adresse email *</label>
-                            <input id="p1_email" name="p1_email" value="{{ old('p1_email') }}" required type="email" placeholder="camille.dupont@exemple.fr" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="p1_email" name="p1_email" value="{{ old('p1_email') }}" required type="email" placeholder="camille.dupont@exemple.fr" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_email') ring-2 ring-coral @enderror" @error('p1_email') aria-invalid="true" aria-describedby="p1_email-erreur" @enderror>
+                            <x-formulaire.erreur champ="p1_email" id="p1_email" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="p1_tel" class="font-body text-sm font-bold text-primary-deep">Téléphone portable *</label>
-                            <input id="p1_tel" name="p1_tel" value="{{ old('p1_tel') }}" required type="tel" placeholder="06 12 34 56 78" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="p1_tel" name="p1_tel" value="{{ old('p1_tel') }}" required type="tel" placeholder="06 12 34 56 78" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_tel') ring-2 ring-coral @enderror" @error('p1_tel') aria-invalid="true" aria-describedby="p1_tel-erreur" @enderror>
+                            <x-formulaire.erreur champ="p1_tel" id="p1_tel" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="p1_fixe" class="font-body text-sm font-bold text-primary-deep">Téléphone secondaire <span class="font-normal text-primary-deep/50">(facultatif)</span></label>
-                            <input id="p1_fixe" name="p1_fixe" value="{{ old('p1_fixe') }}" type="tel" placeholder="01 43 ..." class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="p1_fixe" name="p1_fixe" value="{{ old('p1_fixe') }}" type="tel" placeholder="01 43 ..." class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_fixe') ring-2 ring-coral @enderror" @error('p1_fixe') aria-invalid="true" aria-describedby="p1_fixe-erreur" @enderror>
+                            <x-formulaire.erreur champ="p1_fixe" id="p1_fixe" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="p1_profession" class="font-body text-sm font-bold text-primary-deep">Profession *</label>
-                            <input id="p1_profession" name="p1_profession" value="{{ old('p1_profession') }}" type="text" placeholder="ex. Professeure des écoles" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="p1_profession" name="p1_profession" value="{{ old('p1_profession') }}" type="text" placeholder="ex. Professeure des écoles" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_profession') ring-2 ring-coral @enderror" @error('p1_profession') aria-invalid="true" aria-describedby="p1_profession-erreur" @enderror>
+                            <x-formulaire.erreur champ="p1_profession" id="p1_profession" />
                         </div>
                         <div class="md:col-span-2 flex flex-col gap-1.5">
                             <div class="flex items-center justify-between">
                                 <label for="p1_employeur" class="font-body text-sm font-bold text-primary-deep">Employeur / Société</label>
                                 <a href="/berceaux-entreprise" class="inline-flex items-center gap-1 font-body text-primary text-xs bg-mint/50 px-2 py-0.5 rounded-full font-bold hover:bg-mint transition-colors">Réservation berceau entreprise</a>
                             </div>
-                            <input id="p1_employeur" name="p1_employeur" value="{{ old('p1_employeur') }}" type="text" placeholder="Nom de l'entreprise ou structure" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="p1_employeur" name="p1_employeur" value="{{ old('p1_employeur') }}" type="text" placeholder="Nom de l'entreprise ou structure" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_employeur') ring-2 ring-coral @enderror" @error('p1_employeur') aria-invalid="true" aria-describedby="p1_employeur-erreur" @enderror>
                             <p class="font-body text-xs text-primary-deep/60">Votre employeur peut, dans certains cas, financer une partie de la place.</p>
+                            <x-formulaire.erreur champ="p1_employeur" id="p1_employeur" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="p1_cp" class="font-body text-sm font-bold text-primary-deep">Code postal *</label>
-                            <input id="p1_cp" name="p1_cp" value="{{ old('p1_cp', '94140') }}" type="text" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="p1_cp" name="p1_cp" value="{{ old('p1_cp', '94140') }}" type="text" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_cp') ring-2 ring-coral @enderror" @error('p1_cp') aria-invalid="true" aria-describedby="p1_cp-erreur" @enderror>
+                            <x-formulaire.erreur champ="p1_cp" id="p1_cp" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="p1_ville" class="font-body text-sm font-bold text-primary-deep">Ville *</label>
-                            <input id="p1_ville" name="p1_ville" value="{{ old('p1_ville', 'Alfortville') }}" type="text" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="p1_ville" name="p1_ville" value="{{ old('p1_ville', 'Alfortville') }}" type="text" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_ville') ring-2 ring-coral @enderror" @error('p1_ville') aria-invalid="true" aria-describedby="p1_ville-erreur" @enderror>
+                            <x-formulaire.erreur champ="p1_ville" id="p1_ville" />
                         </div>
                         <div class="md:col-span-2 flex flex-col gap-1.5">
                             <label for="p1_adresse" class="font-body text-sm font-bold text-primary-deep">Adresse postale *</label>
-                            <input id="p1_adresse" name="p1_adresse" value="{{ old('p1_adresse') }}" type="text" placeholder="Numéro et nom de voie" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="p1_adresse" name="p1_adresse" value="{{ old('p1_adresse') }}" type="text" placeholder="Numéro et nom de voie" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_adresse') ring-2 ring-coral @enderror" @error('p1_adresse') aria-invalid="true" aria-describedby="p1_adresse-erreur" @enderror>
+                            <x-formulaire.erreur champ="p1_adresse" id="p1_adresse" />
                         </div>
                     </div>
 
@@ -314,27 +403,33 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="flex flex-col gap-1.5">
                                     <label for="p2_nom" class="font-body text-sm font-bold text-primary-deep">Nom de famille</label>
-                                    <input id="p2_nom" name="p2_nom" value="{{ old('p2_nom') }}" type="text" placeholder="ex. Dupont" class="h-[52px] px-5 rounded-2xl bg-white text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <input id="p2_nom" name="p2_nom" value="{{ old('p2_nom') }}" type="text" placeholder="ex. Dupont" class="h-[52px] px-5 rounded-2xl bg-white text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary @error('p2_nom') ring-2 ring-coral @enderror" @error('p2_nom') aria-invalid="true" aria-describedby="p2_nom-erreur" @enderror>
+                                    <x-formulaire.erreur champ="p2_nom" id="p2_nom" />
                                 </div>
                                 <div class="flex flex-col gap-1.5">
                                     <label for="p2_prenom" class="font-body text-sm font-bold text-primary-deep">Prénom</label>
-                                    <input id="p2_prenom" name="p2_prenom" value="{{ old('p2_prenom') }}" type="text" placeholder="ex. Julien" class="h-[52px] px-5 rounded-2xl bg-white text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <input id="p2_prenom" name="p2_prenom" value="{{ old('p2_prenom') }}" type="text" placeholder="ex. Julien" class="h-[52px] px-5 rounded-2xl bg-white text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary @error('p2_prenom') ring-2 ring-coral @enderror" @error('p2_prenom') aria-invalid="true" aria-describedby="p2_prenom-erreur" @enderror>
+                                    <x-formulaire.erreur champ="p2_prenom" id="p2_prenom" />
                                 </div>
                                 <div class="flex flex-col gap-1.5">
                                     <label for="p2_email" class="font-body text-sm font-bold text-primary-deep">Email</label>
-                                    <input id="p2_email" name="p2_email" value="{{ old('p2_email') }}" type="email" placeholder="julien.dupont@exemple.fr" class="h-[52px] px-5 rounded-2xl bg-white text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <input id="p2_email" name="p2_email" value="{{ old('p2_email') }}" type="email" placeholder="julien.dupont@exemple.fr" class="h-[52px] px-5 rounded-2xl bg-white text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary @error('p2_email') ring-2 ring-coral @enderror" @error('p2_email') aria-invalid="true" aria-describedby="p2_email-erreur" @enderror>
+                                    <x-formulaire.erreur champ="p2_email" id="p2_email" />
                                 </div>
                                 <div class="flex flex-col gap-1.5">
                                     <label for="p2_tel" class="font-body text-sm font-bold text-primary-deep">Téléphone mobile</label>
-                                    <input id="p2_tel" name="p2_tel" value="{{ old('p2_tel') }}" type="tel" placeholder="06 98 76 54 32" class="h-[52px] px-5 rounded-2xl bg-white text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <input id="p2_tel" name="p2_tel" value="{{ old('p2_tel') }}" type="tel" placeholder="06 98 76 54 32" class="h-[52px] px-5 rounded-2xl bg-white text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary @error('p2_tel') ring-2 ring-coral @enderror" @error('p2_tel') aria-invalid="true" aria-describedby="p2_tel-erreur" @enderror>
+                                    <x-formulaire.erreur champ="p2_tel" id="p2_tel" />
                                 </div>
                                 <div class="flex flex-col gap-1.5">
                                     <label for="p2_profession" class="font-body text-sm font-bold text-primary-deep">Profession</label>
-                                    <input id="p2_profession" name="p2_profession" value="{{ old('p2_profession') }}" type="text" placeholder="ex. Comptable" class="h-[52px] px-5 rounded-2xl bg-white text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <input id="p2_profession" name="p2_profession" value="{{ old('p2_profession') }}" type="text" placeholder="ex. Comptable" class="h-[52px] px-5 rounded-2xl bg-white text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary @error('p2_profession') ring-2 ring-coral @enderror" @error('p2_profession') aria-invalid="true" aria-describedby="p2_profession-erreur" @enderror>
+                                    <x-formulaire.erreur champ="p2_profession" id="p2_profession" />
                                 </div>
                                 <div class="flex flex-col gap-1.5">
                                     <label for="p2_employeur" class="font-body text-sm font-bold text-primary-deep">Employeur / Société</label>
-                                    <input id="p2_employeur" name="p2_employeur" value="{{ old('p2_employeur') }}" type="text" placeholder="Entreprise" class="h-[52px] px-5 rounded-2xl bg-white text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <input id="p2_employeur" name="p2_employeur" value="{{ old('p2_employeur') }}" type="text" placeholder="Entreprise" class="h-[52px] px-5 rounded-2xl bg-white text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary @error('p2_employeur') ring-2 ring-coral @enderror" @error('p2_employeur') aria-invalid="true" aria-describedby="p2_employeur-erreur" @enderror>
+                                    <x-formulaire.erreur champ="p2_employeur" id="p2_employeur" />
                                 </div>
                             </div>
                         </div>
@@ -347,15 +442,17 @@
                             <label for="message_libre" class="font-display text-lg text-primary-deep">Un message pour notre équipe ? <span class="font-body text-sm text-primary-deep/60 font-normal">(facultatif)</span></label>
                         </div>
                         <p class="font-body text-sm text-primary-deep/70 mb-2">Rythme particulier, allaitement, allergies, adaptation progressive, ou toute autre attention utile.</p>
-                        <textarea id="message_libre" name="message" rows="4" placeholder="Partagez les détails importants pour accueillir votre enfant en douceur..." class="w-full p-4 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-y min-h-[110px]">{{ old('message') }}</textarea>
+                        <textarea id="message_libre" name="message" rows="4" placeholder="Partagez les détails importants pour accueillir votre enfant en douceur..." class="w-full p-4 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-y min-h-[110px] @error('message') ring-2 ring-coral @enderror" @error('message') aria-invalid="true" aria-describedby="message_libre-erreur" @enderror>{{ old('message') }}</textarea>
+                        <x-formulaire.erreur champ="message" id="message_libre" />
                     </div>
 
                     {{-- RGPD --}}
                     <div class="flex flex-col gap-3 mt-6">
                         <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" name="rgpd_consent" value="1" {{ old('rgpd_consent') ? 'checked' : '' }} required class="w-5 h-5 mt-1 rounded text-primary accent-primary shrink-0">
+                            <input id="pi-rgpd" type="checkbox" name="rgpd_consent" value="1" {{ old('rgpd_consent') ? 'checked' : '' }} required class="w-5 h-5 mt-1 rounded text-primary accent-primary shrink-0 @error('rgpd_consent') outline outline-2 outline-offset-2 outline-coral @enderror" @error('rgpd_consent') aria-invalid="true" aria-describedby="pi-rgpd-erreur" @enderror>
                             <span class="font-body text-sm text-primary-deep leading-snug">J'accepte que mes données personnelles soient traitées dans le cadre strict de ma demande de pré-inscription, conformément à la politique de confidentialité. *</span>
                         </label>
+                        <x-formulaire.erreur champ="rgpd_consent" id="pi-rgpd" />
                         <label class="flex items-start gap-3 cursor-pointer">
                             <input type="checkbox" name="newsletter_opt_in" value="1" {{ old('newsletter_opt_in') ? 'checked' : '' }} class="w-5 h-5 mt-1 rounded text-primary accent-primary shrink-0">
                             <span class="font-body text-sm text-primary-deep/70 leading-snug">Je souhaite recevoir les actualités du Jardin de Régina (ateliers parents-enfants, conseils éveil &amp; nature).</span>
@@ -367,7 +464,7 @@
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5 5-5M6 12h13"/></svg>
                             <span>Retour à l'étape 1</span>
                         </button>
-                        <button type="submit" class="w-full sm:w-auto h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center justify-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
+                        <button type="submit" @click="verifierAvantEnvoi($event)" class="w-full sm:w-auto h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center justify-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
                             <span>Envoyer ma demande de pré-inscription</span>
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                         </button>

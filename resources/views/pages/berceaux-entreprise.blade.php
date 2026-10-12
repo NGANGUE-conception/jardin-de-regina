@@ -286,33 +286,27 @@
                     <p class="font-body text-primary-deep/70 max-w-sm">{{ session('success') }}</p>
                 </div>
                 @else
-                @if ($errors->any())
-                <div class="bg-coral/10 border border-coral/30 rounded-2xl p-4 mb-4">
-                    <ul class="font-body text-sm text-coral list-disc list-inside">
-                        @foreach ($errors->all() as $erreur)
-                        <li>{{ $erreur }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
+                <x-formulaire.resume-erreurs :champs="['company_name' => 'company_name', 'sector' => 'sector', 'employees_count' => 'employees_count', 'berceaux_count' => 'berceaux_count', 'contact_name' => 'contact_name', 'contact_role' => 'contact_role', 'contact_email' => 'contact_email', 'contact_tel' => 'contact_tel', 'message' => 'message', 'rgpd_consent' => 'devis-rgpd']" />
                 <form method="POST" action="{{ route('berceaux-entreprise.store') }}" class="flex flex-col gap-4">
                     @csrf
                     <x-anti-spam />
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="flex flex-col gap-1.5">
                             <label for="company_name" class="font-body text-sm font-bold text-primary-deep">Nom de l'entreprise *</label>
-                            <input id="company_name" name="company_name" value="{{ old('company_name') }}" type="text" required placeholder="ex. Atelier Val-de-Marne SAS" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="company_name" name="company_name" value="{{ old('company_name') }}" type="text" required placeholder="ex. Atelier Val-de-Marne SAS" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('company_name') ring-2 ring-coral @enderror" @error('company_name') aria-invalid="true" aria-describedby="company_name-erreur" @enderror>
+                            <x-formulaire.erreur champ="company_name" id="company_name" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="sector" class="font-body text-sm font-bold text-primary-deep">Secteur d'activité</label>
-                            <input id="sector" name="sector" value="{{ old('sector') }}" type="text" placeholder="ex. Conseil, Santé, Industrie..." class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="sector" name="sector" value="{{ old('sector') }}" type="text" placeholder="ex. Conseil, Santé, Industrie..." class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('sector') ring-2 ring-coral @enderror" @error('sector') aria-invalid="true" aria-describedby="sector-erreur" @enderror>
+                            <x-formulaire.erreur champ="sector" id="sector" />
                         </div>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="flex flex-col gap-1.5">
                             <label for="employees_count" class="font-body text-sm font-bold text-primary-deep">Nombre de salariés</label>
                             <div class="relative">
-                                <select id="employees_count" name="employees_count" class="w-full h-[52px] pl-5 pr-14 rounded-full bg-cream text-primary-deep focus:outline-none focus:ring-2 focus:ring-primary transition-all appearance-none">
+                                <select id="employees_count" name="employees_count" class="w-full h-[52px] pl-5 pr-14 rounded-full bg-cream text-primary-deep focus:outline-none focus:ring-2 focus:ring-primary transition-all appearance-none @error('employees_count') ring-2 ring-coral @enderror" @error('employees_count') aria-invalid="true" aria-describedby="employees_count-erreur" @enderror>
                                     @foreach (['Moins de 20 salariés', '20 à 50 salariés', '50 à 250 salariés', 'Plus de 250 salariés'] as $tranche)
                                     <option {{ old('employees_count', '50 à 250 salariés') === $tranche ? 'selected' : '' }}>{{ $tranche }}</option>
                                     @endforeach
@@ -321,11 +315,12 @@
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                                 </div>
                             </div>
+                            <x-formulaire.erreur champ="employees_count" id="employees_count" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="berceaux_count" class="font-body text-sm font-bold text-primary-deep">Berceaux souhaités</label>
                             <div class="relative">
-                                <select id="berceaux_count" name="berceaux_count" class="w-full h-[52px] pl-5 pr-14 rounded-full bg-cream text-primary-deep focus:outline-none focus:ring-2 focus:ring-primary transition-all appearance-none">
+                                <select id="berceaux_count" name="berceaux_count" class="w-full h-[52px] pl-5 pr-14 rounded-full bg-cream text-primary-deep focus:outline-none focus:ring-2 focus:ring-primary transition-all appearance-none @error('berceaux_count') ring-2 ring-coral @enderror" @error('berceaux_count') aria-invalid="true" aria-describedby="berceaux_count-erreur" @enderror>
                                     @foreach (['1 berceau réservé', '2 à 3 berceaux', '4 berceaux ou plus', 'Étude exploratoire'] as $tranche)
                                     <option {{ old('berceaux_count', '2 à 3 berceaux') === $tranche ? 'selected' : '' }}>{{ $tranche }}</option>
                                     @endforeach
@@ -334,36 +329,43 @@
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                                 </div>
                             </div>
+                            <x-formulaire.erreur champ="berceaux_count" id="berceaux_count" />
                         </div>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="flex flex-col gap-1.5">
                             <label for="contact_name" class="font-body text-sm font-bold text-primary-deep">Nom &amp; prénom du contact *</label>
-                            <input id="contact_name" name="contact_name" value="{{ old('contact_name') }}" type="text" required placeholder="Sophie Martin" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="contact_name" name="contact_name" value="{{ old('contact_name') }}" type="text" required placeholder="Sophie Martin" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('contact_name') ring-2 ring-coral @enderror" @error('contact_name') aria-invalid="true" aria-describedby="contact_name-erreur" @enderror>
+                            <x-formulaire.erreur champ="contact_name" id="contact_name" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="contact_role" class="font-body text-sm font-bold text-primary-deep">Fonction / Rôle RH</label>
-                            <input id="contact_role" name="contact_role" value="{{ old('contact_role') }}" type="text" placeholder="DRH, Dirigeant, Responsable RSE..." class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="contact_role" name="contact_role" value="{{ old('contact_role') }}" type="text" placeholder="DRH, Dirigeant, Responsable RSE..." class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('contact_role') ring-2 ring-coral @enderror" @error('contact_role') aria-invalid="true" aria-describedby="contact_role-erreur" @enderror>
+                            <x-formulaire.erreur champ="contact_role" id="contact_role" />
                         </div>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="flex flex-col gap-1.5">
                             <label for="contact_email" class="font-body text-sm font-bold text-primary-deep">Email professionnel *</label>
-                            <input id="contact_email" name="contact_email" value="{{ old('contact_email') }}" type="email" required placeholder="smartin@entreprise.fr" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="contact_email" name="contact_email" value="{{ old('contact_email') }}" type="email" required placeholder="smartin@entreprise.fr" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('contact_email') ring-2 ring-coral @enderror" @error('contact_email') aria-invalid="true" aria-describedby="contact_email-erreur" @enderror>
+                            <x-formulaire.erreur champ="contact_email" id="contact_email" />
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="contact_tel" class="font-body text-sm font-bold text-primary-deep">Téléphone direct *</label>
-                            <input id="contact_tel" name="contact_tel" value="{{ old('contact_tel') }}" type="tel" required placeholder="06 12 34 56 78" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                            <input id="contact_tel" name="contact_tel" value="{{ old('contact_tel') }}" type="tel" required placeholder="06 12 34 56 78" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('contact_tel') ring-2 ring-coral @enderror" @error('contact_tel') aria-invalid="true" aria-describedby="contact_tel-erreur" @enderror>
+                            <x-formulaire.erreur champ="contact_tel" id="contact_tel" />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label for="message" class="font-body text-sm font-bold text-primary-deep">Précisions sur vos attentes ou calendrier souhaité</label>
-                        <textarea id="message" name="message" rows="3" placeholder="Dates cibles de rentrée, questions sur le crédit d'impôt..." class="p-4 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none">{{ old('message') }}</textarea>
+                        <textarea id="message" name="message" rows="3" placeholder="Dates cibles de rentrée, questions sur le crédit d'impôt..." class="p-4 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none @error('message') ring-2 ring-coral @enderror" @error('message') aria-invalid="true" aria-describedby="message-erreur" @enderror>{{ old('message') }}</textarea>
+                        <x-formulaire.erreur champ="message" id="message" />
                     </div>
                     <label class="flex items-start gap-3 mt-1 cursor-pointer">
-                        <input type="checkbox" name="rgpd_consent" value="1" required class="mt-1 h-5 w-5 rounded border-primary/40 text-primary focus:ring-primary cursor-pointer accent-primary">
+                        <input id="devis-rgpd" type="checkbox" name="rgpd_consent" value="1" {{ old('rgpd_consent') ? 'checked' : '' }} required class="mt-1 h-5 w-5 rounded border-primary/40 text-primary focus:ring-primary cursor-pointer accent-primary @error('rgpd_consent') outline outline-2 outline-offset-2 outline-coral @enderror" @error('rgpd_consent') aria-invalid="true" aria-describedby="devis-rgpd-erreur" @enderror>
                         <span class="font-body text-sm text-primary-deep/80 leading-relaxed">J'accepte que mes données soient utilisées pour traiter ma demande (politique de confidentialité).</span>
                     </label>
+                    <x-formulaire.erreur champ="rgpd_consent" id="devis-rgpd" />
                     <button type="submit" class="mt-2 w-full sm:w-auto self-start h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center justify-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
                         <span>Envoyer ma demande de devis</span>
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
