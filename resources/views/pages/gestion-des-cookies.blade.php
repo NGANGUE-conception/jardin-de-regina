@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Gestion des cookies — Le Jardin de Régina')
+@section('title', "Gestion des cookies — Le Jardin de Régina")
+@section('description', "Cookies utilisés sur le site du Jardin de Régina : cookies techniques et mesure d'audience anonyme, sans publicité. Gérez vos préférences ici.")
+  
+
 
 @section('content')
 <x-legal-layout

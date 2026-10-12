@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Mentions légales — Le Jardin de Régina')
+@section('title', "Mentions légales — Le Jardin de Régina")
+@section('description', "Mentions légales du site du Jardin de Régina, micro-crèche à Alfortville : éditeur, hébergeur, propriété intellectuelle et données personnelles.")
+  
+
 
 @section('content')
 <x-legal-layout

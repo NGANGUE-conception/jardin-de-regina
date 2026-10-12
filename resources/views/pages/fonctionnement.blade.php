@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Fonctionnement — Le Jardin de Régina')
+@section('title', "Horaires et fonctionnement — Le Jardin de Régina")
+@section('description', "Ouvert du lundi au vendredi de 8h30 à 18h30 : accueil régulier, occasionnel ou d'urgence, journée type, repas faits maison et adaptation en douceur.")
+
+  
 
 @section('content')
 

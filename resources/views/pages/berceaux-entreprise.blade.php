@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Berceaux entreprise — Le Jardin de Régina')
+@section('title', "Berceaux entreprise à Alfortville — Le Jardin de Régina")
+@section('description', "Réservez des places en crèche pour vos salariés près d'Alfortville : un atout pour attirer et fidéliser vos équipes. Demandez un devis personnalisé.")
+  
+
 
 @section('content')
 

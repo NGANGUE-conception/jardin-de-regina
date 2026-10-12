@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Pré-inscription — Le Jardin de Régina')
+@section('title', "Pré-inscription en ligne — Micro-crèche Alfortville")
+@section('description', "Pré-inscrivez votre enfant en quelques minutes au Jardin de Régina, micro-crèche à Alfortville : accueil régulier, occasionnel ou d'urgence dès 10 semaines.")
+  
+
 
 @section('content')
 <div x-data="{

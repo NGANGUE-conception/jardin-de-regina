@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Le Jardin de Régina — Micro-crèche écoresponsable à Alfortville')
+ 
+  @section('title', "Micro-crèche à Alfortville (94) — Le Jardin de Régina")
+  @section('description', "Micro-crèche écoresponsable à Alfortville : 14 places pour les enfants de 10 semaines à 3 ans et plus, de 8h30 à 18h30, repas faits maison. Pré-inscription en ligne.")
+  
+
 
 @php
 $photos = [

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Contact — Le Jardin de Régina')
+@section('title', "Contact et visite — Le Jardin de Régina, Alfortville")
+  @section('description', "Une question ou envie de visiter la crèche ? Le Jardin de Régina, 4 B rue des Écoles, 94140 Alfortville. Appelez le 07 67 64 61 84 ou écrivez-nous.")
+  
+
 
 @section('content')
 

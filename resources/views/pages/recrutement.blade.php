@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Recrutement — Le Jardin de Régina')
+@section('title', "Recrutement petite enfance — Crèche Alfortville")
+@section('description', "Professionnel·le de la petite enfance ? Rejoignez l'équipe bienveillante du Jardin de Régina, micro-crèche à Alfortville. Candidature en ligne.")
+
+  
 
 @section('content')
 <div x-data="{

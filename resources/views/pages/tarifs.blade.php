@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Tarifs et aides — Le Jardin de Régina')
+@section('title', "Tarifs et aides CAF — Micro-crèche Alfortville")
+@section('description', "Tarifs du Jardin de Régina et aides possibles : complément de libre choix du mode de garde (CMG / PAJE) de la CAF et crédit d'impôt de 50 %.")
+  
+
 
 @section('content')
 

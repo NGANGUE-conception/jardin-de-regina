@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Politique de confidentialité — Le Jardin de Régina')
+@section('title', "Politique de confidentialité — Le Jardin de Régina")
+@section('description', "Comment Le Jardin de Régina collecte, utilise et protège les données des familles, des candidats et des visiteurs du site, et comment exercer vos droits.")
+  
+
 
 @section('content')
 <x-legal-layout

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Notre projet — Le Jardin de Régina')
+ @section('title', "Notre projet pédagogique — Micro-crèche Alfortville")
+ @section('description', "Motricité libre, inspiration Pikler et Montessori, salle Snoezelen, jardin : le projet pédagogique écoresponsable du Jardin de Régina à Alfortville.")
+  
+
 
 @section('content')
 
