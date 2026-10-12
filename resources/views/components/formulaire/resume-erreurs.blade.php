@@ -47,7 +47,7 @@
                 @endforeach
             </ul>
             @if ($fichiers)
-                <p class="font-body text-xs text-primary-deep/70 mt-2">Pour des raisons de sécurité, les fichiers ne peuvent pas être conservés : merci de joindre à nouveau vos documents.</p>
+                <p class="font-body text-xs text-primary-deep/80 mt-2">Pour des raisons de sécurité, les fichiers ne peuvent pas être conservés : merci de joindre à nouveau vos documents.</p>
             @endif
         </div>
     </div>

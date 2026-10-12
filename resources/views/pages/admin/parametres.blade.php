@@ -22,7 +22,7 @@
                     <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold">Espace direction</span>
                 </div>
                 <h1 class="font-display text-3xl text-primary-deep">Paramètres</h1>
-                <p class="font-body text-primary-deep/70 mt-1">Coordonnées de l'établissement et compte administrateur.</p>
+                <p class="font-body text-primary-deep/80 mt-1">Coordonnées de l'établissement et compte administrateur.</p>
             </div>
 
             <div class="flex flex-wrap items-center gap-2 mb-6">
@@ -34,15 +34,15 @@
             @php
                 $erreursEtab = $errors->etablissement;
                 $champEtab = 'w-full h-11 px-4 bg-cream rounded-2xl font-body text-sm text-primary-deep focus:outline-none focus:ring-2 focus:ring-primary';
-                $etiquetteEtab = 'font-body text-xs font-bold uppercase text-primary-deep/50';
+                $etiquetteEtab = 'font-body text-xs font-bold uppercase text-primary-deep/75';
                 $valeurEtab = fn (string $champ, string $actuel) => $erreursEtab->any() ? old($champ, $actuel) : $actuel;
             @endphp
             <div x-show="onglet === 'etablissement'" class="bg-white rounded-3xl p-6 md:p-8 shadow-sm flex flex-col gap-6 max-w-2xl">
                 <div class="flex items-center gap-3">
-                    <img src="{{ asset('images/logo.png') }}" alt="{{ $etab->nom() }}" class="h-12 w-auto object-contain">
+                    <img src="{{ asset('images/logo.webp') }}" width="375" height="192" alt="{{ $etab->nom() }}" class="h-12 w-auto object-contain">
                     <div>
                         <h2 class="font-display text-xl text-primary-deep">{{ $etab->nom() }}</h2>
-                        <p class="font-body text-xs text-primary-deep/50">Micro-crèche · {{ $etab->ville() }} ({{ $etab->codePostal() }})</p>
+                        <p class="font-body text-xs text-primary-deep/75">Micro-crèche · {{ $etab->ville() }} ({{ $etab->codePostal() }})</p>
                     </div>
                 </div>
 
@@ -94,11 +94,11 @@
                                 <input type="text" name="ville" value="{{ $valeurEtab('ville', $etab->ville()) }}" required maxlength="100" autocomplete="off" class="{{ $champEtab }} {{ $erreursEtab->has('ville') ? 'ring-2 ring-coral' : '' }}">
                             </label>
                         </div>
-                        <p class="font-body text-xs text-primary-deep/50">En cas de changement d'adresse, la position sur Google Maps est recalculée automatiquement.</p>
+                        <p class="font-body text-xs text-primary-deep/75">En cas de changement d'adresse, la position sur Google Maps est recalculée automatiquement.</p>
                     </div>
 
                     <div class="flex flex-col gap-4 border-t border-mint pt-5">
-                        <h3 class="font-display text-lg text-primary-deep">Horaires d'ouverture <span class="font-body text-sm text-primary-deep/50">(du lundi au vendredi)</span></h3>
+                        <h3 class="font-display text-lg text-primary-deep">Horaires d'ouverture <span class="font-body text-sm text-primary-deep/75">(du lundi au vendredi)</span></h3>
                         <div class="grid grid-cols-2 gap-4">
                             <label class="flex flex-col gap-1.5">
                                 <span class="{{ $etiquetteEtab }}">Ouverture</span>
@@ -128,11 +128,11 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-mint pt-5">
                         <div class="flex flex-col gap-1.5">
                             <span class="{{ $etiquetteEtab }}">Nom de l'établissement</span>
-                            <span class="h-11 px-4 bg-cream/60 text-primary-deep/60 rounded-2xl font-body text-sm flex items-center">{{ $etab->nom() }}</span>
+                            <span class="h-11 px-4 bg-cream/60 text-primary-deep/75 rounded-2xl font-body text-sm flex items-center">{{ $etab->nom() }}</span>
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <span class="{{ $etiquetteEtab }}">Capacité d'accueil</span>
-                            <span class="h-11 px-4 bg-cream/60 text-primary-deep/60 rounded-2xl font-body text-sm flex items-center">12 places régulières + 2 places d'urgence</span>
+                            <span class="h-11 px-4 bg-cream/60 text-primary-deep/75 rounded-2xl font-body text-sm flex items-center">12 places régulières + 2 places d'urgence</span>
                         </div>
                     </div>
 
@@ -144,7 +144,7 @@
 
                 <div class="bg-mint/40 rounded-2xl p-4 flex items-start gap-2.5">
                     <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    <div class="font-body text-xs text-primary-deep/70 flex flex-col gap-1.5">
+                    <div class="font-body text-xs text-primary-deep/80 flex flex-col gap-1.5">
                         <p>Ces informations s'affichent <strong>sur tout le site</strong> (pied de page, Contact, Mentions légales, emails envoyés aux familles…) et sont transmises à Google. Toute modification est visible immédiatement.</p>
                         <p>L'email de contact est celui affiché aux familles ; les alertes de nouveaux dossiers continuent d'arriver à l'adresse configurée lors de la mise en ligne.</p>
                         <p>Le nom, la capacité d'accueil et les jours d'ouverture figurent dans les textes des pages : pour les modifier, contactez la personne qui gère le site.</p>
@@ -160,12 +160,12 @@
                     </div>
                     <div>
                         <h2 class="font-display text-xl text-primary-deep">{{ auth()->user()?->name }}</h2>
-                        <p class="font-body text-xs text-primary-deep/50">Compte administrateur</p>
+                        <p class="font-body text-xs text-primary-deep/75">Compte administrateur</p>
                     </div>
                 </div>
                 <label class="flex flex-col gap-1.5 sm:max-w-[calc(50%-0.5rem)]">
-                    <span class="font-body text-xs font-bold uppercase text-primary-deep/50">Nom affiché</span>
-                    <input type="text" value="{{ auth()->user()?->name }}" disabled class="h-11 px-4 bg-cream text-primary-deep/70 rounded-2xl font-body text-sm cursor-not-allowed">
+                    <span class="font-body text-xs font-bold uppercase text-primary-deep/75">Nom affiché</span>
+                    <input type="text" value="{{ auth()->user()?->name }}" disabled class="h-11 px-4 bg-cream text-primary-deep/80 rounded-2xl font-body text-sm cursor-not-allowed">
                 </label>
 
                 @php
@@ -185,7 +185,7 @@
                                 <svg class="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
                                 <h3 class="font-display text-lg text-primary-deep">Vérifier mon identité</h3>
                             </div>
-                            <p class="font-body text-sm text-primary-deep/70">Pour modifier votre adresse de connexion ou votre mot de passe, tapez d'abord votre mot de passe <strong>actuel</strong>. Les modifications seront ensuite possibles pendant 10 minutes. Ce champ ne modifie pas votre mot de passe.</p>
+                            <p class="font-body text-sm text-primary-deep/80">Pour modifier votre adresse de connexion ou votre mot de passe, tapez d'abord votre mot de passe <strong>actuel</strong>. Les modifications seront ensuite possibles pendant 10 minutes. Ce champ ne modifie pas votre mot de passe.</p>
 
                             @if ($erreursIdentite->any())
                                 <p class="bg-coral/10 text-coral rounded-xl px-4 py-2.5 font-body text-sm" role="alert">{{ $erreursIdentite->first() }}</p>
@@ -225,7 +225,7 @@
 
                 {{-- Étape 2 : modifications, bloquées tant que l'identité n'est pas vérifiée --}}
                 @unless ($identiteVerifiee)
-                    <p class="font-body text-xs text-primary-deep/50 flex items-center gap-1.5 -mb-2">{!! $verrou !!} Les formulaires ci-dessous sont verrouillés jusqu'à la vérification de votre identité.</p>
+                    <p class="font-body text-xs text-primary-deep/75 flex items-center gap-1.5 -mb-2">{!! $verrou !!} Les formulaires ci-dessous sont verrouillés jusqu'à la vérification de votre identité.</p>
                 @endunless
 
                 {{-- Changement de l'adresse email de connexion --}}
@@ -248,10 +248,10 @@
                             </div>
                         @endif
 
-                        <p class="font-body text-sm text-primary-deep/70">Adresse actuelle : <strong class="text-primary-deep">{{ auth()->user()?->email }}</strong></p>
+                        <p class="font-body text-sm text-primary-deep/80">Adresse actuelle : <strong class="text-primary-deep">{{ auth()->user()?->email }}</strong></p>
 
                         <label class="flex flex-col gap-1.5 sm:max-w-[calc(50%-0.5rem)]">
-                            <span class="font-body text-xs font-bold uppercase text-primary-deep/50">Nouvelle adresse email</span>
+                            <span class="font-body text-xs font-bold uppercase text-primary-deep/75">Nouvelle adresse email</span>
                             <input type="email" name="email" value="{{ $erreursEmail->any() ? old('email') : '' }}" required maxlength="190" autocomplete="off" data-lpignore="true" data-1p-ignore data-bwignore placeholder="exemple@gmail.com" class="{{ $champMdp }} {{ $erreursEmail->has('email') ? 'ring-2 ring-coral' : '' }}">
                         </label>
 
@@ -260,7 +260,7 @@
                             Enregistrer la nouvelle adresse
                         </button>
 
-                        <p class="font-body text-xs text-primary-deep/50">C'est l'adresse à saisir sur la page de connexion de l'espace admin. Vérifiez-la bien : une faute de frappe vous empêcherait de vous reconnecter. Elle ne modifie ni l'adresse de contact affichée sur le site, ni l'adresse qui reçoit les alertes de nouveaux dossiers.</p>
+                        <p class="font-body text-xs text-primary-deep/75">C'est l'adresse à saisir sur la page de connexion de l'espace admin. Vérifiez-la bien : une faute de frappe vous empêcherait de vous reconnecter. Elle ne modifie ni l'adresse de contact affichée sur le site, ni l'adresse qui reçoit les alertes de nouveaux dossiers.</p>
                     </fieldset>
                 </form>
 
@@ -288,16 +288,16 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <label class="flex flex-col gap-1.5">
-                                <span class="font-body text-xs font-bold uppercase text-primary-deep/50">Nouveau mot de passe</span>
+                                <span class="font-body text-xs font-bold uppercase text-primary-deep/75">Nouveau mot de passe</span>
                                 <input :type="voir ? 'text' : 'password'" name="password" x-model="mdp" required minlength="12" autocomplete="new-password" class="{{ $champMdp }} {{ $erreursMdp->has('password') ? 'ring-2 ring-coral' : '' }}">
                             </label>
                             <label class="flex flex-col gap-1.5">
-                                <span class="font-body text-xs font-bold uppercase text-primary-deep/50">Confirmer le nouveau</span>
+                                <span class="font-body text-xs font-bold uppercase text-primary-deep/75">Confirmer le nouveau</span>
                                 <input :type="voir ? 'text' : 'password'" name="password_confirmation" x-model="confirmation" required autocomplete="new-password" class="{{ $champMdp }}">
                             </label>
                         </div>
 
-                        <label class="flex items-center gap-2 font-body text-sm text-primary-deep/70 cursor-pointer select-none w-fit">
+                        <label class="flex items-center gap-2 font-body text-sm text-primary-deep/80 cursor-pointer select-none w-fit">
                             <input type="checkbox" x-model="voir" class="w-4 h-4 accent-primary">
                             Afficher les mots de passe
                         </label>
@@ -310,7 +310,7 @@
                             Enregistrer le nouveau mot de passe
                         </button>
 
-                        <p class="font-body text-xs text-primary-deep/50">Après le changement, vous restez connecté sur cet appareil ; les autres appareils (téléphone, autre ordinateur) seront déconnectés.</p>
+                        <p class="font-body text-xs text-primary-deep/75">Après le changement, vous restez connecté sur cet appareil ; les autres appareils (téléphone, autre ordinateur) seront déconnectés.</p>
                     </fieldset>
                 </form>
             </div>

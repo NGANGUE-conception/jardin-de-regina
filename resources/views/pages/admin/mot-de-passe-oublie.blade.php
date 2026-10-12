@@ -4,7 +4,7 @@
 @section('titre_page', 'Mot de passe oublié')
 
 @section('content')
-    <p class="font-body text-sm text-primary-deep/70 mb-5">
+    <p class="font-body text-sm text-primary-deep/80 mb-5">
         Indiquez l'adresse email de votre compte administrateur. Si elle est reconnue, vous recevrez un lien pour choisir un nouveau mot de passe. Ce lien est valable <strong>{{ $dureeMinutes }} minutes</strong>.
     </p>
 
@@ -21,7 +21,7 @@
         </button>
     </form>
 
-    <p class="font-body text-xs text-primary-deep/50 mt-5">
+    <p class="font-body text-xs text-primary-deep/75 mt-5">
         Vous ne recevez rien ? Vérifiez vos courriers indésirables, ou attendez une minute avant de refaire une demande.
     </p>
 @endsection

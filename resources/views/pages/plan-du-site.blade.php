@@ -36,7 +36,7 @@
                                 <svg class="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                                 <span class="flex flex-col">
                                     <span class="font-body font-bold text-primary-deep group-hover:text-primary transition-colors">{{ $page['titre'] }}</span>
-                                    <span class="font-body text-sm text-primary-deep/60">{{ $page['resume'] }}</span>
+                                    <span class="font-body text-sm text-primary-deep/75">{{ $page['resume'] }}</span>
                                 </span>
                             </a>
                         </li>

@@ -40,8 +40,11 @@
     {{-- Données structurées pour Google : le site et la crèche (adresse, horaires, contact...) --}}
     <script type="application/ld+json">{!! json_encode(Referencement::donneesStructurees(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_PRETTY_PRINT) !!}</script>
 
+    {{-- Polices principales (alphabet latin) chargées en priorité : évite que le texte « saute » à leur arrivée --}}
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="{{ Vite::asset('node_modules/@fontsource-variable/nunito/files/nunito-latin-wght-normal.woff2') }}">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="{{ Vite::asset('node_modules/@fontsource/chewy/files/chewy-latin-400-normal.woff2') }}">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
 </head>
 <body class="font-body">
     <x-header />
@@ -52,6 +55,5 @@
 
     <x-footer />
 
-    @livewireScripts
 </body>
 </html>

@@ -5,7 +5,7 @@
     <table role="presentation" width="100%" style="background-color:#FFF9F2;border-radius:16px;padding:4px 0;margin-bottom:20px;">
         <tr>
             <td style="padding:12px 20px;font-size:13px;color:#12414D99;">Référence</td>
-            <td style="padding:12px 20px;font-size:15px;font-weight:700;color:#D9451F;text-align:right;">{{ $numeroDossier }}</td>
+            <td style="padding:12px 20px;font-size:15px;font-weight:700;color:#C13B1A;text-align:right;">{{ $numeroDossier }}</td>
         </tr>
         @foreach ($lignes as $label => $valeur)
         <tr>
@@ -18,7 +18,7 @@
     @if ($lienAdmin)
     <table role="presentation" style="margin:0 auto;">
         <tr>
-            <td style="border-radius:999px;background-color:#D9451F;">
+            <td style="border-radius:999px;background-color:#C13B1A;">
                 <a href="{{ $lienAdmin }}" style="display:inline-block;padding:12px 28px;color:#ffffff;text-decoration:none;font-size:14px;font-weight:700;">Consulter dans l'espace admin</a>
             </td>
         </tr>

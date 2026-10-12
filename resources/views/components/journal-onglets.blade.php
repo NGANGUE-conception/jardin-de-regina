@@ -19,7 +19,7 @@
     @foreach ($onglets as $id => $onglet)
         <a href="{{ $onglet['href'] }}"
            @if ($id === $actif) aria-current="page" @endif
-           class="flex items-center gap-2 px-5 py-2 rounded-full font-body text-sm font-bold transition-all {{ $id === $actif ? 'bg-primary text-white shadow-sm' : 'text-primary-deep/70 hover:bg-mint/40 hover:text-primary-deep' }}">
+           class="flex items-center gap-2 px-5 py-2 rounded-full font-body text-sm font-bold transition-all {{ $id === $actif ? 'bg-primary text-white shadow-sm' : 'text-primary-deep/80 hover:bg-mint/40 hover:text-primary-deep' }}">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">{!! $onglet['icone'] !!}</svg>
             {{ $onglet['label'] }}
         </a>

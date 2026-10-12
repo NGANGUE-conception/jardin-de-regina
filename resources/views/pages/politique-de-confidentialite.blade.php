@@ -29,26 +29,26 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="p-4 rounded-2xl bg-cream flex flex-col gap-1">
                 <span class="font-body font-bold text-primary-deep">Pré-inscription</span>
-                <span class="font-body text-sm text-primary-deep/70">Identité et date de naissance de l'enfant, coordonnées des parents, adresse, profession, employeur, situation familiale.</span>
+                <span class="font-body text-sm text-primary-deep/80">Identité et date de naissance de l'enfant, coordonnées des parents, adresse, profession, employeur, situation familiale.</span>
             </div>
             <div class="p-4 rounded-2xl bg-cream flex flex-col gap-1">
                 <span class="font-body font-bold text-primary-deep">Devis entreprise</span>
-                <span class="font-body text-sm text-primary-deep/70">Nom de l'entreprise, secteur, coordonnées du contact RH.</span>
+                <span class="font-body text-sm text-primary-deep/80">Nom de l'entreprise, secteur, coordonnées du contact RH.</span>
             </div>
             <div class="p-4 rounded-2xl bg-cream flex flex-col gap-1">
                 <span class="font-body font-bold text-primary-deep">Contact</span>
-                <span class="font-body text-sm text-primary-deep/70">Nom, e-mail, téléphone, objet et contenu de votre message.</span>
+                <span class="font-body text-sm text-primary-deep/80">Nom, e-mail, téléphone, objet et contenu de votre message.</span>
             </div>
             <div class="p-4 rounded-2xl bg-cream flex flex-col gap-1">
                 <span class="font-body font-bold text-primary-deep">Candidature</span>
-                <span class="font-body text-sm text-primary-deep/70">Identité, coordonnées, CV et lettre de motivation.</span>
+                <span class="font-body text-sm text-primary-deep/80">Identité, coordonnées, CV et lettre de motivation.</span>
             </div>
             <div class="p-4 rounded-2xl bg-cream flex flex-col gap-1 md:col-span-2">
                 <span class="font-body font-bold text-primary-deep">Navigation sur le site</span>
-                <span class="font-body text-sm text-primary-deep/70">Statistiques de visite anonymes : date et heure, pages consultées, site d'origine (par exemple Google), type d'appareil et de navigateur. Aucune adresse IP n'est enregistrée. Si vous envoyez un formulaire, ces informations de navigation sont associées à votre demande. Détails et refus possible sur la page <a href="{{ route('gestion-des-cookies') }}" class="text-primary font-bold hover:underline">Gestion des cookies</a>.</span>
+                <span class="font-body text-sm text-primary-deep/80">Statistiques de visite anonymes : date et heure, pages consultées, site d'origine (par exemple Google), type d'appareil et de navigateur. Aucune adresse IP n'est enregistrée. Si vous envoyez un formulaire, ces informations de navigation sont associées à votre demande. Détails et refus possible sur la page <a href="{{ route('gestion-des-cookies') }}" class="text-primary font-bold hover:underline">Gestion des cookies</a>.</span>
             </div>
         </div>
-        <p class="font-body text-sm text-primary-deep/70">Nous ne collectons jamais plus de données que nécessaire au traitement de votre demande.</p>
+        <p class="font-body text-sm text-primary-deep/80">Nous ne collectons jamais plus de données que nécessaire au traitement de votre demande.</p>
     </x-legal-article>
 
     <x-legal-article :n="3" titre="Pourquoi nous les collectons">
@@ -107,7 +107,7 @@
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
                 Exercer mes droits par e-mail
             </a>
-            <p class="text-xs text-primary-deep/60 italic">Si vos droits ne sont pas respectés, vous pouvez saisir la <strong>CNIL</strong> (cnil.fr).</p>
+            <p class="text-xs text-primary-deep/75 italic">Si vos droits ne sont pas respectés, vous pouvez saisir la <strong>CNIL</strong> (cnil.fr).</p>
         </div>
     </x-legal-article>
 

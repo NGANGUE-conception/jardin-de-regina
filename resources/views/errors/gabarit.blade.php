@@ -13,9 +13,9 @@
     <title>@yield('titre') — Le Jardin de Régina</title>
     <style>
         :root {
-            --primary: #217B79;
+            --primary: #1C6E6C;
             --primary-deep: #12414D;
-            --coral: #D9451F;
+            --coral: #C13B1A;
             --cream: #FFF9F2;
             --mint: #E3F2F1;
             --peach: #FDE8E1;
@@ -109,7 +109,7 @@
 
     <main class="carte">
         <a href="{{ url('/') }}" aria-label="Retour à l'accueil du Jardin de Régina">
-            <img src="{{ asset('images/logo.png') }}" alt="Le Jardin de Régina" class="logo">
+            <img src="{{ asset('images/logo.webp') }}" width="375" height="192" alt="Le Jardin de Régina" class="logo">
         </a>
 
         <span class="code">@yield('code')</span>

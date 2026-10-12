@@ -7,10 +7,14 @@
     --color-teal-logo: #35ADAB;
     --color-coral-logo: #FF6A49;
 
-    /* Versions légèrement assombries, utilisées uniquement en fond avec du texte blanc
-       (boutons, menu actif), pour rester lisibles */
-    --color-primary: #217B79;
-    --color-coral: #D9451F;
+    /* Versions assombries des couleurs du logo, pour le texte et les fonds avec texte blanc :
+       contraste d'au moins 4,5:1 (norme d'accessibilité WCAG AA) sur blanc, crème, menthe et pêche */
+    --color-primary: #1C6E6C;
+    --color-coral: #C13B1A;
+
+    /* Versions éclaircies, pour le texte posé sur le fond foncé du pied de page */
+    --color-teal-clair: #7CCFCB;
+    --color-coral-clair: #FF9A80;
 
     --color-primary-deep: #12414D; /* Teal très foncé, texte principal et footer */
     --color-pink: #E8708A;         /* Rose, petits accents seulement */
@@ -21,6 +25,11 @@
     /* Polices */
     --font-display: "Chewy", cursive;
     --font-body: "Nunito Variable", "Nunito", sans-serif;
+}
+
+/* Éléments masqués tant qu'Alpine n'a pas démarré (évite un clignotement au chargement). */
+[x-cloak] {
+    display: none !important;
 }
 
 body {

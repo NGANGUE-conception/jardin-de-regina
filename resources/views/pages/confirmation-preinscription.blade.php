@@ -46,7 +46,7 @@
                         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
                     <div>
-                        <div class="font-body text-xs uppercase tracking-wider text-primary-deep/50">Identifiant dossier</div>
+                        <div class="font-body text-xs uppercase tracking-wider text-primary-deep/75">Identifiant dossier</div>
                         <div class="font-display text-xl text-primary flex items-center gap-2">
                             <span x-text="dossier || 'Référence non disponible'"></span>
                             <button type="button" x-show="dossier" @click="navigator.clipboard && navigator.clipboard.writeText(dossier); copied = true; setTimeout(() => copied = false, 2000)" class="relative text-primary-deep/40 hover:text-primary transition-colors" title="Copier la référence">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap items-center gap-2 self-stretch md:self-auto justify-end">
-                    <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cream text-primary-deep/70 font-body text-sm">
+                    <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cream text-primary-deep/80 font-body text-sm">
                         <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
                         <span>Aujourd'hui à <span x-text="hour"></span></span>
                     </span>
@@ -79,15 +79,15 @@
         <div class="w-full max-w-[940px] mb-12">
             <div class="text-center mb-8">
                 <h2 class="font-display text-2xl md:text-3xl text-primary-deep">Et maintenant ? Les prochaines étapes</h2>
-                <p class="font-body text-primary-deep/70 mt-2 max-w-lg mx-auto">Un parcours clair et personnalisé pour préparer en douceur l'accueil de votre enfant.</p>
+                <p class="font-body text-primary-deep/80 mt-2 max-w-lg mx-auto">Un parcours clair et personnalisé pour préparer en douceur l'accueil de votre enfant.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
                 <div class="hidden md:block absolute top-[46px] left-[18%] right-[18%] h-0.5 border-t-2 border-dashed border-primary/25 -z-0"></div>
                 @foreach ([
-                    ['n' => 1, 'tag' => 'Étape initiale', 'titre' => 'Étude de votre demande', 'texte' => "Notre équipe analyse vos critères (date d'entrée, amplitude horaire, âge de l'enfant) au regard des berceaux disponibles.", 'foot' => 'Critères équitables & transparents', 'tagcolor' => 'text-primary-deep/50'],
+                    ['n' => 1, 'tag' => 'Étape initiale', 'titre' => 'Étude de votre demande', 'texte' => "Notre équipe analyse vos critères (date d'entrée, amplitude horaire, âge de l'enfant) au regard des berceaux disponibles.", 'foot' => 'Critères équitables & transparents', 'tagcolor' => 'text-primary-deep/75'],
                     ['n' => 2, 'tag' => 'Sous 5 à 7 jours', 'titre' => 'Prise de contact personnalisée', 'texte' => 'Nous échangeons par téléphone ou e-mail pour faire connaissance et vous confirmer les disponibilités réelles.', 'foot' => 'Accompagnement bienveillant', 'tagcolor' => 'text-coral font-bold'],
-                    ['n' => 3, 'tag' => 'Visite privée', 'titre' => 'Rendez-vous & immersion', 'texte' => "Rencontre à la crèche ({$etab->rue()}), visite des espaces d'éveil et finalisation du contrat d'accueil.", 'foot' => 'Découverte avec bébé', 'tagcolor' => 'text-primary-deep/50'],
+                    ['n' => 3, 'tag' => 'Visite privée', 'titre' => 'Rendez-vous & immersion', 'texte' => "Rencontre à la crèche ({$etab->rue()}), visite des espaces d'éveil et finalisation du contrat d'accueil.", 'foot' => 'Découverte avec bébé', 'tagcolor' => 'text-primary-deep/75'],
                 ] as $step)
                 <div class="relative bg-white rounded-3xl p-6 flex flex-col items-start shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
                     <div class="flex items-center justify-between w-full mb-4">
@@ -95,7 +95,7 @@
                         <span class="font-body text-xs uppercase tracking-widest {{ $step['tagcolor'] }}">{{ $step['tag'] }}</span>
                     </div>
                     <h3 class="font-display text-lg text-primary-deep mb-2">{{ $step['titre'] }}</h3>
-                    <p class="font-body text-sm text-primary-deep/70 leading-relaxed">{{ $step['texte'] }}</p>
+                    <p class="font-body text-sm text-primary-deep/80 leading-relaxed">{{ $step['texte'] }}</p>
                     <div class="mt-4 pt-3 flex items-center gap-1.5 text-xs text-primary font-bold">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                         <span>{{ $step['foot'] }}</span>

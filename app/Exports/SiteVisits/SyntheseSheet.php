@@ -90,14 +90,14 @@ class SyntheseSheet implements FromArray, WithColumnWidths, WithStrictNullCompar
     public function styles(Worksheet $sheet): array
     {
         $styles = [
-            1 => ['font' => ['bold' => true, 'size' => 14, 'color' => ['rgb' => '217B79']]],
+            1 => ['font' => ['bold' => true, 'size' => 14, 'color' => ['rgb' => '1C6E6C']]],
             'A2:A4' => ['font' => ['bold' => true]],
         ];
 
         foreach ($this->lignesEntetes as [$ligne, $colonnes]) {
             $styles['A'.$ligne.':'.chr(64 + $colonnes).$ligne] = [
                 'font' => ['bold' => true, 'color' => ['rgb' => 'FFFFFF']],
-                'fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '217B79']],
+                'fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '1C6E6C']],
             ];
         }
 

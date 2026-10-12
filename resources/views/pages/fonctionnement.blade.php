@@ -62,9 +62,9 @@
                     <div class="space-y-3 my-auto">
                         <div class="flex items-baseline gap-2">
                             <span class="font-display text-4xl text-primary">12</span>
-                            <span class="font-display text-xl text-primary-deep/70">places d'éveil</span>
+                            <span class="font-display text-xl text-primary-deep/80">places d'éveil</span>
                         </div>
-                        <p class="font-body text-sm text-primary-deep/70">Pour préserver le rythme individuel et garantir une attention continue dans un environnement calme.</p>
+                        <p class="font-body text-sm text-primary-deep/80">Pour préserver le rythme individuel et garantir une attention continue dans un environnement calme.</p>
                     </div>
                     <div class="pt-4 flex items-center justify-between font-body text-sm text-primary">
                         <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-coral inline-block"></span> Places 2026/2027</span>
@@ -86,7 +86,7 @@
         <div class="max-w-2xl mb-12">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Cadre temporel</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Horaires et rythme de présence</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Une amplitude étendue pensée pour concilier sérénité familiale et contraintes professionnelles.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Une amplitude étendue pensée pour concilier sérénité familiale et contraintes professionnelles.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
@@ -108,9 +108,9 @@
                         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 8l-4 4m0 0l4 4m-4-4h11M14 5V3a2 2 0 00-2-2H6a2 2 0 00-2 2v14a2 2 0 002 2h6a2 2 0 002-2v-2"/></svg>
                     @endif
                 </div>
-                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/50">{{ $carte['eyebrow'] }}</span>
+                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75">{{ $carte['eyebrow'] }}</span>
                 <h3 class="font-display text-2xl text-primary">{{ $carte['titre'] }}</h3>
-                <p class="font-body text-sm text-primary-deep/70">{{ $carte['texte'] }}</p>
+                <p class="font-body text-sm text-primary-deep/80">{{ $carte['texte'] }}</p>
             </div>
             @endforeach
 
@@ -121,9 +121,9 @@
                     </div>
                     <span class="inline-flex items-center gap-1 font-body text-xs text-coral uppercase bg-peach/60 px-3 py-1 rounded-full font-bold">Recommandation pédagogique</span>
                 </div>
-                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/50">Stabilité &amp; repères</span>
+                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75">Stabilité &amp; repères</span>
                 <h3 class="font-display text-2xl text-primary">8 heures consécutives recommandées</h3>
-                <p class="font-body text-sm text-primary-deep/70">Pour permettre à l'enfant de vivre les transitions essentielles (jeu, calme, atelier sensoriel, sommeil) sans sentiment d'urgence.</p>
+                <p class="font-body text-sm text-primary-deep/80">Pour permettre à l'enfant de vivre les transitions essentielles (jeu, calme, atelier sensoriel, sommeil) sans sentiment d'urgence.</p>
             </div>
         </div>
 
@@ -150,7 +150,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Flexibilité &amp; sérénité</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Trois formules adaptées à vos réalités</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Chaque famille a son propre équilibre de vie.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Chaque famille a son propre équilibre de vie.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
@@ -191,7 +191,7 @@
                     </ul>
                 </div>
                 <div class="relative z-10 pt-3 bg-cream rounded-2xl p-4">
-                    <span class="font-body text-xs uppercase tracking-wider text-primary-deep/50 block mb-1">Idéal pour</span>
+                    <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75 block mb-1">Idéal pour</span>
                     <p class="font-body text-sm text-primary-deep font-medium">{{ $formule['ideal'] }}</p>
                 </div>
             </div>
@@ -209,7 +209,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Harmonie sensorielle</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Une journée type au Jardin de Régina</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Au rythme naturel de l'enfant, entre découvertes, repas savoureux et repos réparateur.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Au rythme naturel de l'enfant, entre découvertes, repas savoureux et repos réparateur.</p>
         </div>
 
         <div class="relative space-y-10 mt-14">
@@ -324,7 +324,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Processus transparent</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Le parcours d'admission en 4 étapes</h2>
-            <p class="font-body text-primary-deep/70 mt-2">De votre première visite à l'entrée effective de votre enfant, un accompagnement clair.</p>
+            <p class="font-body text-primary-deep/80 mt-2">De votre première visite à l'entrée effective de votre enfant, un accompagnement clair.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
@@ -338,7 +338,7 @@
                 <div>
                     <div class="w-10 h-10 rounded-full {{ $etape['bg'] }} text-white flex items-center justify-center font-display text-sm mb-3 shadow-sm">{{ $etape['n'] }}</div>
                     <h3 class="font-display text-lg text-primary-deep mb-1">{{ $etape['titre'] }}</h3>
-                    <p class="font-body text-sm text-primary-deep/70 mb-3">{{ $etape['texte'] }}</p>
+                    <p class="font-body text-sm text-primary-deep/80 mb-3">{{ $etape['texte'] }}</p>
                 </div>
                 <div class="pt-2 font-body text-xs uppercase font-bold {{ $etape['n'] === '04' ? 'text-coral' : 'text-primary' }}">{{ $etape['tag'] }}</div>
             </div>
@@ -360,9 +360,9 @@
                 <div class="p-5 rounded-2xl bg-white shadow-sm mt-2">
                     <div class="flex items-center gap-2 mb-2">
                         <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-7.58 7-12A7 7 0 105 9c0 4.42 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>
-                        <h4 class="font-display text-lg text-primary">Priorité territoriale</h4>
+                        <h3 class="font-display text-lg text-primary">Priorité territoriale</h3>
                     </div>
-                    <p class="font-body text-sm text-primary-deep/70">Les familles résidant à <strong>Alfortville</strong> bénéficient d'une priorité naturelle d'ancrage local.</p>
+                    <p class="font-body text-sm text-primary-deep/80">Les familles résidant à <strong>Alfortville</strong> bénéficient d'une priorité naturelle d'ancrage local.</p>
                 </div>
             </div>
 
@@ -382,7 +382,7 @@
                         </div>
                         <div>
                             <h4 class="font-body font-bold text-primary-deep">{{ $critere['titre'] }}</h4>
-                            <p class="font-body text-sm text-primary-deep/70">{{ $critere['texte'] }}</p>
+                            <p class="font-body text-sm text-primary-deep/80">{{ $critere['texte'] }}</p>
                         </div>
                     </div>
                     @endforeach
@@ -412,9 +412,9 @@
                 </div>
             </div>
             <div class="w-full lg:w-auto flex flex-col items-center justify-center p-6 rounded-3xl bg-white shadow-sm text-center shrink-0">
-                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/50 mb-1">Aide financière CAF</span>
+                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75 mb-1">Aide financière CAF</span>
                 <span class="font-display text-3xl text-primary mb-1">Jusqu'à 85%</span>
-                <span class="font-body text-sm text-primary-deep/70 max-w-[220px]">de prise en charge selon vos revenus via le complément CMG.</span>
+                <span class="font-body text-sm text-primary-deep/80 max-w-[220px]">de prise en charge selon vos revenus via le complément CMG.</span>
             </div>
         </div>
 
@@ -422,7 +422,7 @@
             <div class="absolute -right-16 -bottom-16 w-80 h-80 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
             <x-confetti shape="etoile" class="top-6 left-[15%] w-7 h-7 text-white/70 animate-wiggle" />
             <div class="relative z-10 max-w-3xl flex flex-col gap-3">
-                <span class="font-body text-xs uppercase tracking-widest text-white/80 font-extrabold">Anticipez la rentrée</span>
+                <span class="font-body text-xs uppercase tracking-widest text-white font-extrabold">Anticipez la rentrée</span>
                 <h2 class="font-display text-3xl md:text-4xl">Envie d'offrir à votre enfant un cocon bienveillant à Alfortville ?</h2>
                 <p class="font-body text-white/90">Les places étant limitées à 12 berceaux pour garantir une qualité d'attention absolue, nous vous invitons à déposer votre demande dès à présent.</p>
                 <div class="pt-3 flex flex-col sm:flex-row items-start sm:items-center gap-4">

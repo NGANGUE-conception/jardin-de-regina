@@ -104,7 +104,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white/80 shadow-sm">Notre culture d'équipe</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Pourquoi faire grandir votre carrière chez nous ?</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Pour prendre soin des enfants avec douceur, il faut d'abord prendre soin de celles et ceux qui les accompagnent.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Pour prendre soin des enfants avec douceur, il faut d'abord prendre soin de celles et ceux qui les accompagnent.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
@@ -128,7 +128,7 @@
                         @endif
                     </div>
                     <h3 class="font-display text-xl text-primary-deep">{{ $carte['titre'] }}</h3>
-                    <p class="font-body text-sm text-primary-deep/70">{{ $carte['texte'] }}</p>
+                    <p class="font-body text-sm text-primary-deep/80">{{ $carte['texte'] }}</p>
                 </div>
                 <div class="mt-5 pt-3 flex items-center gap-2 text-primary font-body text-sm font-bold">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
@@ -148,7 +148,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Opportunités ouvertes</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Nos offres d'emploi</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Des opportunités à temps plein pour faire grandir nos petits explorateurs.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Des opportunités à temps plein pour faire grandir nos petits explorateurs.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
@@ -182,18 +182,18 @@
                 <div>
                     <div class="flex flex-wrap gap-2 mb-4">
                         @foreach ($job['tags'] as $i => $tag)
-                        <span class="px-3 py-1 rounded-full font-body text-[11px] font-bold {{ $i === 0 ? 'bg-mint text-primary' : 'bg-cream text-primary-deep/70' }}">{{ $tag }}</span>
+                        <span class="px-3 py-1 rounded-full font-body text-[11px] font-bold {{ $i === 0 ? 'bg-mint text-primary' : 'bg-cream text-primary-deep/80' }}">{{ $tag }}</span>
                         @endforeach
                     </div>
                     <h3 class="font-display text-xl text-primary-deep mb-1">{{ $job['titre'] }}</h3>
                     <span class="inline-block font-body text-xs text-primary font-bold mb-4">{{ $job['sous'] }}</span>
                     <div class="mb-4">
                         <p class="font-body text-sm font-bold text-primary-deep mb-1">Missions principales :</p>
-                        <p class="font-body text-sm text-primary-deep/70 leading-relaxed">{{ $job['missions'] }}</p>
+                        <p class="font-body text-sm text-primary-deep/80 leading-relaxed">{{ $job['missions'] }}</p>
                     </div>
                     <div class="mb-5 p-3 rounded-2xl bg-cream">
                         <p class="font-body text-xs font-bold text-primary-deep mb-0.5">Profil recherché :</p>
-                        <p class="font-body text-xs text-primary-deep/70">{{ $job['profil'] }}</p>
+                        <p class="font-body text-xs text-primary-deep/80">{{ $job['profil'] }}</p>
                     </div>
                 </div>
                 <a href="#candidature" @click="selectRole('{{ $job['titre'] }}')" class="w-full h-[52px] rounded-full bg-coral text-white font-body font-bold text-sm inline-flex items-center justify-center shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
@@ -220,7 +220,7 @@
                         <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                     </div>
                     <h3 class="font-display text-2xl text-primary-deep">Merci pour votre candidature !</h3>
-                    <p class="font-body text-primary-deep/70 max-w-sm">{{ session('success') }}</p>
+                    <p class="font-body text-primary-deep/80 max-w-sm">{{ session('success') }}</p>
                 </div>
                 @else
                 <div>
@@ -230,7 +230,7 @@
                             Rejoignez l'aventure
                         </span>
                         <h2 class="font-display text-2xl text-primary-deep mt-3">Envoyez-nous votre candidature</h2>
-                        <p class="font-body text-primary-deep/70 mt-2">Votre profil ne correspond pas exactement aux offres ci-dessus ? Nous étudions avec intérêt toute candidature engagée.</p>
+                        <p class="font-body text-primary-deep/80 mt-2">Votre profil ne correspond pas exactement aux offres ci-dessus ? Nous étudions avec intérêt toute candidature engagée.</p>
                     </div>
 
                     <x-formulaire.resume-erreurs fichiers :champs="['nom' => 'nom', 'prenom' => 'prenom', 'email' => 'rec_email', 'tel' => 'rec_tel', 'poste' => 'poste', 'message' => 'rec_message', 'documents' => 'zone-documents', 'rgpd_consent' => 'rec-rgpd']" />
@@ -299,14 +299,14 @@
                                 </p>
                                 <p class="font-body text-sm font-bold text-primary" x-show="fichiers.length === 1" x-text="'Fichier sélectionné : ' + fichiers[0]"></p>
                                 <p class="font-body text-sm font-bold text-primary" x-show="fichiers.length > 1" x-text="fichiers.length + ' fichiers sélectionnés'"></p>
-                                <p class="font-body text-xs text-primary-deep/60 mt-1">Formats acceptés : PDF, DOC, DOCX (max 5 Mo au total)</p>
+                                <p class="font-body text-xs text-primary-deep/75 mt-1">Formats acceptés : PDF, DOC, DOCX (max 5 Mo au total)</p>
                             </label>
                             <x-formulaire.erreur champ="documents" id="zone-documents" />
                         </div>
 
                         <label class="flex items-start gap-3 pt-1 cursor-pointer">
                             <input id="rec-rgpd" type="checkbox" name="rgpd_consent" value="1" {{ old('rgpd_consent') ? 'checked' : '' }} required class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer @error('rgpd_consent') outline outline-2 outline-offset-2 outline-coral @enderror" @error('rgpd_consent') aria-invalid="true" aria-describedby="rec-rgpd-erreur" @enderror>
-                            <span class="font-body text-xs text-primary-deep/70 leading-relaxed">J'accepte que mes données personnelles soient traitées par Le Jardin de Régina pour l'examen de ma candidature, conformément à la politique de confidentialité.</span>
+                            <span class="font-body text-xs text-primary-deep/80 leading-relaxed">J'accepte que mes données personnelles soient traitées par Le Jardin de Régina pour l'examen de ma candidature, conformément à la politique de confidentialité.</span>
                         </label>
                         <x-formulaire.erreur champ="rgpd_consent" id="rec-rgpd" />
 
@@ -328,7 +328,7 @@
                         <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         <span>Processus bienveillant</span>
                     </h3>
-                    <p class="font-body text-sm text-primary-deep/70 mb-6">Un recrutement transparent, respectueux de votre temps et axé sur vos valeurs humaines.</p>
+                    <p class="font-body text-sm text-primary-deep/80 mb-6">Un recrutement transparent, respectueux de votre temps et axé sur vos valeurs humaines.</p>
                     <div class="flex flex-col gap-5 relative border-l-2 border-mint ml-3 pl-6">
                         @foreach ([
                             ['n' => 1, 'titre' => 'Étude sous 5 jours', 'texte' => 'Chaque CV est examiné avec attention par la direction pédagogique du réseau.'],
@@ -338,7 +338,7 @@
                         <div class="relative">
                             <span class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">{{ $step['n'] }}</span>
                             <h4 class="font-body text-sm font-bold text-primary-deep">{{ $step['titre'] }}</h4>
-                            <p class="font-body text-xs text-primary-deep/70 mt-1">{{ $step['texte'] }}</p>
+                            <p class="font-body text-xs text-primary-deep/80 mt-1">{{ $step['texte'] }}</p>
                         </div>
                         @endforeach
                     </div>

@@ -9,7 +9,6 @@
     @include('partials.icones')
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
 </head>
 <body class="font-body bg-cream">
     @if (session('success'))
@@ -22,6 +21,5 @@
 
     @yield('content')
 
-    @livewireScripts
 </body>
 </html>

@@ -53,7 +53,7 @@
                         <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                     </div>
                     <h3 class="font-display text-2xl text-primary-deep">Merci infiniment !</h3>
-                    <p class="font-body text-primary-deep/70 max-w-sm">{{ session('success') }}</p>
+                    <p class="font-body text-primary-deep/80 max-w-sm">{{ session('success') }}</p>
                 </div>
                 @else
                 <div>
@@ -66,7 +66,7 @@
                             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
                         </div>
                     </div>
-                    <p class="font-body text-primary-deep/70 mb-6">Remplissez ce formulaire et notre équipe reviendra vers vous avec bienveillance et précision.</p>
+                    <p class="font-body text-primary-deep/80 mb-6">Remplissez ce formulaire et notre équipe reviendra vers vous avec bienveillance et précision.</p>
 
                     <x-formulaire.resume-erreurs :champs="['fullname' => 'fullname', 'email' => 'email', 'phone' => 'phone', 'subject' => 'subject', 'message' => 'message', 'rgpd_consent' => 'contact-rgpd']" />
 
@@ -157,13 +157,13 @@
                                 @endif
                             </div>
                             <div class="flex flex-col">
-                                <span class="font-body text-xs text-primary-deep/60">{{ $item['titre'] }}</span>
+                                <span class="font-body text-xs text-primary-deep/75">{{ $item['titre'] }}</span>
                                 @if ($item['href'])
                                     <a href="{{ $item['href'] }}" class="font-body font-bold text-primary hover:underline">{{ $item['val'] }}</a>
                                 @else
                                     <span class="font-body font-bold text-primary-deep">{{ $item['val'] }}</span>
                                 @endif
-                                <span class="font-body text-xs text-primary-deep/60">{{ $item['sous'] }}</span>
+                                <span class="font-body text-xs text-primary-deep/75">{{ $item['sous'] }}</span>
                             </div>
                         </div>
                         @endforeach
@@ -178,7 +178,7 @@
                     <div class="flex flex-col">
                         <span class="font-body text-xs uppercase text-coral font-extrabold">Respect du sommeil</span>
                         <h4 class="font-display text-lg text-primary-deep mt-0.5">Visites en toute sérénité</h4>
-                        <p class="font-body text-sm text-primary-deep/70 mt-1">Afin de préserver le calme et les siestes, les visites sont programmées sur rendez-vous, en dehors des temps de repos.</p>
+                        <p class="font-body text-sm text-primary-deep/80 mt-1">Afin de préserver le calme et les siestes, les visites sont programmées sur rendez-vous, en dehors des temps de repos.</p>
                     </div>
                 </div>
             </div>
@@ -194,7 +194,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center mb-12">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Localisation &amp; transports</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Comment venir au Jardin de Régina ?</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Idéalement située au cœur d'Alfortville, accessible depuis Paris, Créteil et les communes voisines.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Idéalement située au cœur d'Alfortville, accessible depuis Paris, Créteil et les communes voisines.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -232,7 +232,7 @@
                         <span>{{ $etab->adresseCourte() }}</span>
                     </div>
                 </div>
-                <div class="mt-3 flex items-center justify-between px-2 text-primary-deep/60 font-body text-sm">
+                <div class="mt-3 flex items-center justify-between px-2 text-primary-deep/75 font-body text-sm">
                     <span>Coordonnées GPS : 48.8052° N, 2.4208° E</span>
                     <span class="text-primary font-semibold">Micro-crèche agréée PMI</span>
                 </div>
@@ -249,7 +249,7 @@
                     <div class="w-11 h-11 rounded-full bg-sky flex items-center justify-center shrink-0 font-body font-extrabold text-xs text-primary-deep">RER D</div>
                     <div class="flex flex-col">
                         <span class="font-body font-bold text-primary-deep">Gare Maisons-Alfort / Alfortville</span>
-                        <p class="font-body text-sm text-primary-deep/70 mt-0.5">À 10 min de marche paisible. Liaison directe vers <strong>Paris Gare de Lyon en 6 minutes</strong>.</p>
+                        <p class="font-body text-sm text-primary-deep/80 mt-0.5">À 10 min de marche paisible. Liaison directe vers <strong>Paris Gare de Lyon en 6 minutes</strong>.</p>
                     </div>
                 </div>
 
@@ -257,7 +257,7 @@
                     <div class="w-11 h-11 rounded-full bg-peach flex items-center justify-center shrink-0 font-body font-extrabold text-xs text-coral">M 8</div>
                     <div class="flex flex-col">
                         <span class="font-body font-bold text-primary-deep">École Vétérinaire de Maisons-Alfort</span>
-                        <p class="font-body text-sm text-primary-deep/70 mt-0.5">Puis bus 103 direct, ou 12 minutes de promenade le long des berges piétonnes.</p>
+                        <p class="font-body text-sm text-primary-deep/80 mt-0.5">Puis bus 103 direct, ou 12 minutes de promenade le long des berges piétonnes.</p>
                     </div>
                 </div>
 
@@ -272,7 +272,7 @@
                             <span class="px-2 py-0.5 rounded-full bg-cream text-primary-deep font-body font-extrabold text-xs">{{ $ligne }}</span>
                             @endforeach
                         </div>
-                        <p class="font-body text-sm text-primary-deep/70">Arrêts <strong>Mairie d'Alfortville</strong> et <strong>Rue des Écoles</strong> à moins de 3 minutes à pied.</p>
+                        <p class="font-body text-sm text-primary-deep/80">Arrêts <strong>Mairie d'Alfortville</strong> et <strong>Rue des Écoles</strong> à moins de 3 minutes à pied.</p>
                     </div>
                 </div>
 
@@ -282,7 +282,7 @@
                     </div>
                     <div class="flex flex-col">
                         <span class="font-body font-bold text-primary-deep">Mobilité douce &amp; dépose-minute</span>
-                        <p class="font-body text-sm text-primary-deep/70 mt-0.5">Station Vélib' à 150 mètres. Emplacements réservés dépose-minute devant l'entrée.</p>
+                        <p class="font-body text-sm text-primary-deep/80 mt-0.5">Station Vélib' à 150 mètres. Emplacements réservés dépose-minute devant l'entrée.</p>
                     </div>
                 </div>
             </div>

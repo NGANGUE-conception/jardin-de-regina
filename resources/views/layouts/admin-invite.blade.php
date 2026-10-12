@@ -12,7 +12,6 @@
     @include('partials.icones')
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
 </head>
 <body class="font-body bg-cream min-h-screen flex items-center justify-center px-6 py-10 relative overflow-hidden">
 
@@ -21,7 +20,7 @@
 
     <div class="w-full max-w-md">
         <div class="flex flex-col items-center mb-6 text-center">
-            <img src="{{ asset('images/logo.png') }}" alt="Le Jardin de Régina" class="h-16 w-auto object-contain mb-3">
+            <img src="{{ asset('images/logo.webp') }}" width="375" height="192" alt="Le Jardin de Régina" class="h-16 w-auto object-contain mb-3">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold">Espace direction</span>
             <h1 class="font-display text-2xl text-primary-deep mt-1">@yield('titre_page')</h1>
         </div>
@@ -48,7 +47,7 @@
             @yield('content')
         </div>
 
-        <p class="text-center font-body text-xs text-primary-deep/50 mt-6">
+        <p class="text-center font-body text-xs text-primary-deep/75 mt-6">
             @hasSection('lien_bas')
                 @yield('lien_bas')
             @else
@@ -57,6 +56,5 @@
         </p>
     </div>
 
-    @livewireScripts
 </body>
 </html>

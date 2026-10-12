@@ -28,21 +28,21 @@
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                     <span>Cookies techniques essentiels</span>
                 </div>
-                <p class="font-body text-sm text-primary-deep/70">Maintien de session et sécurité des formulaires (pré-inscription, contact, candidature). Ces cookies ne nécessitent pas votre consentement, car ils sont indispensables au fonctionnement du site.</p>
+                <p class="font-body text-sm text-primary-deep/80">Maintien de session et sécurité des formulaires (pré-inscription, contact, candidature). Ces cookies ne nécessitent pas votre consentement, car ils sont indispensables au fonctionnement du site.</p>
             </div>
             <div class="p-4 rounded-2xl bg-cream flex flex-col gap-1">
                 <div class="flex items-center gap-2 text-primary font-bold">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l7 4-7 4z"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
                     <span>Préférences d'affichage</span>
                 </div>
-                <p class="font-body text-sm text-primary-deep/70">Mémorisation de choix simples (comme un onglet déjà ouvert), uniquement dans votre navigateur, jamais transmis à nos serveurs.</p>
+                <p class="font-body text-sm text-primary-deep/80">Mémorisation de choix simples (comme un onglet déjà ouvert), uniquement dans votre navigateur, jamais transmis à nos serveurs.</p>
             </div>
             <div class="p-4 rounded-2xl bg-cream flex flex-col gap-1 sm:col-span-2">
                 <div class="flex items-center gap-2 text-primary font-bold">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></svg>
                     <span>Mesure d'audience anonyme</span>
                 </div>
-                <p class="font-body text-sm text-primary-deep/70">Un cookie nommé <code>jr_visiteur</code>, valable 13 mois au maximum, nous permet de compter les visites du site (nombre de visiteurs, pages consultées, site d'origine, type d'appareil). Il contient un identifiant aléatoire qui ne permet pas de savoir qui vous êtes. Votre adresse IP n'est pas enregistrée et ces statistiques sont supprimées au bout de 25 mois. Ce cookie est exempté de consentement selon les recommandations de la CNIL, mais vous pouvez le refuser à tout moment (voir la rubrique 4).</p>
+                <p class="font-body text-sm text-primary-deep/80">Un cookie nommé <code>jr_visiteur</code>, valable 13 mois au maximum, nous permet de compter les visites du site (nombre de visiteurs, pages consultées, site d'origine, type d'appareil). Il contient un identifiant aléatoire qui ne permet pas de savoir qui vous êtes. Votre adresse IP n'est pas enregistrée et ces statistiques sont supprimées au bout de 25 mois. Ce cookie est exempté de consentement selon les recommandations de la CNIL, mais vous pouvez le refuser à tout moment (voir la rubrique 4).</p>
             </div>
         </div>
     </x-legal-article>
@@ -91,7 +91,7 @@
             <span class="px-4 py-2 rounded-full bg-cream text-primary-deep font-body text-sm font-semibold text-center">{{ $navigateur }}</span>
             @endforeach
         </div>
-        <p class="font-body text-sm text-primary-deep/70">La désactivation des cookies techniques essentiels peut empêcher le bon fonctionnement des formulaires du site (pré-inscription, contact, candidature).</p>
+        <p class="font-body text-sm text-primary-deep/80">La désactivation des cookies techniques essentiels peut empêcher le bon fonctionnement des formulaires du site (pré-inscription, contact, candidature).</p>
         <div class="p-4 rounded-2xl bg-cream flex items-center gap-3">
             <svg class="w-6 h-6 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3"/><path stroke-linecap="round" d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
             <p class="font-body text-sm text-primary-deep">Une question sur les cookies ? Écrivez-nous à <a href="mailto:{{ $etab->email() }}" class="text-primary font-bold hover:underline">{{ $etab->email() }}</a>.</p>

@@ -5,7 +5,7 @@
 
     <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 24px;">
         <tr>
-            <td style="background-color:#D9451F;border-radius:999px;">
+            <td style="background-color:#C13B1A;border-radius:999px;">
                 <a href="{{ $lien }}" style="display:inline-block;padding:14px 28px;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;">Choisir un nouveau mot de passe</a>
             </td>
         </tr>
@@ -20,5 +20,5 @@
         </tr>
     </table>
 
-    <p style="font-size:12px;line-height:1.6;color:#12414D99;margin:0;">Si le bouton ne fonctionne pas, copiez cette adresse dans votre navigateur :<br><span style="word-break:break-all;color:#217B79;">{{ $lien }}</span></p>
+    <p style="font-size:12px;line-height:1.6;color:#12414D99;margin:0;">Si le bouton ne fonctionne pas, copiez cette adresse dans votre navigateur :<br><span style="word-break:break-all;color:#1C6E6C;">{{ $lien }}</span></p>
 </x-emails.layout>

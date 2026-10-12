@@ -30,7 +30,7 @@
                 nouvelle: 'bg-primary text-white',
                 en_discussion: 'bg-peach text-coral',
                 signee: 'bg-mint text-primary',
-                refusee: 'bg-cream text-primary-deep/60 border border-primary-deep/20',
+                refusee: 'bg-cream text-primary-deep/75 border border-primary-deep/20',
             }[statut];
         },
         badgeLabel(statut) {
@@ -51,7 +51,7 @@
                         <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold">Berceaux entreprise</span>
                     </div>
                     <h1 class="font-display text-3xl text-primary-deep">Demandes entreprises</h1>
-                    <p class="font-body text-primary-deep/70 mt-1">Suivi des entreprises intéressées par une réservation de berceau pour leurs salariés.</p>
+                    <p class="font-body text-primary-deep/80 mt-1">Suivi des entreprises intéressées par une réservation de berceau pour leurs salariés.</p>
                 </div>
                 <a href="{{ route('berceaux-entreprise') }}" class="h-[48px] px-6 rounded-full bg-white text-primary font-body font-bold text-sm shadow-sm hover:bg-mint/30 transition-all flex items-center gap-2 shrink-0">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
@@ -73,7 +73,7 @@
                             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                         </div>
                     </div>
-                    <span class="font-body text-sm text-primary-deep/50" x-text="filtres.length + ' résultat(s) affiché(s)'"></span>
+                    <span class="font-body text-sm text-primary-deep/75" x-text="filtres.length + ' résultat(s) affiché(s)'"></span>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -86,19 +86,19 @@
                                     </div>
                                     <div class="min-w-0">
                                         <h3 class="font-display text-base text-primary-deep truncate" x-text="d.nom"></h3>
-                                        <p class="font-body text-xs text-primary-deep/50" x-text="d.secteur + ' · ' + d.effectif"></p>
+                                        <p class="font-body text-xs text-primary-deep/75" x-text="d.secteur + ' · ' + d.effectif"></p>
                                     </div>
                                 </div>
                                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-body text-xs font-bold shrink-0" :class="badgeClasses(d.statut)" x-text="badgeLabel(d.statut)"></span>
                             </div>
-                            <p class="font-body text-sm text-primary-deep/70 line-clamp-2" x-text="d.message"></p>
-                            <div class="flex items-center justify-between pt-2 border-t border-mint text-xs font-body text-primary-deep/50">
+                            <p class="font-body text-sm text-primary-deep/80 line-clamp-2" x-text="d.message"></p>
+                            <div class="flex items-center justify-between pt-2 border-t border-mint text-xs font-body text-primary-deep/75">
                                 <span x-text="d.berceaux + ' berceau(x) souhaité(s)'"></span>
                                 <span x-text="d.dateLabel"></span>
                             </div>
                         </div>
                     </template>
-                    <div x-show="filtres.length === 0" class="md:col-span-2 py-10 text-center text-primary-deep/50 font-body bg-white rounded-3xl">Aucune demande ne correspond à ces critères.</div>
+                    <div x-show="filtres.length === 0" class="md:col-span-2 py-10 text-center text-primary-deep/75 font-body bg-white rounded-3xl">Aucune demande ne correspond à ces critères.</div>
                 </div>
             </div>
         </div>
@@ -113,7 +113,7 @@
                 <div class="p-6 pb-4 border-b border-mint bg-cream/60 sticky top-0 backdrop-blur-md z-10">
                     <div class="flex items-center justify-between mb-2">
                         <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold" x-text="demandeOuverte.id"></span>
-                        <button type="button" @click="demandeOuverteId = null" class="w-8 h-8 rounded-full flex items-center justify-center text-primary-deep/50 hover:bg-mint/40 hover:text-primary-deep transition-colors">
+                        <button type="button" @click="demandeOuverteId = null" class="w-8 h-8 rounded-full flex items-center justify-center text-primary-deep/75 hover:bg-mint/40 hover:text-primary-deep transition-colors">
                             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                         </button>
                     </div>
@@ -123,9 +123,9 @@
 
                 <div class="p-6 flex-1 flex flex-col gap-6">
                     <div class="bg-cream rounded-2xl p-4 divide-y divide-primary-deep/10 font-body text-sm">
-                        <div class="pb-2.5 flex justify-between"><span class="text-primary-deep/60">Secteur</span><span class="font-bold text-primary-deep" x-text="demandeOuverte.secteur"></span></div>
-                        <div class="py-2.5 flex justify-between"><span class="text-primary-deep/60">Effectif</span><span class="font-bold text-primary-deep" x-text="demandeOuverte.effectif"></span></div>
-                        <div class="pt-2.5 flex justify-between"><span class="text-primary-deep/60">Berceaux souhaités</span><span class="font-bold text-primary-deep" x-text="demandeOuverte.berceaux"></span></div>
+                        <div class="pb-2.5 flex justify-between"><span class="text-primary-deep/75">Secteur</span><span class="font-bold text-primary-deep" x-text="demandeOuverte.secteur"></span></div>
+                        <div class="py-2.5 flex justify-between"><span class="text-primary-deep/75">Effectif</span><span class="font-bold text-primary-deep" x-text="demandeOuverte.effectif"></span></div>
+                        <div class="pt-2.5 flex justify-between"><span class="text-primary-deep/75">Berceaux souhaités</span><span class="font-bold text-primary-deep" x-text="demandeOuverte.berceaux"></span></div>
                     </div>
 
                     <div class="flex flex-col gap-2.5">
@@ -135,7 +135,7 @@
                         </div>
                         <div class="bg-cream rounded-2xl p-4 flex flex-col gap-2">
                             <span class="font-bold text-primary-deep text-sm" x-text="demandeOuverte.contact"></span>
-                            <div class="flex flex-col gap-1 text-xs text-primary-deep/60">
+                            <div class="flex flex-col gap-1 text-xs text-primary-deep/75">
                                 <div class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg><span x-text="demandeOuverte.tel"></span></div>
                                 <div class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span class="truncate" x-text="demandeOuverte.email"></span></div>
                             </div>
@@ -147,7 +147,7 @@
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12a9 9 0 11-9-9 9 9 0 019 9z"/></svg>
                             <span class="font-body text-xs uppercase font-bold tracking-wider">Message</span>
                         </div>
-                        <p class="font-body text-sm text-primary-deep/70 bg-cream rounded-2xl p-4" x-text="demandeOuverte.message"></p>
+                        <p class="font-body text-sm text-primary-deep/80 bg-cream rounded-2xl p-4" x-text="demandeOuverte.message"></p>
                     </div>
 
                     <template x-if="demandeOuverte.motif">

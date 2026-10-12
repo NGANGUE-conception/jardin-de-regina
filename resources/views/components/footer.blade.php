@@ -15,7 +15,7 @@
                       Micro-crèche écoresponsable à taille humaine. Un cocon de nature et de bienveillance au cœur d'Alfortville.
                   </p>
                   <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 w-fit">
-                      <span class="font-body text-xs uppercase tracking-widest text-primary">Micro-crèche écoresponsable · Réseau {{ $etab->gestionnaire() }}</span>
+                      <span class="font-body text-xs uppercase tracking-widest text-teal-clair">Micro-crèche écoresponsable · Réseau {{ $etab->gestionnaire() }}</span>
                   </div>
               </div>
 
@@ -23,8 +23,8 @@
                   <span class="font-display text-lg">Coordonnées & horaires</span>
                   <div class="flex flex-col gap-2 text-sm text-cream/90 font-body">
                       <span>{{ $etab->adresse() }}</span>
-                      <a href="tel:{{ $etab->telephoneLien() }}" class="hover:text-primary transition-colors">{{ $etab->telephone() }}</a>
-                      <a href="mailto:{{ $etab->email() }}" class="hover:text-primary transition-colors
+                      <a href="tel:{{ $etab->telephoneLien() }}" class="hover:text-teal-clair transition-colors">{{ $etab->telephone() }}</a>
+                      <a href="mailto:{{ $etab->email() }}" class="hover:text-teal-clair transition-colors
   break-all">{{ $etab->email() }}</a>
                       <span>Lundi – vendredi, {{ $etab->horaires() }}</span>
                   </div>
@@ -38,7 +38,7 @@
                       <a href="/tarifs" class="hover:text-cream transition-colors">Grille tarifaire & aides CAF</a>
                       <a href="/berceaux-entreprise" class="hover:text-cream transition-colors">Berceaux entreprise</a>
                       <a href="/recrutement" class="hover:text-cream transition-colors">Espace recrutement</a>
-                      <a href="/pre-inscription" class="font-bold text-coral hover:text-cream transition-colors">Demande de pré-inscription</a>
+                      <a href="/pre-inscription" class="font-bold text-coral-clair hover:text-cream transition-colors">Demande de pré-inscription</a>
                   </div>
               </div>
 
@@ -50,7 +50,7 @@
                       <a href="/gestion-des-cookies" class="hover:text-cream transition-colors">Gestion des cookies</a>
                       <a href="/plan-du-site" class="hover:text-cream transition-colors">Plan du site</a>
                   </div>
-                  <div class="text-xs text-cream/60 mt-2">Agrément PMI & soutien CAF Val-de-Marne</div>
+                  <div class="text-xs text-cream/75 mt-2">Agrément PMI & soutien CAF Val-de-Marne</div>
               </div>
           </div>
 

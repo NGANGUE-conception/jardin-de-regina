@@ -1,7 +1,7 @@
 <header x-data="{ mobileOpen: false }" class="fixed top-0 left-0 right-0 w-full z-50 bg-cream/95 backdrop-blur-md shadow-sm">
     <div class="h-20 max-w-[1240px] mx-auto flex items-center gap-4 px-6">
         <a href="/" class="flex items-center gap-2 -ml-6">
-            <img src="{{ asset('images/logo.png') }}" alt="Le Jardin de Régina" class="h-14 w-auto object-contain">
+            <img src="{{ asset('images/logo.webp') }}" width="375" height="192" alt="Le Jardin de Régina" class="h-14 w-auto object-contain">
         </a>
 
         <nav class="hidden xl:flex items-center gap-2 ml-auto">

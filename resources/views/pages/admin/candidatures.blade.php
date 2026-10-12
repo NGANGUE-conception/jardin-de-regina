@@ -30,7 +30,7 @@
                 nouvelle: 'bg-primary text-white',
                 entretien_prevu: 'bg-peach text-coral',
                 retenue: 'bg-mint text-primary',
-                refusee: 'bg-cream text-primary-deep/60 border border-primary-deep/20',
+                refusee: 'bg-cream text-primary-deep/75 border border-primary-deep/20',
             }[statut];
         },
         badgeLabel(statut) {
@@ -51,7 +51,7 @@
                         <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold">Recrutement</span>
                     </div>
                     <h1 class="font-display text-3xl text-primary-deep">Candidatures</h1>
-                    <p class="font-body text-primary-deep/70 mt-1">Candidatures reçues via la page « Rejoindre l'équipe ».</p>
+                    <p class="font-body text-primary-deep/80 mt-1">Candidatures reçues via la page « Rejoindre l'équipe ».</p>
                 </div>
                 <a href="{{ route('recrutement') }}" class="h-[48px] px-6 rounded-full bg-white text-primary font-body font-bold text-sm shadow-sm hover:bg-mint/30 transition-all flex items-center gap-2 shrink-0">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
@@ -73,14 +73,14 @@
                             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                         </div>
                     </div>
-                    <span class="font-body text-sm text-primary-deep/50" x-text="filtres.length + ' résultat(s) affiché(s)'"></span>
+                    <span class="font-body text-sm text-primary-deep/75" x-text="filtres.length + ' résultat(s) affiché(s)'"></span>
                 </div>
 
                 <div class="bg-white rounded-3xl shadow-sm overflow-hidden w-full">
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse min-w-[820px]">
                             <thead>
-                                <tr class="bg-cream text-primary-deep/60 font-body text-xs uppercase tracking-wider">
+                                <tr class="bg-cream text-primary-deep/75 font-body text-xs uppercase tracking-wider">
                                     <th class="py-4 px-6">Candidat / Date</th>
                                     <th class="py-4 px-6">Poste souhaité</th>
                                     <th class="py-4 px-6">Expérience</th>
@@ -94,10 +94,10 @@
                                     <tr class="hover:bg-mint/20 transition-colors cursor-pointer" @click="candidatOuvertId = c.id" :class="candidatOuvertId === c.id ? 'bg-mint/30' : ''">
                                         <td class="py-4 px-6">
                                             <div class="font-bold text-primary-deep" x-text="c.nom"></div>
-                                            <div class="font-body text-xs text-primary-deep/50 mt-0.5" x-text="c.dateLabel"></div>
+                                            <div class="font-body text-xs text-primary-deep/75 mt-0.5" x-text="c.dateLabel"></div>
                                         </td>
                                         <td class="py-4 px-6 font-semibold" x-text="c.poste"></td>
-                                        <td class="py-4 px-6 text-xs text-primary-deep/70" x-text="c.experience"></td>
+                                        <td class="py-4 px-6 text-xs text-primary-deep/80" x-text="c.experience"></td>
                                         <td class="py-4 px-6">
                                             <span class="inline-flex items-center gap-1 text-primary text-xs font-bold" x-show="c.cvJoint">
                                                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6M9 8h1M5 21h14a2 2 0 002-2V7l-5-5H5a2 2 0 00-2 2v15a2 2 0 002 2z"/></svg>
@@ -116,7 +116,7 @@
                                     </tr>
                                 </template>
                                 <tr x-show="filtres.length === 0">
-                                    <td colspan="6" class="py-10 text-center text-primary-deep/50 font-body">Aucune candidature ne correspond à ces critères.</td>
+                                    <td colspan="6" class="py-10 text-center text-primary-deep/75 font-body">Aucune candidature ne correspond à ces critères.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -135,7 +135,7 @@
                 <div class="p-6 pb-4 border-b border-mint bg-cream/60 sticky top-0 backdrop-blur-md z-10">
                     <div class="flex items-center justify-between mb-2">
                         <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold" x-text="candidatOuvert.id"></span>
-                        <button type="button" @click="candidatOuvertId = null" class="w-8 h-8 rounded-full flex items-center justify-center text-primary-deep/50 hover:bg-mint/40 hover:text-primary-deep transition-colors">
+                        <button type="button" @click="candidatOuvertId = null" class="w-8 h-8 rounded-full flex items-center justify-center text-primary-deep/75 hover:bg-mint/40 hover:text-primary-deep transition-colors">
                             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                         </button>
                     </div>
@@ -145,9 +145,9 @@
 
                 <div class="p-6 flex-1 flex flex-col gap-6">
                     <div class="bg-cream rounded-2xl p-4 divide-y divide-primary-deep/10 font-body text-sm">
-                        <div class="pb-2.5 flex justify-between"><span class="text-primary-deep/60">Poste souhaité</span><span class="font-bold text-primary-deep" x-text="candidatOuvert.poste"></span></div>
-                        <div class="py-2.5 flex justify-between gap-4"><span class="text-primary-deep/60 shrink-0">Diplôme</span><span class="font-bold text-primary-deep text-right" x-text="candidatOuvert.diplome"></span></div>
-                        <div class="pt-2.5 flex justify-between gap-4"><span class="text-primary-deep/60 shrink-0">Expérience</span><span class="font-bold text-primary-deep text-right" x-text="candidatOuvert.experience"></span></div>
+                        <div class="pb-2.5 flex justify-between"><span class="text-primary-deep/75">Poste souhaité</span><span class="font-bold text-primary-deep" x-text="candidatOuvert.poste"></span></div>
+                        <div class="py-2.5 flex justify-between gap-4"><span class="text-primary-deep/75 shrink-0">Diplôme</span><span class="font-bold text-primary-deep text-right" x-text="candidatOuvert.diplome"></span></div>
+                        <div class="pt-2.5 flex justify-between gap-4"><span class="text-primary-deep/75 shrink-0">Expérience</span><span class="font-bold text-primary-deep text-right" x-text="candidatOuvert.experience"></span></div>
                     </div>
 
                     <div class="flex flex-col gap-2.5">
@@ -155,7 +155,7 @@
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3"/><path stroke-linecap="round" d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
                             <span class="font-body text-xs uppercase font-bold tracking-wider">Contact</span>
                         </div>
-                        <div class="bg-cream rounded-2xl p-4 flex flex-col gap-1 text-xs text-primary-deep/60">
+                        <div class="bg-cream rounded-2xl p-4 flex flex-col gap-1 text-xs text-primary-deep/75">
                             <div class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg><span x-text="candidatOuvert.tel"></span></div>
                             <div class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span class="truncate" x-text="candidatOuvert.email"></span></div>
                         </div>
@@ -166,7 +166,7 @@
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12a9 9 0 11-9-9 9 9 0 019 9z"/></svg>
                             <span class="font-body text-xs uppercase font-bold tracking-wider">Message</span>
                         </div>
-                        <p class="font-body text-sm text-primary-deep/70 bg-cream rounded-2xl p-4" x-text="candidatOuvert.message"></p>
+                        <p class="font-body text-sm text-primary-deep/80 bg-cream rounded-2xl p-4" x-text="candidatOuvert.message"></p>
                     </div>
 
                     <template x-if="candidatOuvert.cvJoint">

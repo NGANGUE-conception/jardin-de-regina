@@ -104,7 +104,7 @@ class DetailSheet implements FromQuery, WithColumnWidths, WithFreezePane, WithHe
         return [
             'A1:O1' => [
                 'font' => ['bold' => true, 'color' => ['rgb' => 'FFFFFF']],
-                'fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '217B79']],
+                'fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '1C6E6C']],
             ],
         ];
     }

@@ -24,7 +24,7 @@ $docs = [
                 <p class="font-body text-lg text-primary-deep/80 max-w-xl">{{ $sousTitre }}</p>
             </div>
             <div class="flex flex-col items-start md:items-end gap-2 shrink-0">
-                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-sm text-primary-deep/70 font-body text-sm">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-sm text-primary-deep/80 font-body text-sm">
                     <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
                     <span>Dernière mise à jour : <strong class="text-primary-deep">{{ now()->translatedFormat('j F Y') }}</strong></span>
                 </span>
@@ -60,7 +60,7 @@ $docs = [
                             <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-4-7 4V5z"/></svg>
                             <span class="font-display text-lg">Sommaire</span>
                         </div>
-                        <span class="font-body text-xs uppercase text-primary-deep/50">{{ count($sommaire) }} articles</span>
+                        <span class="font-body text-xs uppercase text-primary-deep/75">{{ count($sommaire) }} articles</span>
                     </div>
                     <ul class="flex flex-col gap-1">
                         @foreach ($sommaire as $i => $item)
@@ -73,7 +73,7 @@ $docs = [
                         @endforeach
                     </ul>
                     <div class="mt-4 pt-4 border-t border-mint flex flex-col gap-1.5">
-                        <span class="font-body text-xs uppercase text-primary-deep/50 font-bold">Documents associés</span>
+                        <span class="font-body text-xs uppercase text-primary-deep/75 font-bold">Documents associés</span>
                         @foreach ($docs as $key => $doc)
                         @if ($key === $docActif)
                             <span class="px-4 py-1.5 rounded-full bg-primary text-white font-body text-sm font-bold flex items-center gap-2">
@@ -81,7 +81,7 @@ $docs = [
                                 {{ $doc['label'] }}
                             </span>
                         @else
-                            <a href="{{ $doc['route'] }}" class="px-4 py-1.5 rounded-full bg-cream hover:bg-mint/50 text-primary-deep/70 font-body text-sm transition-colors flex items-center justify-between">
+                            <a href="{{ $doc['route'] }}" class="px-4 py-1.5 rounded-full bg-cream hover:bg-mint/50 text-primary-deep/80 font-body text-sm transition-colors flex items-center justify-between">
                                 <span>{{ $doc['label'] }}</span>
                                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
                             </a>
@@ -95,7 +95,7 @@ $docs = [
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3"/><path stroke-linecap="round" d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
                         <span>Besoin d'un renseignement légal ?</span>
                     </div>
-                    <p class="font-body text-sm text-primary-deep/70 leading-relaxed">Notre direction reste à votre écoute pour toute demande statutaire ou convention d'entreprise.</p>
+                    <p class="font-body text-sm text-primary-deep/80 leading-relaxed">Notre direction reste à votre écoute pour toute demande statutaire ou convention d'entreprise.</p>
                     <div class="flex flex-col gap-1 font-body text-sm font-bold mt-1">
                         <a href="tel:{{ $etab->telephoneLien() }}" class="text-coral hover:underline inline-flex items-center gap-1.5">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
@@ -131,7 +131,7 @@ $docs = [
             </div>
             <div class="flex flex-col">
                 <span class="font-display text-base text-primary-deep">{{ $badge['titre'] }}</span>
-                <span class="font-body text-sm text-primary-deep/70">{{ $badge['texte'] }}</span>
+                <span class="font-body text-sm text-primary-deep/80">{{ $badge['texte'] }}</span>
             </div>
         </div>
         @endforeach

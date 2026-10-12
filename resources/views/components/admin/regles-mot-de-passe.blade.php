@@ -10,7 +10,7 @@
         ['test' => '/[^A-Za-z0-9]/.test(mdp)', 'texte' => 'Au moins un symbole (! ? @ # % …)'],
         ['test' => 'mdp.length > 0 && mdp === confirmation', 'texte' => 'Confirmation identique'],
     ] as $regle)
-        <li class="flex items-center gap-1.5 transition-colors" :class="{{ $regle['test'] }} ? 'text-primary font-bold' : 'text-primary-deep/50'">
+        <li class="flex items-center gap-1.5 transition-colors" :class="{{ $regle['test'] }} ? 'text-primary font-bold' : 'text-primary-deep/75'">
             <svg x-show="{{ $regle['test'] }}" class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
             <svg x-show="!({{ $regle['test'] }})" class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/></svg>
             {{ $regle['texte'] }}

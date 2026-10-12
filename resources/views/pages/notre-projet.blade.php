@@ -78,7 +78,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Fondations &amp; valeurs</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Quatre piliers bienveillants pour semer la confiance</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Un cadre sécurisant et stimulant où les besoins du tout-petit sont écoutés avec respect.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Un cadre sécurisant et stimulant où les besoins du tout-petit sont écoutés avec respect.</p>
         </div>
 
         <div class="flex flex-col gap-16 mt-14">
@@ -87,25 +87,25 @@
                     'n' => '01', 'titre' => 'Éveil naturel & matières vivantes',
                     'texte' => "Nous encourageons l'expérience sensorielle directe avec la nature : jouets en bois non traité, nattes de liège, coussins en lin et laine bio. Loin des écrans, l'enfant apprend à savourer la texture du réel.",
                     'tags' => ['Bois brut labellisé PEFC', 'Textiles naturels', 'Exploration tactile'],
-                    'img' => 'salle-de-jeux.jpg', 'alt' => 'Éveil naturel et motricité libre', 'inverse' => false, 'couleur' => 'text-primary',
+                    'img' => 'salle-de-jeux.webp', 'alt' => 'Éveil naturel et motricité libre', 'inverse' => false, 'couleur' => 'text-primary',
                 ],
                 [
                     'n' => '02', 'titre' => 'Éducation bienveillante & motricité libre',
                     'texte' => "Inspirée par la pédagogie d'Emmi Pikler et Montessori, notre équipe pratique l'écoute active sans jugement. L'enfant conquiert ses mouvements par lui-même, chaque petite victoire renforce son estime.",
                     'tags' => ['Pédagogie Pikler', 'Sans transat coercitif', 'Sécurité affective'],
-                    'img' => 'jeux-jouets.jpg', 'alt' => 'Motricité libre et jeux', 'inverse' => true, 'couleur' => 'text-coral',
+                    'img' => 'jeux-jouets.webp', 'alt' => 'Motricité libre et jeux', 'inverse' => true, 'couleur' => 'text-coral',
                 ],
                 [
                     'n' => '03', 'titre' => 'Communauté engagée & co-éducation',
                     'texte' => "Les parents sont les premiers éducateurs de leur enfant. Nous établissons un dialogue de confiance : échanges au dépôt et à la sortie, ateliers partagés et cahier de transmission détaillé.",
                     'tags' => ['Échanges quotidiens', 'Transmissions détaillées', 'Transparence totale'],
-                    'img' => 'communaute.jpg', 'alt' => 'Communauté et co-éducation', 'inverse' => false, 'couleur' => 'text-primary-deep',
+                    'img' => 'communaute.webp', 'alt' => 'Communauté et co-éducation', 'inverse' => false, 'couleur' => 'text-primary-deep',
                 ],
                 [
                     'n' => '04', 'titre' => 'Développement durable au quotidien',
                     'texte' => "De l'assiette à la couche, tout est pensé pour la santé du bébé et la sauvegarde de son environnement : repas faits maison et de saison, couches écologiques, zéro plastique et nettoyage sans détergent irritant.",
                     'tags' => ['Repas faits maison', 'Couches éco-certifiées', 'Zéro perturbateur'],
-                    'img' => 'jardin.jpg', 'alt' => 'Engagement écoresponsable et jardin', 'inverse' => true, 'couleur' => 'text-primary',
+                    'img' => 'jardin.webp', 'alt' => 'Engagement écoresponsable et jardin', 'inverse' => true, 'couleur' => 'text-primary',
                 ],
             ] as $pilier)
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -122,11 +122,11 @@
                 <div class="lg:col-span-6 relative flex justify-center {{ $pilier['inverse'] ? 'lg:order-1' : '' }}">
                     @if ($pilier['img'])
                     <div class="w-full max-w-[460px] aspect-[4/3] rounded-t-[100px] rounded-b-3xl overflow-hidden shadow-xl">
-                        <img src="{{ asset('images/' . $pilier['img']) }}" alt="{{ $pilier['alt'] }}" class="w-full h-full object-cover">
+                        <img loading="lazy" decoding="async" src="{{ asset('images/' . $pilier['img']) }}" alt="{{ $pilier['alt'] }}" class="w-full h-full object-cover">
                     </div>
                     @else
                     <div class="w-full max-w-[460px] aspect-[4/3] rounded-t-[100px] rounded-b-3xl overflow-hidden shadow-xl bg-peach/60 flex items-center justify-center">
-                        <span class="font-body text-primary-deep/50 font-semibold text-center px-6">[PHOTO à venir : {{ $pilier['alt'] }}]</span>
+                        <span class="font-body text-primary-deep/75 font-semibold text-center px-6">[PHOTO à venir : {{ $pilier['alt'] }}]</span>
                     </div>
                     @endif
                 </div>
@@ -145,7 +145,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-coral font-extrabold px-4 py-1 rounded-full bg-peach/60 shadow-sm">Au quotidien</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Une approche attentive à chaque souffle d'enfance</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Six dimensions orchestrées pour accompagner l'épanouissement de chaque enfant.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Six dimensions orchestrées pour accompagner l'épanouissement de chaque enfant.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
@@ -174,7 +174,7 @@
                     @endif
                 </div>
                 <h3 class="font-display text-lg text-primary-deep">{{ $carte['titre'] }}</h3>
-                <p class="font-body text-sm text-primary-deep/70">{{ $carte['texte'] }}</p>
+                <p class="font-body text-sm text-primary-deep/80">{{ $carte['texte'] }}</p>
             </div>
             @endforeach
         </div>
@@ -190,7 +190,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Impact positif</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Prendre soin de leurs premières années, préserver leur planète</h2>
-            <p class="font-body text-primary-deep/70 mt-2">La santé des bébés est indissociable de la santé de leur environnement.</p>
+            <p class="font-body text-primary-deep/80 mt-2">La santé des bébés est indissociable de la santé de leur environnement.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
@@ -214,7 +214,7 @@
                 </div>
                 <div class="flex flex-col gap-1.5">
                     <h3 class="font-display text-lg text-primary-deep">{{ $tuile['titre'] }}</h3>
-                    <p class="font-body text-sm text-primary-deep/70">{{ $tuile['texte'] }}</p>
+                    <p class="font-body text-sm text-primary-deep/80">{{ $tuile['texte'] }}</p>
                 </div>
             </div>
             @endforeach
@@ -230,7 +230,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Visite guidée</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Un cocon lumineux conçu comme une maison chaleureuse</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Chaque pièce est agencée à hauteur d'enfant pour favoriser l'autonomie sereine.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Chaque pièce est agencée à hauteur d'enfant pour favoriser l'autonomie sereine.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-5 mt-12">
@@ -242,7 +242,7 @@
                 </div>
                 <div class="p-6 flex flex-col gap-1">
                     <h3 class="font-display text-lg text-primary-deep">Grande salle d'éveil &amp; motricité</h3>
-                    <p class="font-body text-sm text-primary-deep/70">Baignée de lumière naturelle. Un espace décloisonné où les tout-petits explorent structures en bois et jouets libres.</p>
+                    <p class="font-body text-sm text-primary-deep/80">Baignée de lumière naturelle. Un espace décloisonné où les tout-petits explorent structures en bois et jouets libres.</p>
                 </div>
             </div>
             {{-- Snoezelen --}}
@@ -253,7 +253,7 @@
                 </div>
                 <div class="p-6 flex flex-col gap-1">
                     <h3 class="font-display text-lg text-primary-deep">Le coin sensoriel Snoezelen</h3>
-                    <p class="font-body text-sm text-primary-deep/70">Lumières tièdes, nids de laine et ambiances sonores douces pour relâcher les émotions.</p>
+                    <p class="font-body text-sm text-primary-deep/80">Lumières tièdes, nids de laine et ambiances sonores douces pour relâcher les émotions.</p>
                 </div>
             </div>
             {{-- Repas --}}
@@ -264,7 +264,7 @@
                 </div>
                 <div class="p-6 flex flex-col gap-1">
                     <h3 class="font-display text-lg text-primary-deep">L'espace repas &amp; découverte gustative</h3>
-                    <p class="font-body text-sm text-primary-deep/70">Mobilier miniature en bois. Les repas deviennent un moment de plaisir et d'autonomie à la cuillère.</p>
+                    <p class="font-body text-sm text-primary-deep/80">Mobilier miniature en bois. Les repas deviennent un moment de plaisir et d'autonomie à la cuillère.</p>
                 </div>
             </div>
             {{-- Dortoir --}}
@@ -275,7 +275,7 @@
                 </div>
                 <div class="p-6 flex flex-col gap-1">
                     <h3 class="font-display text-lg text-primary-deep">Le dortoir aux berceaux naturels</h3>
-                    <p class="font-body text-sm text-primary-deep/70">Lits en bois brut, linge en coton bio, pénombre apaisante pour un repos régénérant.</p>
+                    <p class="font-body text-sm text-primary-deep/80">Lits en bois brut, linge en coton bio, pénombre apaisante pour un repos régénérant.</p>
                 </div>
             </div>
             {{-- Coin nature --}}
@@ -287,7 +287,7 @@
                     <div class="flex flex-col gap-2">
                         <span class="font-body text-xs uppercase text-primary font-extrabold">Végétalisation</span>
                         <h3 class="font-display text-lg text-primary-deep">Le coin nature &amp; mini-potager</h3>
-                        <p class="font-body text-sm text-primary-deep/70">Plantes suspendues, bacs d'herbes aromatiques à hauteur de mains pour découvrir les senteurs.</p>
+                        <p class="font-body text-sm text-primary-deep/80">Plantes suspendues, bacs d'herbes aromatiques à hauteur de mains pour découvrir les senteurs.</p>
                     </div>
                     <div class="mt-4 pt-3 inline-flex items-center gap-2 text-primary font-body text-sm font-bold">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
@@ -306,7 +306,7 @@
     <x-confetti shape="fleur" class="bottom-14 right-[15%] w-6 h-6 text-white/70 animate-float" />
 
     <div class="max-w-[860px] mx-auto px-6 text-center flex flex-col items-center gap-4 relative z-10">
-        <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/20 font-body text-xs uppercase tracking-widest font-extrabold">Une place privilégiée</span>
+        <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-primary-deep/25 font-body text-xs uppercase tracking-widest font-extrabold">Une place privilégiée</span>
         <h2 class="font-display text-3xl md:text-4xl">Venez découvrir notre jardin</h2>
         <p class="font-body text-white/90 max-w-2xl">
             Rencontrez notre équipe pédagogique lors d'une visite sensorielle privée ou réservez dès maintenant l'une des places disponibles pour votre enfant.

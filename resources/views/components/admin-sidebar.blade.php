@@ -5,7 +5,7 @@
 <aside class="fixed left-0 top-0 h-full w-[240px] bg-white z-50 flex flex-col justify-between p-4 shadow-sm">
     <div class="flex flex-col gap-6">
         <div class="flex items-center gap-2 px-1 pt-1">
-            <img src="{{ asset('images/logo.png') }}" alt="Le Jardin de Régina" class="h-9 w-auto object-contain">
+            <img src="{{ asset('images/logo.webp') }}" width="375" height="192" alt="Le Jardin de Régina" class="h-9 w-auto object-contain">
         </div>
 
         <div class="bg-mint/50 rounded-2xl px-4 py-3 flex items-center gap-2">
@@ -26,7 +26,7 @@
                 ['id' => 'messages', 'label' => 'Messages', 'icon' => 'chat', 'href' => route('admin.messages'), 'badge' => $aTraiter['messages'], 'quoi' => 'message(s) non lu(s)'],
                 ['id' => 'parametres', 'label' => 'Paramètres', 'icon' => 'gear', 'href' => route('admin.parametres'), 'badge' => null],
             ] as $item)
-            <a href="{{ $item['href'] }}" class="flex items-center justify-between px-4 py-2.5 rounded-2xl transition-all {{ $item['id'] === $actif ? 'bg-primary text-white shadow-sm' : 'text-primary-deep/70 hover:bg-mint/40 hover:text-primary-deep' }}">
+            <a href="{{ $item['href'] }}" class="flex items-center justify-between px-4 py-2.5 rounded-2xl transition-all {{ $item['id'] === $actif ? 'bg-primary text-white shadow-sm' : 'text-primary-deep/80 hover:bg-mint/40 hover:text-primary-deep' }}">
                 <span class="flex items-center gap-2.5">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         @if ($item['icon'] === 'grid')
@@ -62,7 +62,7 @@
         </div>
         <div class="flex flex-col min-w-0 flex-1">
             <span class="font-body text-sm font-bold text-primary-deep truncate">{{ auth()->user()?->name ?: 'Direction' }}</span>
-            <span class="font-body text-xs text-primary-deep/50 truncate">Compte administrateur</span>
+            <span class="font-body text-xs text-primary-deep/75 truncate">Compte administrateur</span>
         </div>
         <form method="POST" action="{{ route('admin.logout') }}">
             @csrf

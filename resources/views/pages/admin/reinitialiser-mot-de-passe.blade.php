@@ -4,7 +4,7 @@
 @section('titre_page', 'Choisir un nouveau mot de passe')
 
 @section('content')
-    <p class="font-body text-sm text-primary-deep/70 mb-5">
+    <p class="font-body text-sm text-primary-deep/80 mb-5">
         Compte : <strong class="text-primary-deep">{{ $email }}</strong>
     </p>
 
@@ -26,7 +26,7 @@
             <input id="password_confirmation" :type="voir ? 'text' : 'password'" name="password_confirmation" x-model="confirmation" required autocomplete="new-password" class="{{ $champ }}">
         </div>
 
-        <label class="flex items-center gap-2 font-body text-sm text-primary-deep/70 cursor-pointer select-none w-fit">
+        <label class="flex items-center gap-2 font-body text-sm text-primary-deep/80 cursor-pointer select-none w-fit">
             <input type="checkbox" x-model="voir" class="w-4 h-4 accent-primary">
             Afficher les mots de passe
         </label>
@@ -39,7 +39,7 @@
         </button>
     </form>
 
-    <p class="font-body text-xs text-primary-deep/50 mt-5">
+    <p class="font-body text-xs text-primary-deep/75 mt-5">
         Une fois le mot de passe changé, tous les autres appareils connectés à l'espace admin seront déconnectés.
     </p>
 @endsection

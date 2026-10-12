@@ -47,7 +47,7 @@ class SuiviVisites
             return false;
         }
 
-        if ($request->is('admin', 'admin/*', 'up', 'storage/*', 'livewire*')) {
+        if ($request->is('admin', 'admin/*', 'up', 'storage/*')) {
             return false;
         }
 

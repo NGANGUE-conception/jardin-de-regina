@@ -10,7 +10,7 @@
 <tr><td align="center">
 <table role="presentation" width="100%" style="max-width:560px;background-color:#ffffff;border-radius:24px;overflow:hidden;">
     <tr>
-        <td style="background-color:#217B79;padding:28px 32px;text-align:center;">
+        <td style="background-color:#1C6E6C;padding:28px 32px;text-align:center;">
             <span style="color:#ffffff;font-size:20px;font-weight:700;">🌿 Le Jardin de Régina</span>
         </td>
     </tr>

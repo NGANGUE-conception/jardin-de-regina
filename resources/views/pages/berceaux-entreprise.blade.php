@@ -10,7 +10,7 @@
 {{-- SECTION 1 : HERO --}}
 <section class="relative bg-cream pt-10 pb-16 overflow-hidden">
     <div class="absolute -top-24 -left-20 w-[500px] h-[500px] rounded-full bg-mint blur-3xl pointer-events-none -z-10"></div>
-    <div class="absolute top-1/3 -right-24 w-[420px] h-[420px] rounded-full bg-peach blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute top-40 -right-24 w-[420px] h-[420px] rounded-full bg-peach blur-3xl pointer-events-none -z-10"></div>
 
     <x-confetti shape="etoile" class="top-20 left-[6%] w-8 h-8 text-sun animate-float" />
     <x-confetti shape="squiggle" class="bottom-10 left-[40%] w-9 h-9 text-primary animate-float-slower" />
@@ -75,7 +75,7 @@
                     </div>
                     <div class="flex flex-col min-w-0">
                         <span class="font-body text-sm font-bold text-primary-deep">12 places exclusives</span>
-                        <span class="font-body text-xs text-primary-deep/70">Dès 10 semaines jusqu'à 3 ans et plus</span>
+                        <span class="font-body text-xs text-primary-deep/80">Dès 10 semaines jusqu'à 3 ans et plus</span>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Avantages entreprise &amp; RH</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Un levier de performance et d'attractivité pour votre organisation</h2>
-            <p class="font-body text-primary-deep/70 mt-2">La réservation de berceaux transforme le bien-être de vos équipes en un atout durable et mesurable.</p>
+            <p class="font-body text-primary-deep/80 mt-2">La réservation de berceaux transforme le bien-être de vos équipes en un atout durable et mesurable.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
@@ -103,7 +103,7 @@
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 2.5 5 6 5c2 0 3.5 1.5 4 2.5.5-1 2-2.5 4-2.5 3.5 0 5.5 3.5 3.5 7.5C19 16.65 12 21 12 21z"/></svg>
                 </div>
                 <h3 class="font-display text-xl text-primary-deep">Fidéliser et attirer les meilleurs talents</h3>
-                <p class="font-body text-sm text-primary-deep/70">Facilitez le retour serein de congé maternité et paternité. Un mode de garde de qualité est un argument décisif pour les jeunes parents.</p>
+                <p class="font-body text-sm text-primary-deep/80">Facilitez le retour serein de congé maternité et paternité. Un mode de garde de qualité est un argument décisif pour les jeunes parents.</p>
                 <div class="mt-1 flex items-center gap-2 text-primary font-body text-sm font-bold">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                     <span>Reprises d'activité facilitées</span>
@@ -115,7 +115,7 @@
                     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 3"/></svg>
                 </div>
                 <h3 class="font-display text-xl text-primary-deep">Réduire l'absentéisme et le stress</h3>
-                <p class="font-body text-sm text-primary-deep/70">Fini les désistements de dernière minute. Des horaires étendus allègent la charge mentale des parents actifs.</p>
+                <p class="font-body text-sm text-primary-deep/80">Fini les désistements de dernière minute. Des horaires étendus allègent la charge mentale des parents actifs.</p>
                 <div class="mt-1 flex items-center gap-2 text-coral font-body text-sm font-bold">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
                     <span>Sérénité retrouvée</span>
@@ -128,9 +128,9 @@
                 </div>
                 <div class="flex items-center gap-2 flex-wrap">
                     <h3 class="font-display text-xl text-primary-deep">Avantages fiscaux employeur</h3>
-                    <span class="px-2 py-0.5 rounded bg-cream text-primary-deep/60 font-body text-[10px] uppercase tracking-wide font-bold">à confirmer</span>
+                    <span class="px-2 py-0.5 rounded bg-cream text-primary-deep/75 font-body text-[10px] uppercase tracking-wide font-bold">à confirmer</span>
                 </div>
-                <p class="font-body text-sm text-primary-deep/70">Le Crédit d'Impôt Famille (CIF) et la déductibilité de l'Impôt sur les Sociétés (IS) peuvent réduire significativement le coût net pour l'entreprise.</p>
+                <p class="font-body text-sm text-primary-deep/80">Le Crédit d'Impôt Famille (CIF) et la déductibilité de l'Impôt sur les Sociétés (IS) peuvent réduire significativement le coût net pour l'entreprise.</p>
                 <div class="mt-1 flex items-center gap-2 text-primary-deep font-body text-sm font-bold">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-8M21 7v6"/></svg>
                     <span>Simulation personnalisée sur demande</span>
@@ -142,7 +142,7 @@
                     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
                 </div>
                 <h3 class="font-display text-xl text-primary-deep">Politique RSE concrète et locale</h3>
-                <p class="font-body text-sm text-primary-deep/70">Soutenez un lieu écoresponsable : repas faits maison et de saison, jouets durables en bois brut, empreinte environnementale réduite.</p>
+                <p class="font-body text-sm text-primary-deep/80">Soutenez un lieu écoresponsable : repas faits maison et de saison, jouets durables en bois brut, empreinte environnementale réduite.</p>
                 <div class="mt-1 flex items-center gap-2 text-primary font-body text-sm font-bold">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
                     <span>Une démarche valorisable</span>
@@ -161,7 +161,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Bénéfices collaborateurs</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Un cocon bienveillant pour la sérénité de vos équipes</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Ce que vous apportez concrètement au quotidien des jeunes parents.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Ce que vous apportez concrètement au quotidien des jeunes parents.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
@@ -183,8 +183,8 @@
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
                     @endif
                 </div>
-                <h4 class="font-display text-lg text-primary-deep">{{ $tuile['titre'] }}</h4>
-                <p class="font-body text-sm text-primary-deep/70">{{ $tuile['texte'] }}</p>
+                <h3 class="font-display text-lg text-primary-deep">{{ $tuile['titre'] }}</h3>
+                <p class="font-body text-sm text-primary-deep/80">{{ $tuile['texte'] }}</p>
                 <span class="mt-auto self-start px-3 py-1 rounded-full bg-cream font-body text-[11px] {{ $tuile['col'] }} font-bold">{{ $tuile['tag'] }}</span>
             </div>
             @endforeach
@@ -201,7 +201,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Parcours simple &amp; fluide</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Comment réserver un ou plusieurs berceaux ?</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Un accompagnement personnalisé, de la prise de contact jusqu'à l'accueil des enfants.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Un accompagnement personnalisé, de la prise de contact jusqu'à l'accueil des enfants.</p>
         </div>
 
         <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 relative">
@@ -215,7 +215,7 @@
             <div class="relative z-10 flex flex-col items-center text-center bg-white rounded-3xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
                 <div class="w-14 h-14 rounded-full bg-coral text-white font-display text-xl flex items-center justify-center shadow-md mb-3 ring-8 ring-mint">{{ $etape['n'] }}</div>
                 <h3 class="font-display text-lg text-primary-deep mb-1">{{ $etape['titre'] }}</h3>
-                <p class="font-body text-sm text-primary-deep/70">{{ $etape['texte'] }}</p>
+                <p class="font-body text-sm text-primary-deep/80">{{ $etape['texte'] }}</p>
             </div>
             @endforeach
         </div>
@@ -271,7 +271,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Contact entreprises &amp; partenariats</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Simulez votre projet de berceaux d'entreprise</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Remplissez ce formulaire confidentiel pour obtenir une étude et un devis personnalisé.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Remplissez ce formulaire confidentiel pour obtenir une étude et un devis personnalisé.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mt-12">
@@ -283,7 +283,7 @@
                         <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                     </div>
                     <h3 class="font-display text-2xl text-primary-deep">Merci, votre demande est bien envoyée !</h3>
-                    <p class="font-body text-primary-deep/70 max-w-sm">{{ session('success') }}</p>
+                    <p class="font-body text-primary-deep/80 max-w-sm">{{ session('success') }}</p>
                 </div>
                 @else
                 <x-formulaire.resume-erreurs :champs="['company_name' => 'company_name', 'sector' => 'sector', 'employees_count' => 'employees_count', 'berceaux_count' => 'berceaux_count', 'contact_name' => 'contact_name', 'contact_role' => 'contact_role', 'contact_email' => 'contact_email', 'contact_tel' => 'contact_tel', 'message' => 'message', 'rgpd_consent' => 'devis-rgpd']" />
@@ -387,11 +387,11 @@
                     <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-coral font-body text-xs font-bold shadow-sm w-fit">
                         Réponse sous [délai à préciser]
                     </span>
-                    <p class="font-body text-sm text-primary-deep/70">Une question sur vos déductions fiscales ou les places disponibles ? Notre direction est directement joignable :</p>
+                    <p class="font-body text-sm text-primary-deep/80">Une question sur vos déductions fiscales ou les places disponibles ? Notre direction est directement joignable :</p>
                     <div class="flex flex-col gap-3 pt-1 font-body text-sm">
                         <div class="flex items-start gap-2">
                             <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-7.58 7-12A7 7 0 105 9c0 4.42 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>
-                            <div class="flex flex-col"><span class="font-bold text-primary-deep">Adresse</span><span class="text-primary-deep/70">{{ $etab->adresse() }}</span></div>
+                            <div class="flex flex-col"><span class="font-bold text-primary-deep">Adresse</span><span class="text-primary-deep/80">{{ $etab->adresse() }}</span></div>
                         </div>
                         <div class="flex items-start gap-2">
                             <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
@@ -403,7 +403,7 @@
                         </div>
                         <div class="flex items-start gap-2">
                             <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 3"/></svg>
-                            <div class="flex flex-col"><span class="font-bold text-primary-deep">Horaires d'accueil</span><span class="text-primary-deep/70">Lundi – vendredi, {{ $etab->horaires() }}</span></div>
+                            <div class="flex flex-col"><span class="font-bold text-primary-deep">Horaires d'accueil</span><span class="text-primary-deep/80">Lundi – vendredi, {{ $etab->horaires() }}</span></div>
                         </div>
                     </div>
                 </div>
@@ -414,7 +414,7 @@
                     </div>
                     <div class="flex flex-col">
                         <span class="font-display text-base text-primary-deep">Convention employeur</span>
-                        <span class="font-body text-xs text-primary-deep/70 leading-tight">Mise en place simple, sans complexité administrative pour vos équipes RH.</span>
+                        <span class="font-body text-xs text-primary-deep/80 leading-tight">Mise en place simple, sans complexité administrative pour vos équipes RH.</span>
                     </div>
                 </div>
             </div>
@@ -434,7 +434,7 @@
             </div>
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm mt-4">Foire aux questions</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Questions fréquentes</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Tout ce qu'il faut savoir sur la mise en place de berceaux d'entreprise.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Tout ce qu'il faut savoir sur la mise en place de berceaux d'entreprise.</p>
         </div>
 
         <div class="mt-12 flex flex-col gap-4" x-data="{ open: 1 }">
@@ -469,7 +469,7 @@
             <x-confetti shape="etoile" class="top-6 left-[20%] w-7 h-7 text-white/70 animate-wiggle" />
 
             <div class="flex flex-col items-start gap-3 max-w-xl relative z-10">
-                <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/20 font-body text-xs uppercase tracking-widest font-extrabold">Engagement &amp; sérénité RH</span>
+                <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-primary-deep/25 font-body text-xs uppercase tracking-widest font-extrabold">Engagement &amp; sérénité RH</span>
                 <h2 class="font-display text-3xl md:text-4xl leading-tight">Prêt à accompagner vos collaborateurs parents ?</h2>
                 <p class="font-body text-white/90">Nos conseillers sont à votre écoute pour concevoir un accueil sur-mesure pour votre entreprise.</p>
             </div>
@@ -478,7 +478,7 @@
                     <span>Demander un devis</span>
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </a>
-                <a href="tel:{{ $etab->telephoneLien() }}" class="h-[54px] px-6 rounded-full bg-white/15 text-white font-body font-bold text-sm flex items-center gap-2 hover:bg-white/25 transition-all">
+                <a href="tel:{{ $etab->telephoneLien() }}" class="h-[54px] px-6 rounded-full bg-primary-deep/25 text-white font-body font-bold text-sm flex items-center gap-2 hover:bg-primary-deep/40 transition-all">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
                     <span>{{ $etab->telephone() }}</span>
                 </a>

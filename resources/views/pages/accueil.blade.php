@@ -117,17 +117,21 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
                         </div>
                         <div class="flex flex-col min-w-0">
                             <span class="font-display text-sm text-primary-deep font-semibold truncate">Cocon éco-labellisé</span>
-                            <span class="font-body text-xs text-primary-deep/70 truncate">Matériaux sains &amp; respect du rythme</span>
+                            <span class="font-body text-xs text-primary-deep/80 truncate">Matériaux sains &amp; respect du rythme</span>
                         </div>
                     </div>
 
                     {{-- Points de pagination --}}
-                    <div class="absolute top-5 left-0 right-0 flex justify-center gap-2">
+                    <div class="absolute top-3 left-0 right-0 flex justify-center">
                         <template x-for="(slide, index) in slides" :key="index">
-                            <button @click="active = index"
-                                    class="h-2.5 rounded-full transition-all"
-                                    :class="active === index ? 'bg-coral w-6' : 'bg-white/70 w-2.5'"
-                                    :aria-label="'Voir la photo ' + (index + 1)"></button>
+                            {{-- Zone cliquable de 24 px (confort au doigt), point visible plus petit --}}
+                            <button type="button" @click="active = index"
+                                    class="h-6 min-w-6 px-1 flex items-center justify-center"
+                                    :aria-label="'Voir la photo ' + (index + 1)"
+                                    :aria-current="active === index ? 'true' : 'false'">
+                                <span class="block h-2.5 rounded-full transition-all"
+                                      :class="active === index ? 'bg-coral w-6' : 'bg-white/70 w-2.5'"></span>
+                            </button>
                         </template>
                     </div>
                 </div>
@@ -159,7 +163,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Pourquoi nous choisir</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Un environnement pensé pour leur bien-être</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Des repères sereins et une attention personnalisée à chaque instant.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Des repères sereins et une attention personnalisée à chaque instant.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
@@ -182,7 +186,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
                     @endif
                 </div>
                 <h3 class="font-display text-xl text-primary-deep">{{ $carte['titre'] }}</h3>
-                <p class="font-body text-sm text-primary-deep/70">{{ $carte['texte'] }}</p>
+                <p class="font-body text-sm text-primary-deep/80">{{ $carte['texte'] }}</p>
             </div>
             @endforeach
         </div>
@@ -228,7 +232,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Le rythme</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Une journée au Jardin</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Pas d'horaires rigides, mais une trame rassurante ponctuée de repères doux.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Pas d'horaires rigides, mais une trame rassurante ponctuée de repères doux.</p>
         </div>
 
         <div class="mt-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 relative">
@@ -242,8 +246,8 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
             ] as $etape)
             <div class="bg-white rounded-3xl p-6 flex flex-col items-center text-center gap-2 shadow-sm relative z-10 hover:shadow-lg hover:-translate-y-1 transition-all">
                 <div class="w-12 h-12 rounded-full {{ $etape['bg'] }} text-white font-display text-lg flex items-center justify-center ring-8 ring-cream">{{ $etape['n'] }}</div>
-                <h4 class="font-display text-lg text-primary-deep mt-1">{{ $etape['titre'] }}</h4>
-                <p class="font-body text-xs text-primary-deep/70">{{ $etape['texte'] }}</p>
+                <h3 class="font-display text-lg text-primary-deep mt-1">{{ $etape['titre'] }}</h3>
+                <p class="font-body text-xs text-primary-deep/80">{{ $etape['texte'] }}</p>
             </div>
             @endforeach
         </div>
@@ -316,7 +320,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
             </div>
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm mt-4">Questions fréquentes</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Tout ce que vous souhaitez savoir</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Une question ? Voici les réponses les plus utiles pour préparer sereinement l'arrivée de votre tout-petit.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Une question ? Voici les réponses les plus utiles pour préparer sereinement l'arrivée de votre tout-petit.</p>
         </div>
 
         <div class="mt-12 flex flex-col gap-4" x-data="{ open: 1 }">
@@ -365,7 +369,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
                 </div>
                 <div>
                     <p class="font-display text-base text-primary-deep">Une autre question ?</p>
-                    <p class="font-body text-xs text-primary-deep/70">Notre équipe vous répond avec plaisir.</p>
+                    <p class="font-body text-xs text-primary-deep/80">Notre équipe vous répond avec plaisir.</p>
                 </div>
             </div>
             <a href="/contact" class="h-[44px] px-6 rounded-full bg-primary text-white font-body font-bold text-sm flex items-center gap-2 shadow-md hover:-translate-y-0.5 hover:opacity-90 transition-all whitespace-nowrap">

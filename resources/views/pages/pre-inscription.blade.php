@@ -161,7 +161,7 @@
                         <span class="font-body text-xs uppercase tracking-widest font-extrabold">Dossier d'accueil</span>
                     </div>
                     <h2 class="font-display text-2xl text-primary-deep mb-1">Informations concernant votre enfant</h2>
-                    <p class="font-body text-sm text-primary-deep/70 mb-6">Ces éléments nous permettent d'évaluer nos disponibilités et d'adapter le groupe d'âges.</p>
+                    <p class="font-body text-sm text-primary-deep/80 mb-6">Ces éléments nous permettent d'évaluer nos disponibilités et d'adapter le groupe d'âges.</p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div class="flex flex-col gap-1.5">
@@ -192,7 +192,7 @@
                         <div class="flex flex-col gap-1.5">
                             <div class="flex justify-between items-center">
                                 <label for="child-birthdate" class="font-body text-sm font-bold text-primary-deep">Date de naissance *</label>
-                                <span class="font-body text-xs text-primary-deep/60">ou terme prévu</span>
+                                <span class="font-body text-xs text-primary-deep/75">ou terme prévu</span>
                             </div>
                             <input id="child-birthdate" name="child_birthdate" value="{{ old('child_birthdate') }}" required type="date" class="h-[52px] px-5 rounded-full bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('child_birthdate') ring-2 ring-coral @enderror" @error('child_birthdate') aria-invalid="true" aria-describedby="child-birthdate-erreur" @enderror>
                             <x-formulaire.erreur champ="child_birthdate" id="child-birthdate" />
@@ -225,7 +225,7 @@
                                 </div>
                                 <div class="mt-3">
                                     <span class="font-body font-bold text-primary-deep block">{{ $opt['titre'] }}</span>
-                                    <span class="font-body text-sm text-primary-deep/70 block mt-1">{{ $opt['texte'] }}</span>
+                                    <span class="font-body text-sm text-primary-deep/80 block mt-1">{{ $opt['texte'] }}</span>
                                 </div>
                             </div>
                             @endforeach
@@ -237,7 +237,7 @@
                     <div id="jours-presence" tabindex="-1" class="flex flex-col gap-3 mt-6 scroll-mt-28 focus:outline-none">
                         <div class="flex items-center justify-between">
                             <label class="font-body text-sm font-bold text-primary-deep">Jours de présence souhaités *</label>
-                            <span class="font-body text-xs text-primary-deep/60">Sélectionnez au moins un jour (sauf accueil d'urgence)</span>
+                            <span class="font-body text-xs text-primary-deep/75">Sélectionnez au moins un jour (sauf accueil d'urgence)</span>
                         </div>
                         <div class="flex flex-wrap items-center gap-2">
                             <template x-for="d in days" :key="d"><input type="hidden" name="care_days[]" :value="d"></template>
@@ -261,12 +261,12 @@
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 6v12M6 12h12"/></svg>
                             </div>
                             <div class="flex flex-col">
-                                <span class="font-body font-bold text-primary-deep">Situation particulière, PAI ou besoins spécifiques</span>
-                                <span class="font-body text-sm text-primary-deep/70 mt-0.5">Allergies, handicap, suivi particulier. Notre équipe est formée à l'inclusion bienveillante.</span>
+                                <span id="special-needs-titre" class="font-body font-bold text-primary-deep">Situation particulière, PAI ou besoins spécifiques</span>
+                                <span id="special-needs-aide" class="font-body text-sm text-primary-deep/80 mt-0.5">Allergies, handicap, suivi particulier. Notre équipe est formée à l'inclusion bienveillante.</span>
                             </div>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer shrink-0">
-                            <input type="checkbox" name="special_needs" value="1" x-model="specialNeeds" class="sr-only peer">
+                            <input type="checkbox" name="special_needs" value="1" x-model="specialNeeds" aria-labelledby="special-needs-titre" aria-describedby="special-needs-aide" class="sr-only peer">
                             <div class="w-14 h-8 bg-white rounded-full peer peer-checked:bg-primary transition-all relative">
                                 <div class="absolute top-1 left-1 bg-white w-6 h-6 rounded-full shadow transition-transform peer-checked:translate-x-6" :class="specialNeeds ? 'translate-x-6' : ''"></div>
                             </div>
@@ -279,7 +279,7 @@
                     </div>
 
                     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">
-                        <div class="flex items-center gap-2 text-primary-deep/70 font-body text-sm">
+                        <div class="flex items-center gap-2 text-primary-deep/80 font-body text-sm">
                             <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
                             <span>Données strictement confidentielles &amp; conformes RGPD</span>
                         </div>
@@ -334,7 +334,7 @@
                             <x-formulaire.erreur champ="p1_tel" id="p1_tel" />
                         </div>
                         <div class="flex flex-col gap-1.5">
-                            <label for="p1_fixe" class="font-body text-sm font-bold text-primary-deep">Téléphone secondaire <span class="font-normal text-primary-deep/50">(facultatif)</span></label>
+                            <label for="p1_fixe" class="font-body text-sm font-bold text-primary-deep">Téléphone secondaire <span class="font-normal text-primary-deep/75">(facultatif)</span></label>
                             <input id="p1_fixe" name="p1_fixe" value="{{ old('p1_fixe') }}" type="tel" placeholder="01 43 ..." class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_fixe') ring-2 ring-coral @enderror" @error('p1_fixe') aria-invalid="true" aria-describedby="p1_fixe-erreur" @enderror>
                             <x-formulaire.erreur champ="p1_fixe" id="p1_fixe" />
                         </div>
@@ -349,7 +349,7 @@
                                 <a href="/berceaux-entreprise" class="inline-flex items-center gap-1 font-body text-primary text-xs bg-mint/50 px-2 py-0.5 rounded-full font-bold hover:bg-mint transition-colors">Réservation berceau entreprise</a>
                             </div>
                             <input id="p1_employeur" name="p1_employeur" value="{{ old('p1_employeur') }}" type="text" placeholder="Nom de l'entreprise ou structure" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_employeur') ring-2 ring-coral @enderror" @error('p1_employeur') aria-invalid="true" aria-describedby="p1_employeur-erreur" @enderror>
-                            <p class="font-body text-xs text-primary-deep/60">Votre employeur peut, dans certains cas, financer une partie de la place.</p>
+                            <p class="font-body text-xs text-primary-deep/75">Votre employeur peut, dans certains cas, financer une partie de la place.</p>
                             <x-formulaire.erreur champ="p1_employeur" id="p1_employeur" />
                         </div>
                         <div class="flex flex-col gap-1.5">
@@ -383,7 +383,7 @@
                                 </div>
                                 <div>
                                     <span class="font-display text-base text-primary-deep block">Ajouter un second parent / responsable légal</span>
-                                    <span class="font-body text-xs text-primary-deep/60">Recommandé pour faciliter le suivi et les autorisations</span>
+                                    <span class="font-body text-xs text-primary-deep/75">Recommandé pour faciliter le suivi et les autorisations</span>
                                 </div>
                             </div>
                             <svg class="w-5 h-5 text-primary transition-transform duration-200" :class="p2Open ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
@@ -439,9 +439,9 @@
                     <div class="mt-6">
                         <div class="flex items-center gap-2 mb-1">
                             <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 20l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-                            <label for="message_libre" class="font-display text-lg text-primary-deep">Un message pour notre équipe ? <span class="font-body text-sm text-primary-deep/60 font-normal">(facultatif)</span></label>
+                            <label for="message_libre" class="font-display text-lg text-primary-deep">Un message pour notre équipe ? <span class="font-body text-sm text-primary-deep/75 font-normal">(facultatif)</span></label>
                         </div>
-                        <p class="font-body text-sm text-primary-deep/70 mb-2">Rythme particulier, allaitement, allergies, adaptation progressive, ou toute autre attention utile.</p>
+                        <p class="font-body text-sm text-primary-deep/80 mb-2">Rythme particulier, allaitement, allergies, adaptation progressive, ou toute autre attention utile.</p>
                         <textarea id="message_libre" name="message" rows="4" placeholder="Partagez les détails importants pour accueillir votre enfant en douceur..." class="w-full p-4 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-y min-h-[110px] @error('message') ring-2 ring-coral @enderror" @error('message') aria-invalid="true" aria-describedby="message_libre-erreur" @enderror>{{ old('message') }}</textarea>
                         <x-formulaire.erreur champ="message" id="message_libre" />
                     </div>
@@ -455,7 +455,7 @@
                         <x-formulaire.erreur champ="rgpd_consent" id="pi-rgpd" />
                         <label class="flex items-start gap-3 cursor-pointer">
                             <input type="checkbox" name="newsletter_opt_in" value="1" {{ old('newsletter_opt_in') ? 'checked' : '' }} class="w-5 h-5 mt-1 rounded text-primary accent-primary shrink-0">
-                            <span class="font-body text-sm text-primary-deep/70 leading-snug">Je souhaite recevoir les actualités du Jardin de Régina (ateliers parents-enfants, conseils éveil &amp; nature).</span>
+                            <span class="font-body text-sm text-primary-deep/80 leading-snug">Je souhaite recevoir les actualités du Jardin de Régina (ateliers parents-enfants, conseils éveil &amp; nature).</span>
                         </label>
                     </div>
 
@@ -482,7 +482,7 @@
                 </div>
                 <div>
                     <h3 class="font-display text-lg text-primary-deep">Que se passe-t-il après l'envoi de votre demande ?</h3>
-                    <p class="font-body text-xs text-primary-deep/60">Un accompagnement transparent, sans mauvaise surprise</p>
+                    <p class="font-body text-xs text-primary-deep/75">Un accompagnement transparent, sans mauvaise surprise</p>
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -494,7 +494,7 @@
                 <div class="bg-white/80 rounded-2xl p-5 flex flex-col gap-1.5 shadow-sm">
                     <span class="w-7 h-7 rounded-full bg-coral text-white font-body text-sm font-bold flex items-center justify-center">{{ $step['n'] }}</span>
                     <span class="font-display text-base text-primary-deep mt-1">{{ $step['titre'] }}</span>
-                    <p class="font-body text-xs text-primary-deep/70">{{ $step['texte'] }}</p>
+                    <p class="font-body text-xs text-primary-deep/80">{{ $step['texte'] }}</p>
                 </div>
                 @endforeach
             </div>
@@ -503,7 +503,7 @@
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                     <span>Pré-inscription 100% gratuite et sans engagement</span>
                 </div>
-                <div class="inline-flex items-center gap-2 text-primary-deep/70 font-body text-sm">
+                <div class="inline-flex items-center gap-2 text-primary-deep/80 font-body text-sm">
                     <svg class="w-4 h-4 text-coral" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
                     <span>Besoin d'aide ? {{ $etab->telephone() }}</span>
                 </div>

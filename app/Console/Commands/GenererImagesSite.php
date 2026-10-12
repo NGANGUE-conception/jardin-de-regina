@@ -44,8 +44,14 @@ class GenererImagesSite extends Command
     /** Les pieds de la fillette s'arrêtent à cette ligne ; en dessous commence la colline du logo, coupée par le cadrage. */
     private const BAS_SILHOUETTE_Y = 301;
 
-    /** Côté le plus long des photos WebP (largement suffisant pour l'affichage du site). */
-    private const TAILLE_MAX_PHOTO = 1600;
+    /** Côté le plus long des photos WebP : les photos s'affichent sur 600 px maximum, 1 200 px restent nets sur les écrans haute définition. */
+    private const TAILLE_MAX_PHOTO = 1200;
+
+    /** Qualité WebP des photos (75 : différence invisible à l'œil, fichiers nettement plus légers). */
+    private const QUALITE_PHOTO = 75;
+
+    /** Hauteur du logo WebP : 3 fois sa plus grande hauteur d'affichage (64 px), pour rester net sur tous les écrans. */
+    private const HAUTEUR_LOGO_WEBP = 192;
 
     public function handle(): int
     {
@@ -54,6 +60,7 @@ class GenererImagesSite extends Command
         $this->genererIcones($logo);
         $this->genererImagePartage($logo);
         $this->genererPhotosWebp();
+        $this->genererLogoWebp($logo);
 
         $this->newLine();
         $this->info('Images du site générées.');
@@ -151,7 +158,7 @@ class GenererImagesSite extends Command
             }
 
             $destination = preg_replace('/\.jpg$/', '.webp', $chemin);
-            imagewebp($photo, $destination, 80);
+            imagewebp($photo, $destination, self::QUALITE_PHOTO);
 
             $this->ligneFichier(sprintf(
                 'images/%s  %d Ko → %d Ko%s',
@@ -161,6 +168,25 @@ class GenererImagesSite extends Command
                 $ratio < 1 ? sprintf(' (redimensionnée en %d × %d)', imagesx($photo), imagesy($photo)) : '',
             ));
         }
+    }
+
+    /**
+     * Logo affiché sur les pages : WebP, recadré au plus juste et réduit à sa taille d'affichage
+     * (le fichier logo.png d'origine, 670 px de large, reste utilisé pour Google et les emails).
+     */
+    private function genererLogoWebp(GdImage $logo): void
+    {
+        $this->line('<comment>Logo WebP</comment>');
+
+        $recadre = $this->recadrer($logo, $this->boiteVisible($logo, 0));
+        $hauteur = self::HAUTEUR_LOGO_WEBP;
+        $largeur = (int) round(imagesx($recadre) * $hauteur / imagesy($recadre));
+        $reduit = $this->toileTransparente($largeur, $hauteur);
+        imagecopyresampled($reduit, $recadre, 0, 0, 0, 0, $largeur, $hauteur, imagesx($recadre), imagesy($recadre));
+        imagesavealpha($reduit, true);
+
+        imagewebp($reduit, public_path('images/logo.webp'), 90);
+        $this->ligneFichier(sprintf('images/logo.webp  %d × %d, %d Ko (logo.png : %d Ko)', $largeur, $hauteur, round(filesize(public_path('images/logo.webp')) / 1024), round(filesize(public_path('images/logo.png')) / 1024)));
     }
 
     /* ---------------------------------------------------------------- Outils */

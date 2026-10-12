@@ -39,7 +39,7 @@
                 nouvelle: 'bg-primary text-white',
                 attente: 'bg-peach text-coral',
                 acceptee: 'bg-mint text-primary',
-                refusee: 'bg-cream text-primary-deep/60 border border-primary-deep/20',
+                refusee: 'bg-cream text-primary-deep/75 border border-primary-deep/20',
             }[statut];
         },
         badgeLabel(statut) {
@@ -61,7 +61,7 @@
                         <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold">Familles</span>
                     </div>
                     <h1 class="font-display text-3xl text-primary-deep">Pré-inscriptions</h1>
-                    <p class="font-body text-primary-deep/70 mt-1">Retrouvez ici l'ensemble des dossiers de pré-inscription déposés depuis le site.</p>
+                    <p class="font-body text-primary-deep/80 mt-1">Retrouvez ici l'ensemble des dossiers de pré-inscription déposés depuis le site.</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-3 shrink-0">
                     <a href="{{ route('admin.pre-inscriptions.export') }}" class="h-[48px] px-6 rounded-full bg-white text-primary font-body font-bold text-sm shadow-sm hover:bg-mint/30 transition-all flex items-center gap-2">
@@ -114,7 +114,7 @@
                                 <span>Urgences</span><span class="px-1.5 rounded-full bg-peach text-coral text-xs font-bold" x-text="compteUrgences"></span>
                             </button>
                         </div>
-                        <span class="font-body text-sm text-primary-deep/50" x-text="filtres.length + ' résultat(s) affiché(s)'"></span>
+                        <span class="font-body text-sm text-primary-deep/75" x-text="filtres.length + ' résultat(s) affiché(s)'"></span>
                     </div>
                 </div>
 
@@ -122,7 +122,7 @@
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse min-w-[880px]">
                             <thead>
-                                <tr class="bg-cream text-primary-deep/60 font-body text-xs uppercase tracking-wider">
+                                <tr class="bg-cream text-primary-deep/75 font-body text-xs uppercase tracking-wider">
                                     <th class="py-4 px-6">Dossier / Date</th>
                                     <th class="py-4 px-6">Enfant</th>
                                     <th class="py-4 px-6">Parent & contact</th>
@@ -137,20 +137,20 @@
                                     <tr class="hover:bg-mint/20 transition-colors cursor-pointer" @click="dossierOuvertId = d.id" :class="dossierOuvertId === d.id ? 'bg-mint/30' : ''">
                                         <td class="py-4 px-6">
                                             <div class="font-bold text-primary" x-text="d.id"></div>
-                                            <div class="font-body text-xs text-primary-deep/50 mt-0.5" x-text="d.dateLabel"></div>
+                                            <div class="font-body text-xs text-primary-deep/75 mt-0.5" x-text="d.dateLabel"></div>
                                         </td>
                                         <td class="py-4 px-6">
                                             <div class="flex items-center gap-3">
                                                 <div class="w-9 h-9 rounded-full bg-mint flex items-center justify-center font-bold text-primary text-xs shrink-0" x-text="d.enfant.initiales"></div>
                                                 <div>
                                                     <div class="font-bold text-primary-deep" x-text="d.enfant.nom"></div>
-                                                    <div class="text-primary-deep/50 text-xs mt-0.5" x-text="d.enfant.age + ' · ' + d.enfant.sexe"></div>
+                                                    <div class="text-primary-deep/75 text-xs mt-0.5" x-text="d.enfant.age + ' · ' + d.enfant.sexe"></div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="py-4 px-6">
                                             <div class="font-semibold text-primary-deep" x-text="d.parent.nom"></div>
-                                            <div class="text-primary-deep/50 text-xs mt-0.5 flex items-center gap-1">
+                                            <div class="text-primary-deep/75 text-xs mt-0.5 flex items-center gap-1">
                                                 <svg class="w-3 h-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
                                                 <span x-text="d.parent.tel"></span>
                                             </div>
@@ -174,12 +174,12 @@
                                     </tr>
                                 </template>
                                 <tr x-show="filtres.length === 0">
-                                    <td colspan="7" class="py-10 text-center text-primary-deep/50 font-body">Aucun dossier ne correspond à ces critères.</td>
+                                    <td colspan="7" class="py-10 text-center text-primary-deep/75 font-body">Aucun dossier ne correspond à ces critères.</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="px-6 py-4 bg-cream flex flex-col sm:flex-row items-center justify-between gap-2 font-body text-sm text-primary-deep/60">
+                    <div class="px-6 py-4 bg-cream flex flex-col sm:flex-row items-center justify-between gap-2 font-body text-sm text-primary-deep/75">
                         <span>Tous les dossiers de démonstration sont affichés (<strong class="text-primary-deep" x-text="dossiers.length"></strong> au total)</span>
                         <span class="text-xs italic">Données fictives à titre d'exemple</span>
                     </div>
@@ -200,13 +200,13 @@
                             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold">Dossier sélectionné</span>
                             <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-body text-xs font-bold" :class="badgeClasses(dossierOuvert.statut)" x-text="badgeLabel(dossierOuvert.statut)"></span>
                         </div>
-                        <button type="button" @click="dossierOuvertId = null" title="Fermer" class="w-8 h-8 rounded-full flex items-center justify-center text-primary-deep/50 hover:bg-mint/40 hover:text-primary-deep transition-colors">
+                        <button type="button" @click="dossierOuvertId = null" title="Fermer" class="w-8 h-8 rounded-full flex items-center justify-center text-primary-deep/75 hover:bg-mint/40 hover:text-primary-deep transition-colors">
                             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                         </button>
                     </div>
                     <div class="flex items-center justify-between">
                         <h2 class="font-display text-xl text-primary" x-text="dossierOuvert.id"></h2>
-                        <span class="font-body text-xs text-primary-deep/50" x-text="dossierOuvert.dateLabel"></span>
+                        <span class="font-body text-xs text-primary-deep/75" x-text="dossierOuvert.dateLabel"></span>
                     </div>
                 </div>
 
@@ -215,7 +215,7 @@
                         <div class="w-14 h-14 rounded-full bg-mint text-primary font-display text-xl flex items-center justify-center shrink-0" x-text="dossierOuvert.enfant.initiales"></div>
                         <div class="min-w-0 flex-1">
                             <h3 class="font-display text-lg text-primary-deep truncate" x-text="dossierOuvert.enfant.nom"></h3>
-                            <p class="font-body text-sm text-primary-deep/60 mt-0.5" x-text="dossierOuvert.enfant.naissance"></p>
+                            <p class="font-body text-sm text-primary-deep/75 mt-0.5" x-text="dossierOuvert.enfant.naissance"></p>
                         </div>
                     </div>
 
@@ -225,11 +225,11 @@
                             <span class="font-body text-xs uppercase font-bold tracking-wider">Critères d'accueil</span>
                         </div>
                         <div class="bg-cream rounded-2xl p-4 divide-y divide-primary-deep/10 font-body text-sm">
-                            <div class="pb-2.5 flex justify-between"><span class="text-primary-deep/60">Date d'entrée souhaitée</span><span class="font-bold text-primary-deep" x-text="dossierOuvert.entreeLabel"></span></div>
-                            <div class="py-2.5 flex justify-between"><span class="text-primary-deep/60">Rythme demandé</span><span class="font-bold text-primary-deep" x-text="dossierOuvert.accueilLabel"></span></div>
-                            <div class="py-2.5 flex justify-between"><span class="text-primary-deep/60">Horaires souhaités</span><span class="font-bold text-primary-deep">8h30 – 18h30</span></div>
+                            <div class="pb-2.5 flex justify-between"><span class="text-primary-deep/75">Date d'entrée souhaitée</span><span class="font-bold text-primary-deep" x-text="dossierOuvert.entreeLabel"></span></div>
+                            <div class="py-2.5 flex justify-between"><span class="text-primary-deep/75">Rythme demandé</span><span class="font-bold text-primary-deep" x-text="dossierOuvert.accueilLabel"></span></div>
+                            <div class="py-2.5 flex justify-between"><span class="text-primary-deep/75">Horaires souhaités</span><span class="font-bold text-primary-deep">8h30 – 18h30</span></div>
                             <div class="pt-2.5 flex flex-col gap-1">
-                                <span class="text-primary-deep/60">Adresse du foyer</span>
+                                <span class="text-primary-deep/75">Adresse du foyer</span>
                                 <span class="font-medium text-primary-deep flex items-start gap-1.5 text-xs">
                                     <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-7.58 7-12A7 7 0 105 9c0 4.42 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>
                                     <span x-text="dossierOuvert.adresse"></span>
@@ -247,24 +247,24 @@
                             <div class="flex items-start justify-between">
                                 <div class="flex flex-col">
                                     <span class="font-bold text-primary-deep text-sm" x-text="dossierOuvert.parent.nom"></span>
-                                    <span class="text-xs text-primary-deep/50" x-text="dossierOuvert.parent.role"></span>
+                                    <span class="text-xs text-primary-deep/75" x-text="dossierOuvert.parent.role"></span>
                                 </div>
                                 <div class="flex items-center gap-1.5">
                                     <a :href="'tel:' + dossierOuvert.parent.tel.replace(/\s/g, '')" class="w-8 h-8 rounded-full bg-mint flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
                                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
                                     </a>
-                                    <a :href="'mailto:' + dossierOuvert.parent.email" class="w-8 h-8 rounded-full bg-cream border border-primary-deep/10 flex items-center justify-center text-primary-deep/60 hover:bg-primary hover:text-white transition-colors">
+                                    <a :href="'mailto:' + dossierOuvert.parent.email" class="w-8 h-8 rounded-full bg-cream border border-primary-deep/10 flex items-center justify-center text-primary-deep/75 hover:bg-primary hover:text-white transition-colors">
                                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
                                     </a>
                                 </div>
                             </div>
-                            <div class="flex flex-col gap-1 text-xs text-primary-deep/60 border-t border-primary-deep/10 pt-2">
+                            <div class="flex flex-col gap-1 text-xs text-primary-deep/75 border-t border-primary-deep/10 pt-2">
                                 <div class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg><span x-text="dossierOuvert.parent.tel"></span></div>
                                 <div class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span class="truncate" x-text="dossierOuvert.parent.email"></span></div>
                             </div>
                             <template x-if="dossierOuvert.entreprise">
                                 <div class="pt-2 border-t border-primary-deep/10 flex items-center justify-between">
-                                    <span class="text-xs text-primary-deep/60 font-medium">Financement</span>
+                                    <span class="text-xs text-primary-deep/75 font-medium">Financement</span>
                                     <span class="px-2.5 py-0.5 rounded-full bg-mint text-primary text-xs font-bold inline-flex items-center gap-1">
                                         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>
                                         Berceau entreprise
@@ -279,7 +279,7 @@
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
                             <span class="font-body text-xs uppercase font-bold tracking-wider">Spécificités</span>
                         </div>
-                        <p class="font-body text-sm text-primary-deep/70 bg-cream rounded-2xl p-4" x-text="dossierOuvert.specificites"></p>
+                        <p class="font-body text-sm text-primary-deep/80 bg-cream rounded-2xl p-4" x-text="dossierOuvert.specificites"></p>
                     </div>
 
                     <div class="flex flex-col gap-2.5">
@@ -288,8 +288,8 @@
                             <span class="font-body text-xs uppercase font-bold tracking-wider">Notes internes</span>
                         </div>
                         <div class="bg-cream rounded-2xl p-4">
-                            <p class="text-xs text-primary-deep/70 leading-relaxed italic" x-text="dossierOuvert.note"></p>
-                            <div class="mt-2 pt-2 border-t border-primary-deep/10 flex items-center justify-between text-xs text-primary-deep/50">
+                            <p class="text-xs text-primary-deep/80 leading-relaxed italic" x-text="dossierOuvert.note"></p>
+                            <div class="mt-2 pt-2 border-t border-primary-deep/10 flex items-center justify-between text-xs text-primary-deep/75">
                                 <span class="font-semibold">{{ auth()->user()?->name ?: 'Direction' }}</span>
                                 <span x-text="dossierOuvert.dateLabel"></span>
                             </div>
@@ -318,7 +318,7 @@
                         <form method="POST" :action="'/admin/pre-inscriptions/' + dossierOuvert.dbId + '/statut'">
                             @csrf
                             @method('PATCH')
-                            <button type="submit" name="status" value="refusee" class="font-body text-xs font-semibold text-primary-deep/50 hover:text-coral hover:underline flex items-center gap-1">
+                            <button type="submit" name="status" value="refusee" class="font-body text-xs font-semibold text-primary-deep/75 hover:text-coral hover:underline flex items-center gap-1">
                                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                                 Refuser la demande
                             </button>

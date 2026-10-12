@@ -46,7 +46,7 @@
         badgeClasses(statut) {
             return {
                 non_lu: 'bg-coral text-white',
-                lu: 'bg-cream text-primary-deep/60 border border-primary-deep/20',
+                lu: 'bg-cream text-primary-deep/75 border border-primary-deep/20',
                 repondu: 'bg-mint text-primary',
             }[statut];
         },
@@ -68,7 +68,7 @@
                         <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold">Boîte de réception</span>
                     </div>
                     <h1 class="font-display text-3xl text-primary-deep">Messages</h1>
-                    <p class="font-body text-primary-deep/70 mt-1">Messages envoyés via le formulaire de contact du site public.</p>
+                    <p class="font-body text-primary-deep/80 mt-1">Messages envoyés via le formulaire de contact du site public.</p>
                 </div>
                 <a href="{{ route('contact') }}" class="h-[48px] px-6 rounded-full bg-white text-primary font-body font-bold text-sm shadow-sm hover:bg-mint/30 transition-all flex items-center gap-2 shrink-0">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
@@ -84,7 +84,7 @@
                         <button type="button" @click="filtreStatut = 'lu'" class="px-4 py-1.5 rounded-full font-body text-sm transition-all" :class="filtreStatut === 'lu' ? 'bg-primary text-white shadow-sm' : 'bg-cream text-primary-deep hover:bg-mint/40'">Lus</button>
                         <button type="button" @click="filtreStatut = 'repondu'" class="px-4 py-1.5 rounded-full font-body text-sm transition-all" :class="filtreStatut === 'repondu' ? 'bg-primary text-white shadow-sm' : 'bg-cream text-primary-deep hover:bg-mint/40'">Répondus</button>
                     </div>
-                    <span class="font-body text-sm text-primary-deep/50" x-text="filtres.length + ' résultat(s) affiché(s)'"></span>
+                    <span class="font-body text-sm text-primary-deep/75" x-text="filtres.length + ' résultat(s) affiché(s)'"></span>
                 </div>
 
                 <div class="bg-white rounded-3xl shadow-sm overflow-hidden w-full divide-y divide-mint">
@@ -97,13 +97,13 @@
                                     <span class="font-body text-sm text-primary-deep" :class="m.statut === 'non_lu' ? 'font-extrabold' : 'font-semibold'" x-text="m.nom"></span>
                                     <span class="font-body text-xs text-primary-deep/40 shrink-0 ml-auto hidden sm:inline" x-text="m.dateLabel"></span>
                                 </div>
-                                <p class="font-body text-sm truncate" :class="m.statut === 'non_lu' ? 'font-bold text-primary-deep' : 'text-primary-deep/60'" x-text="m.objet"></p>
+                                <p class="font-body text-sm truncate" :class="m.statut === 'non_lu' ? 'font-bold text-primary-deep' : 'text-primary-deep/75'" x-text="m.objet"></p>
                                 <p class="font-body text-xs text-primary-deep/40 truncate" x-text="m.message"></p>
                             </div>
                             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-body text-xs font-bold shrink-0" :class="badgeClasses(m.statut)" x-text="badgeLabel(m.statut)"></span>
                         </button>
                     </template>
-                    <div x-show="filtres.length === 0" class="py-10 text-center text-primary-deep/50 font-body">Aucun message ne correspond à ces critères.</div>
+                    <div x-show="filtres.length === 0" class="py-10 text-center text-primary-deep/75 font-body">Aucun message ne correspond à ces critères.</div>
                 </div>
             </div>
         </div>
@@ -118,18 +118,18 @@
                 <div class="p-6 pb-4 border-b border-mint bg-cream/60 sticky top-0 backdrop-blur-md z-10">
                     <div class="flex items-center justify-between mb-2">
                         <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold" x-text="messageOuvert.id"></span>
-                        <button type="button" @click="messageOuvertId = null" class="w-8 h-8 rounded-full flex items-center justify-center text-primary-deep/50 hover:bg-mint/40 hover:text-primary-deep transition-colors">
+                        <button type="button" @click="messageOuvertId = null" class="w-8 h-8 rounded-full flex items-center justify-center text-primary-deep/75 hover:bg-mint/40 hover:text-primary-deep transition-colors">
                             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                         </button>
                     </div>
                     <h2 class="font-display text-xl text-primary-deep" x-text="messageOuvert.objet"></h2>
-                    <span class="font-body text-xs text-primary-deep/50" x-text="messageOuvert.dateLabel"></span>
+                    <span class="font-body text-xs text-primary-deep/75" x-text="messageOuvert.dateLabel"></span>
                 </div>
 
                 <div class="p-6 flex-1 flex flex-col gap-6">
                     <div class="bg-cream rounded-2xl p-4 flex flex-col gap-2">
                         <span class="font-bold text-primary-deep text-sm" x-text="messageOuvert.nom"></span>
-                        <div class="flex flex-col gap-1 text-xs text-primary-deep/60">
+                        <div class="flex flex-col gap-1 text-xs text-primary-deep/75">
                             <div class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg><span x-text="messageOuvert.tel"></span></div>
                             <div class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span class="truncate" x-text="messageOuvert.email"></span></div>
                         </div>

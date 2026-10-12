@@ -5,7 +5,7 @@
     <table role="presentation" width="100%" style="background-color:#FFF9F2;border-radius:16px;padding:4px 0;margin-bottom:20px;">
         <tr>
             <td style="padding:12px 20px;font-size:13px;color:#12414D99;">Référence de votre dossier</td>
-            <td style="padding:12px 20px;font-size:15px;font-weight:700;color:#217B79;text-align:right;">{{ $numeroDossier }}</td>
+            <td style="padding:12px 20px;font-size:15px;font-weight:700;color:#1C6E6C;text-align:right;">{{ $numeroDossier }}</td>
         </tr>
         @foreach ($lignes as $label => $valeur)
         <tr>

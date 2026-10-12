@@ -74,7 +74,7 @@
                             </div>
                             <div class="flex flex-col">
                                 <span class="font-body text-sm font-bold text-primary-deep">Devis personnalisé</span>
-                                <span class="font-body text-xs text-primary-deep/60">Établi lors du rendez-vous d'admission</span>
+                                <span class="font-body text-xs text-primary-deep/75">Établi lors du rendez-vous d'admission</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-3 p-3 rounded-2xl bg-cream">
@@ -83,11 +83,11 @@
                             </div>
                             <div class="flex flex-col">
                                 <span class="font-body text-sm font-bold text-primary-deep">Accompagnement CAF direct</span>
-                                <span class="font-body text-xs text-primary-deep/60">Assistance pas-à-pas pour votre dossier PAJE</span>
+                                <span class="font-body text-xs text-primary-deep/75">Assistance pas-à-pas pour votre dossier PAJE</span>
                             </div>
                         </div>
                     </div>
-                    <p class="font-body text-sm text-primary-deep/60 text-center italic">« Chaque enfant est unique, le budget alloué à sa garde se doit d'être parfaitement limpide. »</p>
+                    <p class="font-body text-sm text-primary-deep/75 text-center italic">« Chaque enfant est unique, le budget alloué à sa garde se doit d'être parfaitement limpide. »</p>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Méthode de calcul</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Comment est calculé votre tarif ?</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Trois étapes transparentes pour concilier vos contraintes et votre équilibre budgétaire.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Trois étapes transparentes pour concilier vos contraintes et votre équilibre budgétaire.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
@@ -126,7 +126,7 @@
                         @endif
                     </div>
                     <h3 class="font-display text-lg text-primary-deep mb-2">{{ $etape['titre'] }}</h3>
-                    <p class="font-body text-sm text-primary-deep/70">{{ $etape['texte'] }}</p>
+                    <p class="font-body text-sm text-primary-deep/80">{{ $etape['texte'] }}</p>
                 </div>
                 <div class="mt-4 pt-3 bg-cream rounded-2xl p-3">
                     <span class="font-body text-xs uppercase text-primary font-extrabold block">{{ $etape['tag'] }}</span>
@@ -146,7 +146,7 @@
         <div class="text-center max-w-3xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Structure tarifaire</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Repères indicatifs du barème horaire</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Chaque situation fait l'objet d'un calcul individualisé. Les valeurs ci-dessous illustrent la mécanique de dégressivité avec aides.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Chaque situation fait l'objet d'un calcul individualisé. Les valeurs ci-dessous illustrent la mécanique de dégressivité avec aides.</p>
         </div>
 
         <div class="mt-12 bg-white rounded-3xl shadow-lg overflow-hidden">
@@ -170,7 +170,7 @@
                             <td class="py-5 px-6">
                                 <div class="flex flex-col">
                                     <span class="font-body font-bold text-primary">{{ $row['t'] }}</span>
-                                    <span class="font-body text-sm text-primary-deep/60">{{ $row['sous'] }}</span>
+                                    <span class="font-body text-sm text-primary-deep/75">{{ $row['sous'] }}</span>
                                 </div>
                             </td>
                             <td class="py-5 px-6 text-center">
@@ -190,7 +190,7 @@
                 </div>
                 <div>
                     <span class="font-body font-bold text-primary-deep block">Précision déontologique &amp; équité</span>
-                    <p class="font-body text-sm text-primary-deep/70">Le barème détaillé et le montant exact de votre mensualité vous seront communiqués lors de votre rendez-vous avec la direction, sur présentation de votre avis d'imposition et de votre attestation de droits CAF.</p>
+                    <p class="font-body text-sm text-primary-deep/80">Le barème détaillé et le montant exact de votre mensualité vous seront communiqués lors de votre rendez-vous avec la direction, sur présentation de votre avis d'imposition et de votre attestation de droits CAF.</p>
                 </div>
             </div>
         </div>
@@ -206,7 +206,7 @@
         <div class="text-center max-w-3xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Tranquillité absolue</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Une formule tout inclus, sans mauvaise surprise</h2>
-            <p class="font-body text-primary-deep/70 mt-2">Tous les essentiels du bien-être, de l'éveil et de la nutrition sont compris dans nos forfaits.</p>
+            <p class="font-body text-primary-deep/80 mt-2">Tous les essentiels du bien-être, de l'éveil et de la nutrition sont compris dans nos forfaits.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
@@ -229,7 +229,7 @@
                     @endif
                 </div>
                 <h3 class="font-display text-lg text-primary-deep">{{ $carte['titre'] }}</h3>
-                <p class="font-body text-sm text-primary-deep/70">{{ $carte['texte'] }}</p>
+                <p class="font-body text-sm text-primary-deep/80">{{ $carte['texte'] }}</p>
                 <span class="mt-auto pt-2 inline-flex items-center gap-1.5 font-body text-sm text-primary font-bold">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                     Inclus au forfait
@@ -248,7 +248,7 @@
         <div class="text-center max-w-3xl mx-auto flex flex-col items-center">
             <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Dispositifs d'aide d'État</span>
             <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Un reste à charge réduit grâce aux aides publiques</h2>
-            <p class="font-body text-primary-deep/70 mt-2">La micro-crèche ouvre droit à deux dispositifs cumulables qui allègent la charge mensuelle des familles.</p>
+            <p class="font-body text-primary-deep/80 mt-2">La micro-crèche ouvre droit à deux dispositifs cumulables qui allègent la charge mensuelle des familles.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-12">
@@ -279,7 +279,7 @@
                     </ul>
                 </div>
                 <div class="p-4 rounded-2xl bg-cream flex items-center justify-between">
-                    <span class="font-body text-sm text-primary-deep/60">Éligibilité automatique dès 16h/mois</span>
+                    <span class="font-body text-sm text-primary-deep/75">Éligibilité automatique dès 16h/mois</span>
                     <span class="font-body text-sm text-primary font-bold">CAF Val-de-Marne</span>
                 </div>
             </div>
@@ -311,7 +311,7 @@
                     </ul>
                 </div>
                 <div class="p-4 rounded-2xl bg-cream flex items-center justify-between">
-                    <span class="font-body text-sm text-primary-deep/60">Article 200 quater B du CGI</span>
+                    <span class="font-body text-sm text-primary-deep/75">Article 200 quater B du CGI</span>
                     <span class="font-body text-sm text-coral font-bold">Jusqu'à 1 750 €/an</span>
                 </div>
             </div>
@@ -328,7 +328,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3">
                 <div class="flex flex-col gap-1">
                     <span class="font-display text-xl text-primary-deep">Simulez votre reste à charge mensuel</span>
-                    <p class="font-body text-primary-deep/70">Obtenez un premier aperçu de votre budget garde en quelques secondes.</p>
+                    <p class="font-body text-primary-deep/80">Obtenez un premier aperçu de votre budget garde en quelques secondes.</p>
                 </div>
                 <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-peach text-coral font-body text-xs font-extrabold uppercase shrink-0 self-start sm:self-center">
                     <span class="w-2 h-2 rounded-full bg-coral"></span>
@@ -336,10 +336,10 @@
                 </span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 opacity-70 pointer-events-none">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pointer-events-none">
                 <div class="flex flex-col gap-2">
                     <label class="font-body text-sm font-bold text-primary-deep">Revenus mensuels du foyer (€)</label>
-                    <div class="h-[52px] px-5 rounded-full bg-cream flex items-center text-primary-deep/50 font-body text-sm">Ex. 3 800 €</div>
+                    <div class="h-[52px] px-5 rounded-full bg-cream flex items-center text-primary-deep/75 font-body text-sm">Ex. 3 800 €</div>
                 </div>
                 <div class="flex flex-col gap-2">
                     <label class="font-body text-sm font-bold text-primary-deep">Nombre d'enfants à charge</label>
@@ -358,11 +358,11 @@
             </div>
 
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-1">
-                <button type="button" disabled class="h-[52px] px-8 rounded-full bg-cream text-primary-deep/50 font-body font-bold text-sm inline-flex items-center justify-center gap-2 cursor-not-allowed">
+                <button type="button" disabled class="h-[52px] px-8 rounded-full bg-cream text-primary-deep/75 font-body font-bold text-sm inline-flex items-center justify-center gap-2 cursor-not-allowed">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 3"/></svg>
                     Calculer mon estimation (en cours de finalisation)
                 </button>
-                <span class="font-body text-sm text-primary-deep/60 text-center sm:text-right">Conforme aux barèmes CAF en vigueur</span>
+                <span class="font-body text-sm text-primary-deep/75 text-center sm:text-right">Conforme aux barèmes CAF en vigueur</span>
             </div>
 
             <div class="p-5 rounded-2xl bg-peach/50 flex items-start gap-3">
@@ -381,14 +381,14 @@
     <x-confetti shape="etoile" class="top-10 left-[15%] w-7 h-7 text-white/70 animate-wiggle" />
 
     <div class="max-w-[860px] mx-auto px-6 text-center flex flex-col items-center gap-4 relative z-10">
-        <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/20 font-body text-xs uppercase tracking-widest font-extrabold">Équipe à votre écoute</span>
+        <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-primary-deep/25 font-body text-xs uppercase tracking-widest font-extrabold">Équipe à votre écoute</span>
         <h2 class="font-display text-3xl md:text-4xl">Une question sur les tarifs ou votre prise en charge ?</h2>
         <p class="font-body text-white/90 max-w-xl">Notre équipe vous conseille et vous guide pas à pas dans vos démarches CAF pour optimiser votre budget de garde.</p>
         <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
             <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-white text-coral font-body font-bold text-sm flex items-center justify-center shadow-lg hover:-translate-y-0.5 transition-all">
                 Pré-inscrire mon enfant
             </a>
-            <a href="tel:{{ $etab->telephoneLien() }}" class="h-[52px] px-8 rounded-full bg-white/15 text-white font-body font-bold text-sm flex items-center gap-2 hover:bg-white/25 transition-all">
+            <a href="tel:{{ $etab->telephoneLien() }}" class="h-[52px] px-8 rounded-full bg-primary-deep/25 text-white font-body font-bold text-sm flex items-center gap-2 hover:bg-primary-deep/40 transition-all">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
                 {{ $etab->telephone() }}
             </a>
