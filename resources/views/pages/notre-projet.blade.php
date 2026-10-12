@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="relative w-full max-w-[420px] aspect-[4/5] rounded-t-[180px] rounded-b-2xl overflow-hidden shadow-2xl">
-                    <img src="{{ asset('images/accueil-bienveillant.jpg') }}" alt="Enfants s'épanouissant au Jardin de Régina" class="w-full h-full object-cover">
+                    <img src="{{ asset('images/accueil-bienveillant.webp') }}" alt="Enfants s'épanouissant au Jardin de Régina" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-primary-deep/25 via-transparent to-transparent pointer-events-none"></div>
                 </div>
             </div>
@@ -237,7 +237,7 @@
             {{-- Grande salle --}}
             <div class="md:col-span-7 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
                 <div class="relative w-full h-72 sm:h-80 overflow-hidden">
-                    <img src="{{ asset('images/salle-de-jeux.jpg') }}" alt="Grande salle de motricité et jeux en bois" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img loading="lazy" decoding="async" src="{{ asset('images/salle-de-jeux.webp') }}" alt="Grande salle de motricité et jeux en bois" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-primary-deep font-body text-sm font-bold shadow-sm">Espace de vie principal</div>
                 </div>
                 <div class="p-6 flex flex-col gap-1">
@@ -248,7 +248,7 @@
             {{-- Snoezelen --}}
             <div class="md:col-span-5 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
                 <div class="relative w-full h-72 sm:h-80 overflow-hidden group">
-                    <img src="{{ asset('images/snoezelen.jpg') }}" alt="Coin sensoriel Snoezelen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img loading="lazy" decoding="async" src="{{ asset('images/snoezelen.webp') }}" alt="Coin sensoriel Snoezelen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-primary-deep font-body text-sm font-bold shadow-sm">Nid apaisant</div>
                 </div>
                 <div class="p-6 flex flex-col gap-1">
@@ -259,7 +259,7 @@
             {{-- Repas --}}
             <div class="md:col-span-5 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
                 <div class="relative w-full h-72 sm:h-80 overflow-hidden">
-                    <img src="{{ asset('images/activites-creatives.jpg') }}" alt="Espace repas et découverte gustative" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img loading="lazy" decoding="async" src="{{ asset('images/activites-creatives.webp') }}" alt="Espace repas et découverte gustative" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-primary-deep font-body text-sm font-bold shadow-sm">Goûts &amp; saveurs</div>
                 </div>
                 <div class="p-6 flex flex-col gap-1">
@@ -270,7 +270,7 @@
             {{-- Dortoir --}}
             <div class="md:col-span-4 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
                 <div class="relative w-full h-72 sm:h-80 overflow-hidden group">
-                    <img src="{{ asset('images/dortoir.jpg') }}" alt="Dortoir aux berceaux naturels" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img loading="lazy" decoding="async" src="{{ asset('images/dortoir.webp') }}" alt="Dortoir aux berceaux naturels" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-primary-deep font-body text-sm font-bold shadow-sm">Sommeil physiologique</div>
                 </div>
                 <div class="p-6 flex flex-col gap-1">
@@ -281,7 +281,7 @@
             {{-- Coin nature --}}
             <div class="md:col-span-3 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col group">
                 <div class="relative w-full h-36 overflow-hidden">
-                    <img src="{{ asset('images/jardin.jpg') }}" alt="Coin nature et mini-potager" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img loading="lazy" decoding="async" src="{{ asset('images/jardin.webp') }}" alt="Coin nature et mini-potager" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
                 <div class="p-6 flex flex-col justify-between flex-1">
                     <div class="flex flex-col gap-2">

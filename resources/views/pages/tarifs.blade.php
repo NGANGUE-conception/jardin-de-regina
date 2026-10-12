@@ -61,7 +61,7 @@
                 <div class="absolute -top-8 -right-8 w-72 h-72 bg-peach rounded-full blur-3xl opacity-70 pointer-events-none -z-10"></div>
                 <div class="relative bg-white rounded-3xl p-6 shadow-xl flex flex-col gap-4">
                     <div class="relative w-full h-48 rounded-2xl overflow-hidden bg-mint">
-                        <img src="{{ asset('images/salle-de-jeux.jpg') }}" alt="La crèche accueille vos enfants" class="w-full h-full object-cover">
+                        <img src="{{ asset('images/salle-de-jeux.webp') }}" alt="La crèche accueille vos enfants" class="w-full h-full object-cover">
                         <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-primary-deep font-body text-xs font-bold flex items-center gap-1.5 shadow-sm">
                             <span class="w-2 h-2 rounded-full bg-coral animate-bounce-soft"></span>
                             Ouverture 2026 · 12 places

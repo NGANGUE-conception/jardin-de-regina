@@ -14,6 +14,8 @@ use App\Http\Controllers\CorporateRequestController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\PreferenceStatistiquesController;
 use App\Http\Controllers\PreRegistrationController;
+use App\Http\Controllers\ReferencementController;
+use App\Support\PagesPubliques;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -80,8 +82,12 @@ Route::get('/gestion-des-cookies', function () {
 Route::post('/gestion-des-cookies/statistiques', [PreferenceStatistiquesController::class, 'update'])->name('gestion-des-cookies.statistiques');
 
 Route::get('/plan-du-site', function () {
-    return view('pages.bientot-disponible', ['titre' => 'Plan du site']);
+    return view('pages.plan-du-site', ['rubriques' => PagesPubliques::parRubrique()]);
 })->name('plan-du-site');
+
+// Fichiers pour les moteurs de recherche (générés à la volée, voir ReferencementController).
+Route::get('/sitemap.xml', [ReferencementController::class, 'sitemap'])->name('sitemap');
+Route::get('/robots.txt', [ReferencementController::class, 'robots'])->name('robots');
 
 /*
 Espace admin Toutes ces pages lisent les vraies données enregistrées en base par les formulaires publics, et sont protégées par une connexion (voir plus bas).

@@ -65,7 +65,7 @@
                 <div class="absolute -bottom-8 -left-6 w-64 h-64 bg-peach/80 rounded-[3rem] -rotate-12 -z-10"></div>
 
                 <div class="relative w-full max-w-[420px] aspect-[4/5] rounded-t-[10rem] rounded-b-[3rem] overflow-hidden shadow-2xl bg-peach">
-                    <img src="{{ asset('images/accueil-bienveillant.jpg') }}" alt="Un parent confie son enfant à l'équipe du Jardin de Régina" class="w-full h-full object-cover">
+                    <img src="{{ asset('images/accueil-bienveillant.webp') }}" alt="Un parent confie son enfant à l'équipe du Jardin de Régina" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-primary-deep/40 via-transparent to-transparent"></div>
                 </div>
 

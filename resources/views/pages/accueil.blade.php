@@ -8,11 +8,11 @@
 
 @php
 $photos = [
-    ['src' => asset('images/salle-de-jeux.jpg'), 'alt' => 'La salle de jeux'],
-    ['src' => asset('images/jardin.jpg'), 'alt' => 'Le jardin extérieur'],
-    ['src' => asset('images/activites-creatives.jpg'), 'alt' => 'Activités créatives'],
-    ['src' => asset('images/jeux-jouets.jpg'), 'alt' => 'Moment de jeu'],
-    ['src' => asset('images/accueil-bienveillant.jpg'), 'alt' => 'Un accueil bienveillant'],
+    ['src' => asset('images/salle-de-jeux.webp'), 'alt' => 'La salle de jeux'],
+    ['src' => asset('images/jardin.webp'), 'alt' => 'Le jardin extérieur'],
+    ['src' => asset('images/activites-creatives.webp'), 'alt' => 'Activités créatives'],
+    ['src' => asset('images/jeux-jouets.webp'), 'alt' => 'Moment de jeu'],
+    ['src' => asset('images/accueil-bienveillant.webp'), 'alt' => 'Un accueil bienveillant'],
 ];
 @endphp
 
@@ -143,7 +143,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
     <div class="flex w-max gap-6 animate-marquee hover:[animation-play-state:paused]">
         @foreach (array_merge($photos, $photos) as $i => $photo)
         <div class="w-52 h-52 md:w-64 md:h-64 rounded-[28px] overflow-hidden shadow-lg shrink-0 border-4 border-white {{ $i % 2 === 0 ? '-rotate-2' : 'rotate-2' }}">
-            <img src="{{ $photo['src'] }}" alt="{{ $photo['alt'] }}" class="w-full h-full object-cover">
+            <img loading="lazy" decoding="async" src="{{ $photo['src'] }}" alt="{{ $photo['alt'] }}" class="w-full h-full object-cover">
         </div>
         @endforeach
     </div>

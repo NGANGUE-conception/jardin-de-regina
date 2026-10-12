@@ -236,10 +236,10 @@
                 <div class="lg:w-1/2 order-3 lg:order-1">
                     <div class="grid grid-cols-2 gap-3">
                         <div class="overflow-hidden rounded-2xl shadow-sm">
-                            <img src="{{ asset('images/salle-de-jeux.jpg') }}" alt="Atelier de motricité libre" class="w-full h-44 object-cover hover:scale-105 transition-transform duration-500">
+                            <img loading="lazy" decoding="async" src="{{ asset('images/salle-de-jeux.webp') }}" alt="Atelier de motricité libre" class="w-full h-44 object-cover hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="overflow-hidden rounded-2xl shadow-sm">
-                            <img src="{{ asset('images/snoezelen.jpg') }}" alt="Espace sensoriel Snoezelen" class="w-full h-44 object-cover hover:scale-105 transition-transform duration-500">
+                            <img loading="lazy" decoding="async" src="{{ asset('images/snoezelen.webp') }}" alt="Espace sensoriel Snoezelen" class="w-full h-44 object-cover hover:scale-105 transition-transform duration-500">
                         </div>
                     </div>
                 </div>
@@ -261,7 +261,7 @@
                 <div class="order-1 lg:order-2 w-12 h-12 rounded-full bg-coral text-white flex items-center justify-center font-display text-lg shadow-lg shrink-0 z-10">3</div>
                 <div class="lg:w-1/2 order-3">
                     <div class="overflow-hidden rounded-2xl shadow-sm">
-                        <img src="{{ asset('images/repas.jpg') }}" alt="Moment de repas partagé" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500">
+                        <img loading="lazy" decoding="async" src="{{ asset('images/repas.webp') }}" alt="Moment de repas partagé" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                 </div>
             </div>
@@ -270,7 +270,7 @@
             <div class="relative flex flex-col lg:flex-row items-center gap-8">
                 <div class="lg:w-1/2 order-3 lg:order-1">
                     <div class="overflow-hidden rounded-2xl shadow-sm">
-                        <img src="{{ asset('images/dortoir.jpg') }}" alt="Dortoir cocon avec lits en bois naturel" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500">
+                        <img loading="lazy" decoding="async" src="{{ asset('images/dortoir.webp') }}" alt="Dortoir cocon avec lits en bois naturel" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                 </div>
                 <div class="order-1 lg:order-2 w-12 h-12 rounded-full bg-coral text-white flex items-center justify-center font-display text-lg shadow-lg shrink-0 z-10">4</div>

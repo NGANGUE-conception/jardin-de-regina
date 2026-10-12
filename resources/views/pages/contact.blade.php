@@ -175,7 +175,7 @@
                 {{-- Visite sereine --}}
                 <div class="bg-peach/50 rounded-[32px] p-5 shadow-sm flex flex-col sm:flex-row gap-4 items-center">
                     <div class="w-24 h-28 rounded-t-full rounded-b-2xl overflow-hidden shrink-0 shadow-sm">
-                        <img src="{{ asset('images/salle-de-jeux.jpg') }}" alt="Intérieur chaleureux du Jardin de Régina" class="w-full h-full object-cover">
+                        <img loading="lazy" decoding="async" src="{{ asset('images/salle-de-jeux.webp') }}" alt="Intérieur chaleureux du Jardin de Régina" class="w-full h-full object-cover">
                     </div>
                     <div class="flex flex-col">
                         <span class="font-body text-xs uppercase text-coral font-extrabold">Respect du sommeil</span>

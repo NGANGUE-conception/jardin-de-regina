@@ -70,7 +70,7 @@
                 <div class="absolute -bottom-8 -right-6 w-64 h-64 bg-peach/70 rounded-[40%_60%_30%_70%/60%_40%_60%_40%] blur-lg -z-10"></div>
 
                 <div class="relative w-full max-w-[390px] aspect-[4/5] rounded-t-[160px] rounded-b-[40px] overflow-hidden shadow-2xl bg-peach">
-                    <img src="{{ asset('images/jeux-jouets.jpg') }}" alt="Une éducatrice joue avec les enfants au Jardin de Régina" class="w-full h-full object-cover">
+                    <img src="{{ asset('images/jeux-jouets.webp') }}" alt="Une éducatrice joue avec les enfants au Jardin de Régina" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-primary-deep/40 via-transparent to-transparent pointer-events-none"></div>
 
                     <div class="absolute bottom-5 left-4 right-4 bg-white/95 backdrop-blur-md px-4 py-3 rounded-2xl shadow-lg flex items-center gap-3">

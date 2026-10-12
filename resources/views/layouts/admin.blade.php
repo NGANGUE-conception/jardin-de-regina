@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Espace admin — Le Jardin de Régina')</title>
-
+    <meta name="robots" content="noindex, nofollow">
+    @include('partials.icones')
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles

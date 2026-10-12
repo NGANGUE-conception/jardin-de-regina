@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Demande envoyée — Le Jardin de Régina')
+@section('robots', 'noindex, follow')
 
 @section('content')
 <section class="relative bg-cream py-16 md:py-24 overflow-hidden" x-data="{ copied: false, hour: '', dossier: '{{ $numeroDossier ?? '' }}' }" x-init="hour = new Date().getHours().toString().padStart(2,'0') + 'h' + new Date().getMinutes().toString().padStart(2,'0')">
