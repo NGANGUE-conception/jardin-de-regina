@@ -14,9 +14,9 @@ return [
 
     'accepted' => 'Merci de cocher la case : :attribute.',
     'after_or_equal' => ':Attribute doit être postérieure ou égale au :date.',
-    'array' => 'La valeur de :attribute n\'est pas valide.',
+    'array' => 'La valeur indiquée pour :attribute n\'est pas valide.',
     'before_or_equal' => ':Attribute doit être antérieure ou égale au :date.',
-    'boolean' => 'La valeur de :attribute n\'est pas valide.',
+    'boolean' => 'La valeur indiquée pour :attribute n\'est pas valide.',
     'confirmed' => 'La confirmation de :attribute ne correspond pas.',
     'current_password' => 'Le mot de passe est incorrect.',
     'date' => 'Merci d\'indiquer une date valide pour :attribute.',
@@ -55,7 +55,7 @@ return [
     'required_if' => 'Merci de renseigner :attribute.',
     'required_unless' => 'Merci de renseigner :attribute.',
     'required_with' => 'Merci de renseigner :attribute.',
-    'string' => 'La valeur de :attribute n\'est pas valide.',
+    'string' => 'La valeur indiquée pour :attribute n\'est pas valide.',
     'unique' => ':Attribute est déjà utilisé(e).',
     'uploaded' => 'Le fichier n\'a pas pu être envoyé : il est peut-être trop volumineux.',
 

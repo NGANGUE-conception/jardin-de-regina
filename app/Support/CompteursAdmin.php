@@ -13,19 +13,19 @@ use App\Models\PreRegistration;
  */
 class CompteursAdmin
 {
-    private static ?array $compteurs = null;
-
     /**
+     * Calculé une seule fois par page grâce à once() (remis à zéro entre deux requêtes et entre deux tests).
+     *
      * @return array{pre-inscriptions: int, entreprises: int, candidatures: int, messages: int}
      */
     public static function aTraiter(): array
     {
-        return self::$compteurs ??= [
+        return once(fn () => [
             'pre-inscriptions' => PreRegistration::where('status', 'nouvelle')->count(),
             'entreprises' => CorporateRequest::where('status', 'nouvelle')->count(),
             'candidatures' => JobApplication::where('status', 'nouvelle')->count(),
             'messages' => ContactMessage::where('status', 'non_lu')->count(),
-        ];
+        ]);
     }
 
     public static function total(): int

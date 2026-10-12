@@ -20,7 +20,7 @@ class StorePreRegistrationRequest extends FormRequest
             'child_birthdate' => ['required', 'date'],
             'entry_date' => ['required', 'date'],
             'care_type' => ['required', 'in:regulier,occasionnel,urgence'],
-            'care_days' => ['required_unless:care_type,urgence', 'array'],
+            'care_days' => ['required_unless:care_type,urgence', 'nullable', 'array'],
             'care_days.*' => ['string', 'in:lundi,mardi,mercredi,jeudi,vendredi'],
             'special_needs' => ['nullable', 'boolean'],
             'special_needs_details' => ['nullable', 'string', 'max:2000'],
