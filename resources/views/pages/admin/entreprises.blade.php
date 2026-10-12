@@ -158,7 +158,7 @@
                     </template>
                 </div>
 
-                <div class="p-5 border-t border-mint bg-cream/70 sticky bottom-0 flex flex-col gap-2.5">
+                <div class="p-5 border-t border-mint bg-cream sticky bottom-0 flex flex-col gap-2.5">
                     <a :href="'mailto:' + demandeOuverte.email" class="h-11 px-4 rounded-full bg-primary text-white font-body text-sm font-bold shadow-md hover:opacity-90 transition-all flex items-center justify-center gap-1.5">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
                         Répondre à l'entreprise

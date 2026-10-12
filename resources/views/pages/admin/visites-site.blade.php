@@ -428,7 +428,7 @@
                     </div>
                 </div>
 
-                <div class="p-5 border-t border-mint bg-cream/70 sticky bottom-0">
+                <div class="p-5 border-t border-mint bg-cream sticky bottom-0">
                     <form method="POST" :action="urlBase + '/' + visiteOuverte.id" onsubmit="return confirm('Supprimer cette visite des statistiques ? Le formulaire éventuellement envoyé n\'est pas supprimé.')">
                         @csrf
                         @method('DELETE')

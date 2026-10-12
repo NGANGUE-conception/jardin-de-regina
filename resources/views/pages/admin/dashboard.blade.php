@@ -11,7 +11,7 @@
         filtreStatut: '',
         filtreAccueil: '',
         onglet: 'toutes',
-        dossierOuvertId: null,
+        dossierOuvertId: @js(session('dossier_ouvert')),
         dossiers: {{ json_encode($dossiers) }},
         get filtres() {
             return this.dossiers.filter(d => {
@@ -78,10 +78,7 @@
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v13m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
                         Exporter en Excel
                     </a>
-                    <button type="button" class="h-[48px] px-6 rounded-full bg-coral text-white font-body font-bold text-sm shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all flex items-center gap-2">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m-7-7h14"/></svg>
-                        Nouvelle pré-inscription manuelle
-                    </button>
+                    <x-admin.pre-inscription-manuelle />
                 </div>
             </div>
 
@@ -272,8 +269,7 @@
                         </table>
                     </div>
                     <div class="px-6 py-4 bg-cream flex flex-col sm:flex-row items-center justify-between gap-2 font-body text-sm text-primary-deep/75">
-                        <span>Affichage de <strong class="text-primary-deep">6</strong> demandes sur <strong class="text-primary-deep">14</strong> au total (démonstration)</span>
-                        <span class="text-xs italic">Données fictives à titre d'exemple</span>
+                        <span><strong class="text-primary-deep" x-text="filtres.length"></strong> demande(s) affichée(s) sur <strong class="text-primary-deep" x-text="dossiers.length"></strong> au total</span>
                     </div>
                 </div>
             </div>
@@ -317,7 +313,8 @@
                             <span class="font-body text-xs uppercase font-bold tracking-wider">Critères d'accueil</span>
                         </div>
                         <div class="bg-cream rounded-2xl p-4 divide-y divide-primary-deep/10 font-body text-sm">
-                            <div class="pb-2.5 flex justify-between"><span class="text-primary-deep/75">Date d'entrée souhaitée</span><span class="font-bold text-primary-deep" x-text="dossierOuvert.entreeLabel"></span></div>
+                            <div class="pb-2.5 flex justify-between"><span class="text-primary-deep/75">Demande reçue par</span><span class="font-bold text-primary-deep" x-text="dossierOuvert.sourceLabel"></span></div>
+                            <div class="py-2.5 flex justify-between"><span class="text-primary-deep/75">Date d'entrée souhaitée</span><span class="font-bold text-primary-deep" x-text="dossierOuvert.entreeLabel"></span></div>
                             <div class="py-2.5 flex justify-between"><span class="text-primary-deep/75">Rythme demandé</span><span class="font-bold text-primary-deep" x-text="dossierOuvert.accueilLabel"></span></div>
                             <div class="py-2.5 flex justify-between"><span class="text-primary-deep/75">Horaires souhaités</span><span class="font-bold text-primary-deep">8h30 – 18h30</span></div>
                             <div class="pt-2.5 flex flex-col gap-1">
@@ -345,14 +342,14 @@
                                     <a :href="'tel:' + dossierOuvert.parent.tel.replace(/\s/g, '')" class="w-8 h-8 rounded-full bg-mint flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
                                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
                                     </a>
-                                    <a :href="'mailto:' + dossierOuvert.parent.email" class="w-8 h-8 rounded-full bg-cream border border-primary-deep/10 flex items-center justify-center text-primary-deep/75 hover:bg-primary hover:text-white transition-colors">
+                                    <a x-show="dossierOuvert.parent.email" :href="'mailto:' + dossierOuvert.parent.email" class="w-8 h-8 rounded-full bg-cream border border-primary-deep/10 flex items-center justify-center text-primary-deep/75 hover:bg-primary hover:text-white transition-colors">
                                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
                                     </a>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-1 text-xs text-primary-deep/75 border-t border-primary-deep/10 pt-2">
                                 <div class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg><span x-text="dossierOuvert.parent.tel"></span></div>
-                                <div class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span class="truncate" x-text="dossierOuvert.parent.email"></span></div>
+                                <div class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span class="truncate" x-text="dossierOuvert.parent.email || 'Email non renseigné'"></span></div>
                             </div>
                             <template x-if="dossierOuvert.entreprise">
                                 <div class="pt-2 border-t border-primary-deep/10 flex items-center justify-between">
@@ -391,7 +388,7 @@
                     </div>
                 </div>
 
-                <div class="p-5 border-t border-mint bg-cream/70 sticky bottom-0 flex flex-col gap-2.5">
+                <div class="p-5 border-t border-mint bg-cream sticky bottom-0 flex flex-col gap-2.5">
                     <form method="POST" :action="'/admin/dossiers/' + dossierOuvert.dbId + '/statut'" class="flex items-center gap-2">
                         @csrf
                         @method('PATCH')
@@ -405,7 +402,7 @@
                         </button>
                     </form>
                     <div class="flex items-center justify-between pt-1">
-                        <a :href="'mailto:' + dossierOuvert.parent.email" class="font-body text-xs font-semibold text-primary hover:underline flex items-center gap-1">
+                        <a x-show="dossierOuvert.parent.email" :href="'mailto:' + dossierOuvert.parent.email" class="font-body text-xs font-semibold text-primary hover:underline flex items-center gap-1">
                             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
                             Écrire aux parents
                         </a>

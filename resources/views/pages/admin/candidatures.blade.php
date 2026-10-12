@@ -180,7 +180,7 @@
                     </template>
                 </div>
 
-                <div class="p-5 border-t border-mint bg-cream/70 sticky bottom-0 flex flex-col gap-2.5">
+                <div class="p-5 border-t border-mint bg-cream sticky bottom-0 flex flex-col gap-2.5">
                     <form method="POST" :action="'/admin/candidatures/' + candidatOuvert.dbId + '/statut'" class="flex items-center gap-2">
                         @csrf
                         @method('PATCH')

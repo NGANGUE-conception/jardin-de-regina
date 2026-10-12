@@ -45,6 +45,7 @@ class PreRegistration extends Model
         'newsletter_opt_in',
         'rgpd_consent',
         'status',
+        'source',
         'internal_note',
     ];
 
@@ -59,6 +60,19 @@ class PreRegistration extends Model
     ];
 
     public const STATUTS = ['nouvelle', 'attente', 'acceptee', 'refusee'];
+
+    /**
+     * Origine de la demande : formulaire du site, ou saisie manuelle par la direction.
+     *
+     * @var array<string, string>
+     */
+    public const SOURCES = [
+        'site' => 'Site internet',
+        'telephone' => 'Téléphone',
+        'sur_place' => 'Sur place',
+        'email' => 'Email',
+        'autre' => 'Autre',
+    ];
 
     public function visites(): MorphMany
     {
@@ -124,7 +138,7 @@ class PreRegistration extends Model
 
     public function entreeLabel(): string
     {
-        return $this->entry_date->translatedFormat('j M. Y');
+        return $this->entry_date->translatedFormat('j M Y');
     }
 
     public function adresseComplete(): string
@@ -143,6 +157,11 @@ class PreRegistration extends Model
             : 'Aucune allergie ni besoin spécifique signalé au dépôt du dossier.';
     }
 
+    public function sourceLabel(): string
+    {
+        return self::SOURCES[$this->source] ?? self::SOURCES['site'];
+    }
+
     public function toAdminArray(): array
     {
         return [
@@ -150,6 +169,8 @@ class PreRegistration extends Model
             'dbId' => $this->id,
             'dateLabel' => ucfirst($this->created_at->diffForHumans()),
             'statut' => $this->status,
+            'source' => $this->source ?? 'site',
+            'sourceLabel' => $this->sourceLabel(),
             'entreprise' => false,
             'accueilType' => $this->care_type,
             'accueilLabel' => $this->accueilLabel(),
@@ -166,7 +187,11 @@ class PreRegistration extends Model
             ],
             'parent' => [
                 'nom' => trim($this->p1_prenom.' '.$this->p1_nom),
-                'role' => ($this->p1_civilite === 'Monsieur' ? 'Père' : 'Mère').' · référent principal',
+                'role' => match ($this->p1_civilite) {
+                    'Monsieur' => 'Père',
+                    'Madame' => 'Mère',
+                    default => 'Parent',
+                }.' · référent principal',
                 'tel' => $this->p1_tel,
                 'email' => $this->p1_email,
             ],

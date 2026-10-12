@@ -337,7 +337,7 @@
             </div>
         </div>
 
-        <div class="p-5 border-t border-mint bg-cream/70 sticky bottom-0">
+        <div class="p-5 border-t border-mint bg-cream sticky bottom-0">
             <button type="submit" form="form-visite" class="w-full h-11 px-4 rounded-full bg-primary text-white font-body text-sm font-bold shadow-md hover:opacity-90 transition-all" x-text="mode === 'edition' ? 'Enregistrer les modifications' : 'Ajouter au journal'"></button>
         </div>
     </aside>

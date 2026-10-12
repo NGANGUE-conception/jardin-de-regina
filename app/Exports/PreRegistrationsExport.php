@@ -30,6 +30,7 @@ class PreRegistrationsExport implements FromCollection, WithHeadings, WithMappin
             'Email',
             'Adresse',
             'Statut',
+            'Origine',
             'Déposé le',
         ];
     }
@@ -55,6 +56,7 @@ class PreRegistrationsExport implements FromCollection, WithHeadings, WithMappin
                 'refusee' => 'Refusée',
                 default => $dossier->status,
             },
+            $dossier->sourceLabel(),
             $dossier->created_at->format('d/m/Y H:i'),
         ];
     }

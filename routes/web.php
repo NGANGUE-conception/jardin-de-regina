@@ -117,6 +117,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/admin/dossiers/{dossier}/statut', [AdminDashboardController::class, 'updateStatus'])->name('admin.dossiers.statut');
 
     Route::get('/admin/pre-inscriptions', [PreRegistrationAdminController::class, 'index'])->name('admin.pre-inscriptions');
+    Route::post('/admin/pre-inscriptions', [PreRegistrationAdminController::class, 'store'])->name('admin.pre-inscriptions.store');
     Route::patch('/admin/pre-inscriptions/{dossier}/statut', [PreRegistrationAdminController::class, 'updateStatus'])->name('admin.pre-inscriptions.statut');
     Route::patch('/admin/pre-inscriptions/{dossier}/note', [PreRegistrationAdminController::class, 'updateNote'])->name('admin.pre-inscriptions.note');
     Route::delete('/admin/pre-inscriptions/{dossier}', [PreRegistrationAdminController::class, 'destroy'])->name('admin.pre-inscriptions.destroy');

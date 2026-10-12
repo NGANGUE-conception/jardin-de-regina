@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\PreRegistrationsExport;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreManualPreRegistrationRequest;
+use App\Mail\SubmissionConfirmation;
 use App\Models\PreRegistration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PreRegistrationAdminController extends Controller
@@ -22,6 +25,44 @@ class PreRegistrationAdminController extends Controller
         return view('pages.admin.pre-inscriptions', [
             'dossiers' => PreRegistration::latest()->get()->map->toAdminArray()->values(),
         ]);
+    }
+
+    /**
+     * Pré-inscription saisie à la main par la direction (demande reçue par téléphone, sur place...).
+     * L'email de confirmation n'est envoyé à la famille que si la direction le demande.
+     */
+    public function store(StoreManualPreRegistrationRequest $request)
+    {
+        $donnees = $request->safe()->except(['envoyer_confirmation', 'famille_informee']);
+        $donnees['care_days'] = $donnees['care_days'] ?? null;
+        $donnees['special_needs'] = filled($donnees['special_needs_details'] ?? null);
+        $donnees['dossier_number'] = PreRegistration::genererNumeroDossier();
+        $donnees['rgpd_consent'] = true;
+        $donnees['status'] = 'nouvelle';
+
+        $dossier = PreRegistration::create($donnees);
+
+        $message = "Dossier {$dossier->dossier_number} créé pour {$dossier->nomComplet()}.";
+
+        if ($request->boolean('envoyer_confirmation') && $dossier->p1_email) {
+            Mail::to($dossier->p1_email)->send(new SubmissionConfirmation(
+                titre: 'Votre pré-inscription est bien enregistrée',
+                numeroDossier: $dossier->dossier_number,
+                intro: "Suite à notre échange, la demande de pré-inscription pour {$dossier->nomComplet()} a bien été enregistrée auprès du Jardin de Régina. Notre équipe étudie votre dossier et vous recontactera très prochainement.",
+                lignes: [
+                    'Enfant' => $dossier->nomComplet(),
+                    "Date d'entrée souhaitée" => $dossier->entry_date->translatedFormat('j F Y'),
+                    "Type d'accueil" => $dossier->accueilLabel(),
+                ],
+            ));
+
+            $message .= " Email de confirmation envoyé à {$dossier->p1_email}.";
+        }
+
+        return redirect()
+            ->route('admin.pre-inscriptions')
+            ->with('success', $message)
+            ->with('dossier_ouvert', $dossier->dossier_number);
     }
 
     public function updateStatus(Request $request, PreRegistration $dossier)
