@@ -4,14 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Support\Etablissement;
-use Closure;
+use App\Support\MotDePasse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 use Throwable;
 
 /**
@@ -169,39 +165,11 @@ class ParametresController extends Controller
         $user = $request->user();
 
         $validated = $request->validateWithBag('motDePasse', [
-            'password' => [
-                'required',
-                'confirmed',
-                Password::min(12)->mixedCase()->numbers()->symbols(),
-                function (string $attribut, mixed $valeur, Closure $echec) use ($user) {
-                    if (is_string($valeur) && Hash::check($valeur, $user->password)) {
-                        $echec("Le nouveau mot de passe doit être différent de l'actuel.");
-                    }
-                },
-            ],
-        ], [
-            'password.required' => 'Merci de saisir un nouveau mot de passe.',
-            'password.confirmed' => 'La confirmation ne correspond pas au nouveau mot de passe.',
-            'password.min' => 'Le nouveau mot de passe doit contenir au moins 12 caractères.',
-            'password.mixed' => 'Le nouveau mot de passe doit contenir au moins une majuscule et une minuscule.',
-            'password.numbers' => 'Le nouveau mot de passe doit contenir au moins un chiffre.',
-            'password.symbols' => 'Le nouveau mot de passe doit contenir au moins un symbole (ex. ! ? @ # %).',
-        ]);
+            'password' => MotDePasse::regles($user),
+        ], MotDePasse::messages());
 
-        // Le modèle User chiffre automatiquement le mot de passe (cast "hashed").
-        // Le nouveau jeton "se souvenir de moi" invalide les connexions mémorisées sur les autres appareils.
-        $user->forceFill([
-            'password' => $validated['password'],
-            'remember_token' => Str::random(60),
-        ])->save();
-
-        // Déconnecte les autres appareils (sessions stockées en base), en gardant la session actuelle.
-        if (config('session.driver') === 'database') {
-            DB::table(config('session.table', 'sessions'))
-                ->where('user_id', $user->getAuthIdentifier())
-                ->where('id', '!=', $request->session()->getId())
-                ->delete();
-        }
+        // Garde cet appareil connecté, déconnecte les autres.
+        MotDePasse::changer($user, $validated['password'], $request->session()->getId());
 
         $request->session()->forget(self::SESSION_VERIFICATION);
         $request->session()->regenerate();

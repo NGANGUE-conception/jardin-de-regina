@@ -59,6 +59,18 @@ class AppServiceProvider extends ServiceProvider
                 ->withInput($request->except(['_token', 'documents', 'jr_site_web', 'jr_affiche_a']))
                 ->withErrors(['anti_spam' => 'Vous avez envoyé plusieurs demandes en peu de temps. Merci de patienter un peu avant de réessayer, ou appelez-nous au 07 67 64 61 84.'])));
 
+        // Mot de passe oublié : 5 demandes de lien par quart d'heure (évite d'inonder la boîte mail de l'admin).
+        RateLimiter::for('mot-de-passe-oublie', fn (Request $request) => Limit::perMinutes(15, 5)
+            ->by('mot-de-passe-oublie|'.$request->ip())
+            ->response(fn () => back()
+                ->withInput($request->only('email'))
+                ->withErrors(['email' => 'Trop de demandes en peu de temps. Patientez quelques minutes avant de réessayer.'])));
+
+        RateLimiter::for('reinitialisation-mot-de-passe', fn (Request $request) => Limit::perMinutes(15, 10)
+            ->by('reinitialisation|'.$request->ip())
+            ->response(fn () => back()
+                ->withErrors(['password' => 'Trop d\'essais en peu de temps. Patientez quelques minutes avant de réessayer.'])));
+
         RateLimiter::for('verification-identite', fn (Request $request) => Limit::perMinute(5)
             ->by('verification|'.$request->user()?->getAuthIdentifier().'|'.$request->ip())
             ->response(fn () => redirect()

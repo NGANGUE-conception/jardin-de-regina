@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\ContactMessageAdminController;
 use App\Http\Controllers\Admin\CorporateRequestAdminController;
 use App\Http\Controllers\Admin\JobApplicationAdminController;
+use App\Http\Controllers\Admin\MotDePasseOublieController;
 use App\Http\Controllers\Admin\ParametresController;
 use App\Http\Controllers\Admin\PreRegistrationAdminController;
 use App\Http\Controllers\Admin\SiteVisitAdminController;
@@ -98,6 +99,18 @@ Route::post('/admin/login', [AdminAuthController::class, 'login'])
     ->middleware('throttle:connexion-admin') // 5 essais par minute (voir AppServiceProvider)
     ->name('admin.login.submit');
 Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+// Mot de passe oublié (uniquement sans être connecté) : demande du lien par email, puis choix du nouveau mot de passe.
+Route::middleware('guest')->group(function () {
+    Route::get('/admin/mot-de-passe-oublie', [MotDePasseOublieController::class, 'demande'])->name('admin.password.request');
+    Route::post('/admin/mot-de-passe-oublie', [MotDePasseOublieController::class, 'envoyerLien'])
+        ->middleware('throttle:mot-de-passe-oublie') // voir AppServiceProvider
+        ->name('admin.password.email');
+    Route::get('/admin/reinitialiser-mot-de-passe/{token}', [MotDePasseOublieController::class, 'formulaire'])->name('admin.password.reset');
+    Route::post('/admin/reinitialiser-mot-de-passe', [MotDePasseOublieController::class, 'reinitialiser'])
+        ->middleware('throttle:reinitialisation-mot-de-passe') // compteur séparé : quelques fautes de saisie ne bloquent pas
+        ->name('admin.password.update');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin');
