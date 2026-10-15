@@ -6,8 +6,8 @@ use App\Http\Requests\StoreContactMessageRequest;
 use App\Mail\NewSubmissionAlert;
 use App\Mail\SubmissionConfirmation;
 use App\Models\ContactMessage;
+use App\Support\EnvoiEmail;
 use App\Support\SuiviVisites;
-use Illuminate\Support\Facades\Mail;
 
 class ContactMessageController extends Controller
 {
@@ -21,7 +21,7 @@ class ContactMessageController extends Controller
         $message = ContactMessage::create($data);
         $suivi->rattacherFormulaire($request, $message);
 
-        Mail::to($message->email)->send(new SubmissionConfirmation(
+        EnvoiEmail::envoyer($message->email, new SubmissionConfirmation(
             titre: 'Votre message est bien reçu',
             numeroDossier: $message->message_number,
             intro: 'Merci pour votre message. Notre équipe vous répondra sous 48h ouvrées.',
@@ -30,7 +30,7 @@ class ContactMessageController extends Controller
             ],
         ));
 
-        Mail::to(config('mail.admin_address'))->send(new NewSubmissionAlert(
+        EnvoiEmail::envoyer(config('mail.admin_address'), new NewSubmissionAlert(
             type: 'Nouveau message de contact',
             numeroDossier: $message->message_number,
             lignes: [

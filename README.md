@@ -1,58 +1,155 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Le Jardin de Régina — site de la micro-crèche
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Site public et espace de gestion de la micro-crèche écoresponsable **Le Jardin de Régina**,
+4 bis rue des Écoles, 94140 Alfortville (réseau TEF Group Invest).
 
-## About Laravel
+- **Site public** : présentation, projet pédagogique, fonctionnement, tarifs, berceaux entreprise,
+  recrutement, contact, pré-inscription en ligne, pages légales, plan du site.
+- **Espace admin** (`/admin`) : pré-inscriptions (dont la saisie manuelle des demandes reçues par
+  téléphone), demandes des entreprises, candidatures, messages, journal des rendez-vous de visite,
+  statistiques de visite du site, exports Excel, paramètres de l'établissement et du compte.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Technologies
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+| Rôle | Outil |
+|---|---|
+| Serveur | PHP 8.5, Laravel 13 |
+| Pages | Blade, Alpine.js (menus, carrousels, formulaires en étapes), Tailwind CSS 4 |
+| Compilation des fichiers CSS/JS | Vite (`npm run build`) |
+| Base de données | MySQL (XAMPP en local) |
+| Polices | Chewy et Nunito, hébergées sur le site (aucun appel à Google Fonts) |
+| Exports Excel | maatwebsite/excel |
+| Tests | PHPUnit (base dédiée `jardin_de_regina_test`) |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Installation sur un poste de développement (Windows + XAMPP)
 
-## Learning Laravel
+Prérequis : XAMPP (PHP 8.5 avec les extensions `gd` et `fileinfo` activées dans `php.ini`, MySQL),
+Composer, Node.js.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```powershell
+git clone https://github.com/NGANGUE-conception/jardin-de-regina.git
+cd jardin-de-regina
+composer install
+npm install
+copy .env.example .env
+php artisan key:generate
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+1. Dans phpMyAdmin, créer les bases `jardin_de_regina` (le site) et `jardin_de_regina_test` (les tests),
+   en `utf8mb4_unicode_ci`.
+2. Créer les tables puis le compte de la direction :
+   ```powershell
+   php artisan migrate
+   php artisan admin:creer
+   ```
+3. Lancer le site (deux terminaux) :
+   ```powershell
+   php artisan serve      # le site : http://localhost:8000
+   npm run dev            # recharge automatiquement le CSS/JS pendant qu'on modifie le code
+   ```
+   Sans `npm run dev`, lancer une fois `npm run build`.
 
-## Contributing
+En local, les emails ne partent pas : ils sont écrits dans `storage/logs/laravel.log` (`MAIL_MAILER=log`).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+> **Tester sur un téléphone** (même Wi-Fi) : arrêter `npm run dev`, lancer `npm run build`, puis
+> `php artisan serve --host=0.0.0.0 --port=8000` et ouvrir `http://<adresse IPv4 du PC>:8000`
+> (adresse donnée par `ipconfig`). Avec `npm run dev` actif, le téléphone n'a pas la mise en forme.
 
-## Code of Conduct
+## Commandes utiles
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+| Commande | Effet |
+|---|---|
+| `php artisan test` | Lance tous les tests automatiques (base `jardin_de_regina_test`, jamais la vraie base) |
+| `php artisan admin:creer` | Crée un compte pour l'espace admin (mot de passe demandé de façon masquée) |
+| `php artisan site:images` | Régénère favicon, icônes, image de partage (`images/partage.jpg`), logo WebP et photos WebP à partir de `public/images/` — à relancer après un changement de logo ou de photo |
+| `php artisan visites:purger` | Supprime les statistiques de visite de plus de 25 mois (lancée automatiquement chaque nuit à 3 h, voir « Tâche planifiée ») |
+| `npm run build` | Compile le CSS et le JavaScript dans `public/build` |
+| `vendor/bin/pint` | Met le code PHP en forme selon les conventions du projet |
 
-## Security Vulnerabilities
+## Organisation du code (repères)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Où | Quoi |
+|---|---|
+| `routes/web.php` | Toutes les adresses du site et de l'admin |
+| `config/creche.php` | Coordonnées par défaut de l'établissement (modifiables ensuite dans Admin → Paramètres) |
+| `app/Support/Etablissement.php` | Coordonnées en vigueur, disponibles dans toutes les vues sous `$etab` |
+| `app/Support/Referencement.php`, `PagesPubliques.php` | Adresse canonique, données pour Google (JSON-LD), sitemap.xml, plan du site |
+| `app/Support/SuiviVisites.php`, `StatistiquesVisites.php` | Mesure d'audience anonyme (exemptée de consentement CNIL) |
+| `app/Support/EnvoiEmail.php` | Envoi des emails qui ne bloque jamais un formulaire si le service d'email est en panne |
+| `app/Support/MotDePasse.php` | Règles du mot de passe admin |
+| `app/Http/Middleware/` | Anti-spam des formulaires, suivi des visites, en-têtes de sécurité |
+| `resources/views/pages/` | Pages publiques ; `pages/admin/` pour l'admin |
+| `resources/views/components/` | Éléments réutilisés (en-tête, pied de page, champs d'erreur, tiroir de pré-inscription manuelle...) |
+| `resources/views/errors/` | Pages d'erreur (404, 419, 429, 500, 503...) |
+| `tests/Feature/` | Tests automatiques |
 
-## License
+## Mise en ligne (production)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 1. Fichier `.env` du serveur
+Partir de `.env.example` et changer au minimum :
+
+```dotenv
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://www.<domaine-du-site>
+LOG_STACK=daily
+LOG_LEVEL=warning
+SESSION_SECURE_COOKIE=true
+DB_DATABASE=... / DB_USERNAME=... / DB_PASSWORD=...     # fournis par l'hébergeur
+MAIL_MAILER=smtp
+MAIL_SCHEME=smtp
+MAIL_HOST=smtp-relay.brevo.com
+MAIL_PORT=587
+MAIL_USERNAME=... / MAIL_PASSWORD=...                   # identifiants SMTP Brevo
+MAIL_FROM_ADDRESS=contact@<domaine-du-site>
+MAIL_ADMIN_ADDRESS=<adresse qui reçoit les alertes>
+```
+
+Puis `php artisan key:generate` (une seule fois, à la première installation).
+Hors production, `robots.txt` interdit l'indexation par Google : c'est voulu.
+
+### 2. Installation des fichiers
+
+```bash
+composer install --no-dev --optimize-autoloader
+npm ci && npm run build          # ou compiler en local et envoyer le dossier public/build
+php artisan migrate --force
+php artisan admin:creer          # première installation uniquement
+php artisan optimize
+```
+
+- La racine du site (document root) doit pointer sur le dossier **`public/`**, jamais sur la racine du projet.
+- Les dossiers `storage/` et `bootstrap/cache/` doivent être accessibles en écriture.
+- `public/.htaccess` active la compression et la mise en cache des fichiers (Apache).
+- À chaque mise à jour : `git pull`, puis les commandes ci-dessus sauf `admin:creer`.
+
+### 3. Tâche planifiée (cron)
+Indispensable pour la purge automatique des statistiques (RGPD). Dans le panneau de l'hébergeur :
+
+```
+* * * * * cd /chemin/vers/jardin-de-regina && php artisan schedule:run >> /dev/null 2>&1
+```
+
+### 4. Emails (Brevo)
+Valider le domaine dans Brevo et ajouter chez le registraire du domaine les enregistrements
+**SPF**, **DKIM** et **DMARC** indiqués par Brevo, sinon les emails risquent d'arriver en spam.
+Une panne d'envoi n'empêche jamais l'enregistrement d'une demande : elle est notée dans
+`storage/logs/` (voir `app/Support/EnvoiEmail.php`).
+
+### 5. Sauvegardes
+Prévoir une sauvegarde automatique quotidienne de la base MySQL et du dossier `storage/app/private`
+(CV des candidats), proposée par la plupart des hébergeurs.
+
+### 6. Après la mise en ligne
+- Mentions légales et politique de confidentialité : compléter l'hébergeur et ajouter Brevo (sous-traitant pour les emails).
+- Déclarer le site dans Google Search Console (envoyer `https://<domaine>/sitemap.xml`).
+- Créer la fiche Google Business Profile et la fiche monenfant.fr.
+
+## Sécurité (déjà en place)
+
+- Admin protégé par connexion, limitation des tentatives, déconnexion à la fermeture du navigateur.
+- Changement d'email ou de mot de passe admin seulement après vérification d'identité (10 minutes).
+- Formulaires publics : champ piège anti-robots, délai minimum de remplissage, 10 envois par heure maximum.
+- CV stockés hors de la partie publique, téléchargeables uniquement depuis l'admin.
+- En-têtes de sécurité (anti-clickjacking, Content-Security-Policy, HTTPS imposé en production).
+- Mesure d'audience sans adresse IP, refus possible sur la page « Gestion des cookies ».

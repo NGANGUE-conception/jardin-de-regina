@@ -115,6 +115,8 @@ class ParametresTest extends TestCase
             'telephone' => '+33 1 43 75 00 00',
             'email' => 'Contact@JardinDeRegina.fr',
             'rue' => '10 rue Paul Vaillant-Couturier',
+            'code_postal' => '94700',
+            'ville' => 'Maisons-Alfort',
             'ouverture' => '08:00',
             'fermeture' => '19:00',
         ]))->assertRedirect(route('admin.parametres'))->assertSessionHasNoErrors();
@@ -128,6 +130,9 @@ class ParametresTest extends TestCase
         $page = $this->get('/contact')->assertOk();
         $page->assertSee('01 43 75 00 00')->assertSee('tel:+33143750000', false)->assertSee('10 rue Paul Vaillant-Couturier')->assertSee('8h – 19h')
             ->assertDontSee('07 67 64 61 84');
+        $page->assertSee('Maisons-Alfort (94700)')->assertDontSee('Alfortville (94140)')
+            ->assertSee('query='.urlencode('10 rue Paul Vaillant-Couturier, 94700 Maisons-Alfort'), false);
+        $this->get('/recrutement')->assertSee('Maisons-Alfort (94700)');
         $this->assertStringContainsString('"closes": "19:00"', $page->getContent());
     }
 

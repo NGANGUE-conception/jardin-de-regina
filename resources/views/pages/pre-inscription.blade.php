@@ -354,7 +354,7 @@
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label for="p1_cp" class="font-body text-sm font-bold text-primary-deep">Code postal *</label>
-                            <input id="p1_cp" name="p1_cp" value="{{ old('p1_cp', '94140') }}" type="text" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_cp') ring-2 ring-coral @enderror" @error('p1_cp') aria-invalid="true" aria-describedby="p1_cp-erreur" @enderror>
+                            <input id="p1_cp" name="p1_cp" value="{{ old('p1_cp', $etab->codePostal()) }}" type="text" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_cp') ring-2 ring-coral @enderror" @error('p1_cp') aria-invalid="true" aria-describedby="p1_cp-erreur" @enderror>
                             <x-formulaire.erreur champ="p1_cp" id="p1_cp" />
                         </div>
                         <div class="flex flex-col gap-1.5">

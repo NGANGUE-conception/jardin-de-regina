@@ -2,24 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
-     * Seed the application's database.
+     * Volontairement vide : aucun compte ni donnée de démonstration n'est créé automatiquement.
+     *
+     * (Le modèle de départ de Laravel créait un compte « test@example.com » / « password » :
+     * lancé par erreur sur le serveur, il aurait ouvert l'espace admin à n'importe qui.)
+     * Le compte de la direction se crée avec : php artisan admin:creer
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        //
     }
 }

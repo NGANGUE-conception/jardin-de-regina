@@ -6,8 +6,8 @@ use App\Http\Requests\StoreJobApplicationRequest;
 use App\Mail\NewSubmissionAlert;
 use App\Mail\SubmissionConfirmation;
 use App\Models\JobApplication;
+use App\Support\EnvoiEmail;
 use App\Support\SuiviVisites;
-use Illuminate\Support\Facades\Mail;
 
 class JobApplicationController extends Controller
 {
@@ -28,7 +28,7 @@ class JobApplicationController extends Controller
         $candidature = JobApplication::create($data);
         $suivi->rattacherFormulaire($request, $candidature);
 
-        Mail::to($candidature->email)->send(new SubmissionConfirmation(
+        EnvoiEmail::envoyer($candidature->email, new SubmissionConfirmation(
             titre: 'Votre candidature est bien reçue',
             numeroDossier: $candidature->application_number,
             intro: 'Merci pour votre candidature. Notre direction pédagogique l\'examinera avec soin sous 5 jours ouvrés.',
@@ -37,7 +37,7 @@ class JobApplicationController extends Controller
             ],
         ));
 
-        Mail::to(config('mail.admin_address'))->send(new NewSubmissionAlert(
+        EnvoiEmail::envoyer(config('mail.admin_address'), new NewSubmissionAlert(
             type: 'Nouvelle candidature',
             numeroDossier: $candidature->application_number,
             lignes: [

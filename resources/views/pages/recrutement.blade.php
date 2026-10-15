@@ -46,7 +46,7 @@
                         ['icon' => 'groups', 'texte' => '4 professionnelles'],
                         ['icon' => 'leaf', 'texte' => 'Repas faits maison'],
                         ['icon' => 'heart', 'texte' => 'Pikler & Snoezelen'],
-                        ['icon' => 'pin', 'texte' => 'Alfortville (94140)'],
+                        ['icon' => 'pin', 'texte' => $etab->ville().' ('.$etab->codePostal().')'],
                     ] as $badge)
                     <div class="flex items-center gap-2 p-2.5 rounded-2xl bg-white shadow-sm">
                         @if ($badge['icon'] === 'groups')

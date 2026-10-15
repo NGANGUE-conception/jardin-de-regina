@@ -6,8 +6,8 @@ use App\Http\Requests\StorePreRegistrationRequest;
 use App\Mail\NewSubmissionAlert;
 use App\Mail\SubmissionConfirmation;
 use App\Models\PreRegistration;
+use App\Support\EnvoiEmail;
 use App\Support\SuiviVisites;
-use Illuminate\Support\Facades\Mail;
 
 class PreRegistrationController extends Controller
 {
@@ -24,7 +24,7 @@ class PreRegistrationController extends Controller
         $dossier = PreRegistration::create($data);
         $suivi->rattacherFormulaire($request, $dossier);
 
-        Mail::to($dossier->p1_email)->send(new SubmissionConfirmation(
+        EnvoiEmail::envoyer($dossier->p1_email, new SubmissionConfirmation(
             titre: 'Votre pré-inscription est bien reçue',
             numeroDossier: $dossier->dossier_number,
             intro: "Merci d'avoir déposé une demande de pré-inscription pour {$dossier->nomComplet()} auprès du Jardin de Régina. Notre équipe étudie votre dossier et vous recontactera très prochainement.",
@@ -35,7 +35,7 @@ class PreRegistrationController extends Controller
             ],
         ));
 
-        Mail::to(config('mail.admin_address'))->send(new NewSubmissionAlert(
+        EnvoiEmail::envoyer(config('mail.admin_address'), new NewSubmissionAlert(
             type: 'Nouvelle pré-inscription',
             numeroDossier: $dossier->dossier_number,
             lignes: [

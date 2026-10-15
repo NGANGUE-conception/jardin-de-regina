@@ -37,7 +37,7 @@
                     </span>
                     <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm font-body text-sm font-semibold text-primary-deep">
                         <svg class="w-4 h-4 text-coral" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-7.58 7-12A7 7 0 105 9c0 4.42 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>
-                        Alfortville (94140)
+                        {{ $etab->ville() }} ({{ $etab->codePostal() }})
                     </span>
                 </div>
                 <div class="flex flex-wrap items-center gap-4">

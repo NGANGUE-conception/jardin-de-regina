@@ -6,8 +6,8 @@ use App\Http\Requests\StoreCorporateRequestRequest;
 use App\Mail\NewSubmissionAlert;
 use App\Mail\SubmissionConfirmation;
 use App\Models\CorporateRequest;
+use App\Support\EnvoiEmail;
 use App\Support\SuiviVisites;
-use Illuminate\Support\Facades\Mail;
 
 class CorporateRequestController extends Controller
 {
@@ -21,7 +21,7 @@ class CorporateRequestController extends Controller
         $demande = CorporateRequest::create($data);
         $suivi->rattacherFormulaire($request, $demande);
 
-        Mail::to($demande->contact_email)->send(new SubmissionConfirmation(
+        EnvoiEmail::envoyer($demande->contact_email, new SubmissionConfirmation(
             titre: 'Votre demande de berceau entreprise est bien reçue',
             numeroDossier: $demande->request_number,
             intro: "Merci d'avoir contacté Le Jardin de Régina au nom de {$demande->company_name}. Notre équipe étudie votre demande et revient vers vous très prochainement.",
@@ -31,7 +31,7 @@ class CorporateRequestController extends Controller
             ],
         ));
 
-        Mail::to(config('mail.admin_address'))->send(new NewSubmissionAlert(
+        EnvoiEmail::envoyer(config('mail.admin_address'), new NewSubmissionAlert(
             type: 'Nouvelle demande entreprise',
             numeroDossier: $demande->request_number,
             lignes: [

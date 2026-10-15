@@ -7,8 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreManualPreRegistrationRequest;
 use App\Mail\SubmissionConfirmation;
 use App\Models\PreRegistration;
+use App\Support\EnvoiEmail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PreRegistrationAdminController extends Controller
@@ -45,7 +45,7 @@ class PreRegistrationAdminController extends Controller
         $message = "Dossier {$dossier->dossier_number} créé pour {$dossier->nomComplet()}.";
 
         if ($request->boolean('envoyer_confirmation') && $dossier->p1_email) {
-            Mail::to($dossier->p1_email)->send(new SubmissionConfirmation(
+            $envoye = EnvoiEmail::envoyer($dossier->p1_email, new SubmissionConfirmation(
                 titre: 'Votre pré-inscription est bien enregistrée',
                 numeroDossier: $dossier->dossier_number,
                 intro: "Suite à notre échange, la demande de pré-inscription pour {$dossier->nomComplet()} a bien été enregistrée auprès du Jardin de Régina. Notre équipe étudie votre dossier et vous recontactera très prochainement.",
@@ -56,7 +56,9 @@ class PreRegistrationAdminController extends Controller
                 ],
             ));
 
-            $message .= " Email de confirmation envoyé à {$dossier->p1_email}.";
+            $message .= $envoye
+                ? " Email de confirmation envoyé à {$dossier->p1_email}."
+                : " Attention : l'email de confirmation n'a pas pu être envoyé, prévenez la famille par téléphone.";
         }
 
         return redirect()
