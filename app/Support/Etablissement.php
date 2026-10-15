@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use App\Models\Parametre;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Cache;
 use Throwable;
 
@@ -133,6 +134,26 @@ class Etablissement
     public function horairesTexte(): string
     {
         return __('de :debut à :fin', ['debut' => $this->ouverture(), 'fin' => $this->fermeture()]);
+    }
+
+    /** Date d'ouverture de la crèche (config/creche.php), ou null si elle n'est pas renseignée. */
+    public function dateOuverture(): ?CarbonImmutable
+    {
+        $date = config('creche.ouverture_le');
+
+        return $date ? CarbonImmutable::parse($date)->startOfDay() : null;
+    }
+
+    /** Vrai tant que la crèche n'a pas encore ouvert : l'annonce « Ouverture le ... » n'est affichée que dans ce cas. */
+    public function ouvertureAVenir(): bool
+    {
+        return $this->dateOuverture()?->isFuture() ?? false;
+    }
+
+    /** Ex. "30 octobre 2026" (en anglais : "30 October 2026") */
+    public function ouvertureLisible(): string
+    {
+        return $this->dateOuverture()?->locale(app()->getLocale())->translatedFormat('j F Y') ?? '';
     }
 
     public function gestionnaire(): string

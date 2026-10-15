@@ -128,9 +128,8 @@
                 </div>
                 <div class="flex items-center gap-2 flex-wrap">
                     <h3 class="font-display text-xl text-primary-deep">{{ __('Avantages fiscaux employeur') }}</h3>
-                    <span class="px-2 py-0.5 rounded bg-cream text-primary-deep/75 font-body text-[10px] uppercase tracking-wide font-bold">{{ __('à confirmer') }}</span>
                 </div>
-                <p class="font-body text-sm text-primary-deep/80">{{ __('Le Crédit d\'Impôt Famille (CIF) et la déductibilité de l\'Impôt sur les Sociétés (IS) peuvent réduire significativement le coût net pour l\'entreprise.') }}</p>
+                <p class="font-body text-sm text-primary-deep/80">{{ __('Le Crédit d\'Impôt Famille (50 % des dépenses) et la déduction de l\'impôt sur les sociétés peuvent couvrir jusqu\'à 75 % du coût d\'un berceau, à confirmer avec votre expert-comptable.') }}</p>
                 <div class="mt-1 flex items-center gap-2 text-primary-deep font-body text-sm font-bold">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-8M21 7v6"/></svg>
                     <span>{{ __('Simulation personnalisée sur demande') }}</span>
@@ -208,7 +207,7 @@
             <div class="hidden lg:block absolute top-7 left-[12%] right-[12%] h-0.5 border-b-2 border-dashed border-primary/30 -z-0"></div>
             @foreach ([
                 ['n' => 1, 'titre' => __('Échange sur vos besoins'), 'texte' => __('Nombre de collaborateurs concernés, plannings de reprise et objectifs RH prioritaires.')],
-                ['n' => 2, 'titre' => __('Devis personnalisé'), 'texte' => __('Coût, déductions fiscales estimées [à confirmer] et calendrier d\'entrée.')],
+                ['n' => 2, 'titre' => __('Devis personnalisé'), 'texte' => __('Coût, déductions fiscales estimées et calendrier d\'entrée.')],
                 ['n' => 3, 'titre' => __('Convention entreprise'), 'texte' => __('Signature du partenariat réservant vos berceaux, avec priorité pour vos salariés.')],
                 ['n' => 4, 'titre' => __('Accueil des tout-petits'), 'texte' => __('Pré-inscription simplifiée et période de familiarisation douce avec notre équipe.')],
             ] as $etape)
@@ -385,7 +384,7 @@
                     </div>
                     <h3 class="font-display text-xl text-primary-deep">{{ __('Nous contacter') }}</h3>
                     <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-coral font-body text-xs font-bold shadow-sm w-fit">
-                        {{ __('Réponse sous [délai à préciser]') }}
+                        {{ __('Réponse sous 48h ouvrées') }}
                     </span>
                     <p class="font-body text-sm text-primary-deep/80">{{ __('Une question sur vos déductions fiscales ou les places disponibles ? Notre direction est directement joignable :') }}</p>
                     <div class="flex flex-col gap-3 pt-1 font-body text-sm">

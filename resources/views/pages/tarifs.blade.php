@@ -5,6 +5,8 @@
   
 
 
+@inject('tarification', 'App\Support\Tarification')
+
 @section('content')
 
 {{-- SECTION 1 : HERO --}}
@@ -20,14 +22,14 @@
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
                     <span class="font-body text-xs uppercase tracking-widest font-extrabold">{{ __('Transparence & équité tarifaire') }}</span>
                 </div>
-                <h1 class="font-display text-4xl md:text-5xl text-primary-deep">{{ __('Des tarifs adaptés à chaque famille') }}</h1>
-                <p class="font-display text-xl text-coral">{{ __('Calculés selon vos ressources, en adéquation avec le barème de référence de la CAF.') }}</p>
+                <h1 class="font-display text-4xl md:text-5xl text-primary-deep">{{ __('Un tarif clair, des aides adaptées à chaque famille') }}</h1>
+                <p class="font-display text-xl text-coral">{{ __('Un tarif horaire unique de :tarif, et des aides de la CAF qui s\'adaptent à vos revenus.', ['tarif' => $tarification->tarifHoraireLisible()]) }}</p>
                 <p class="font-body text-lg text-primary-deep/80 leading-relaxed">
                     {{ __('Une tarification claire, juste et sans mauvaise surprise, pensée pour accompagner sereinement chaque foyer tout en garantissant un accueil sensoriel et écoresponsable à Alfortville.') }}
                 </p>
                 <div class="flex flex-wrap gap-2 pt-1">
                     @foreach ([
-                        ['icon' => 'check', 'texte' => __('Barème national CAF')],
+                        ['icon' => 'check', 'texte' => __('Tarif unique : :tarif / h', ['tarif' => $tarification->tarifHoraireLisible()])],
                         ['icon' => 'coin', 'texte' => __('Éligible CMG & PAJE')],
                         ['icon' => 'percent', 'texte' => __('Crédit d\'impôt 50%')],
                         ['icon' => 'leaf', 'texte' => __('Tout inclus sans surcoût')],
@@ -64,7 +66,11 @@
                         <img src="{{ asset('images/salle-de-jeux.webp') }}" alt="{{ __('La crèche accueille vos enfants') }}" class="w-full h-full object-cover">
                         <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-primary-deep font-body text-xs font-bold flex items-center gap-1.5 shadow-sm">
                             <span class="w-2 h-2 rounded-full bg-coral animate-bounce-soft"></span>
-                            {{ __('Ouverture 2026 · 12 places') }}
+                            @if ($etab->ouvertureAVenir())
+                                {{ __('Ouverture le :date · 12 places', ['date' => $etab->ouvertureLisible()]) }}
+                            @else
+                                {{ __('12 places · :ville', ['ville' => $etab->ville()]) }}
+                            @endif
                         </div>
                     </div>
                     <div class="flex flex-col gap-3">
@@ -109,8 +115,8 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
             @foreach ([
-                ['n' => 1, 'titre' => __('Le taux horaire personnalisé'), 'texte' => __('Basé sur vos revenus nets imposables de l\'année N-2 et la composition de votre foyer, en application des critères de référence de la CAF.'), 'tag' => __('CRITÈRE MAJEUR'), 'sous' => __('Revenus fiscaux de référence N-2')],
-                ['n' => 2, 'titre' => __('Le volume contractualisé'), 'texte' => __('Déterminé selon vos besoins réels : accueil régulier (jours et amplitude réservés chaque semaine) ou formule adaptée à votre activité.'), 'tag' => __('CRITÈRE MAJEUR'), 'sous' => __('Amplitude horaire hebdomadaire choisie')],
+                ['n' => 1, 'titre' => __('Un tarif horaire unique'), 'texte' => __('Le même tarif pour toutes les familles : :tarif de l\'heure, repas, couches et activités compris. Il respecte le plafond fixé par la CAF pour bénéficier du CMG.', ['tarif' => $tarification->tarifHoraireLisible()]), 'tag' => __('TARIF UNIQUE'), 'sous' => __(':tarif / heure, tout compris', ['tarif' => $tarification->tarifHoraireLisible()])],
+                ['n' => 2, 'titre' => __('Le volume contractualisé'), 'texte' => __('Déterminé selon vos besoins réels : accueil régulier (jours et amplitude réservés chaque semaine) ou formule adaptée à votre activité.'), 'tag' => __('VOTRE CHOIX'), 'sous' => __('Amplitude horaire hebdomadaire choisie')],
                 ['n' => 3, 'titre' => __('La mensualisation lissée'), 'texte' => __('Une facture mensuelle identique lissée sur l\'année pour faciliter votre budget, avec régularisations claires en cas d\'absences justifiées.'), 'tag' => __('BÉNÉFICE PARENT'), 'sous' => __('Zéro mauvaise surprise en fin de mois')],
             ] as $etape)
             <div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between">
@@ -138,59 +144,90 @@
     </div>
 </section>
 
-{{-- SECTION 3 : GRILLE ET STRUCTURE DU BARÈME --}}
+{{-- SECTION 3 : TARIF UNIQUE ET EXEMPLE DE RESTE À CHARGE (calculé depuis config/creche.php) --}}
 <section class="bg-cream py-20 relative overflow-hidden" x-data="{ shown: false }" x-intersect.once="shown = true" x-init="setTimeout(() => shown = true, 1200)">
     <x-confetti shape="squiggle" class="top-10 left-[6%] w-8 h-8 text-primary animate-spin-slow" />
 
     <div class="max-w-[1240px] mx-auto px-6 reveal relative z-10" :class="{ 'reveal-shown': shown }">
         <div class="text-center max-w-3xl mx-auto flex flex-col items-center">
-            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">{{ __('Structure tarifaire') }}</span>
-            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">{{ __('Repères indicatifs du barème horaire') }}</h2>
-            <p class="font-body text-primary-deep/80 mt-2">{{ __('Chaque situation fait l\'objet d\'un calcul individualisé. Les valeurs ci-dessous illustrent la mécanique de dégressivité avec aides.') }}</p>
+            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">{{ __('Exemple chiffré') }}</span>
+            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">{{ __('Combien coûte une place ?') }}</h2>
+            <p class="font-body text-primary-deep/80 mt-2">{{ __('Un seul tarif pour toutes les familles, tout compris. L\'aide de la CAF (CMG) et le crédit d\'impôt réduisent ensuite fortement votre reste à charge.') }}</p>
         </div>
 
-        <div class="mt-12 bg-white rounded-3xl shadow-lg overflow-hidden">
-            <div class="w-full overflow-x-auto">
-                <table class="w-full text-left border-collapse min-w-[700px]">
-                    <thead>
-                        <tr class="bg-mint/50 text-primary-deep">
-                            <th class="py-5 px-6 font-display text-lg font-medium">{{ __('Tranches de ressources du foyer (N-2)') }}</th>
-                            <th class="py-5 px-6 font-display text-lg font-medium text-center">{{ __('Taux horaire indicatif') }}</th>
-                            <th class="py-5 px-6 font-display text-lg font-medium">{{ __('Reste à charge estimé') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-mint/40">
-                        @foreach ([
-                            ['t' => __('Tranche 1'), 'sous' => __('Revenus inférieurs au plafond CAF tranche basse'), 'badge' => __('Reste à charge minime après CMG'), 'bg' => 'bg-mint text-primary-deep'],
-                            ['t' => __('Tranche 2'), 'sous' => __('Revenus médians - barème intermédiaire CAF'), 'badge' => __('Accompagnement modulé CAF'), 'bg' => 'bg-sky text-primary-deep'],
-                            ['t' => __('Tranche 3'), 'sous' => __('Revenus supérieurs au plafond intermédiaire'), 'badge' => __('Bénéfice du crédit d\'impôt 50%'), 'bg' => 'bg-peach text-coral'],
-                            ['t' => __('Accueil d\'urgence ou occasionnel'), 'sous' => __('Sous réserve de place disponible le jour J'), 'badge' => __('Facturation à l\'heure effective'), 'bg' => 'bg-cream text-primary-deep'],
-                        ] as $row)
-                        <tr class="hover:bg-cream/60 transition-colors">
-                            <td class="py-5 px-6">
-                                <div class="flex flex-col">
-                                    <span class="font-body font-bold text-primary">{{ $row['t'] }}</span>
-                                    <span class="font-body text-sm text-primary-deep/75">{{ $row['sous'] }}</span>
-                                </div>
-                            </td>
-                            <td class="py-5 px-6 text-center">
-                                <span class="font-display text-lg text-primary-deep bg-cream px-3 py-1 rounded-full">{{ __('[xx,xx €] / h') }}</span>
-                            </td>
-                            <td class="py-5 px-6">
-                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full {{ $row['bg'] }} font-body text-sm font-semibold">{{ $row['badge'] }}</span>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+        <div class="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {{-- Tarif horaire unique --}}
+            <div class="lg:col-span-4 bg-primary text-white rounded-3xl p-7 shadow-lg flex flex-col gap-4">
+                <span class="font-body text-xs uppercase tracking-widest font-extrabold text-white">{{ __('Tarif horaire unique') }}</span>
+                <p class="flex items-baseline gap-2">
+                    <span class="font-display text-6xl">{{ $tarification->tarifHoraireLisible() }}</span>
+                    <span class="font-body text-lg">{{ __('/ heure') }}</span>
+                </p>
+                <ul class="flex flex-col gap-2 font-body text-sm">
+                    @foreach ([
+                        __('Le même tarif pour toutes les familles'),
+                        __('Repas, couches et activités compris'),
+                        __('Mensualisé selon les jours et horaires réservés'),
+                        __('Accueil occasionnel ou d\'urgence : facturé à l\'heure effective'),
+                    ] as $point)
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        <span>{{ $point }}</span>
+                    </li>
+                    @endforeach
+                </ul>
+                <p class="font-body text-xs text-white/90 border-t border-white/20 pt-3">{{ __('Ce tarif respecte le plafond de 10 € de l\'heure fixé par la CAF : votre famille peut donc bénéficier du complément de mode de garde (CMG).') }}</p>
             </div>
-            <div class="p-6 bg-mint/30 flex items-start gap-4">
-                <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shrink-0">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+
+            {{-- Exemple de reste à charge selon les revenus --}}
+            <div class="lg:col-span-8 bg-white rounded-3xl shadow-lg overflow-hidden">
+                <div class="p-6 pb-4 flex flex-col gap-1">
+                    <h3 class="font-display text-xl text-primary-deep">{{ __('Exemple : accueil à temps plein') }}</h3>
+                    <p class="font-body text-sm text-primary-deep/80">
+                        {{ __('Enfant de moins de 3 ans accueilli 5 jours par semaine, :heuresjour h par jour (environ :heuresmois h par mois), couple avec un enfant. Coût avant aides : :cout par mois.', [
+                            'heuresjour' => Illuminate\Support\Number::format($tarification->heuresParJour(), maxPrecision: 1, locale: app()->getLocale()),
+                            'heuresmois' => Illuminate\Support\Number::format(round($tarification->heuresMensuellesTempsPlein()), locale: app()->getLocale()),
+                            'cout' => App\Support\Tarification::euros($tarification->coutMensuelTempsPlein()),
+                        ]) }}
+                    </p>
                 </div>
-                <div>
-                    <span class="font-body font-bold text-primary-deep block">{{ __('Précision déontologique & équité') }}</span>
-                    <p class="font-body text-sm text-primary-deep/80">{{ __('Le barème détaillé et le montant exact de votre mensualité vous seront communiqués lors de votre rendez-vous avec la direction, sur présentation de votre avis d\'imposition et de votre attestation de droits CAF.') }}</p>
+                <div class="w-full overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[560px]">
+                        <thead>
+                            <tr class="bg-mint/50 text-primary-deep">
+                                <th scope="col" class="py-4 px-6 font-display text-base font-medium">{{ __('Revenus annuels du foyer') }}</th>
+                                <th scope="col" class="py-4 px-6 font-display text-base font-medium text-right">{{ __('Aide CAF (CMG) / mois') }}</th>
+                                <th scope="col" class="py-4 px-6 font-display text-base font-medium text-right">{{ __('Reste à charge / mois *') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-mint/40">
+                            @foreach ($tarification->exemplesTempsPlein() as $exemple)
+                            <tr class="hover:bg-cream/60 transition-colors">
+                                <th scope="row" class="py-4 px-6 font-body font-bold text-primary-deep">
+                                    @if ($exemple['revenus_min'] === null)
+                                        {{ __('Jusqu\'à :max', ['max' => App\Support\Tarification::euros($exemple['revenus_max'])]) }}
+                                    @elseif ($exemple['revenus_max'] === null)
+                                        {{ __('Plus de :min', ['min' => App\Support\Tarification::euros($exemple['revenus_min'])]) }}
+                                    @else
+                                        {{ __('De :min à :max', ['min' => App\Support\Tarification::euros($exemple['revenus_min']), 'max' => App\Support\Tarification::euros($exemple['revenus_max'])]) }}
+                                    @endif
+                                </th>
+                                <td class="py-4 px-6 font-body text-primary-deep text-right">{{ App\Support\Tarification::euros($exemple['cmg']) }}</td>
+                                <td class="py-4 px-6 text-right">
+                                    <span class="inline-flex px-3 py-1 rounded-full bg-mint font-display text-lg text-primary-deep">{{ __('≈ :montant', ['montant' => App\Support\Tarification::euros($exemple['reste'])]) }}</span>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-6 bg-mint/30 flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shrink-0" aria-hidden="true">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+                    </div>
+                    <p class="font-body text-sm text-primary-deep/80">
+                        {{ __('* Après déduction du CMG et du crédit d\'impôt pour frais de garde (50 % des dépenses, dans la limite de 3 500 € par an). Montants 2026 indicatifs : le montant exact de votre aide est calculé par la CAF (simulateur sur caf.fr). Parent isolé : aide de la CAF majorée de 40 %. Enfant de 3 à 6 ans : aide divisée par deux. Votre mensualité exacte vous est confirmée lors du rendez-vous avec la direction, selon les jours et horaires choisis.') }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -296,7 +333,7 @@
                     <p class="font-body text-primary-deep/80">{{ __('Un dispositif fiscal accordé à tous les parents exerçant une activité professionnelle ou inscrits comme demandeurs d\'emploi, divisant de moitié le coût résiduel.') }}</p>
                     <ul class="flex flex-col gap-3 pt-2">
                         @foreach ([
-                            "Crédit d'impôt de 50% calculé sur les sommes restant à charge (après CMG).",
+                            "Crédit d'impôt de 50% calculé sur les sommes restant à charge (après CMG), hors frais de repas.",
                             'Plafond légal de 3 500 € par an et par enfant, soit jusqu\'à 1 750 € d\'économie annuelle.',
                             'Remboursé par chèque ou virement du Trésor Public si vous n\'êtes pas imposable.',
                             'Attestation fiscale annuelle fournie par nos soins.',

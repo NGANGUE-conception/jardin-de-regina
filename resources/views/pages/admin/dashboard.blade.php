@@ -70,7 +70,7 @@
                     <h1 class="font-display text-3xl text-primary-deep">Tableau de bord des pré-inscriptions</h1>
                     <p class="font-body text-primary-deep/80 flex items-center gap-2 mt-1">
                         <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-7.58 7-12A7 7 0 105 9c0 4.42 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>
-                        Alfortville (12 berceaux agréés PMI + 2 places d'urgence) · Ouverture prévue août 2026
+                        {{ $etab->ville() }} (12 berceaux agréés PMI + 2 places d'urgence) @if ($etab->ouvertureAVenir())· Ouverture le {{ $etab->ouvertureLisible() }}@endif
                     </p>
                 </div>
                 <div class="flex flex-wrap items-center gap-3">

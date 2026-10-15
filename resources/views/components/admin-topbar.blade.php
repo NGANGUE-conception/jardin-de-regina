@@ -16,7 +16,7 @@ $placesPourvues ??= \App\Models\PreRegistration::where('status', 'acceptee')->co
     <div class="flex items-center gap-4">
         <span class="hidden md:flex items-center gap-2 bg-white px-4 py-1.5 rounded-full font-body text-sm font-semibold text-primary-deep whitespace-nowrap">
             <svg class="w-4 h-4 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
-            {{ $placesPourvues }}/14 places pourvues · ouverture août 2026
+            {{ $placesPourvues }}/{{ $etab->places() }} places pourvues @if ($etab->ouvertureAVenir())· ouverture le {{ $etab->ouvertureLisible() }}@endif
         </span>
         @php($totalATraiter = \App\Support\CompteursAdmin::total())
         <a href="{{ route('admin') }}" title="{{ $totalATraiter ? $totalATraiter.' élément(s) à traiter' : 'Rien de nouveau à traiter' }}" class="relative p-2 rounded-full text-primary-deep/75 hover:bg-white transition-colors">

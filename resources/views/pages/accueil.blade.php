@@ -273,7 +273,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
                     </p>
                     <div class="flex flex-wrap gap-3">
                         <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full font-body text-sm font-semibold backdrop-blur-sm">{{ __('Places garanties') }}</span>
-                        <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full font-body text-sm font-semibold backdrop-blur-sm">{{ __('Avantages fiscaux [à confirmer]') }}</span>
+                        <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full font-body text-sm font-semibold backdrop-blur-sm">{{ __('Jusqu\'à 75 % d\'avantages fiscaux') }}</span>
                     </div>
                     <a href="/berceaux-entreprise" class="mt-2 h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
                         {{ __('Découvrir l\'offre Berceaux entreprise') }}
@@ -292,7 +292,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
     <div class="max-w-[1240px] mx-auto px-6 reveal relative z-10" :class="{ 'reveal-shown': shown }">
         <div class="bg-peach/50 rounded-[40px] p-10 md:p-14 flex flex-col items-start gap-4">
             <span class="font-body text-xs uppercase tracking-widest text-coral font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">{{ __('Financement & aides') }}</span>
-            <h2 class="font-display text-3xl md:text-4xl text-primary-deep">{{ __('Des tarifs adaptés aux revenus de votre famille') }}</h2>
+            <h2 class="font-display text-3xl md:text-4xl text-primary-deep">{{ __('Un reste à charge adapté aux revenus de votre famille') }}</h2>
             <p class="font-body text-primary-deep/80 max-w-2xl leading-relaxed">
                 {{ __('Le Jardin de Régina permet aux familles de bénéficier des aides de la CAF (PAJE / CMG) ainsi que du crédit d\'impôt garde d\'enfant.') }}
             </p>

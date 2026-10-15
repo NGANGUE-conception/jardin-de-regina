@@ -26,26 +26,26 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-cream rounded-2xl">
             <div class="flex flex-col gap-1">
                 <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75 font-bold">{{ __('Dénomination') }}</span>
-                <span class="font-body font-semibold text-primary-deep">{{ __('Micro-crèche Le Jardin de Régina') }}</span>
+                <span class="font-body font-semibold text-primary-deep">{{ config('creche.societe.denomination') }} ({{ config('creche.societe.forme') }})</span>
             </div>
             <div class="flex flex-col gap-1">
-                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75 font-bold">{{ __('Réseau') }}</span>
-                <span class="font-body font-semibold text-primary-deep">{{ $etab->gestionnaire() }}</span>
+                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75 font-bold">{{ __('Présidence') }}</span>
+                <span class="font-body font-semibold text-primary-deep">{{ __(':societe (SAS), représentée par :representant', ['societe' => config('creche.societe.presidente'), 'representant' => $etab->representant()]) }}</span>
             </div>
             <div class="flex flex-col gap-1">
-                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75 font-bold">{{ __('Numéro SIRET') }}</span>
-                <span class="font-body font-semibold text-primary-deep">{{ __('[Numéro SIRET à compléter]') }}</span>
+                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75 font-bold">{{ __('SIREN / SIRET') }}</span>
+                <span class="font-body font-semibold text-primary-deep">{{ config('creche.societe.siren') }} / {{ config('creche.societe.siret') }}</span>
             </div>
             <div class="flex flex-col gap-1">
                 <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75 font-bold">{{ __('Directeur de la publication') }}</span>
-                <span class="font-body font-semibold text-primary-deep">{{ __(':representant (gérant & représentant légal)', ['representant' => $etab->representant()]) }}</span>
+                <span class="font-body font-semibold text-primary-deep">{{ __(':representant (représentant légal)', ['representant' => $etab->representant()]) }}</span>
             </div>
             <div class="flex flex-col gap-1">
-                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75 font-bold">{{ __('Direction pédagogique') }}</span>
-                <span class="font-body font-semibold text-primary-deep">{{ __('[Nom de la directrice / du directeur pédagogique]') }}</span>
+                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75 font-bold">{{ __('Capital social') }}</span>
+                <span class="font-body font-semibold text-primary-deep">{{ __('[Capital social à compléter]') }}</span>
             </div>
             <div class="flex flex-col gap-1 md:col-span-2">
-                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75 font-bold">{{ __('Adresse du siège et de l\'établissement') }}</span>
+                <span class="font-body text-xs uppercase tracking-wider text-primary-deep/75 font-bold">{{ __('Adresse de l\'établissement') }}</span>
                 <span class="font-body font-semibold text-primary-deep flex items-center gap-1.5">
                     <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-7.58 7-12A7 7 0 105 9c0 4.42 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>
                     {{ __(':adresse, France', ['adresse' => $etab->adresse()]) }}

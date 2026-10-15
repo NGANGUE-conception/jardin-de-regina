@@ -48,6 +48,37 @@ return [
     'gestionnaire' => 'TEF Group Invest',
     'representant' => 'M. Fabrice TCHOUMO',
 
+    // Date d'ouverture de la crèche (affichée tant qu'elle n'est pas passée).
+    'ouverture_le' => '2026-10-30',
+
+    // Identité légale (registre national des entreprises, annuaire-entreprises.data.gouv.fr, consulté le 15/10/2026).
+    'societe' => [
+        'denomination' => 'LE JARDIN DE REGINA',
+        'forme' => 'SAS',
+        'siren' => '104 174 685',
+        'siret' => '104 174 685 00016',
+        'presidente' => 'TEF GROUP INVEST',
+    ],
+
+    /*
+     * Tarification PAJE : un tarif horaire unique pour toutes les familles. Il doit rester inférieur ou égal
+     * à 10 € de l'heure pour que les familles puissent toucher le complément de mode de garde (CMG) de la CAF.
+     */
+    'tarif_horaire' => 10.00,
+
+    /*
+     * CMG « structure » 2026 versé par la CAF (couple, enfant de moins de 3 ans), selon les revenus annuels du foyer.
+     * Montants indicatifs : la CAF les revalorise chaque année. Parent isolé : +40 %. Enfant de 3 à 6 ans : moitié.
+     */
+    'cmg' => [
+        ['revenus_jusqu_a' => 24333, 'montant' => 992.12],
+        ['revenus_jusqu_a' => 54075, 'montant' => 855.25],
+        ['revenus_jusqu_a' => null, 'montant' => 718.41],
+    ],
+
+    // Crédit d'impôt pour frais de garde : 50 % des dépenses restant à charge, plafonnées à 3 500 € par an et par enfant.
+    'credit_impot' => ['taux' => 0.5, 'plafond_depenses' => 3500],
+
     // Communes desservies (référencement local). Les communes voisines peuvent être ajoutées après validation de la direction.
     'zone' => ['Alfortville'],
 
