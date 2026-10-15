@@ -7,6 +7,7 @@ use App\Mail\NewSubmissionAlert;
 use App\Mail\SubmissionConfirmation;
 use App\Models\PreRegistration;
 use App\Support\EnvoiEmail;
+use App\Support\LangueSite;
 use App\Support\SuiviVisites;
 
 class PreRegistrationController extends Controller
@@ -25,13 +26,13 @@ class PreRegistrationController extends Controller
         $suivi->rattacherFormulaire($request, $dossier);
 
         EnvoiEmail::envoyer($dossier->p1_email, new SubmissionConfirmation(
-            titre: 'Votre pré-inscription est bien reçue',
+            titre: __('Votre pré-inscription est bien reçue'),
             numeroDossier: $dossier->dossier_number,
-            intro: "Merci d'avoir déposé une demande de pré-inscription pour {$dossier->nomComplet()} auprès du Jardin de Régina. Notre équipe étudie votre dossier et vous recontactera très prochainement.",
+            intro: __('Merci d\'avoir déposé une demande de pré-inscription pour :enfant auprès du Jardin de Régina. Notre équipe étudie votre dossier et vous recontactera très prochainement.', ['enfant' => $dossier->nomComplet()]),
             lignes: [
-                'Enfant' => $dossier->nomComplet(),
-                "Date d'entrée souhaitée" => $dossier->entry_date->translatedFormat('j F Y'),
-                "Type d'accueil" => $dossier->accueilLabel(),
+                __('Enfant') => $dossier->nomComplet(),
+                __("Date d'entrée souhaitée") => $dossier->entry_date->translatedFormat('j F Y'),
+                __("Type d'accueil") => $dossier->accueilLabel(),
             ],
         ));
 
@@ -43,9 +44,10 @@ class PreRegistrationController extends Controller
                 'Parent' => trim($dossier->p1_prenom.' '.$dossier->p1_nom),
                 'Téléphone' => $dossier->p1_tel,
                 'Email' => $dossier->p1_email,
+                'Langue du formulaire' => LangueSite::libelleFrancais(),
             ],
             lienAdmin: route('admin.pre-inscriptions'),
-        ));
+        ), 'fr');
 
         return redirect()
             ->route('confirmation-preinscription', ['dossier' => $dossier->dossier_number]);

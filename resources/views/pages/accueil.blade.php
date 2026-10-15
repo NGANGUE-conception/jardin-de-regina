@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
  
-  @section('title', "Micro-crèche à Alfortville (94) — Le Jardin de Régina")
-  @section('description', "Micro-crèche écoresponsable à Alfortville : 14 places pour les enfants de 10 semaines à 3 ans et plus, {$etab->horairesTexte()}, repas faits maison. Pré-inscription en ligne.")
+  @section('title', __('Micro-crèche à Alfortville (94) — Le Jardin de Régina'))
+  @section('description', __('Micro-crèche écoresponsable à Alfortville : 14 places pour les enfants de 10 semaines à 3 ans et plus, :horairestexte, repas faits maison. Pré-inscription en ligne.', ['horairestexte' => $etab->horairesTexte()]))
   
 
 
 @php
 $photos = [
-    ['src' => asset('images/salle-de-jeux.webp'), 'alt' => 'La salle de jeux'],
-    ['src' => asset('images/jardin.webp'), 'alt' => 'Le jardin extérieur'],
-    ['src' => asset('images/activites-creatives.webp'), 'alt' => 'Activités créatives'],
-    ['src' => asset('images/jeux-jouets.webp'), 'alt' => 'Moment de jeu'],
-    ['src' => asset('images/accueil-bienveillant.webp'), 'alt' => 'Un accueil bienveillant'],
+    ['src' => asset('images/salle-de-jeux.webp'), 'alt' => __('La salle de jeux')],
+    ['src' => asset('images/jardin.webp'), 'alt' => __('Le jardin extérieur')],
+    ['src' => asset('images/activites-creatives.webp'), 'alt' => __('Activités créatives')],
+    ['src' => asset('images/jeux-jouets.webp'), 'alt' => __('Moment de jeu')],
+    ['src' => asset('images/accueil-bienveillant.webp'), 'alt' => __('Un accueil bienveillant')],
 ];
 @endphp
 
@@ -47,39 +47,39 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
             <div class="lg:col-span-7 flex flex-col items-start">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-primary shadow-sm">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
-                    <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold">Micro-crèche écoresponsable · Alfortville</span>
+                    <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold">{{ __('Micro-crèche écoresponsable · Alfortville') }}</span>
                 </div>
 
                 <h1 class="font-display text-5xl md:text-6xl text-primary-deep mt-5 leading-[1.1]">
-                    Une bonne journée au Jardin de Régina
+                    {{ __('Une bonne journée au Jardin de Régina') }}
                 </h1>
 
                 <p class="font-body text-lg text-primary-deep/80 mt-5 max-w-xl leading-relaxed">
-                    Une micro-crèche à taille humaine pour les enfants de 10 semaines à 3 ans et plus : bienveillance, éveil par la nature et repas faits maison, dans un cadre doux et rassurant.
+                    {{ __('Une micro-crèche à taille humaine pour les enfants de 10 semaines à 3 ans et plus : bienveillance, éveil par la nature et repas faits maison, dans un cadre doux et rassurant.') }}
                 </p>
 
                 <div class="mt-8 flex flex-wrap items-center gap-4">
                     <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
-                        <span>Pré-inscrire mon enfant</span>
+                        <span>{{ __('Pré-inscrire mon enfant') }}</span>
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                     </a>
                     <a href="/notre-projet" class="h-[52px] px-8 rounded-full bg-white text-primary font-body font-bold text-sm flex items-center justify-center shadow-sm hover:bg-mint/50 transition-all">
-                        Découvrir notre projet
+                        {{ __('Découvrir notre projet') }}
                     </a>
                 </div>
 
                 <div class="mt-10 pt-6 w-full flex flex-wrap gap-3 text-primary-deep font-body text-sm">
                     <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm">
                         <svg class="w-4 h-4 text-coral" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 2.5 5 6 5c2 0 3.5 1.5 4 2.5.5-1 2-2.5 4-2.5 3.5 0 5.5 3.5 3.5 7.5C19 16.65 12 21 12 21z"/></svg>
-                        <span class="font-semibold">12 places + 2 urgences</span>
+                        <span class="font-semibold">{{ __('12 places + 2 urgences') }}</span>
                     </div>
                     <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm">
                         <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 3"/></svg>
-                        <span class="font-semibold">Lun – Ven, {{ $etab->horaires() }}</span>
+                        <span class="font-semibold">{{ __('Lun – Ven, :horaires', ['horaires' => $etab->horaires()]) }}</span>
                     </div>
                     <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm">
                         <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
-                        <span class="font-semibold">Repas faits maison</span>
+                        <span class="font-semibold">{{ __('Repas faits maison') }}</span>
                     </div>
                 </div>
             </div>
@@ -116,8 +116,8 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
                             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                         </div>
                         <div class="flex flex-col min-w-0">
-                            <span class="font-display text-sm text-primary-deep font-semibold truncate">Cocon éco-labellisé</span>
-                            <span class="font-body text-xs text-primary-deep/80 truncate">Matériaux sains &amp; respect du rythme</span>
+                            <span class="font-display text-sm text-primary-deep font-semibold truncate">{{ __('Cocon éco-labellisé') }}</span>
+                            <span class="font-body text-xs text-primary-deep/80 truncate">{{ __('Matériaux sains & respect du rythme') }}</span>
                         </div>
                     </div>
 
@@ -127,7 +127,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
                             {{-- Zone cliquable de 24 px (confort au doigt), point visible plus petit --}}
                             <button type="button" @click="active = index"
                                     class="h-6 min-w-6 px-1 flex items-center justify-center"
-                                    :aria-label="'Voir la photo ' + (index + 1)"
+                                    :aria-label="@js(__('Voir la photo')) + ' ' + (index + 1)"
                                     :aria-current="active === index ? 'true' : 'false'">
                                 <span class="block h-2.5 rounded-full transition-all"
                                       :class="active === index ? 'bg-coral w-6' : 'bg-white/70 w-2.5'"></span>
@@ -161,17 +161,17 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
     <div class="hidden md:block absolute bottom-10 left-[12%] w-5 h-5 rounded-full bg-sky animate-bounce-soft pointer-events-none"></div>
     <div class="max-w-[1240px] mx-auto px-6 reveal relative z-10" :class="{ 'reveal-shown': shown }">
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
-            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Pourquoi nous choisir</span>
-            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Un environnement pensé pour leur bien-être</h2>
-            <p class="font-body text-primary-deep/80 mt-2">Des repères sereins et une attention personnalisée à chaque instant.</p>
+            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">{{ __('Pourquoi nous choisir') }}</span>
+            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">{{ __('Un environnement pensé pour leur bien-être') }}</h2>
+            <p class="font-body text-primary-deep/80 mt-2">{{ __('Des repères sereins et une attention personnalisée à chaque instant.') }}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             @foreach ([
-                ['icon' => 'groups', 'titre' => 'Accueil en petit groupe', 'texte' => "Jusqu'à 12 enfants, plus 2 places d'urgence : une attention personnalisée pour chacun.", 'bg' => 'bg-mint'],
-                ['icon' => 'child', 'titre' => '10 semaines – 3 ans et plus', 'texte' => 'Accueil régulier, occasionnel ou d\'urgence, adapté aux besoins de chaque famille.', 'bg' => 'bg-peach'],
-                ['icon' => 'clock', 'titre' => 'Horaires étendus', 'texte' => $etab->horaires().', du lundi au vendredi, pour concilier sereinement vie pro et vie de famille.', 'bg' => 'bg-sky'],
-                ['icon' => 'leaf', 'titre' => 'Repas faits maison', 'texte' => 'Équilibrés et de saison, préparés avec des produits soigneusement choisis.', 'bg' => 'bg-mint'],
+                ['icon' => 'groups', 'titre' => __('Accueil en petit groupe'), 'texte' => __('Jusqu\'à 12 enfants, plus 2 places d\'urgence : une attention personnalisée pour chacun.'), 'bg' => 'bg-mint'],
+                ['icon' => 'child', 'titre' => __('10 semaines – 3 ans et plus'), 'texte' => __('Accueil régulier, occasionnel ou d\'urgence, adapté aux besoins de chaque famille.'), 'bg' => 'bg-peach'],
+                ['icon' => 'clock', 'titre' => __('Horaires étendus'), 'texte' => __(':horaires, du lundi au vendredi, pour concilier sereinement vie pro et vie de famille.', ['horaires' => $etab->horaires()]), 'bg' => 'bg-sky'],
+                ['icon' => 'leaf', 'titre' => __('Repas faits maison'), 'texte' => __('Équilibrés et de saison, préparés avec des produits soigneusement choisis.'), 'bg' => 'bg-mint'],
             ] as $carte)
             <div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:rotate-1 transition-all flex flex-col gap-3">
                 <div class="w-14 h-14 rounded-2xl {{ $carte['bg'] }} flex items-center justify-center text-primary-deep">
@@ -202,19 +202,19 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
 
     <div class="max-w-[1240px] mx-auto px-6 reveal" :class="{ 'reveal-shown': shown }">
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
-            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Notre pédagogie</span>
-            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Nos 4 piliers d'épanouissement</h2>
+            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">{{ __('Notre pédagogie') }}</span>
+            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">{{ __('Nos 4 piliers d\'épanouissement') }}</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
             @foreach ([
-                ['n' => '01', 'titre' => 'Éveil naturel', 'texte' => 'Le respect de l\'environnement à chaque étape, pour éveiller les sens en douceur.', 'bg' => 'bg-white', 'tag' => 'text-primary'],
-                ['n' => '02', 'titre' => 'Éducation bienveillante', 'texte' => 'L\'autonomie encouragée à chaque instant de la journée, au rythme de chaque enfant.', 'bg' => 'bg-peach/60', 'tag' => 'text-coral'],
-                ['n' => '03', 'titre' => 'Communauté engagée', 'texte' => 'Familles, équipe et collectivité réunies au service de l\'enfant.', 'bg' => 'bg-sky/50', 'tag' => 'text-primary'],
-                ['n' => '04', 'titre' => 'Développement durable', 'texte' => 'Un engagement pour notre avenir, dès le plus jeune âge.', 'bg' => 'bg-white', 'tag' => 'text-primary'],
+                ['n' => '01', 'titre' => __('Éveil naturel'), 'texte' => __('Le respect de l\'environnement à chaque étape, pour éveiller les sens en douceur.'), 'bg' => 'bg-white', 'tag' => 'text-primary'],
+                ['n' => '02', 'titre' => __('Éducation bienveillante'), 'texte' => __('L\'autonomie encouragée à chaque instant de la journée, au rythme de chaque enfant.'), 'bg' => 'bg-peach/60', 'tag' => 'text-coral'],
+                ['n' => '03', 'titre' => __('Communauté engagée'), 'texte' => __('Familles, équipe et collectivité réunies au service de l\'enfant.'), 'bg' => 'bg-sky/50', 'tag' => 'text-primary'],
+                ['n' => '04', 'titre' => __('Développement durable'), 'texte' => __('Un engagement pour notre avenir, dès le plus jeune âge.'), 'bg' => 'bg-white', 'tag' => 'text-primary'],
             ] as $pilier)
             <div class="{{ $pilier['bg'] }} rounded-3xl p-8 flex flex-col gap-2 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
-                <span class="font-body text-xs uppercase tracking-widest {{ $pilier['tag'] }} font-bold">Pilier {{ $pilier['n'] }}</span>
+                <span class="font-body text-xs uppercase tracking-widest {{ $pilier['tag'] }} font-bold">{{ __('Pilier :n', ['n' => $pilier['n']]) }}</span>
                 <h3 class="font-display text-2xl text-primary-deep">{{ $pilier['titre'] }}</h3>
                 <p class="font-body text-sm text-primary-deep/80 leading-relaxed">{{ $pilier['texte'] }}</p>
             </div>
@@ -230,19 +230,19 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
     <div class="hidden md:block absolute top-1/3 left-[4%] w-8 h-8 text-primary animate-wiggle pointer-events-none">{!! $confettiEtoile !!}</div>
     <div class="max-w-[1240px] mx-auto px-6 reveal" :class="{ 'reveal-shown': shown }">
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
-            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Le rythme</span>
-            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Une journée au Jardin</h2>
-            <p class="font-body text-primary-deep/80 mt-2">Pas d'horaires rigides, mais une trame rassurante ponctuée de repères doux.</p>
+            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">{{ __('Le rythme') }}</span>
+            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">{{ __('Une journée au Jardin') }}</h2>
+            <p class="font-body text-primary-deep/80 mt-2">{{ __('Pas d\'horaires rigides, mais une trame rassurante ponctuée de repères doux.') }}</p>
         </div>
 
         <div class="mt-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 relative">
             <div class="hidden lg:block absolute top-9 left-12 right-12 h-1 bg-mint -z-0"></div>
             @foreach ([
-                ['n' => 1, 'titre' => 'Accueil doux', 'texte' => 'Transmissions avec les parents, séparation en douceur.', 'bg' => 'bg-primary'],
-                ['n' => 2, 'titre' => "Ateliers d'éveil", 'texte' => 'Motricité libre, musique et découvertes sensorielles.', 'bg' => 'bg-coral'],
-                ['n' => 3, 'titre' => 'Repas partagé', 'texte' => 'Repas faits maison, dans la bonne humeur.', 'bg' => 'bg-primary'],
-                ['n' => 4, 'titre' => 'Sieste', 'texte' => 'Le sommeil au rythme propre à chaque enfant.', 'bg' => 'bg-coral'],
-                ['n' => 5, 'titre' => 'Goûter & retour', 'texte' => 'Récit chaleureux de la journée avec les parents.', 'bg' => 'bg-primary'],
+                ['n' => 1, 'titre' => __('Accueil doux'), 'texte' => __('Transmissions avec les parents, séparation en douceur.'), 'bg' => 'bg-primary'],
+                ['n' => 2, 'titre' => __('Ateliers d\'éveil'), 'texte' => __('Motricité libre, musique et découvertes sensorielles.'), 'bg' => 'bg-coral'],
+                ['n' => 3, 'titre' => __('Repas partagé'), 'texte' => __('Repas faits maison, dans la bonne humeur.'), 'bg' => 'bg-primary'],
+                ['n' => 4, 'titre' => __('Sieste'), 'texte' => __('Le sommeil au rythme propre à chaque enfant.'), 'bg' => 'bg-coral'],
+                ['n' => 5, 'titre' => __('Goûter & retour'), 'texte' => __('Récit chaleureux de la journée avec les parents.'), 'bg' => 'bg-primary'],
             ] as $etape)
             <div class="bg-white rounded-3xl p-6 flex flex-col items-center text-center gap-2 shadow-sm relative z-10 hover:shadow-lg hover:-translate-y-1 transition-all">
                 <div class="w-12 h-12 rounded-full {{ $etape['bg'] }} text-white font-display text-lg flex items-center justify-center ring-8 ring-cream">{{ $etape['n'] }}</div>
@@ -266,17 +266,17 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
             <div class="hidden md:block absolute top-1/2 right-[45%] w-5 h-5 text-mint animate-wiggle pointer-events-none">{!! $confettiFleur !!}</div>
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
                 <div class="lg:col-span-8 flex flex-col items-start gap-4">
-                    <span class="inline-flex px-4 py-1 rounded-full bg-white/10 font-body text-xs uppercase tracking-widest font-extrabold">Solution employeur</span>
-                    <h2 class="font-display text-3xl md:text-4xl leading-tight">Réservez des berceaux pour vos salariés à Alfortville</h2>
+                    <span class="inline-flex px-4 py-1 rounded-full bg-white/10 font-body text-xs uppercase tracking-widest font-extrabold">{{ __('Solution employeur') }}</span>
+                    <h2 class="font-display text-3xl md:text-4xl leading-tight">{{ __('Réservez des berceaux pour vos salariés à Alfortville') }}</h2>
                     <p class="font-body text-white/85 max-w-xl leading-relaxed">
-                        Offrez à vos équipes une solution de garde fiable et de proximité, et soutenez la conciliation vie professionnelle / vie familiale.
+                        {{ __('Offrez à vos équipes une solution de garde fiable et de proximité, et soutenez la conciliation vie professionnelle / vie familiale.') }}
                     </p>
                     <div class="flex flex-wrap gap-3">
-                        <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full font-body text-sm font-semibold backdrop-blur-sm">Places garanties</span>
-                        <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full font-body text-sm font-semibold backdrop-blur-sm">Avantages fiscaux [à confirmer]</span>
+                        <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full font-body text-sm font-semibold backdrop-blur-sm">{{ __('Places garanties') }}</span>
+                        <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full font-body text-sm font-semibold backdrop-blur-sm">{{ __('Avantages fiscaux [à confirmer]') }}</span>
                     </div>
                     <a href="/berceaux-entreprise" class="mt-2 h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
-                        Découvrir l'offre Berceaux entreprise
+                        {{ __('Découvrir l\'offre Berceaux entreprise') }}
                     </a>
                 </div>
             </div>
@@ -291,13 +291,13 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
     <div class="hidden md:block absolute top-1/2 right-[3%] w-5 h-5 rounded-full bg-sun animate-bounce-soft pointer-events-none"></div>
     <div class="max-w-[1240px] mx-auto px-6 reveal relative z-10" :class="{ 'reveal-shown': shown }">
         <div class="bg-peach/50 rounded-[40px] p-10 md:p-14 flex flex-col items-start gap-4">
-            <span class="font-body text-xs uppercase tracking-widest text-coral font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Financement &amp; aides</span>
-            <h2 class="font-display text-3xl md:text-4xl text-primary-deep">Des tarifs adaptés aux revenus de votre famille</h2>
+            <span class="font-body text-xs uppercase tracking-widest text-coral font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">{{ __('Financement & aides') }}</span>
+            <h2 class="font-display text-3xl md:text-4xl text-primary-deep">{{ __('Des tarifs adaptés aux revenus de votre famille') }}</h2>
             <p class="font-body text-primary-deep/80 max-w-2xl leading-relaxed">
-                Le Jardin de Régina permet aux familles de bénéficier des aides de la CAF (PAJE / CMG) ainsi que du crédit d'impôt garde d'enfant.
+                {{ __('Le Jardin de Régina permet aux familles de bénéficier des aides de la CAF (PAJE / CMG) ainsi que du crédit d\'impôt garde d\'enfant.') }}
             </p>
             <a href="/tarifs" class="mt-2 h-[52px] px-8 rounded-full bg-primary text-white font-body font-bold text-sm flex items-center gap-2 shadow-md hover:-translate-y-0.5 hover:opacity-90 transition-all">
-                Voir les tarifs et les aides
+                {{ __('Voir les tarifs et les aides') }}
             </a>
         </div>
     </div>
@@ -318,9 +318,9 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
             <div class="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-coral animate-float-slow">
                 <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.5 9a2.5 2.5 0 015 0c0 1.5-1.5 2-2.5 3"/><circle cx="12" cy="16.5" r="0.6" fill="currentColor"/><circle cx="12" cy="12" r="9"/></svg>
             </div>
-            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm mt-4">Questions fréquentes</span>
-            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Tout ce que vous souhaitez savoir</h2>
-            <p class="font-body text-primary-deep/80 mt-2">Une question ? Voici les réponses les plus utiles pour préparer sereinement l'arrivée de votre tout-petit.</p>
+            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm mt-4">{{ __('Questions fréquentes') }}</span>
+            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">{{ __('Tout ce que vous souhaitez savoir') }}</h2>
+            <p class="font-body text-primary-deep/80 mt-2">{{ __('Une question ? Voici les réponses les plus utiles pour préparer sereinement l\'arrivée de votre tout-petit.') }}</p>
         </div>
 
         <div class="mt-12 flex flex-col gap-4" x-data="{ open: 1 }">
@@ -336,12 +336,12 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
             $couleursFaq = [1 => 'bg-mint text-primary', 2 => 'bg-peach text-coral', 3 => 'bg-sky text-primary-deep', 4 => 'bg-mint text-primary', 5 => 'bg-peach text-coral', 6 => 'bg-sky text-primary-deep'];
             @endphp
             @foreach ([
-                1 => ['q' => 'Quel âge doivent avoir les enfants pour être accueillis ?', 'r' => "Nous accueillons les tout-petits de 10 semaines à 3 ans et plus, dans un groupe d'âge mélangé qui favorise l'entraide et l'apprentissage mutuel."],
-                2 => ['q' => "Quels sont les horaires d'ouverture ?", 'r' => 'Le Jardin de Régina est ouvert du lundi au vendredi, '.$etab->horairesTexte().'.'],
-                3 => ['q' => 'Combien de places compte la structure ?', 'r' => "12 places régulières, plus 2 places dédiées à l'accueil d'urgence, soit 14 places au maximum."],
-                4 => ['q' => 'Comment se déroule la pré-inscription ?', 'r' => 'La pré-inscription se fait en ligne, en 2 étapes. Notre équipe vous recontacte ensuite pour organiser une visite.'],
-                5 => ['q' => 'Quelles aides financières sont disponibles ?', 'r' => "Vous pouvez bénéficier du Complément de libre choix du mode de garde (CMG - PAJE) versé par la CAF, ainsi que du crédit d'impôt garde d'enfant."],
-                6 => ['q' => "Proposez-vous un accueil occasionnel ou d'urgence ?", 'r' => "Oui, selon les disponibilités et nos 2 places d'urgence dédiées, à la demi-journée ou à la journée complète."],
+                1 => ['q' => __('Quel âge doivent avoir les enfants pour être accueillis ?'), 'r' => __('Nous accueillons les tout-petits de 10 semaines à 3 ans et plus, dans un groupe d\'âge mélangé qui favorise l\'entraide et l\'apprentissage mutuel.')],
+                2 => ['q' => __('Quels sont les horaires d\'ouverture ?'), 'r' => __('Le Jardin de Régina est ouvert du lundi au vendredi, :horaires', ['horaires' => $etab->horairesTexte()]).'.'],
+                3 => ['q' => __('Combien de places compte la structure ?'), 'r' => __('12 places régulières, plus 2 places dédiées à l\'accueil d\'urgence, soit 14 places au maximum.')],
+                4 => ['q' => __('Comment se déroule la pré-inscription ?'), 'r' => __('La pré-inscription se fait en ligne, en 2 étapes. Notre équipe vous recontacte ensuite pour organiser une visite.')],
+                5 => ['q' => __('Quelles aides financières sont disponibles ?'), 'r' => __('Vous pouvez bénéficier du Complément de libre choix du mode de garde (CMG - PAJE) versé par la CAF, ainsi que du crédit d\'impôt garde d\'enfant.')],
+                6 => ['q' => __('Proposez-vous un accueil occasionnel ou d\'urgence ?'), 'r' => __('Oui, selon les disponibilités et nos 2 places d\'urgence dédiées, à la demi-journée ou à la journée complète.')],
             ] as $id => $item)
             <div class="rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border-2"
                  :class="open === {{ $id }} ? 'bg-white border-coral/30' : 'bg-white border-transparent'">
@@ -368,12 +368,12 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5M21 12a9 9 0 11-4-7.5L21 3l-1 4.5A8.96 8.96 0 0121 12z"/></svg>
                 </div>
                 <div>
-                    <p class="font-display text-base text-primary-deep">Une autre question ?</p>
-                    <p class="font-body text-xs text-primary-deep/80">Notre équipe vous répond avec plaisir.</p>
+                    <p class="font-display text-base text-primary-deep">{{ __('Une autre question ?') }}</p>
+                    <p class="font-body text-xs text-primary-deep/80">{{ __('Notre équipe vous répond avec plaisir.') }}</p>
                 </div>
             </div>
             <a href="/contact" class="h-[44px] px-6 rounded-full bg-primary text-white font-body font-bold text-sm flex items-center gap-2 shadow-md hover:-translate-y-0.5 hover:opacity-90 transition-all whitespace-nowrap">
-                Nous contacter
+                {{ __('Nous contacter') }}
             </a>
         </div>
     </div>
@@ -390,11 +390,11 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
         <div class="w-16 h-16 rounded-full bg-peach flex items-center justify-center text-coral animate-float-slow">
             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 2.5 5 6 5c2 0 3.5 1.5 4 2.5.5-1 2-2.5 4-2.5 3.5 0 5.5 3.5 3.5 7.5C19 16.65 12 21 12 21z"/></svg>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl text-primary-deep">Prêt à rejoindre notre jardin ?</h2>
-        <p class="font-body text-primary-deep/80 max-w-lg">Les places se réservent tôt. Venez visiter notre cocon et échanger avec notre équipe.</p>
+        <h2 class="font-display text-3xl md:text-4xl text-primary-deep">{{ __('Prêt à rejoindre notre jardin ?') }}</h2>
+        <p class="font-body text-primary-deep/80 max-w-lg">{{ __('Les places se réservent tôt. Venez visiter notre cocon et échanger avec notre équipe.') }}</p>
         <div class="flex flex-wrap items-center justify-center gap-4 mt-2">
             <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
-                Pré-inscrire mon enfant
+                {{ __('Pré-inscrire mon enfant') }}
             </a>
             <a href="tel:{{ $etab->telephoneLien() }}" class="h-[52px] px-8 rounded-full bg-white text-primary font-body font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:bg-mint/40 transition-all">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>

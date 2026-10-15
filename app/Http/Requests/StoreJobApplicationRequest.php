@@ -29,10 +29,10 @@ class StoreJobApplicationRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'documents.required' => 'Merci de joindre au moins un fichier (CV et/ou lettre de motivation).',
-            'documents.*.mimes' => 'Chaque fichier doit être au format PDF, DOC ou DOCX.',
-            'documents.*.max' => 'Chaque fichier ne doit pas dépasser 5 Mo.',
-            'rgpd_consent.accepted' => "Vous devez accepter l'utilisation de vos données pour envoyer votre candidature.",
+            'documents.required' => __('Merci de joindre au moins un fichier (CV et/ou lettre de motivation).'),
+            'documents.*.mimes' => __('Chaque fichier doit être au format PDF, DOC ou DOCX.'),
+            'documents.*.max' => __('Chaque fichier ne doit pas dépasser 5 Mo.'),
+            'rgpd_consent.accepted' => __("Vous devez accepter l'utilisation de vos données pour envoyer votre candidature."),
         ];
     }
 }

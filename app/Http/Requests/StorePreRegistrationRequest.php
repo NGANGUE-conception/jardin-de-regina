@@ -55,23 +55,23 @@ class StorePreRegistrationRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'care_days.required_unless' => 'Merci de sélectionner au moins un jour de présence.',
-            'rgpd_consent.accepted' => 'Vous devez accepter le traitement de vos données pour envoyer votre demande.',
+            'care_days.required_unless' => __('Merci de sélectionner au moins un jour de présence.'),
+            'rgpd_consent.accepted' => __('Vous devez accepter le traitement de vos données pour envoyer votre demande.'),
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'child_last_name' => "le nom de l'enfant",
-            'child_first_name' => "le prénom de l'enfant",
-            'child_gender' => "le sexe de l'enfant",
-            'child_birthdate' => 'la date de naissance',
-            'entry_date' => "la date d'entrée souhaitée",
-            'p1_nom' => 'votre nom',
-            'p1_prenom' => 'votre prénom',
-            'p1_email' => 'votre adresse email',
-            'p1_tel' => 'votre téléphone',
+            'child_last_name' => __("le nom de l'enfant"),
+            'child_first_name' => __("le prénom de l'enfant"),
+            'child_gender' => __("le sexe de l'enfant"),
+            'child_birthdate' => __('la date de naissance'),
+            'entry_date' => __("la date d'entrée souhaitée"),
+            'p1_nom' => __('votre nom'),
+            'p1_prenom' => __('votre prénom'),
+            'p1_email' => __('votre adresse email'),
+            'p1_tel' => __('votre téléphone'),
         ];
     }
 }

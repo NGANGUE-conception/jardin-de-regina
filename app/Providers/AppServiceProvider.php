@@ -57,7 +57,9 @@ class AppServiceProvider extends ServiceProvider
             ->by('formulaire|'.$request->route()?->getName().'|'.$request->ip())
             ->response(fn () => back()
                 ->withInput($request->except(['_token', 'documents', 'jr_site_web', 'jr_affiche_a']))
-                ->withErrors(['anti_spam' => 'Vous avez envoyé plusieurs demandes en peu de temps. Merci de patienter un peu avant de réessayer, ou appelez-nous au 07 67 64 61 84.'])));
+                ->withErrors(['anti_spam' => __('Vous avez envoyé plusieurs demandes en peu de temps. Merci de patienter un peu avant de réessayer, ou appelez-nous au :telephone.', [
+                    'telephone' => app(Etablissement::class)->telephone(),
+                ])])));
 
         // Mot de passe oublié : 5 demandes de lien par quart d'heure (évite d'inonder la boîte mail de l'admin).
         RateLimiter::for('mot-de-passe-oublie', fn (Request $request) => Limit::perMinutes(15, 5)

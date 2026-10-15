@@ -56,7 +56,7 @@ class ProtectionAntiSpam
 
             return back()
                 ->withInput($request->except(['_token', self::CHAMP_PIEGE, self::CHAMP_HEURE, 'documents']))
-                ->withErrors(['anti_spam' => 'Merci de vérifier vos informations puis de renvoyer le formulaire.']);
+                ->withErrors(['anti_spam' => __('Merci de vérifier vos informations puis de renvoyer le formulaire.')]);
         }
 
         return $next($request);
@@ -83,6 +83,6 @@ class ProtectionAntiSpam
 
         $reponse = redirect()->to(route($cible['route']).$cible['ancre']);
 
-        return $cible['message'] ? $reponse->with('success', $cible['message']) : $reponse;
+        return $cible['message'] ? $reponse->with('success', __($cible['message'])) : $reponse;
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\DefinirLangue;
 use App\Http\Middleware\EnTetesSecurite;
 use App\Http\Middleware\ProtectionAntiSpam;
 use App\Http\Middleware\SuivreVisitesSite;
@@ -18,6 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo(fn (Request $request) => route('admin.login'));
         $middleware->redirectUsersTo(fn (Request $request) => route('admin'));
         $middleware->append(EnTetesSecurite::class);
+        $middleware->append(DefinirLangue::class);
+        // Cookie de langue lu par un middleware global (avant le déchiffrement des cookies) : il n'est pas chiffré.
+        $middleware->encryptCookies(except: [DefinirLangue::COOKIE]);
         $middleware->web(append: [SuivreVisitesSite::class]);
         $middleware->alias(['anti-spam' => ProtectionAntiSpam::class]);
     })

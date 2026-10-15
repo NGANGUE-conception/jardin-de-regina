@@ -25,11 +25,11 @@
         <div class="min-w-0">
             <p class="font-body text-sm font-bold text-primary-deep mb-1">
                 @if ($nombreChamps > 1)
-                    Merci de corriger les {{ $nombreChamps }} points suivants :
+                    {{ __('Merci de corriger les :nombrechamps points suivants :', ['nombrechamps' => $nombreChamps]) }}
                 @elseif ($nombreChamps === 1)
-                    Merci de corriger le point suivant :
+                    {{ __('Merci de corriger le point suivant :') }}
                 @else
-                    Votre demande n'a pas pu être envoyée :
+                    {{ __('Votre demande n\'a pas pu être envoyée :') }}
                 @endif
             </p>
             <ul class="font-body text-sm text-coral flex flex-col gap-0.5">
@@ -47,7 +47,7 @@
                 @endforeach
             </ul>
             @if ($fichiers)
-                <p class="font-body text-xs text-primary-deep/80 mt-2">Pour des raisons de sécurité, les fichiers ne peuvent pas être conservés : merci de joindre à nouveau vos documents.</p>
+                <p class="font-body text-xs text-primary-deep/80 mt-2">{{ __('Pour des raisons de sécurité, les fichiers ne peuvent pas être conservés : merci de joindre à nouveau vos documents.') }}</p>
             @endif
         </div>
     </div>

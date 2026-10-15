@@ -3,14 +3,14 @@
 
     // Titre, description et consigne pour les robots, définis par chaque page (@section) ou valeurs par défaut.
     // Les sections sont déjà encodées en HTML par Blade : on les décode pour les réencoder une seule fois ci-dessous.
-    $metaTitre = html_entity_decode(trim($__env->yieldContent('title', config('creche.nom'))), ENT_QUOTES);
-    $metaDescription = html_entity_decode(trim($__env->yieldContent('description', config('creche.description'))), ENT_QUOTES);
+    $metaTitre = html_entity_decode(trim($__env->yieldContent('title', __(config('creche.nom')))), ENT_QUOTES);
+    $metaDescription = html_entity_decode(trim($__env->yieldContent('description', __(config('creche.description')))), ENT_QUOTES);
     $metaRobots = trim($__env->yieldContent('robots', 'index, follow, max-image-preview:large'));
     $urlCanonique = Referencement::urlCanonique(request());
     $imagePartage = Referencement::url(config('creche.image_partage'));
 @endphp
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
 
     {{-- Aperçu lors d'un partage du lien (WhatsApp, Facebook, LinkedIn, SMS...) --}}
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale" content="{{ app()->getLocale() === 'en' ? 'en_GB' : 'fr_FR' }}">
     <meta property="og:site_name" content="{{ config('creche.nom') }}">
     <meta property="og:title" content="{{ $metaTitre }}">
     <meta property="og:description" content="{{ $metaDescription }}">
@@ -29,7 +29,7 @@
     <meta property="og:image" content="{{ $imagePartage }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Logo du Jardin de Régina, micro-crèche écoresponsable à Alfortville">
+    <meta property="og:image:alt" content="{{ __('Logo du Jardin de Régina, micro-crèche écoresponsable à Alfortville') }}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $metaTitre }}">
     <meta name="twitter:description" content="{{ $metaDescription }}">

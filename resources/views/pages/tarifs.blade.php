@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', "Tarifs et aides CAF — Micro-crèche Alfortville")
-@section('description', "Tarifs du Jardin de Régina et aides possibles : complément de libre choix du mode de garde (CMG / PAJE) de la CAF et crédit d'impôt de 50 %.")
+@section('title', __('Tarifs et aides CAF — Micro-crèche Alfortville'))
+@section('description', __('Tarifs du Jardin de Régina et aides possibles : complément de libre choix du mode de garde (CMG / PAJE) de la CAF et crédit d\'impôt de 50 %.'))
   
 
 
@@ -18,19 +18,19 @@
             <div class="lg:col-span-7 flex flex-col gap-4">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mint/60 text-primary self-start">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
-                    <span class="font-body text-xs uppercase tracking-widest font-extrabold">Transparence &amp; équité tarifaire</span>
+                    <span class="font-body text-xs uppercase tracking-widest font-extrabold">{{ __('Transparence & équité tarifaire') }}</span>
                 </div>
-                <h1 class="font-display text-4xl md:text-5xl text-primary-deep">Des tarifs adaptés à chaque famille</h1>
-                <p class="font-display text-xl text-coral">Calculés selon vos ressources, en adéquation avec le barème de référence de la CAF.</p>
+                <h1 class="font-display text-4xl md:text-5xl text-primary-deep">{{ __('Des tarifs adaptés à chaque famille') }}</h1>
+                <p class="font-display text-xl text-coral">{{ __('Calculés selon vos ressources, en adéquation avec le barème de référence de la CAF.') }}</p>
                 <p class="font-body text-lg text-primary-deep/80 leading-relaxed">
-                    Une tarification claire, juste et sans mauvaise surprise, pensée pour accompagner sereinement chaque foyer tout en garantissant un accueil sensoriel et écoresponsable à Alfortville.
+                    {{ __('Une tarification claire, juste et sans mauvaise surprise, pensée pour accompagner sereinement chaque foyer tout en garantissant un accueil sensoriel et écoresponsable à Alfortville.') }}
                 </p>
                 <div class="flex flex-wrap gap-2 pt-1">
                     @foreach ([
-                        ['icon' => 'check', 'texte' => 'Barème national CAF'],
-                        ['icon' => 'coin', 'texte' => 'Éligible CMG & PAJE'],
-                        ['icon' => 'percent', 'texte' => "Crédit d'impôt 50%"],
-                        ['icon' => 'leaf', 'texte' => 'Tout inclus sans surcoût'],
+                        ['icon' => 'check', 'texte' => __('Barème national CAF')],
+                        ['icon' => 'coin', 'texte' => __('Éligible CMG & PAJE')],
+                        ['icon' => 'percent', 'texte' => __('Crédit d\'impôt 50%')],
+                        ['icon' => 'leaf', 'texte' => __('Tout inclus sans surcoût')],
                     ] as $pill)
                     <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white shadow-sm font-body text-sm text-primary-deep">
                         @if ($pill['icon'] === 'check')
@@ -48,10 +48,10 @@
                 </div>
                 <div class="flex flex-wrap items-center gap-4 pt-3">
                     <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center justify-center shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
-                        Pré-inscrire mon enfant
+                        {{ __('Pré-inscrire mon enfant') }}
                     </a>
                     <a href="#aides-financieres" class="h-[52px] px-8 rounded-full bg-white text-primary font-body font-bold text-sm flex items-center justify-center shadow-sm hover:bg-mint/40 transition-all">
-                        Découvrir les aides financières
+                        {{ __('Découvrir les aides financières') }}
                     </a>
                 </div>
             </div>
@@ -61,10 +61,10 @@
                 <div class="absolute -top-8 -right-8 w-72 h-72 bg-peach rounded-full blur-3xl opacity-70 pointer-events-none -z-10"></div>
                 <div class="relative bg-white rounded-3xl p-6 shadow-xl flex flex-col gap-4">
                     <div class="relative w-full h-48 rounded-2xl overflow-hidden bg-mint">
-                        <img src="{{ asset('images/salle-de-jeux.webp') }}" alt="La crèche accueille vos enfants" class="w-full h-full object-cover">
+                        <img src="{{ asset('images/salle-de-jeux.webp') }}" alt="{{ __('La crèche accueille vos enfants') }}" class="w-full h-full object-cover">
                         <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-primary-deep font-body text-xs font-bold flex items-center gap-1.5 shadow-sm">
                             <span class="w-2 h-2 rounded-full bg-coral animate-bounce-soft"></span>
-                            Ouverture 2026 · 12 places
+                            {{ __('Ouverture 2026 · 12 places') }}
                         </div>
                     </div>
                     <div class="flex flex-col gap-3">
@@ -73,8 +73,8 @@
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m-6 4h6m-6 4h4M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/></svg>
                             </div>
                             <div class="flex flex-col">
-                                <span class="font-body text-sm font-bold text-primary-deep">Devis personnalisé</span>
-                                <span class="font-body text-xs text-primary-deep/75">Établi lors du rendez-vous d'admission</span>
+                                <span class="font-body text-sm font-bold text-primary-deep">{{ __('Devis personnalisé') }}</span>
+                                <span class="font-body text-xs text-primary-deep/75">{{ __('Établi lors du rendez-vous d\'admission') }}</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-3 p-3 rounded-2xl bg-cream">
@@ -82,12 +82,12 @@
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3"/><path stroke-linecap="round" d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
                             </div>
                             <div class="flex flex-col">
-                                <span class="font-body text-sm font-bold text-primary-deep">Accompagnement CAF direct</span>
-                                <span class="font-body text-xs text-primary-deep/75">Assistance pas-à-pas pour votre dossier PAJE</span>
+                                <span class="font-body text-sm font-bold text-primary-deep">{{ __('Accompagnement CAF direct') }}</span>
+                                <span class="font-body text-xs text-primary-deep/75">{{ __('Assistance pas-à-pas pour votre dossier PAJE') }}</span>
                             </div>
                         </div>
                     </div>
-                    <p class="font-body text-sm text-primary-deep/75 text-center italic">« Chaque enfant est unique, le budget alloué à sa garde se doit d'être parfaitement limpide. »</p>
+                    <p class="font-body text-sm text-primary-deep/75 text-center italic">{{ __('« Chaque enfant est unique, le budget alloué à sa garde se doit d\'être parfaitement limpide. »') }}</p>
                 </div>
             </div>
         </div>
@@ -102,16 +102,16 @@
 
     <div class="max-w-[1240px] mx-auto px-6 reveal relative z-10" :class="{ 'reveal-shown': shown }">
         <div class="text-center max-w-2xl mx-auto flex flex-col items-center">
-            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Méthode de calcul</span>
-            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Comment est calculé votre tarif ?</h2>
-            <p class="font-body text-primary-deep/80 mt-2">Trois étapes transparentes pour concilier vos contraintes et votre équilibre budgétaire.</p>
+            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">{{ __('Méthode de calcul') }}</span>
+            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">{{ __('Comment est calculé votre tarif ?') }}</h2>
+            <p class="font-body text-primary-deep/80 mt-2">{{ __('Trois étapes transparentes pour concilier vos contraintes et votre équilibre budgétaire.') }}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
             @foreach ([
-                ['n' => 1, 'titre' => 'Le taux horaire personnalisé', 'texte' => "Basé sur vos revenus nets imposables de l'année N-2 et la composition de votre foyer, en application des critères de référence de la CAF.", 'tag' => 'CRITÈRE MAJEUR', 'sous' => 'Revenus fiscaux de référence N-2'],
-                ['n' => 2, 'titre' => 'Le volume contractualisé', 'texte' => 'Déterminé selon vos besoins réels : accueil régulier (jours et amplitude réservés chaque semaine) ou formule adaptée à votre activité.', 'tag' => 'CRITÈRE MAJEUR', 'sous' => 'Amplitude horaire hebdomadaire choisie'],
-                ['n' => 3, 'titre' => 'La mensualisation lissée', 'texte' => "Une facture mensuelle identique lissée sur l'année pour faciliter votre budget, avec régularisations claires en cas d'absences justifiées.", 'tag' => 'BÉNÉFICE PARENT', 'sous' => 'Zéro mauvaise surprise en fin de mois'],
+                ['n' => 1, 'titre' => __('Le taux horaire personnalisé'), 'texte' => __('Basé sur vos revenus nets imposables de l\'année N-2 et la composition de votre foyer, en application des critères de référence de la CAF.'), 'tag' => __('CRITÈRE MAJEUR'), 'sous' => __('Revenus fiscaux de référence N-2')],
+                ['n' => 2, 'titre' => __('Le volume contractualisé'), 'texte' => __('Déterminé selon vos besoins réels : accueil régulier (jours et amplitude réservés chaque semaine) ou formule adaptée à votre activité.'), 'tag' => __('CRITÈRE MAJEUR'), 'sous' => __('Amplitude horaire hebdomadaire choisie')],
+                ['n' => 3, 'titre' => __('La mensualisation lissée'), 'texte' => __('Une facture mensuelle identique lissée sur l\'année pour faciliter votre budget, avec régularisations claires en cas d\'absences justifiées.'), 'tag' => __('BÉNÉFICE PARENT'), 'sous' => __('Zéro mauvaise surprise en fin de mois')],
             ] as $etape)
             <div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between">
                 <div>
@@ -144,9 +144,9 @@
 
     <div class="max-w-[1240px] mx-auto px-6 reveal relative z-10" :class="{ 'reveal-shown': shown }">
         <div class="text-center max-w-3xl mx-auto flex flex-col items-center">
-            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Structure tarifaire</span>
-            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Repères indicatifs du barème horaire</h2>
-            <p class="font-body text-primary-deep/80 mt-2">Chaque situation fait l'objet d'un calcul individualisé. Les valeurs ci-dessous illustrent la mécanique de dégressivité avec aides.</p>
+            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">{{ __('Structure tarifaire') }}</span>
+            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">{{ __('Repères indicatifs du barème horaire') }}</h2>
+            <p class="font-body text-primary-deep/80 mt-2">{{ __('Chaque situation fait l\'objet d\'un calcul individualisé. Les valeurs ci-dessous illustrent la mécanique de dégressivité avec aides.') }}</p>
         </div>
 
         <div class="mt-12 bg-white rounded-3xl shadow-lg overflow-hidden">
@@ -154,17 +154,17 @@
                 <table class="w-full text-left border-collapse min-w-[700px]">
                     <thead>
                         <tr class="bg-mint/50 text-primary-deep">
-                            <th class="py-5 px-6 font-display text-lg font-medium">Tranches de ressources du foyer (N-2)</th>
-                            <th class="py-5 px-6 font-display text-lg font-medium text-center">Taux horaire indicatif</th>
-                            <th class="py-5 px-6 font-display text-lg font-medium">Reste à charge estimé</th>
+                            <th class="py-5 px-6 font-display text-lg font-medium">{{ __('Tranches de ressources du foyer (N-2)') }}</th>
+                            <th class="py-5 px-6 font-display text-lg font-medium text-center">{{ __('Taux horaire indicatif') }}</th>
+                            <th class="py-5 px-6 font-display text-lg font-medium">{{ __('Reste à charge estimé') }}</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-mint/40">
                         @foreach ([
-                            ['t' => 'Tranche 1', 'sous' => 'Revenus inférieurs au plafond CAF tranche basse', 'badge' => 'Reste à charge minime après CMG', 'bg' => 'bg-mint text-primary-deep'],
-                            ['t' => 'Tranche 2', 'sous' => 'Revenus médians - barème intermédiaire CAF', 'badge' => 'Accompagnement modulé CAF', 'bg' => 'bg-sky text-primary-deep'],
-                            ['t' => 'Tranche 3', 'sous' => 'Revenus supérieurs au plafond intermédiaire', 'badge' => "Bénéfice du crédit d'impôt 50%", 'bg' => 'bg-peach text-coral'],
-                            ['t' => "Accueil d'urgence ou occasionnel", 'sous' => 'Sous réserve de place disponible le jour J', 'badge' => "Facturation à l'heure effective", 'bg' => 'bg-cream text-primary-deep'],
+                            ['t' => __('Tranche 1'), 'sous' => __('Revenus inférieurs au plafond CAF tranche basse'), 'badge' => __('Reste à charge minime après CMG'), 'bg' => 'bg-mint text-primary-deep'],
+                            ['t' => __('Tranche 2'), 'sous' => __('Revenus médians - barème intermédiaire CAF'), 'badge' => __('Accompagnement modulé CAF'), 'bg' => 'bg-sky text-primary-deep'],
+                            ['t' => __('Tranche 3'), 'sous' => __('Revenus supérieurs au plafond intermédiaire'), 'badge' => __('Bénéfice du crédit d\'impôt 50%'), 'bg' => 'bg-peach text-coral'],
+                            ['t' => __('Accueil d\'urgence ou occasionnel'), 'sous' => __('Sous réserve de place disponible le jour J'), 'badge' => __('Facturation à l\'heure effective'), 'bg' => 'bg-cream text-primary-deep'],
                         ] as $row)
                         <tr class="hover:bg-cream/60 transition-colors">
                             <td class="py-5 px-6">
@@ -174,7 +174,7 @@
                                 </div>
                             </td>
                             <td class="py-5 px-6 text-center">
-                                <span class="font-display text-lg text-primary-deep bg-cream px-3 py-1 rounded-full">[xx,xx €] / h</span>
+                                <span class="font-display text-lg text-primary-deep bg-cream px-3 py-1 rounded-full">{{ __('[xx,xx €] / h') }}</span>
                             </td>
                             <td class="py-5 px-6">
                                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full {{ $row['bg'] }} font-body text-sm font-semibold">{{ $row['badge'] }}</span>
@@ -189,8 +189,8 @@
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
                 </div>
                 <div>
-                    <span class="font-body font-bold text-primary-deep block">Précision déontologique &amp; équité</span>
-                    <p class="font-body text-sm text-primary-deep/80">Le barème détaillé et le montant exact de votre mensualité vous seront communiqués lors de votre rendez-vous avec la direction, sur présentation de votre avis d'imposition et de votre attestation de droits CAF.</p>
+                    <span class="font-body font-bold text-primary-deep block">{{ __('Précision déontologique & équité') }}</span>
+                    <p class="font-body text-sm text-primary-deep/80">{{ __('Le barème détaillé et le montant exact de votre mensualité vous seront communiqués lors de votre rendez-vous avec la direction, sur présentation de votre avis d\'imposition et de votre attestation de droits CAF.') }}</p>
                 </div>
             </div>
         </div>
@@ -204,17 +204,17 @@
 
     <div class="max-w-[1240px] mx-auto px-6 reveal relative z-10" :class="{ 'reveal-shown': shown }">
         <div class="text-center max-w-3xl mx-auto flex flex-col items-center">
-            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">Tranquillité absolue</span>
-            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Une formule tout inclus, sans mauvaise surprise</h2>
-            <p class="font-body text-primary-deep/80 mt-2">Tous les essentiels du bien-être, de l'éveil et de la nutrition sont compris dans nos forfaits.</p>
+            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-white shadow-sm">{{ __('Tranquillité absolue') }}</span>
+            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">{{ __('Une formule tout inclus, sans mauvaise surprise') }}</h2>
+            <p class="font-body text-primary-deep/80 mt-2">{{ __('Tous les essentiels du bien-être, de l\'éveil et de la nutrition sont compris dans nos forfaits.') }}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
             @foreach ([
-                ['titre' => 'Repas faits maison et de saison', 'texte' => 'Petits déjeuners, déjeuners et goûters préparés avec des ingrédients locaux et de saison. Menus équilibrés.', 'icon' => 'meal'],
-                ['titre' => 'Soins & couches écologiques', 'texte' => 'Couches écologiques sans chlore ni perturbateurs endocriniens, liniment et soins hypoallergéniques fournis chaque jour.', 'icon' => 'drop'],
-                ['titre' => "Matériel d'éveil d'exception", 'texte' => 'Jeux sensoriels en bois non traité, modules de motricité libre Pikler, livres tactiles et matériel Montessori.', 'icon' => 'toy'],
-                ['titre' => 'Activités & intervenants', 'texte' => "Éveil musical, anglais immersif, communication gestuelle « bébé signe », parcours Snoezelen et potager.", 'icon' => 'palette'],
+                ['titre' => __('Repas faits maison et de saison'), 'texte' => __('Petits déjeuners, déjeuners et goûters préparés avec des ingrédients locaux et de saison. Menus équilibrés.'), 'icon' => 'meal'],
+                ['titre' => __('Soins & couches écologiques'), 'texte' => __('Couches écologiques sans chlore ni perturbateurs endocriniens, liniment et soins hypoallergéniques fournis chaque jour.'), 'icon' => 'drop'],
+                ['titre' => __('Matériel d\'éveil d\'exception'), 'texte' => __('Jeux sensoriels en bois non traité, modules de motricité libre Pikler, livres tactiles et matériel Montessori.'), 'icon' => 'toy'],
+                ['titre' => __('Activités & intervenants'), 'texte' => __('Éveil musical, anglais immersif, communication gestuelle « bébé signe », parcours Snoezelen et potager.'), 'icon' => 'palette'],
             ] as $carte)
             <div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col gap-3">
                 <div class="w-14 h-14 rounded-2xl bg-mint flex items-center justify-center text-primary">
@@ -232,7 +232,7 @@
                 <p class="font-body text-sm text-primary-deep/80">{{ $carte['texte'] }}</p>
                 <span class="mt-auto pt-2 inline-flex items-center gap-1.5 font-body text-sm text-primary font-bold">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                    Inclus au forfait
+                    {{ __('Inclus au forfait') }}
                 </span>
             </div>
             @endforeach
@@ -246,9 +246,9 @@
 
     <div class="max-w-[1240px] mx-auto px-6 reveal relative z-10" :class="{ 'reveal-shown': shown }">
         <div class="text-center max-w-3xl mx-auto flex flex-col items-center">
-            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">Dispositifs d'aide d'État</span>
-            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">Un reste à charge réduit grâce aux aides publiques</h2>
-            <p class="font-body text-primary-deep/80 mt-2">La micro-crèche ouvre droit à deux dispositifs cumulables qui allègent la charge mensuelle des familles.</p>
+            <span class="font-body text-xs uppercase tracking-widest text-primary font-extrabold px-4 py-1 rounded-full bg-mint/60 shadow-sm">{{ __('Dispositifs d\'aide d\'État') }}</span>
+            <h2 class="font-display text-3xl md:text-4xl text-primary-deep mt-3">{{ __('Un reste à charge réduit grâce aux aides publiques') }}</h2>
+            <p class="font-body text-primary-deep/80 mt-2">{{ __('La micro-crèche ouvre droit à deux dispositifs cumulables qui allègent la charge mensuelle des familles.') }}</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-12">
@@ -258,10 +258,10 @@
                 <div class="relative flex flex-col gap-3">
                     <span class="inline-flex items-center gap-1.5 self-start px-3.5 py-1.5 rounded-full bg-primary text-white font-body text-xs uppercase font-extrabold">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>
-                        Versé chaque mois par la CAF
+                        {{ __('Versé chaque mois par la CAF') }}
                     </span>
-                    <h3 class="font-display text-2xl text-primary-deep">Le Complément de Mode de Garde (CMG - PAJE)</h3>
-                    <p class="font-body text-primary-deep/80">Une aide accordée directement aux familles par la CAF, sous conditions d'activité et de ressources, pour tout enfant de moins de 6 ans accueilli au moins 16 heures par mois.</p>
+                    <h3 class="font-display text-2xl text-primary-deep">{{ __('Le Complément de Mode de Garde (CMG - PAJE)') }}</h3>
+                    <p class="font-body text-primary-deep/80">{{ __('Une aide accordée directement aux familles par la CAF, sous conditions d\'activité et de ressources, pour tout enfant de moins de 6 ans accueilli au moins 16 heures par mois.') }}</p>
                     <ul class="flex flex-col gap-3 pt-2">
                         @foreach ([
                             'Prise en charge jusqu\'à 85% des frais engagés selon votre tranche de ressources.',
@@ -273,14 +273,14 @@
                             <span class="w-6 h-6 rounded-full bg-mint flex items-center justify-center text-primary shrink-0 mt-0.5">
                                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                             </span>
-                            <span class="font-body text-sm text-primary-deep">{{ $point }}</span>
+                            <span class="font-body text-sm text-primary-deep">{{ __($point) }}</span>
                         </li>
                         @endforeach
                     </ul>
                 </div>
                 <div class="p-4 rounded-2xl bg-cream flex items-center justify-between">
-                    <span class="font-body text-sm text-primary-deep/75">Éligibilité automatique dès 16h/mois</span>
-                    <span class="font-body text-sm text-primary font-bold">CAF Val-de-Marne</span>
+                    <span class="font-body text-sm text-primary-deep/75">{{ __('Éligibilité automatique dès 16h/mois') }}</span>
+                    <span class="font-body text-sm text-primary font-bold">{{ __('CAF Val-de-Marne') }}</span>
                 </div>
             </div>
 
@@ -290,10 +290,10 @@
                 <div class="relative flex flex-col gap-3">
                     <span class="inline-flex items-center gap-1.5 self-start px-3.5 py-1.5 rounded-full bg-coral text-white font-body text-xs uppercase font-extrabold">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/><path stroke-linecap="round" d="M18 6L6 18"/></svg>
-                        50% des dépenses déductibles
+                        {{ __('50% des dépenses déductibles') }}
                     </span>
-                    <h3 class="font-display text-2xl text-primary-deep">Le Crédit d'Impôt Frais de Garde</h3>
-                    <p class="font-body text-primary-deep/80">Un dispositif fiscal accordé à tous les parents exerçant une activité professionnelle ou inscrits comme demandeurs d'emploi, divisant de moitié le coût résiduel.</p>
+                    <h3 class="font-display text-2xl text-primary-deep">{{ __('Le Crédit d\'Impôt Frais de Garde') }}</h3>
+                    <p class="font-body text-primary-deep/80">{{ __('Un dispositif fiscal accordé à tous les parents exerçant une activité professionnelle ou inscrits comme demandeurs d\'emploi, divisant de moitié le coût résiduel.') }}</p>
                     <ul class="flex flex-col gap-3 pt-2">
                         @foreach ([
                             "Crédit d'impôt de 50% calculé sur les sommes restant à charge (après CMG).",
@@ -305,14 +305,14 @@
                             <span class="w-6 h-6 rounded-full bg-peach flex items-center justify-center text-coral shrink-0 mt-0.5">
                                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                             </span>
-                            <span class="font-body text-sm text-primary-deep">{{ $point }}</span>
+                            <span class="font-body text-sm text-primary-deep">{{ __($point) }}</span>
                         </li>
                         @endforeach
                     </ul>
                 </div>
                 <div class="p-4 rounded-2xl bg-cream flex items-center justify-between">
-                    <span class="font-body text-sm text-primary-deep/75">Article 200 quater B du CGI</span>
-                    <span class="font-body text-sm text-coral font-bold">Jusqu'à 1 750 €/an</span>
+                    <span class="font-body text-sm text-primary-deep/75">{{ __('Article 200 quater B du CGI') }}</span>
+                    <span class="font-body text-sm text-coral font-bold">{{ __('Jusqu\'à 1 750 €/an') }}</span>
                 </div>
             </div>
         </div>
@@ -327,31 +327,31 @@
         <div class="bg-white rounded-[40px] p-8 lg:p-10 shadow-lg max-w-4xl mx-auto flex flex-col gap-6">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3">
                 <div class="flex flex-col gap-1">
-                    <span class="font-display text-xl text-primary-deep">Simulez votre reste à charge mensuel</span>
-                    <p class="font-body text-primary-deep/80">Obtenez un premier aperçu de votre budget garde en quelques secondes.</p>
+                    <span class="font-display text-xl text-primary-deep">{{ __('Simulez votre reste à charge mensuel') }}</span>
+                    <p class="font-body text-primary-deep/80">{{ __('Obtenez un premier aperçu de votre budget garde en quelques secondes.') }}</p>
                 </div>
                 <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-peach text-coral font-body text-xs font-extrabold uppercase shrink-0 self-start sm:self-center">
                     <span class="w-2 h-2 rounded-full bg-coral"></span>
-                    Bientôt disponible
+                    {{ __('Bientôt disponible') }}
                 </span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pointer-events-none">
                 <div class="flex flex-col gap-2">
-                    <label class="font-body text-sm font-bold text-primary-deep">Revenus mensuels du foyer (€)</label>
-                    <div class="h-[52px] px-5 rounded-full bg-cream flex items-center text-primary-deep/75 font-body text-sm">Ex. 3 800 €</div>
+                    <label class="font-body text-sm font-bold text-primary-deep">{{ __('Revenus mensuels du foyer (€)') }}</label>
+                    <div class="h-[52px] px-5 rounded-full bg-cream flex items-center text-primary-deep/75 font-body text-sm">{{ __('Ex. 3 800 €') }}</div>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <label class="font-body text-sm font-bold text-primary-deep">Nombre d'enfants à charge</label>
+                    <label class="font-body text-sm font-bold text-primary-deep">{{ __('Nombre d\'enfants à charge') }}</label>
                     <div class="h-[52px] px-5 rounded-full bg-cream flex items-center justify-between text-primary-deep font-body text-sm">
-                        <span>1 enfant</span>
+                        <span>{{ __('1 enfant') }}</span>
                         <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                     </div>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <label class="font-body text-sm font-bold text-primary-deep">Rythme de garde envisagé</label>
+                    <label class="font-body text-sm font-bold text-primary-deep">{{ __('Rythme de garde envisagé') }}</label>
                     <div class="h-[52px] px-5 rounded-full bg-cream flex items-center justify-between text-primary-deep font-body text-sm">
-                        <span>Temps plein (5 jours)</span>
+                        <span>{{ __('Temps plein (5 jours)') }}</span>
                         <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                     </div>
                 </div>
@@ -360,15 +360,15 @@
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-1">
                 <button type="button" disabled class="h-[52px] px-8 rounded-full bg-cream text-primary-deep/75 font-body font-bold text-sm inline-flex items-center justify-center gap-2 cursor-not-allowed">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 3"/></svg>
-                    Calculer mon estimation (en cours de finalisation)
+                    {{ __('Calculer mon estimation (en cours de finalisation)') }}
                 </button>
-                <span class="font-body text-sm text-primary-deep/75 text-center sm:text-right">Conforme aux barèmes CAF en vigueur</span>
+                <span class="font-body text-sm text-primary-deep/75 text-center sm:text-right">{{ __('Conforme aux barèmes CAF en vigueur') }}</span>
             </div>
 
             <div class="p-5 rounded-2xl bg-peach/50 flex items-start gap-3">
                 <svg class="w-6 h-6 text-coral shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-7.58 7-12A7 7 0 105 9c0 4.42 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>
                 <p class="font-body text-sm text-primary-deep">
-                    <strong>Besoin d'un calcul immédiat ?</strong> En attendant le simulateur en ligne, notre direction établit une simulation financière personnalisée et confidentielle sous 48h lors de votre demande de pré-inscription.
+                    <strong>{{ __('Besoin d\'un calcul immédiat ?') }}</strong> {{ __('En attendant le simulateur en ligne, notre direction établit une simulation financière personnalisée et confidentielle sous 48h lors de votre demande de pré-inscription.') }}
                 </p>
             </div>
         </div>
@@ -381,12 +381,12 @@
     <x-confetti shape="etoile" class="top-10 left-[15%] w-7 h-7 text-white/70 animate-wiggle" />
 
     <div class="max-w-[860px] mx-auto px-6 text-center flex flex-col items-center gap-4 relative z-10">
-        <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-primary-deep/25 font-body text-xs uppercase tracking-widest font-extrabold">Équipe à votre écoute</span>
-        <h2 class="font-display text-3xl md:text-4xl">Une question sur les tarifs ou votre prise en charge ?</h2>
-        <p class="font-body text-white/90 max-w-xl">Notre équipe vous conseille et vous guide pas à pas dans vos démarches CAF pour optimiser votre budget de garde.</p>
+        <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-primary-deep/25 font-body text-xs uppercase tracking-widest font-extrabold">{{ __('Équipe à votre écoute') }}</span>
+        <h2 class="font-display text-3xl md:text-4xl">{{ __('Une question sur les tarifs ou votre prise en charge ?') }}</h2>
+        <p class="font-body text-white/90 max-w-xl">{{ __('Notre équipe vous conseille et vous guide pas à pas dans vos démarches CAF pour optimiser votre budget de garde.') }}</p>
         <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
             <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-white text-coral font-body font-bold text-sm flex items-center justify-center shadow-lg hover:-translate-y-0.5 transition-all">
-                Pré-inscrire mon enfant
+                {{ __('Pré-inscrire mon enfant') }}
             </a>
             <a href="tel:{{ $etab->telephoneLien() }}" class="h-[52px] px-8 rounded-full bg-primary-deep/25 text-white font-body font-bold text-sm flex items-center gap-2 hover:bg-primary-deep/40 transition-all">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2a2 2 0 01-2 2h-1C9 19 3 13 3 6V5z"/></svg>
@@ -395,7 +395,7 @@
         </div>
         <span class="flex items-center gap-2 font-body text-sm text-white/80 pt-1">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 3"/></svg>
-            Réponse bienveillante sous 48h · Étude gratuite sans engagement
+            {{ __('Réponse bienveillante sous 48h · Étude gratuite sans engagement') }}
         </span>
     </div>
 </section>

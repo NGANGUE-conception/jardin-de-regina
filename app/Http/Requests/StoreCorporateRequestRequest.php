@@ -30,7 +30,7 @@ class StoreCorporateRequestRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'rgpd_consent.accepted' => "Vous devez accepter l'utilisation de vos données pour envoyer votre demande.",
+            'rgpd_consent.accepted' => __("Vous devez accepter l'utilisation de vos données pour envoyer votre demande."),
         ];
     }
 }

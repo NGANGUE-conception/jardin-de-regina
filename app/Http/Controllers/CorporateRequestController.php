@@ -7,6 +7,7 @@ use App\Mail\NewSubmissionAlert;
 use App\Mail\SubmissionConfirmation;
 use App\Models\CorporateRequest;
 use App\Support\EnvoiEmail;
+use App\Support\LangueSite;
 use App\Support\SuiviVisites;
 
 class CorporateRequestController extends Controller
@@ -22,12 +23,12 @@ class CorporateRequestController extends Controller
         $suivi->rattacherFormulaire($request, $demande);
 
         EnvoiEmail::envoyer($demande->contact_email, new SubmissionConfirmation(
-            titre: 'Votre demande de berceau entreprise est bien reçue',
+            titre: __('Votre demande de berceau entreprise est bien reçue'),
             numeroDossier: $demande->request_number,
-            intro: "Merci d'avoir contacté Le Jardin de Régina au nom de {$demande->company_name}. Notre équipe étudie votre demande et revient vers vous très prochainement.",
+            intro: __('Merci d\'avoir contacté Le Jardin de Régina au nom de :entreprise. Notre équipe étudie votre demande et revient vers vous très prochainement.', ['entreprise' => $demande->company_name]),
             lignes: [
-                'Entreprise' => $demande->company_name,
-                'Berceaux souhaités' => $demande->berceaux_count ?: 'Non précisé',
+                __('Entreprise') => $demande->company_name,
+                __('Berceaux souhaités') => $demande->berceaux_count ? __($demande->berceaux_count) : __('Non précisé'),
             ],
         ));
 
@@ -39,12 +40,13 @@ class CorporateRequestController extends Controller
                 'Contact' => $demande->contact_name,
                 'Téléphone' => $demande->contact_tel,
                 'Email' => $demande->contact_email,
+                'Langue du formulaire' => LangueSite::libelleFrancais(),
             ],
             lienAdmin: route('admin.entreprises'),
-        ));
+        ), 'fr');
 
         return redirect()
             ->to(route('berceaux-entreprise').'#devis-form')
-            ->with('success', 'Merci, votre demande de devis a bien été envoyée. Notre équipe revient vers vous très prochainement.');
+            ->with('success', __('Merci, votre demande de devis a bien été envoyée. Notre équipe revient vers vous très prochainement.'));
     }
 }

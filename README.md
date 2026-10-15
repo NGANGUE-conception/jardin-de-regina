@@ -83,6 +83,18 @@ En local, les emails ne partent pas : ils sont écrits dans `storage/logs/larave
 | `resources/views/errors/` | Pages d'erreur (404, 419, 429, 500, 503...) |
 | `tests/Feature/` | Tests automatiques |
 
+## Version anglaise du site
+
+Les boutons **FR / EN** du menu changent la langue du site public (choix mémorisé un an dans le cookie
+`jr_langue`). L'espace admin reste en français.
+
+- Dans les pages, chaque texte est écrit en français dans `__('...')`, par exemple `{{ __('Nos tarifs') }}`.
+- Sa traduction se trouve dans **`lang/en.json`** : `"Nos tarifs": "Our fees"`. Sans traduction, le texte reste en français.
+- **Modifier un texte français = mettre à jour la ligne correspondante de `lang/en.json`** (le texte français sert de clé).
+- Le test `TraductionAnglaiseTest` échoue si une phrase du site n'a pas de traduction : lancer `php artisan test` après chaque modification de texte.
+- Les valeurs envoyées par les formulaires (objet du message, poste, civilité...) restent en français, pour que l'admin les lise toujours en français.
+- Les pages légales en anglais indiquent que seule la version française fait foi.
+
 ## Mise en ligne (production)
 
 ### 1. Fichier `.env` du serveur

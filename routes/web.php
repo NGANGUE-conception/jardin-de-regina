@@ -13,15 +13,22 @@ use App\Http\Controllers\Admin\VisiteAdminController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\CorporateRequestController;
 use App\Http\Controllers\JobApplicationController;
+use App\Http\Controllers\LangueController;
 use App\Http\Controllers\PreferenceStatistiquesController;
 use App\Http\Controllers\PreRegistrationController;
 use App\Http\Controllers\ReferencementController;
+use App\Http\Middleware\DefinirLangue;
 use App\Support\PagesPubliques;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.accueil');
 })->name('accueil');
+
+// Boutons FR / EN du menu
+Route::get('/langue/{langue}', [LangueController::class, 'changer'])
+    ->whereIn('langue', DefinirLangue::LANGUES)
+    ->name('langue');
 
 Route::get('/notre-projet', function () {
     return view('pages.notre-projet');

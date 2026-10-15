@@ -26,7 +26,7 @@ class StoreContactMessageRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'rgpd_consent.accepted' => "Vous devez accepter l'utilisation de vos données pour envoyer votre message.",
+            'rgpd_consent.accepted' => __("Vous devez accepter l'utilisation de vos données pour envoyer votre message."),
         ];
     }
 }

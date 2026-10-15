@@ -23,11 +23,11 @@ class PreferenceStatistiquesController extends Controller
             Cookie::queue(SuiviVisites::COOKIE_REFUS, '1', SuiviVisites::DUREE_COOKIE_MINUTES);
             Cookie::queue(Cookie::forget(SuiviVisites::COOKIE_VISITEUR));
 
-            $message = 'C\'est noté : vos visites ne seront plus comptabilisées dans nos statistiques.';
+            $message = __('C\'est noté : vos visites ne seront plus comptabilisées dans nos statistiques.');
         } else {
             Cookie::queue(Cookie::forget(SuiviVisites::COOKIE_REFUS));
 
-            $message = 'Merci ! Vos visites seront de nouveau comptabilisées, de façon anonyme.';
+            $message = __('Merci ! Vos visites seront de nouveau comptabilisées, de façon anonyme.');
         }
 
         return redirect()

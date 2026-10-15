@@ -127,12 +127,14 @@ class PreRegistration extends Model
 
     public function accueilLabel(): string
     {
+        $jours = count($this->care_days ?? []);
+
         return match ($this->care_type) {
-            'urgence' => "Accueil d'urgence",
-            'occasionnel' => 'Occasionnel ('.count($this->care_days ?? []).'j)',
-            default => count($this->care_days ?? []) >= 5
-                ? 'Temps plein (5j)'
-                : count($this->care_days ?? []).' jours / semaine',
+            'urgence' => __("Accueil d'urgence"),
+            'occasionnel' => __('Occasionnel (:joursj)', ['jours' => $jours]),
+            default => $jours >= 5
+                ? __('Temps plein (5j)')
+                : __(':jours jours / semaine', ['jours' => $jours]),
         };
     }
 

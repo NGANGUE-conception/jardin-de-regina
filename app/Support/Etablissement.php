@@ -129,10 +129,10 @@ class Etablissement
         return $this->ouverture().' – '.$this->fermeture();
     }
 
-    /** Ex. "de 8h30 à 18h30" */
+    /** Ex. "de 8h30 à 18h30" (en anglais : "from 8:30 am to 6:30 pm") */
     public function horairesTexte(): string
     {
-        return 'de '.$this->ouverture().' à '.$this->fermeture();
+        return __('de :debut à :fin', ['debut' => $this->ouverture(), 'fin' => $this->fermeture()]);
     }
 
     public function gestionnaire(): string
@@ -160,12 +160,18 @@ class Etablissement
         return (int) config('creche.places');
     }
 
-    /** "08:30" → "8h30", "18:00" → "18h" */
+    /** "08:30" → "8h30", "18:00" → "18h" (en anglais : "8:30 am", "6 pm") */
     public static function heureLisible(string $heure): string
     {
         [$h, $m] = array_pad(explode(':', $heure), 2, '00');
+        $h = (int) $h;
 
-        return ((int) $h).'h'.($m === '00' ? '' : $m);
+        // Site affiché en anglais : "8:30 am", "6 pm"
+        if (app()->getLocale() === 'en') {
+            return ($h % 12 ?: 12).($m === '00' ? '' : ':'.$m).($h < 12 ? ' am' : ' pm');
+        }
+
+        return $h.'h'.($m === '00' ? '' : $m);
     }
 
     /* ------------------------------------------------------------ Interne */

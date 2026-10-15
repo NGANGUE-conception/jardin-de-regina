@@ -18,16 +18,17 @@ use Throwable;
 class EnvoiEmail
 {
     /**
+     * @param  string|null  $langue  langue de l'email (ex. 'fr' pour les alertes de la direction) ; par défaut celle du site affiché
      * @return bool true si l'email est parti, false si l'envoi a échoué
      */
-    public static function envoyer(?string $destinataire, Mailable $email): bool
+    public static function envoyer(?string $destinataire, Mailable $email, ?string $langue = null): bool
     {
         if (blank($destinataire)) {
             return false;
         }
 
         try {
-            Mail::to($destinataire)->send($email);
+            Mail::to($destinataire)->locale($langue ?? app()->getLocale())->send($email);
 
             return true;
         } catch (Throwable $erreur) {

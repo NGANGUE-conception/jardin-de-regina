@@ -7,6 +7,7 @@ use App\Mail\NewSubmissionAlert;
 use App\Mail\SubmissionConfirmation;
 use App\Models\JobApplication;
 use App\Support\EnvoiEmail;
+use App\Support\LangueSite;
 use App\Support\SuiviVisites;
 
 class JobApplicationController extends Controller
@@ -29,11 +30,11 @@ class JobApplicationController extends Controller
         $suivi->rattacherFormulaire($request, $candidature);
 
         EnvoiEmail::envoyer($candidature->email, new SubmissionConfirmation(
-            titre: 'Votre candidature est bien reçue',
+            titre: __('Votre candidature est bien reçue'),
             numeroDossier: $candidature->application_number,
-            intro: 'Merci pour votre candidature. Notre direction pédagogique l\'examinera avec soin sous 5 jours ouvrés.',
+            intro: __('Merci pour votre candidature. Notre direction pédagogique l\'examinera avec soin sous 5 jours ouvrés.'),
             lignes: [
-                'Poste souhaité' => $candidature->poste,
+                __('Poste souhaité') => __($candidature->poste),
             ],
         ));
 
@@ -45,12 +46,13 @@ class JobApplicationController extends Controller
                 'Poste souhaité' => $candidature->poste,
                 'Téléphone' => $candidature->tel,
                 'Email' => $candidature->email,
+                'Langue du formulaire' => LangueSite::libelleFrancais(),
             ],
             lienAdmin: route('admin.candidatures'),
-        ));
+        ), 'fr');
 
         return redirect()
             ->to(route('recrutement').'#candidature')
-            ->with('success', "Merci pour votre candidature ! Notre direction pédagogique l'examinera avec soin sous 5 jours ouvrés.");
+            ->with('success', __("Merci pour votre candidature ! Notre direction pédagogique l'examinera avec soin sous 5 jours ouvrés."));
     }
 }

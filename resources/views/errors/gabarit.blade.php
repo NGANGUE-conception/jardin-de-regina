@@ -4,13 +4,13 @@
     Ainsi, la page s'affiche même si la base de données ou les fichiers du site sont en panne.
 --}}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
     @include('partials.icones')
-    <title>@yield('titre') — Le Jardin de Régina</title>
+    <title>@yield('titre') {{ __('— Le Jardin de Régina') }}</title>
     <style>
         :root {
             --primary: #1C6E6C;
@@ -108,8 +108,8 @@
     <div class="bulle bulle-2"></div>
 
     <main class="carte">
-        <a href="{{ url('/') }}" aria-label="Retour à l'accueil du Jardin de Régina">
-            <img src="{{ asset('images/logo.webp') }}" width="375" height="192" alt="Le Jardin de Régina" class="logo">
+        <a href="{{ url('/') }}" aria-label="{{ __('Retour à l\'accueil du Jardin de Régina') }}">
+            <img src="{{ asset('images/logo.webp') }}" width="375" height="192" alt="{{ __('Le Jardin de Régina') }}" class="logo">
         </a>
 
         <span class="code">@yield('code')</span>
@@ -122,8 +122,8 @@
         </div>
 
         <div class="contact">
-            Besoin d'aide ? Appelez-nous au <a href="tel:{{ $etab->telephoneLien() }}">{{ $etab->telephone() }}</a>
-            ou écrivez à <a href="mailto:{{ $etab->email() }}">{{ $etab->email() }}</a>.
+            {{ __('Besoin d\'aide ? Appelez-nous au') }} <a href="tel:{{ $etab->telephoneLien() }}">{{ $etab->telephone() }}</a>
+            {{ __('ou écrivez à') }} <a href="mailto:{{ $etab->email() }}">{{ $etab->email() }}</a>.
         </div>
     </main>
 </body>

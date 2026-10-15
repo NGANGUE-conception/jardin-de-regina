@@ -6,7 +6,7 @@
 --}}
 @php($idPiege = 'jr-piege-'.\Illuminate\Support\Str::random(6))
 <div aria-hidden="true" style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;">
-    <label for="{{ $idPiege }}">Laissez ce champ vide</label>
+    <label for="{{ $idPiege }}">{{ __('Laissez ce champ vide') }}</label>
     <input type="text" id="{{ $idPiege }}" name="{{ \App\Http\Middleware\ProtectionAntiSpam::CHAMP_PIEGE }}" value="" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-bwignore>
 </div>
 <input type="hidden" name="{{ \App\Http\Middleware\ProtectionAntiSpam::CHAMP_HEURE }}" value="{{ encrypt(now()->getTimestamp()) }}">
