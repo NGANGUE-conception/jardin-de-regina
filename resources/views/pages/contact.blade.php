@@ -70,7 +70,7 @@
 
                     <x-formulaire.resume-erreurs :champs="['fullname' => 'fullname', 'email' => 'email', 'phone' => 'phone', 'subject' => 'subject', 'message' => 'message', 'rgpd_consent' => 'contact-rgpd']" />
 
-                    <form method="POST" action="{{ route('contact.store') }}" class="flex flex-col gap-4">
+                    <form method="POST" action="{{ route_langue('contact.store') }}" class="flex flex-col gap-4">
                         @csrf
                         <x-anti-spam />
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

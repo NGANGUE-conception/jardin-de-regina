@@ -121,11 +121,11 @@
         {{-- 5. Actions --}}
         <div class="w-full max-w-2xl flex flex-col items-center text-center">
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-8">
-                <a href="/" class="w-full sm:w-auto h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm inline-flex items-center justify-center shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
+                <a href="{{ route_langue('accueil') }}" class="w-full sm:w-auto h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm inline-flex items-center justify-center shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
                     <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5 5-5M6 12h13"/></svg>
                     {{ __('Retour à l\'accueil') }}
                 </a>
-                <a href="/notre-projet" class="w-full sm:w-auto h-[52px] px-8 rounded-full bg-white text-primary font-body font-bold text-sm inline-flex items-center justify-center shadow-sm hover:bg-mint/40 transition-all">
+                <a href="{{ route_langue('notre-projet') }}" class="w-full sm:w-auto h-[52px] px-8 rounded-full bg-white text-primary font-body font-bold text-sm inline-flex items-center justify-center shadow-sm hover:bg-mint/40 transition-all">
                     <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4 4-6 8-6 11a6 6 0 0012 0c0-3-2-7-6-11z"/></svg>
                     {{ __('Découvrir notre projet') }}
                 </a>

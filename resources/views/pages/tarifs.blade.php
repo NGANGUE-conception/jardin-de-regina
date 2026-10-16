@@ -49,7 +49,7 @@
                     @endforeach
                 </div>
                 <div class="flex flex-wrap items-center gap-4 pt-3">
-                    <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center justify-center shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
+                    <a href="{{ route_langue('pre-inscription') }}" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center justify-center shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
                         {{ __('Pré-inscrire mon enfant') }}
                     </a>
                     <a href="#aides-financieres" class="h-[52px] px-8 rounded-full bg-white text-primary font-body font-bold text-sm flex items-center justify-center shadow-sm hover:bg-mint/40 transition-all">
@@ -422,7 +422,7 @@
         <h2 class="font-display text-3xl md:text-4xl">{{ __('Une question sur les tarifs ou votre prise en charge ?') }}</h2>
         <p class="font-body text-white/90 max-w-xl">{{ __('Notre équipe vous conseille et vous guide pas à pas dans vos démarches CAF pour optimiser votre budget de garde.') }}</p>
         <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-white text-coral font-body font-bold text-sm flex items-center justify-center shadow-lg hover:-translate-y-0.5 transition-all">
+            <a href="{{ route_langue('pre-inscription') }}" class="h-[52px] px-8 rounded-full bg-white text-coral font-body font-bold text-sm flex items-center justify-center shadow-lg hover:-translate-y-0.5 transition-all">
                 {{ __('Pré-inscrire mon enfant') }}
             </a>
             <a href="tel:{{ $etab->telephoneLien() }}" class="h-[52px] px-8 rounded-full bg-primary-deep/25 text-white font-body font-bold text-sm flex items-center gap-2 hover:bg-primary-deep/40 transition-all">

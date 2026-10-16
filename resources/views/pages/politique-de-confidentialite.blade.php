@@ -45,7 +45,7 @@
             </div>
             <div class="p-4 rounded-2xl bg-cream flex flex-col gap-1 md:col-span-2">
                 <span class="font-body font-bold text-primary-deep">{{ __('Navigation sur le site') }}</span>
-                <span class="font-body text-sm text-primary-deep/80">{{ __('Statistiques de visite anonymes : date et heure, pages consultées, site d\'origine (par exemple Google), type d\'appareil et de navigateur. Aucune adresse IP n\'est enregistrée. Si vous envoyez un formulaire, ces informations de navigation sont associées à votre demande. Détails et refus possible sur la page') }} <a href="{{ route('gestion-des-cookies') }}" class="text-primary font-bold hover:underline">{{ __('Gestion des cookies') }}</a>.</span>
+                <span class="font-body text-sm text-primary-deep/80">{{ __('Statistiques de visite anonymes : date et heure, pages consultées, site d\'origine (par exemple Google), type d\'appareil et de navigateur. Aucune adresse IP n\'est enregistrée. Si vous envoyez un formulaire, ces informations de navigation sont associées à votre demande. Détails et refus possible sur la page') }} <a href="{{ route_langue('gestion-des-cookies') }}" class="text-primary font-bold hover:underline">{{ __('Gestion des cookies') }}</a>.</span>
             </div>
         </div>
         <p class="font-body text-sm text-primary-deep/80">{{ __('Nous ne collectons jamais plus de données que nécessaire au traitement de votre demande.') }}</p>

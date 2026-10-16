@@ -20,8 +20,6 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectUsersTo(fn (Request $request) => route('admin'));
         $middleware->append(EnTetesSecurite::class);
         $middleware->append(DefinirLangue::class);
-        // Cookie de langue lu par un middleware global (avant le déchiffrement des cookies) : il n'est pas chiffré.
-        $middleware->encryptCookies(except: [DefinirLangue::COOKIE]);
         $middleware->web(append: [SuivreVisitesSite::class]);
         $middleware->alias(['anti-spam' => ProtectionAntiSpam::class]);
     })

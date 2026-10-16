@@ -2,9 +2,9 @@
 
 @php
 $docs = [
-    'mentions-legales' => ['label' => __('Mentions légales'), 'route' => '/mentions-legales'],
-    'confidentialite' => ['label' => __('Confidentialité & RGPD'), 'route' => '/politique-de-confidentialite'],
-    'cookies' => ['label' => __('Gestion des cookies'), 'route' => '/gestion-des-cookies'],
+    'mentions-legales' => ['label' => __('Mentions légales'), 'route' => route_langue('mentions-legales')],
+    'confidentialite' => ['label' => __('Confidentialité & RGPD'), 'route' => route_langue('politique-de-confidentialite')],
+    'cookies' => ['label' => __('Gestion des cookies'), 'route' => route_langue('gestion-des-cookies')],
 ];
 @endphp
 
@@ -39,7 +39,7 @@ $docs = [
         @if (app()->getLocale() !== 'fr')
         <p class="mt-6 bg-white rounded-2xl p-4 font-body text-sm text-primary-deep shadow-sm" role="note">
             {{ __('Cette page est une traduction fournie pour information. Seule la version française fait foi.') }}
-            <a href="{{ route('langue', 'fr') }}" class="font-bold text-primary underline">{{ __('Lire la version française') }}</a>
+            <a href="{{ App\Support\LangueSite::equivalent('fr') }}" class="font-bold text-primary underline">{{ __('Lire la version française') }}</a>
         </p>
         @endif
 

@@ -50,6 +50,6 @@ class PreRegistrationController extends Controller
         ), 'fr');
 
         return redirect()
-            ->route('confirmation-preinscription', ['dossier' => $dossier->dossier_number]);
+            ->to(route_langue('confirmation-preinscription', ['dossier' => $dossier->dossier_number]));
     }
 }

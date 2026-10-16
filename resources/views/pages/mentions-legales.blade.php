@@ -132,7 +132,7 @@
 
     <x-legal-article :n="5" titre="Cookies & respect de la navigation">
         <p>{{ __('Pour assurer la sécurité et le bon fonctionnement du site, nous utilisons des traceurs strictement nécessaires. Le détail complet figure sur notre page dédiée.') }}</p>
-        <a href="/gestion-des-cookies" class="inline-flex items-center gap-2 text-primary font-bold hover:underline w-fit">
+        <a href="{{ route_langue('gestion-des-cookies') }}" class="inline-flex items-center gap-2 text-primary font-bold hover:underline w-fit">
             <span>{{ __('Voir la gestion des cookies du Jardin de Régina') }}</span>
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>

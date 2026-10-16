@@ -9,6 +9,6 @@
 @endsection
 
 @section('actions')
-    <a href="{{ url('/') }}" class="bouton principal">{{ __('Retour à l\'accueil') }}</a>
+    <a href="{{ route_langue('accueil') }}" class="bouton principal">{{ __('Retour à l\'accueil') }}</a>
     <button type="button" onclick="location.reload()" class="bouton secondaire">{{ __('Réessayer') }}</button>
 @endsection

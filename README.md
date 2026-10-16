@@ -85,9 +85,14 @@ En local, les emails ne partent pas : ils sont écrits dans `storage/logs/larave
 
 ## Version anglaise du site
 
-Les boutons **FR / EN** du menu changent la langue du site public (choix mémorisé un an dans le cookie
-`jr_langue`). L'espace admin reste en français.
+Chaque page publique existe en français à son adresse d'origine (`/contact`) et en anglais sous `/en`
+(`/en/contact`). Les boutons **FR / EN** du menu mènent à la même page dans l'autre langue. Google indexe
+les deux versions (balises `hreflang` et `sitemap.xml`). L'espace admin reste en français.
 
+- Les routes publiques sont déclarées une seule fois dans `routes/publiques.php`, chargé deux fois par `routes/web.php`
+  (noms `contact` et `en.contact`) : une nouvelle page publique existe donc automatiquement dans les deux langues.
+- **Liens internes : toujours `route_langue('contact')`** (et non `route('contact')` ou `href="/contact"`) pour rester
+  dans la langue affichée (voir `app/helpers.php` et `App\Support\LangueSite`).
 - Dans les pages, chaque texte est écrit en français dans `__('...')`, par exemple `{{ __('Nos tarifs') }}`.
 - Sa traduction se trouve dans **`lang/en.json`** : `"Nos tarifs": "Our fees"`. Sans traduction, le texte reste en français.
 - **Modifier un texte français = mettre à jour la ligne correspondante de `lang/en.json`** (le texte français sert de clé).

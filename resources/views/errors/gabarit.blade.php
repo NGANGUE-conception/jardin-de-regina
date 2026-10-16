@@ -108,7 +108,7 @@
     <div class="bulle bulle-2"></div>
 
     <main class="carte">
-        <a href="{{ url('/') }}" aria-label="{{ __('Retour à l\'accueil du Jardin de Régina') }}">
+        <a href="{{ route_langue('accueil') }}" aria-label="{{ __('Retour à l\'accueil du Jardin de Régina') }}">
             <img src="{{ asset('images/logo.webp') }}" width="375" height="192" alt="{{ __('Le Jardin de Régina') }}" class="logo">
         </a>
 

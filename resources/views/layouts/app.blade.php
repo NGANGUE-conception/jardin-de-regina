@@ -19,9 +19,17 @@
     <meta name="robots" content="{{ $metaRobots }}">
     <link rel="canonical" href="{{ $urlCanonique }}">
 
+    {{-- La même page dans les deux langues, pour Google (le français est la version par défaut) --}}
+    @if (App\Support\LangueSite::pageBilingue())
+        @foreach (['fr' => 'fr', 'en' => 'en', 'x-default' => 'fr'] as $codeHreflang => $langueHreflang)
+            <link rel="alternate" hreflang="{{ $codeHreflang }}" href="{{ Referencement::url(parse_url(App\Support\LangueSite::equivalent($langueHreflang), PHP_URL_PATH) ?? '/') }}">
+        @endforeach
+    @endif
+
     {{-- Aperçu lors d'un partage du lien (WhatsApp, Facebook, LinkedIn, SMS...) --}}
     <meta property="og:type" content="website">
     <meta property="og:locale" content="{{ app()->getLocale() === 'en' ? 'en_GB' : 'fr_FR' }}">
+    <meta property="og:locale:alternate" content="{{ app()->getLocale() === 'en' ? 'fr_FR' : 'en_GB' }}">
     <meta property="og:site_name" content="{{ config('creche.nom') }}">
     <meta property="og:title" content="{{ $metaTitre }}">
     <meta property="og:description" content="{{ $metaDescription }}">

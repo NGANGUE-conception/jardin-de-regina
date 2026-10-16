@@ -125,7 +125,7 @@
             <div>
                 <x-formulaire.resume-erreurs alpine :champs="['child_last_name' => 'child-lastname', 'child_first_name' => 'child-firstname', 'child_gender' => 'child-gender', 'child_birthdate' => 'child-birthdate', 'entry_date' => 'entry-date', 'care_type' => 'type-accueil', 'care_days' => 'jours-presence', 'special_needs_details' => 'special-details', 'p1_nom' => 'p1_nom', 'p1_prenom' => 'p1_prenom', 'p1_email' => 'p1_email', 'p1_tel' => 'p1_tel', 'p1_fixe' => 'p1_fixe', 'p1_profession' => 'p1_profession', 'p1_employeur' => 'p1_employeur', 'p1_cp' => 'p1_cp', 'p1_ville' => 'p1_ville', 'p1_adresse' => 'p1_adresse', 'p2_nom' => 'p2_nom', 'p2_prenom' => 'p2_prenom', 'p2_email' => 'p2_email', 'p2_tel' => 'p2_tel', 'p2_profession' => 'p2_profession', 'p2_employeur' => 'p2_employeur', 'message' => 'message_libre', 'rgpd_consent' => 'pi-rgpd']" />
 
-                <form method="POST" action="{{ route('pre-inscription.store') }}" x-ref="formulaire">
+                <form method="POST" action="{{ route_langue('pre-inscription.store') }}" x-ref="formulaire">
                 @csrf
                 <x-anti-spam />
                 {{-- STEPPER --}}
@@ -346,7 +346,7 @@
                         <div class="md:col-span-2 flex flex-col gap-1.5">
                             <div class="flex items-center justify-between">
                                 <label for="p1_employeur" class="font-body text-sm font-bold text-primary-deep">{{ __('Employeur / Société') }}</label>
-                                <a href="/berceaux-entreprise" class="inline-flex items-center gap-1 font-body text-primary text-xs bg-mint/50 px-2 py-0.5 rounded-full font-bold hover:bg-mint transition-colors">{{ __('Réservation berceau entreprise') }}</a>
+                                <a href="{{ route_langue('berceaux-entreprise') }}" class="inline-flex items-center gap-1 font-body text-primary text-xs bg-mint/50 px-2 py-0.5 rounded-full font-bold hover:bg-mint transition-colors">{{ __('Réservation berceau entreprise') }}</a>
                             </div>
                             <input id="p1_employeur" name="p1_employeur" value="{{ old('p1_employeur') }}" type="text" placeholder="{{ __('Nom de l\'entreprise ou structure') }}" class="h-[52px] px-5 rounded-2xl bg-cream text-primary-deep placeholder:text-primary-deep/40 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all @error('p1_employeur') ring-2 ring-coral @enderror" @error('p1_employeur') aria-invalid="true" aria-describedby="p1_employeur-erreur" @enderror>
                             <p class="font-body text-xs text-primary-deep/75">{{ __('Votre employeur peut, dans certains cas, financer une partie de la place.') }}</p>

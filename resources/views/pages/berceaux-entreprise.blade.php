@@ -286,7 +286,7 @@
                 </div>
                 @else
                 <x-formulaire.resume-erreurs :champs="['company_name' => 'company_name', 'sector' => 'sector', 'employees_count' => 'employees_count', 'berceaux_count' => 'berceaux_count', 'contact_name' => 'contact_name', 'contact_role' => 'contact_role', 'contact_email' => 'contact_email', 'contact_tel' => 'contact_tel', 'message' => 'message', 'rgpd_consent' => 'devis-rgpd']" />
-                <form method="POST" action="{{ route('berceaux-entreprise.store') }}" class="flex flex-col gap-4">
+                <form method="POST" action="{{ route_langue('berceaux-entreprise.store') }}" class="flex flex-col gap-4">
                     @csrf
                     <x-anti-spam />
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

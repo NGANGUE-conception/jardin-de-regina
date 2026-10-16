@@ -31,7 +31,7 @@ class PreferenceStatistiquesController extends Controller
         }
 
         return redirect()
-            ->to(route('gestion-des-cookies').'#section-4')
+            ->to(route_langue('gestion-des-cookies').'#section-4')
             ->with('statistiques', $message);
     }
 }

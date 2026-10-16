@@ -8,7 +8,7 @@
 @endsection
 
 @section('actions')
-    <a href="{{ url('/') }}" class="bouton principal">{{ __('Retour à l\'accueil') }}</a>
-    <a href="{{ url('/pre-inscription') }}" class="bouton secondaire">{{ __('Pré-inscription') }}</a>
-    <a href="{{ url('/contact') }}" class="bouton secondaire">{{ __('Nous contacter') }}</a>
+    <a href="{{ route_langue('accueil') }}" class="bouton principal">{{ __('Retour à l\'accueil') }}</a>
+    <a href="{{ route_langue('pre-inscription') }}" class="bouton secondaire">{{ __('Pré-inscription') }}</a>
+    <a href="{{ route_langue('contact') }}" class="bouton secondaire">{{ __('Nous contacter') }}</a>
 @endsection

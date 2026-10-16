@@ -46,7 +46,7 @@ class CorporateRequestController extends Controller
         ), 'fr');
 
         return redirect()
-            ->to(route('berceaux-entreprise').'#devis-form')
+            ->to(route_langue('berceaux-entreprise').'#devis-form')
             ->with('success', __('Merci, votre demande de devis a bien été envoyée. Notre équipe revient vers vous très prochainement.'));
     }
 }

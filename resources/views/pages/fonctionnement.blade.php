@@ -41,7 +41,7 @@
                     </span>
                 </div>
                 <div class="flex flex-wrap items-center gap-4">
-                    <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
+                    <a href="{{ route_langue('pre-inscription') }}" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
                         {{ __('Pré-inscrire mon enfant') }}
                     </a>
                     <a href="#journee-type" class="h-[52px] px-8 rounded-full bg-transparent text-primary font-body font-bold text-sm flex items-center gap-2 hover:bg-mint/40 transition-all">
@@ -426,7 +426,7 @@
                 <h2 class="font-display text-3xl md:text-4xl">{{ __('Envie d\'offrir à votre enfant un cocon bienveillant à Alfortville ?') }}</h2>
                 <p class="font-body text-white/90">{{ __('Les places étant limitées à 12 berceaux pour garantir une qualité d\'attention absolue, nous vous invitons à déposer votre demande dès à présent.') }}</p>
                 <div class="pt-3 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                    <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-white text-coral font-body font-bold text-sm flex items-center gap-2 shadow-md hover:scale-105 transition-transform">
+                    <a href="{{ route_langue('pre-inscription') }}" class="h-[52px] px-8 rounded-full bg-white text-coral font-body font-bold text-sm flex items-center gap-2 shadow-md hover:scale-105 transition-transform">
                         {{ __('Pré-inscrire mon enfant') }}
                     </a>
                     <div class="flex items-center gap-2 font-body text-sm">

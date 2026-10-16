@@ -235,7 +235,7 @@
 
                     <x-formulaire.resume-erreurs fichiers :champs="['nom' => 'nom', 'prenom' => 'prenom', 'email' => 'rec_email', 'tel' => 'rec_tel', 'poste' => 'poste', 'message' => 'rec_message', 'documents' => 'zone-documents', 'rgpd_consent' => 'rec-rgpd']" />
 
-                    <form method="POST" action="{{ route('recrutement.store') }}" enctype="multipart/form-data" class="flex flex-col gap-5">
+                    <form method="POST" action="{{ route_langue('recrutement.store') }}" enctype="multipart/form-data" class="flex flex-col gap-5">
                         @csrf
                         <x-anti-spam />
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

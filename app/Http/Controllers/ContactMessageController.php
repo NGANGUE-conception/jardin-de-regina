@@ -45,7 +45,7 @@ class ContactMessageController extends Controller
         ), 'fr');
 
         return redirect()
-            ->to(route('contact').'#contact-form')
+            ->to(route_langue('contact').'#contact-form')
             ->with('success', __('Merci, votre message a bien été transmis. Nous vous répondrons sous 48h ouvrées.'));
     }
 }

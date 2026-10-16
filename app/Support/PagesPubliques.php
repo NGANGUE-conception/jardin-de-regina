@@ -46,17 +46,24 @@ class PagesPubliques
     }
 
     /**
-     * Toutes les pages, avec leur adresse absolue et leur date de dernière modification (pour le sitemap.xml).
+     * Toutes les pages dans chaque langue (français puis anglais), avec leur adresse absolue,
+     * l'adresse de la même page dans chaque langue (balises hreflang du sitemap) et leur date
+     * de dernière modification (pour le sitemap.xml).
      */
     public static function pourSitemap(): Collection
     {
-        return collect(self::PAGES)->flatten(1)->map(function (array $page) {
+        return collect(self::PAGES)->flatten(1)->flatMap(function (array $page) {
             $fichier = resource_path('views/pages/'.$page['vue'].'.blade.php');
+            $alternatives = collect(LangueSite::LANGUES)->mapWithKeys(fn (string $langue) => [
+                $langue => Referencement::url(LangueSite::route($page['route'], absolue: false, langue: $langue)),
+            ])->all();
 
-            return $page + [
-                'adresse' => Referencement::url(route($page['route'], absolute: false)),
+            return collect($alternatives)->map(fn (string $adresse, string $langue) => $page + [
+                'langue' => $langue,
+                'adresse' => $adresse,
+                'alternatives' => $alternatives,
                 'modifiee_le' => is_file($fichier) ? Carbon::createFromTimestamp(filemtime($fichier))->toAtomString() : null,
-            ];
+            ])->values();
         });
     }
 }

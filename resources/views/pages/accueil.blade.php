@@ -59,11 +59,11 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
                 </p>
 
                 <div class="mt-8 flex flex-wrap items-center gap-4">
-                    <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
+                    <a href="{{ route_langue('pre-inscription') }}" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
                         <span>{{ __('Pré-inscrire mon enfant') }}</span>
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                     </a>
-                    <a href="/notre-projet" class="h-[52px] px-8 rounded-full bg-white text-primary font-body font-bold text-sm flex items-center justify-center shadow-sm hover:bg-mint/50 transition-all">
+                    <a href="{{ route_langue('notre-projet') }}" class="h-[52px] px-8 rounded-full bg-white text-primary font-body font-bold text-sm flex items-center justify-center shadow-sm hover:bg-mint/50 transition-all">
                         {{ __('Découvrir notre projet') }}
                     </a>
                 </div>
@@ -275,7 +275,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
                         <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full font-body text-sm font-semibold backdrop-blur-sm">{{ __('Places garanties') }}</span>
                         <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full font-body text-sm font-semibold backdrop-blur-sm">{{ __('Jusqu\'à 75 % d\'avantages fiscaux') }}</span>
                     </div>
-                    <a href="/berceaux-entreprise" class="mt-2 h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
+                    <a href="{{ route_langue('berceaux-entreprise') }}" class="mt-2 h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
                         {{ __('Découvrir l\'offre Berceaux entreprise') }}
                     </a>
                 </div>
@@ -296,7 +296,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
             <p class="font-body text-primary-deep/80 max-w-2xl leading-relaxed">
                 {{ __('Le Jardin de Régina permet aux familles de bénéficier des aides de la CAF (PAJE / CMG) ainsi que du crédit d\'impôt garde d\'enfant.') }}
             </p>
-            <a href="/tarifs" class="mt-2 h-[52px] px-8 rounded-full bg-primary text-white font-body font-bold text-sm flex items-center gap-2 shadow-md hover:-translate-y-0.5 hover:opacity-90 transition-all">
+            <a href="{{ route_langue('tarifs') }}" class="mt-2 h-[52px] px-8 rounded-full bg-primary text-white font-body font-bold text-sm flex items-center gap-2 shadow-md hover:-translate-y-0.5 hover:opacity-90 transition-all">
                 {{ __('Voir les tarifs et les aides') }}
             </a>
         </div>
@@ -372,7 +372,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
                     <p class="font-body text-xs text-primary-deep/80">{{ __('Notre équipe vous répond avec plaisir.') }}</p>
                 </div>
             </div>
-            <a href="/contact" class="h-[44px] px-6 rounded-full bg-primary text-white font-body font-bold text-sm flex items-center gap-2 shadow-md hover:-translate-y-0.5 hover:opacity-90 transition-all whitespace-nowrap">
+            <a href="{{ route_langue('contact') }}" class="h-[44px] px-6 rounded-full bg-primary text-white font-body font-bold text-sm flex items-center gap-2 shadow-md hover:-translate-y-0.5 hover:opacity-90 transition-all whitespace-nowrap">
                 {{ __('Nous contacter') }}
             </a>
         </div>
@@ -393,7 +393,7 @@ $confettiSquiggle = '<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" 
         <h2 class="font-display text-3xl md:text-4xl text-primary-deep">{{ __('Prêt à rejoindre notre jardin ?') }}</h2>
         <p class="font-body text-primary-deep/80 max-w-lg">{{ __('Les places se réservent tôt. Venez visiter notre cocon et échanger avec notre équipe.') }}</p>
         <div class="flex flex-wrap items-center justify-center gap-4 mt-2">
-            <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
+            <a href="{{ route_langue('pre-inscription') }}" class="h-[52px] px-8 rounded-full bg-coral text-white font-body font-bold text-sm flex items-center gap-2 shadow-lg hover:-translate-y-0.5 hover:opacity-90 transition-all">
                 {{ __('Pré-inscrire mon enfant') }}
             </a>
             <a href="tel:{{ $etab->telephoneLien() }}" class="h-[52px] px-8 rounded-full bg-white text-primary font-body font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:bg-mint/40 transition-all">

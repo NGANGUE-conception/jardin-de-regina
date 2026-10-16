@@ -10,5 +10,5 @@
 
 @section('actions')
     <button type="button" onclick="history.back()" class="bouton principal">{{ __('Revenir au formulaire') }}</button>
-    <a href="{{ url('/') }}" class="bouton secondaire">{{ __('Retour à l\'accueil') }}</a>
+    <a href="{{ route_langue('accueil') }}" class="bouton secondaire">{{ __('Retour à l\'accueil') }}</a>
 @endsection

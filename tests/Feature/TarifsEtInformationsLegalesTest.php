@@ -55,7 +55,7 @@ class TarifsEtInformationsLegalesTest extends TestCase
             ->assertDontSee('[xx,xx €]', false);
         $this->assertSame('1 029 €', str_replace(["\u{202F}", "\u{00A0}"], ' ', Tarification::euros(1028.72)));
 
-        $this->withUnencryptedCookie('jr_langue', 'en')->get('/tarifs')
+        $this->get('/en/tarifs')
             ->assertOk()
             ->assertSee('€10')
             ->assertSee('≈ €1,029', false);

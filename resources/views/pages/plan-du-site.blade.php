@@ -32,7 +32,7 @@
                 <ul class="flex flex-col gap-1">
                     @foreach ($pages as $page)
                         <li>
-                            <a href="{{ route($page['route']) }}" class="group flex items-start gap-3 rounded-2xl px-3 py-2.5 -mx-3 hover:bg-mint/40 transition-colors {{ request()->routeIs($page['route']) ? 'bg-mint/40' : '' }}">
+                            <a href="{{ route_langue($page['route']) }}" class="group flex items-start gap-3 rounded-2xl px-3 py-2.5 -mx-3 hover:bg-mint/40 transition-colors {{ request()->routeIs($page['route'], 'en.'.$page['route']) ? 'bg-mint/40' : '' }}">
                                 <svg class="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                                 <span class="flex flex-col">
                                     <span class="font-body font-bold text-primary-deep group-hover:text-primary transition-colors">{{ __($page['titre']) }}</span>
@@ -52,7 +52,7 @@
                 <span class="font-bold">{{ __('Vous ne trouvez pas ce que vous cherchez ?') }}</span>
                 {{ __('Appelez-nous au') }} <a href="tel:{{ config('creche.telephone') }}" class="text-primary font-bold hover:underline">{{ config('creche.telephone_affiche') }}</a>.
             </p>
-            <a href="{{ route('contact') }}" class="h-[48px] px-6 rounded-full bg-primary text-white font-body font-bold text-sm flex items-center justify-center shadow-md hover:opacity-90 transition shrink-0">
+            <a href="{{ route_langue('contact') }}" class="h-[48px] px-6 rounded-full bg-primary text-white font-body font-bold text-sm flex items-center justify-center shadow-md hover:opacity-90 transition shrink-0">
                 {{ __('Nous contacter') }}
             </a>
         </div>

@@ -39,13 +39,6 @@
             </div>
             <div class="p-4 rounded-2xl bg-cream flex flex-col gap-1 sm:col-span-2">
                 <div class="flex items-center gap-2 text-primary font-bold">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
-                    <span>{{ __('Langue du site') }}</span>
-                </div>
-                <p class="font-body text-sm text-primary-deep/80">{{ __('Le cookie') }} <code>jr_langue</code> {{ __('mémorise la langue choisie avec les boutons FR / EN du menu, pendant 1 an au maximum. Il ne contient que « fr » ou « en » et ne nécessite pas votre consentement, car c\'est vous qui le demandez en changeant de langue.') }}</p>
-            </div>
-            <div class="p-4 rounded-2xl bg-cream flex flex-col gap-1 sm:col-span-2">
-                <div class="flex items-center gap-2 text-primary font-bold">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></svg>
                     <span>{{ __('Mesure d\'audience anonyme') }}</span>
                 </div>
@@ -68,7 +61,7 @@
             </li>
             @endforeach
         </ul>
-        <p class="p-4 rounded-2xl bg-mint/40 text-sm">{{ __('Si vous envoyez un formulaire (pré-inscription, contact, devis, candidature), la visite au cours de laquelle vous l\'avez envoyé est associée à votre demande (site d\'origine et pages consultées), afin de nous aider à comprendre comment les familles découvrent la crèche. Voir notre') }} <a href="{{ route('politique-de-confidentialite') }}" class="text-primary font-bold hover:underline">{{ __('politique de confidentialité') }}</a>.</p>
+        <p class="p-4 rounded-2xl bg-mint/40 text-sm">{{ __('Si vous envoyez un formulaire (pré-inscription, contact, devis, candidature), la visite au cours de laquelle vous l\'avez envoyé est associée à votre demande (site d\'origine et pages consultées), afin de nous aider à comprendre comment les familles découvrent la crèche. Voir notre') }} <a href="{{ route_langue('politique-de-confidentialite') }}" class="text-primary font-bold hover:underline">{{ __('politique de confidentialité') }}</a>.</p>
     </x-legal-article>
 
     <x-legal-article :n="4" titre="Comment gérer vos préférences">
@@ -83,7 +76,7 @@
             @if (session('statistiques'))
                 <p class="p-3 rounded-xl bg-mint/50 font-body text-sm text-primary-deep">{{ session('statistiques') }}</p>
             @endif
-            <form method="POST" action="{{ route('gestion-des-cookies.statistiques') }}">
+            <form method="POST" action="{{ route_langue('gestion-des-cookies.statistiques') }}">
                 @csrf
                 <input type="hidden" name="choix" value="{{ $statistiquesRefusees ? 'accepter' : 'refuser' }}">
                 <button type="submit" class="px-5 py-2 rounded-full font-body text-sm font-bold transition-all {{ $statistiquesRefusees ? 'bg-primary text-white hover:opacity-90' : 'bg-white text-primary border border-primary/30 hover:bg-mint/30' }}">

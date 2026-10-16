@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Support\LangueSite;
 use Closure;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
@@ -75,13 +76,13 @@ class ProtectionAntiSpam
 
     private function fauxSucces(string $formulaire): Response
     {
-        $cible = self::FAUX_SUCCES[$formulaire] ?? null;
+        $cible = self::FAUX_SUCCES[LangueSite::nomSansLangue($formulaire)] ?? null;
 
         if (! $cible) {
-            return redirect('/');
+            return redirect()->to(route_langue('accueil'));
         }
 
-        $reponse = redirect()->to(route($cible['route']).$cible['ancre']);
+        $reponse = redirect()->to(route_langue($cible['route']).$cible['ancre']);
 
         return $cible['message'] ? $reponse->with('success', __($cible['message'])) : $reponse;
     }

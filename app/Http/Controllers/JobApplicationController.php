@@ -52,7 +52,7 @@ class JobApplicationController extends Controller
         ), 'fr');
 
         return redirect()
-            ->to(route('recrutement').'#candidature')
+            ->to(route_langue('recrutement').'#candidature')
             ->with('success', __("Merci pour votre candidature ! Notre direction pédagogique l'examinera avec soin sous 5 jours ouvrés."));
     }
 }

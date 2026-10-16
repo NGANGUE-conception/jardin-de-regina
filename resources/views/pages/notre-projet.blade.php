@@ -312,10 +312,10 @@
             {{ __('Rencontrez notre équipe pédagogique lors d\'une visite sensorielle privée ou réservez dès maintenant l\'une des places disponibles pour votre enfant.') }}
         </p>
         <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <a href="/contact" class="h-[52px] px-8 rounded-full bg-white text-coral font-body font-bold text-sm flex items-center justify-center shadow-lg hover:-translate-y-0.5 transition-all">
+            <a href="{{ route_langue('contact') }}" class="h-[52px] px-8 rounded-full bg-white text-coral font-body font-bold text-sm flex items-center justify-center shadow-lg hover:-translate-y-0.5 transition-all">
                 {{ __('Demander une visite') }}
             </a>
-            <a href="/pre-inscription" class="h-[52px] px-8 rounded-full bg-transparent text-white font-body font-bold text-sm flex items-center justify-center hover:bg-white/15 transition-all shadow-[0_0_0_2px_#ffffff]">
+            <a href="{{ route_langue('pre-inscription') }}" class="h-[52px] px-8 rounded-full bg-transparent text-white font-body font-bold text-sm flex items-center justify-center hover:bg-white/15 transition-all shadow-[0_0_0_2px_#ffffff]">
                 {{ __('Pré-inscrire mon enfant') }}
             </a>
         </div>

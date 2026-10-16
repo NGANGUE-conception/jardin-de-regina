@@ -33,22 +33,22 @@
               <div class="flex flex-col gap-4">
                   <span class="font-display text-lg">{{ __('Liens rapides') }}</span>
                   <div class="flex flex-col gap-2 text-sm font-body text-cream/90">
-                      <a href="/notre-projet" class="hover:text-cream transition-colors">{{ __('Notre projet pédagogique') }}</a>
-                      <a href="/fonctionnement" class="hover:text-cream transition-colors">{{ __('Fonctionnement & rythme') }}</a>
-                      <a href="/tarifs" class="hover:text-cream transition-colors">{{ __('Grille tarifaire & aides CAF') }}</a>
-                      <a href="/berceaux-entreprise" class="hover:text-cream transition-colors">{{ __('Berceaux entreprise') }}</a>
-                      <a href="/recrutement" class="hover:text-cream transition-colors">{{ __('Espace recrutement') }}</a>
-                      <a href="/pre-inscription" class="font-bold text-coral-clair hover:text-cream transition-colors">{{ __('Demande de pré-inscription') }}</a>
+                      <a href="{{ route_langue('notre-projet') }}" class="hover:text-cream transition-colors">{{ __('Notre projet pédagogique') }}</a>
+                      <a href="{{ route_langue('fonctionnement') }}" class="hover:text-cream transition-colors">{{ __('Fonctionnement & rythme') }}</a>
+                      <a href="{{ route_langue('tarifs') }}" class="hover:text-cream transition-colors">{{ __('Grille tarifaire & aides CAF') }}</a>
+                      <a href="{{ route_langue('berceaux-entreprise') }}" class="hover:text-cream transition-colors">{{ __('Berceaux entreprise') }}</a>
+                      <a href="{{ route_langue('recrutement') }}" class="hover:text-cream transition-colors">{{ __('Espace recrutement') }}</a>
+                      <a href="{{ route_langue('pre-inscription') }}" class="font-bold text-coral-clair hover:text-cream transition-colors">{{ __('Demande de pré-inscription') }}</a>
                   </div>
               </div>
 
               <div class="flex flex-col gap-4">
                   <span class="font-display text-lg">{{ __('Informations légales') }}</span>
                   <div class="flex flex-col gap-2 text-sm font-body text-cream/90">
-                      <a href="/mentions-legales" class="hover:text-cream transition-colors">{{ __('Mentions légales') }}</a>
-                      <a href="/politique-de-confidentialite" class="hover:text-cream transition-colors">{{ __('Politique de confidentialité') }}</a>
-                      <a href="/gestion-des-cookies" class="hover:text-cream transition-colors">{{ __('Gestion des cookies') }}</a>
-                      <a href="/plan-du-site" class="hover:text-cream transition-colors">{{ __('Plan du site') }}</a>
+                      <a href="{{ route_langue('mentions-legales') }}" class="hover:text-cream transition-colors">{{ __('Mentions légales') }}</a>
+                      <a href="{{ route_langue('politique-de-confidentialite') }}" class="hover:text-cream transition-colors">{{ __('Politique de confidentialité') }}</a>
+                      <a href="{{ route_langue('gestion-des-cookies') }}" class="hover:text-cream transition-colors">{{ __('Gestion des cookies') }}</a>
+                      <a href="{{ route_langue('plan-du-site') }}" class="hover:text-cream transition-colors">{{ __('Plan du site') }}</a>
                   </div>
                   <div class="text-xs text-cream/75 mt-2">{{ __('Agrément PMI & soutien CAF Val-de-Marne') }}</div>
               </div>

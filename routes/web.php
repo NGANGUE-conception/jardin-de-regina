@@ -10,88 +10,12 @@ use App\Http\Controllers\Admin\ParametresController;
 use App\Http\Controllers\Admin\PreRegistrationAdminController;
 use App\Http\Controllers\Admin\SiteVisitAdminController;
 use App\Http\Controllers\Admin\VisiteAdminController;
-use App\Http\Controllers\ContactMessageController;
-use App\Http\Controllers\CorporateRequestController;
-use App\Http\Controllers\JobApplicationController;
-use App\Http\Controllers\LangueController;
-use App\Http\Controllers\PreferenceStatistiquesController;
-use App\Http\Controllers\PreRegistrationController;
 use App\Http\Controllers\ReferencementController;
-use App\Http\Middleware\DefinirLangue;
-use App\Support\PagesPubliques;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pages.accueil');
-})->name('accueil');
-
-// Boutons FR / EN du menu
-Route::get('/langue/{langue}', [LangueController::class, 'changer'])
-    ->whereIn('langue', DefinirLangue::LANGUES)
-    ->name('langue');
-
-Route::get('/notre-projet', function () {
-    return view('pages.notre-projet');
-})->name('notre-projet');
-
-Route::get('/fonctionnement', function () {
-    return view('pages.fonctionnement');
-})->name('fonctionnement');
-
-Route::get('/tarifs', function () {
-    return view('pages.tarifs');
-})->name('tarifs');
-
-Route::get('/berceaux-entreprise', function () {
-    return view('pages.berceaux-entreprise');
-})->name('berceaux-entreprise');
-Route::post('/berceaux-entreprise/devis', [CorporateRequestController::class, 'store'])
-    ->middleware(['throttle:formulaires-publics', 'anti-spam'])
-    ->name('berceaux-entreprise.store');
-
-Route::get('/contact', function () {
-    return view('pages.contact');
-})->name('contact');
-Route::post('/contact', [ContactMessageController::class, 'store'])
-    ->middleware(['throttle:formulaires-publics', 'anti-spam'])
-    ->name('contact.store');
-
-Route::get('/recrutement', function () {
-    return view('pages.recrutement');
-})->name('recrutement');
-Route::post('/recrutement/candidature', [JobApplicationController::class, 'store'])
-    ->middleware(['throttle:formulaires-publics', 'anti-spam'])
-    ->name('recrutement.store');
-
-Route::get('/pre-inscription', function () {
-    return view('pages.pre-inscription');
-})->name('pre-inscription');
-Route::post('/pre-inscription', [PreRegistrationController::class, 'store'])
-    ->middleware(['throttle:formulaires-publics', 'anti-spam'])
-    ->name('pre-inscription.store');
-
-Route::get('/pre-inscription/confirmation', function () {
-    return view('pages.confirmation-preinscription', [
-        'numeroDossier' => request('dossier'),
-    ]);
-})->name('confirmation-preinscription');
-
-Route::get('/mentions-legales', function () {
-    return view('pages.mentions-legales');
-})->name('mentions-legales');
-
-Route::get('/politique-de-confidentialite', function () {
-    return view('pages.politique-de-confidentialite');
-})->name('politique-de-confidentialite');
-
-Route::get('/gestion-des-cookies', function () {
-    return view('pages.gestion-des-cookies');
-})->name('gestion-des-cookies');
-Route::post('/gestion-des-cookies/statistiques', [PreferenceStatistiquesController::class, 'update'])->name('gestion-des-cookies.statistiques');
-
-Route::get('/plan-du-site', function () {
-    return view('pages.plan-du-site', ['rubriques' => PagesPubliques::parRubrique()]);
-})->name('plan-du-site');
+// Site public : en français (adresses d'origine), puis en anglais sous /en (voir routes/publiques.php).
+Route::group([], base_path('routes/publiques.php'));
+Route::prefix('en')->name('en.')->group(base_path('routes/publiques.php'));
 
 // Fichiers pour les moteurs de recherche (générés à la volée, voir ReferencementController).
 Route::get('/sitemap.xml', [ReferencementController::class, 'sitemap'])->name('sitemap');
